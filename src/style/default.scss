@@ -1,0 +1,126 @@
+@import "./variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "./utils";
+@import "./weather-icons/css/weather-icons.min.css";
+@import "./weather-icons/css/weather-icons-wind.min.css";
+
+/* Links & Buttons */
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn {
+  font-weight: 500;
+  padding: .4rem 1rem;
+
+  &-light, &-light:hover, &-light:focus {
+    border-color: $gray-200;
+  }
+}
+
+button > *, a > * {
+  pointer-events: none;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+/* Offcanvas */
+.loading::before, .offcanvas-backdrop::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1039;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  background-color: rgba(200, 200, 200, .5);
+}
+
+.offcanvas {
+  transition: none;
+}
+
+/* Navbars */
+.navbar {
+  border-bottom: 1px solid $gray-200;
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .nav-item.router-link-active {
+    .nav-link {
+      color: $dark;
+    }
+  }
+}
+
+/* Card Header */
+.card {
+  border: 1px solid $gray-200;
+
+  .card-header {
+    background-color: $light;
+    border-bottom: 1px solid $gray-200;
+  }
+}
+
+section.card {
+  border: 0;
+
+  .card-header-main {
+    background-color: $white;
+    padding: 0;
+
+    .card-header-title {
+      display: inline-block;
+      margin: 0;
+      padding-bottom: .8rem;
+      padding-right: 1rem;
+      border-bottom: 3px solid $primary;
+    }
+  }
+}
+
+/* Parameter Cards */
+.card {
+  &-kpi {
+    border: 1px solid $gray-100;
+
+    .card-body {
+      overflow: hidden;
+
+      h5 {
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+  &-temp {
+    border-left: 3px solid $red;
+  }
+  &-prcp {
+    border-left: 3px solid $cyan-600;
+  }
+  &-icon {
+    font-size: 3rem;
+    margin-right: .5rem;
+    color: $gray-400;
+  }
+  .anomaly-negative {
+    color: $cyan-700;
+  }
+  .anomaly-positive {
+    color: $red-700;
+  }
+}
+
+/* Leaflet Maps */
+.map {
+  a, a:hover, a:active {
+    color: #333 !important;
+  }
+}
