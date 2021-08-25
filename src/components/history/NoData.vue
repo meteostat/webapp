@@ -27,11 +27,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Store } from 'pinia'
 import { useSettingsStore } from '../../stores/settings'
 
-export default {
+export default defineComponent({
   name: 'NoDataAlert',
 
   setup(): Record<string, Store|any> {
@@ -47,7 +48,7 @@ export default {
       this.$router.go(0)
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

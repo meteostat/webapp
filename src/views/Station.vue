@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { ref, computed } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import { format } from 'date-fns'
@@ -56,7 +56,7 @@ import Nearby from '~/components/panels/Nearby.vue'
 import Climate from '~/components/climate/Climate.vue'
 import History from '~/components/history/History.vue'
 
-export default {
+export default defineComponent({
   name: 'Station',
 
   components: {
@@ -127,7 +127,7 @@ export default {
         .then(data => this.normals = data.data)
     }
   },
-}
+})
 </script>
 
 <i18n>

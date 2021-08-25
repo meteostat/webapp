@@ -173,6 +173,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { format, addDays, subDays, differenceInDays } from 'date-fns'
 import { useSettingsStore } from '../../stores/settings'
@@ -184,7 +185,7 @@ import { toFahrenheit, toInches, toMPH } from '../../utils/units'
 import useLeaflet from '../../utils/leaflet'
 import '../../../node_modules/leaflet/dist/leaflet.css';
 
-export default {
+export default defineComponent({
   name: 'MeteoMaps',
 
   props: {
@@ -197,7 +198,7 @@ export default {
       required: true
     },
     range: {
-      type: Array,
+      type: Array as PropType<Array<Date>>,
       required: true
     }
   },
@@ -441,7 +442,7 @@ export default {
 
     toggleFullscreen(): void {
       if (!document.fullscreenElement) {
-          this.$refs.wrapper.requestFullscreen()
+          (this.$refs as any).wrapper.requestFullscreen()
       } else {
         if (document.exitFullscreen) {
           document.exitFullscreen()
@@ -450,7 +451,7 @@ export default {
       this.fullscreen = !this.fullscreen
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

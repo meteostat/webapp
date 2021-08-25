@@ -303,11 +303,11 @@
 </template>
 
 <script lang="ts">
-import { watch, ref } from 'vue'
+import { defineComponent, watch, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useSettingsStore } from '../stores/settings'
 
-export default {
+export default defineComponent({
   name: 'Navbar',
   
   setup(): Record<string, any> {
@@ -354,8 +354,8 @@ export default {
     // Register search hot key
     document.addEventListener('keydown', (e) => {
       if (e.key === '/') {
-        e.preventDefault()
-        this.$refs.search.focus()
+        e.preventDefault();
+        (this.$refs as any).search.focus()
       }
     })
     // Clear search on click
@@ -367,7 +367,7 @@ export default {
         ['search-result', 'search-input'].some(r => document.activeElement?.classList.contains(r))
       ) {
         e.preventDefault();
-        const results = this.$refs.results.getElementsByTagName('a')
+        const results = (this.$refs as any).results.getElementsByTagName('a')
         if (e.key === 'ArrowDown' && document.activeElement?.classList.contains('search-input')) {
           results[0].focus()
         }        
@@ -390,9 +390,9 @@ export default {
           }
         }
       }     
-    })
+    });
     // Reload content after change in settings
-    this.$refs.settingsSidebar.addEventListener('hide.bs.offcanvas', () => {
+    (this.$refs as any).settingsSidebar.addEventListener('hide.bs.offcanvas', () => {
       if (this.settingsChanged) {
         this.$router.go(0)
       }
@@ -414,7 +414,7 @@ export default {
       this.results = {}
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

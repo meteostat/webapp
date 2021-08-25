@@ -25,9 +25,10 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-export default {
+export default defineComponent({
   name: 'Sections',
 
   setup(): Record<string, any> {
@@ -45,11 +46,13 @@ export default {
   methods: {
     scrollTo(id: string): void {
       const el = document.getElementById(id)
-      const top = (el.getBoundingClientRect().top + window.pageYOffset) - 80
-      window.scrollTo({
-        top: top,
-        behavior: 'smooth'
-      })
+      if (el) {
+        const top = (el.getBoundingClientRect().top + window.pageYOffset) - 80
+        window.scrollTo({
+          top: top,
+          behavior: 'smooth'
+        })
+      }
     },
     
     update(): void {
@@ -73,7 +76,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <i18n>

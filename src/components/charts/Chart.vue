@@ -6,9 +6,10 @@
 </template>
 
 <script lang="js">
+import { defineComponent } from 'vue'
 import ColorStripePlugin from './ColorStripe.plugin.ts'
 
-export default {
+export default defineComponent({
   name: 'Chart',
 
   props: {
@@ -128,7 +129,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

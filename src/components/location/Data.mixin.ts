@@ -1,4 +1,6 @@
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   methods: {
     /**
      * Returns data of a single column as an array
@@ -45,4 +47,4 @@ export default {
       return this.data?.some((record: Record<string, number>) => record[column] === null)
     }
   }
-}
+})

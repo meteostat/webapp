@@ -165,6 +165,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+import { RouteLocationNormalized } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import {
   parseISO,
@@ -184,7 +186,7 @@ import Hourly from './dashboards/Hourly.vue'
 import Daily from './dashboards/Daily.vue'
 import Monthly from './dashboards/Monthly.vue'
 
-export default {
+export default defineComponent({
   name: 'History',
 
   components: {
@@ -240,7 +242,8 @@ export default {
   },
 
   data(): Record<string, any> {
-    const t: string = this.$route.query.t
+    const route = this.$route as RouteLocationNormalized
+    const t = route.query.t as string
     let start, end
     if (t) {
       start = parseISO(t.substring(0, 10))
@@ -263,10 +266,10 @@ export default {
         // Last week
         [
           startOfWeek(subDays(new Date(), 7), {
-            weekStartOn: 1
+            weekStartsOn: 1
           }),
           endOfWeek(subDays(new Date(), 7), {
-            weekStartOn: 1
+            weekStartsOn: 1
           })
         ],
         // Last month
@@ -326,7 +329,7 @@ export default {
 
   methods: {
     updateSections(): void {
-      this.$refs.sections.update()
+      (this.$refs as any).sections.update()
     },
 
     setRange(start: Date, end: Date): void {
@@ -334,12 +337,12 @@ export default {
       this.range = {
         start,
         end
-      }
+      };
       // Change calendar month
-      this.$refs.calendar.focusDate(start)
+      (this.$refs as any).focusDate(start)
     }
   }
-}
+})
 </script>
 
 <i18n>

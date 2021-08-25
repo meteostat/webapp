@@ -15,9 +15,22 @@ interface HourlyRecordInterface {
   coco: number
 }
 
+interface NormalsRecordInterface {
+  start: number,
+  end: number,
+  month: number,
+  tavg: number,
+  tmin: number,
+  tmax: number,
+  prcp: number,
+  wspd: number,
+  pres: number,
+  tsun: number
+}
+
 interface ChartDefinitionInterface {
   data: ChartData | any,
   options?: ChartOptions | any
 }
 
-export { HourlyRecordInterface, ChartDefinitionInterface }
+export { HourlyRecordInterface, NormalsRecordInterface, ChartDefinitionInterface }

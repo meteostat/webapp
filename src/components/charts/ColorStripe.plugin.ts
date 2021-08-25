@@ -1,8 +1,9 @@
-import { Chart } from 'chart.js'
+import { Chart, Plugin } from 'chart.js'
 import { toCelsius, toMillimeters, toKMH } from '../../utils/units'
 
 export default {
   id: 'colorStripe',
+
   beforeDatasetsDraw: (chart: Chart): void => {
     if (chart.options?.plugins?.colorStripe?.scale) {
       const chartArea = chart.chartArea
@@ -52,4 +53,4 @@ export default {
       }
     }
   }
-}
+} as Plugin

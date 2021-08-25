@@ -105,12 +105,13 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: {
@@ -130,7 +131,7 @@ export default {
 
     return { t }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

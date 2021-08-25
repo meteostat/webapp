@@ -138,7 +138,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'Home',
 
   data(): Record<string, Array<string>> {
@@ -151,7 +153,7 @@ export default {
       ]
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

@@ -60,6 +60,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { format } from 'date-fns'
 import Navbar from '../components/location/Navbar.vue'
 import Meta from '../components/panels/Meta.vue'
@@ -68,7 +69,7 @@ import Hourly from '../components/history/dashboards/Hourly.vue'
 import Daily from '../components/history/dashboards/Daily.vue'
 import Monthly from '../components/history/dashboards/Monthly.vue'
 
-export default {
+export default defineComponent({
   name: 'Place',
 
   components: {
@@ -129,8 +130,8 @@ export default {
      * Trigger section list update
      */
     dataLoaded(): void {
-      this.$refs.subnav.updateSections()
+      (this.$refs as any).subnav.updateSections()
     }
   },
-}
+})
 </script>

@@ -54,6 +54,7 @@ declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
     $loading(): any,
     $loaded(): any,
+    $bs: any,
     $api: string
   }
 }

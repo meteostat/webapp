@@ -191,15 +191,16 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Store } from 'pinia'
 import { useSettingsStore } from '../../stores/settings'
-import { ChartDefinitionInterface } from '../../utils/interfaces'
+import { NormalsRecordInterface, ChartDefinitionInterface } from '../../utils/interfaces'
 import DataMixin from '../location/Data.mixin'
 import Sections from '../Sections.vue'
 import Chart from '../charts/Chart.vue'
 
-export default {
+export default defineComponent({
   name: 'Climate',
 
   components: {
@@ -211,7 +212,7 @@ export default {
 
   props: {
     normals: {
-      type: Array,
+      type: Array as PropType<Array<NormalsRecordInterface>>,
       default: (): Array<undefined> => []
     }
   },
@@ -282,7 +283,6 @@ export default {
           return record.start === this.activePeriod
         })
       }
-      console.log(data)
       return data
     },
 
@@ -439,7 +439,7 @@ export default {
 
   updated(): void {
    // Update sections
-   this.$refs.sections.update()
+   (this.$refs.sections as any).update()
   },
 
   methods: {
@@ -447,7 +447,7 @@ export default {
       this.activePeriod = period
     }
   }
-}
+})
 </script>
 
 <i18n>

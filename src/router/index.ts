@@ -1,6 +1,6 @@
-import Home from '../views/Home.vue'
-import Station from '../views/Station.vue'
-import Place from '../views/Place.vue'
+import Home from '~/views/Home.vue'
+import Station from '~/views/Station.vue'
+import Place from '~/views/Place.vue'
 
 export default [
   {
