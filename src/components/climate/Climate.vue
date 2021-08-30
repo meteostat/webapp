@@ -1,219 +1,239 @@
-<template v-if="periods.length > 0 && normals && anyData()">
-  <!-- Toolbar -->
-  <div class="d-flex mt-n2 py-2 sticky-top bg-white">
-    <!-- Sections -->
-    <Sections ref="sections" />
-    <!-- Reference Periods -->
-    <div class="ms-auto">
-      <div class="dropdown">
-        <button
-          class="btn btn-light dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <icon :icon="['fas', 'history']" />
-          <span class="ms-2">
-            <template v-if="activePeriod === null">{{ t('latest') }}</template>
-            <template v-else>{{ activePeriod }} - {{ activePeriod + 29 }}</template>
-          </span>
-        </button>
-        <ul class="dropdown-menu">
-          <li>
-            <a
-              :class="{ active: activePeriod === null }"
-              class="dropdown-item"
-              @click="setPeriod(null)"
-            >{{ t('latest') }}</a>
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li
-            v-for="period in periods"
-            :key="period"
+<template>
+  <template v-if="periods.length > 0 && normals && anyData()">
+    <!-- Toolbar -->
+    <div class="d-flex mt-n2 py-2 sticky-top bg-white">
+      <!-- Sections -->
+      <Sections ref="sections" />
+      <!-- Reference Periods -->
+      <div class="ms-auto">
+        <div class="dropdown">
+          <button
+            class="btn btn-light dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-            <a
-              :class="{ active: period === activePeriod }"
-              class="dropdown-item"
-              @click="setPeriod(period)"
-            >{{ period }} - {{ period + 29 }}</a>
-          </li>
-        </ul>
+            <icon :icon="['fas', 'history']" />
+            <span class="ms-2">
+              <template v-if="activePeriod === null">{{ t('latest') }}</template>
+              <template v-else>{{ activePeriod }} - {{ activePeriod + 29 }}</template>
+            </span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                :class="{ active: activePeriod === null }"
+                class="dropdown-item"
+                @click="setPeriod(null)"
+              >{{ t('latest') }}</a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li
+              v-for="period in periods"
+              :key="period"
+            >
+              <a
+                :class="{ active: period === activePeriod }"
+                class="dropdown-item"
+                @click="setPeriod(period)"
+              >{{ period }} - {{ period + 29 }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="mt-2 pt-1">
-    <!-- Manual -->
-    <div
-      v-if="!settings.dismiss.climateManual"
-      class="alert alert-primary alert-dismissible fade show"
-      role="alert"
-    >
-      <span v-html="t('$manual')" />
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-        @click="settings.dismiss.climateManual = true"
-      />
-    </div>
+    <div class="mt-2 pt-1">
+      <!-- Manual -->
+      <div
+        v-if="!settings.dismiss.climateManual"
+        class="alert alert-primary alert-dismissible fade show"
+        role="alert"
+      >
+        <span v-html="t('$manual')" />
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+          @click="settings.dismiss.climateManual = true"
+        />
+      </div>
 
-    <!-- Briefing -->
-    <div class="row">
-      <div class="col-6 pe-1 pe-md-3">
-        <!-- Average Temperature -->
-        <div
-          class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-temp h-100"
-        >
-          <div class="card-body py-2">
-            <h5 class="card-title">
-              <template v-if="tavgKPI">
-                {{ tavgKPI }}
-                <small class="text-muted ms-1">°C</small>
-              </template>
-              <template v-else>
-                <span class="text-muted">{{ t('noData') }}</span>
-              </template>
-            </h5>
-            <span class="card-text text-muted text-truncate">Avg. Temperature</span>
+      <!-- Briefing -->
+      <div class="row">
+        <div class="col-6 pe-1 pe-md-3">
+          <!-- Average Temperature -->
+          <div
+            class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-temp h-100"
+          >
+            <div class="card-body py-2">
+              <h5 class="card-title">
+                <template v-if="tavgKPI">
+                  {{ tavgKPI }}
+                  <small class="text-muted ms-1">°C</small>
+                </template>
+                <template v-else>
+                  <span class="text-muted">{{ t('noData') }}</span>
+                </template>
+              </h5>
+              <span class="card-text text-muted text-truncate">Avg. Temperature</span>
+            </div>
+            <div class="card-icon d-none d-lg-block">
+              <icon :icon="['fas', 'temperature-high']" />
+            </div>
           </div>
-          <div class="card-icon d-none d-lg-block">
-            <icon :icon="['fas', 'temperature-high']" />
+        </div>
+        <div class="col-6 ps-1 ps-md-3">
+          <!-- Total Precipitation -->
+          <div
+            class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-prcp h-100"
+          >
+            <div class="card-body py-2">
+              <h5 class="card-title">
+                <template v-if="prcpKPI">
+                  {{ prcpKPI }}
+                  <small class="text-muted ms-1">mm</small>
+                </template>
+                <template v-else>
+                  <span class="text-muted">{{ t('noData') }}</span>
+                </template>
+              </h5>
+              <span class="card-text text-muted text-truncate">Total Precipitation</span>
+            </div>
+            <div class="card-icon d-none d-lg-block">
+              <icon :icon="['fas', 'umbrella']" />
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-6 ps-1 ps-md-3">
-        <!-- Total Precipitation -->
-        <div
-          class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-prcp h-100"
+      <div
+        id="sections"
+        class="mt-4"
+      >
+        <!-- Temperature Chart -->
+        <section
+          v-if="anyColData('tavg') || anyColData('tmin') || anyColData('tmax')"
+          id="temp"
+          class="card mt-3 mt-md-4"
         >
-          <div class="card-body py-2">
-            <h5 class="card-title">
-              <template v-if="prcpKPI">
-                {{ prcpKPI }}
-                <small class="text-muted ms-1">mm</small>
-              </template>
-              <template v-else>
-                <span class="text-muted">{{ t('noData') }}</span>
-              </template>
-            </h5>
-            <span class="card-text text-muted text-truncate">Total Precipitation</span>
+          <div class="card-header card-header-main px-0 rounded-0 bg-white">
+            <h2 class="card-header-title lead">
+              {{ t('temp') }}
+            </h2>
           </div>
-          <div class="card-icon d-none d-lg-block">
-            <icon :icon="['fas', 'umbrella']" />
+          <div class="card-body px-0">
+            <Chart
+              type="line"
+              :data="tempChart.data"
+              :options="tempChart.options"
+            />
           </div>
-        </div>
+        </section>
+        <!-- Precipitation Chart -->
+        <section
+          v-if="anyColData('prcp')"
+          id="prcp"
+          class="card mt-3 mt-md-4"
+        >
+          <div class="card-header card-header-main px-0 rounded-0 bg-white">
+            <h2 class="card-header-title lead">
+              {{ t('prcp') }}
+            </h2>
+          </div>
+          <div class="card-body px-0">
+            <Chart
+              type="bar"
+              :data="prcpChart.data"
+              :options="prcpChart.options"
+            />
+          </div>
+        </section>
+        <!-- Air Pressure Chart -->
+        <section
+          v-if="anyColData('pres')"
+          id="pres"
+          class="card mt-3 mt-md-4"
+        >
+          <div class="card-header card-header-main px-0 rounded-0 bg-white">
+            <h2 class="card-header-title lead">
+              {{ t('pres') }}
+            </h2>
+          </div>
+          <div class="card-body px-0">
+            <Chart
+              type="bar"
+              :data="presChart.data"
+              :options="presChart.options"
+            />
+          </div>
+        </section>
+        <!-- Sunshine Chart -->
+        <section
+          v-if="anyColData('tsun')"
+          id="tsun"
+          class="card mt-3 mt-md-4"
+        >
+          <div class="card-header card-header-main px-0 rounded-0 bg-white">
+            <h2 class="card-header-title lead">
+              {{ t('tsun') }}
+            </h2>
+          </div>
+          <div class="card-body px-0">
+            <Chart
+              type="bar"
+              :data="tsunChart.data"
+              :options="tsunChart.options"
+            />
+          </div>
+        </section>
       </div>
     </div>
-    <div
-      id="sections"
-      class="mt-4"
-    >
-      <!-- Temperature Chart -->
-      <section
-        v-if="anyColData('tavg') || anyColData('tmin') || anyColData('tmax')"
-        id="temp"
-        class="card mt-3 mt-md-4"
-      >
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('temp') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart
-            type="line"
-            :data="tempChart.data"
-            :options="tempChart.options"
-          />
-        </div>
-      </section>
-      <!-- Precipitation Chart -->
-      <section
-        v-if="anyColData('prcp')"
-        id="prcp"
-        class="card mt-3 mt-md-4"
-      >
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('prcp') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart
-            type="bar"
-            :data="prcpChart.data"
-            :options="prcpChart.options"
-          />
-        </div>
-      </section>
-      <!-- Air Pressure Chart -->
-      <section
-        v-if="anyColData('pres')"
-        id="pres"
-        class="card mt-3 mt-md-4"
-      >
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('pres') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart
-            type="bar"
-            :data="presChart.data"
-            :options="presChart.options"
-          />
-        </div>
-      </section>
-      <!-- Sunshine Chart -->
-      <section
-        v-if="anyColData('tsun')"
-        id="tsun"
-        class="card mt-3 mt-md-4"
-      >
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('tsun') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart
-            type="bar"
-            :data="tsunChart.data"
-            :options="tsunChart.options"
-          />
-        </div>
-      </section>
-    </div>
-  </div>
+  </template>
+  <!-- No Data -->
+  <template v-else>
+    <NoData />
+  </template>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Store } from 'pinia'
 import { useSettingsStore } from '../../stores/settings'
-import { NormalsRecordInterface, ChartDefinitionInterface } from '../../utils/interfaces'
+import { ChartDefinitionInterface } from '../../utils/interfaces'
 import DataMixin from '../location/Data.mixin'
 import Sections from '../Sections.vue'
 import Chart from '../charts/Chart.vue'
+import NoData from './NoData.vue'
 
 export default defineComponent({
   name: 'Climate',
 
   components: {
     Sections,
-    Chart
+    Chart,
+    NoData
   },
 
   mixins: [DataMixin],
 
   props: {
-    normals: {
-      type: Array as PropType<Array<NormalsRecordInterface>>,
-      default: (): Array<undefined> => []
+    station: {
+      type: String,
+      default: null
+    },
+    lat: {
+      type: Number,
+      default: null
+    },
+    lon: {
+      type: Number,
+      default: null
+    },
+    alt: {
+      type: Number,
+      default: null
     }
   },
 
@@ -249,6 +269,7 @@ export default defineComponent({
 
   data(): Record<string, any> {
     return {
+      normals: null,
       activePeriod: null
     }
   },
@@ -256,7 +277,7 @@ export default defineComponent({
   computed: {
     periods(): Array<number> {
       const periods: Array<number> = []
-      this.normals?.forEach((record): void => {
+      this.normals?.forEach((record: any): void => {
         if (!periods.includes(record.start)) {
           periods.push(record.start)
         }
@@ -267,7 +288,7 @@ export default defineComponent({
     data(): any {
       let data: Record<string, any> = []
       if (this.activePeriod === null) {
-        this.normals?.forEach((record): void => {
+        this.normals?.forEach((record: any): void => {
           data[record.month - 1] = {
             tavg: record.tavg || data[record.month - 1]?.tavg || null,
             tmin: record.tmin || data[record.month - 1]?.tmin || null,
@@ -279,7 +300,7 @@ export default defineComponent({
         })
       }
       else {
-        data = this.normals?.filter((record): boolean => {
+        data = this.normals?.filter((record: any): boolean => {
           return record.start === this.activePeriod
         })
       }
@@ -437,12 +458,36 @@ export default defineComponent({
     }
   },
 
+  async mounted() {
+    await this.fetchNormalsData()
+  },
+
   updated(): void {
    // Update sections
-   (this.$refs.sections as any).update()
+   (this.$refs as any).sections?.update()
   },
 
   methods: {
+    /**
+     * Fetch climate normals data
+     */
+    async fetchNormalsData(): Promise<void> {
+      // Set loading state
+      this.$loading('normals')
+      // URL
+      let url = `${this.$api}/proxy/`
+      if (this.station) {
+        url += `stations/normals?station=${this.station}`
+      } else {
+        url += `point/normals?lat=${this.lat}&lon=${this.lon}&alt=${this.alt}`
+      }
+      // Fetch data
+      await fetch(url)
+        .then(response => response.json())
+        .then(data => this.normals = data.data)
+        .finally(() => this.$loaded('normals'))
+    },
+
     setPeriod(period: number): void {
       this.activePeriod = period
     }

@@ -6,7 +6,7 @@ export default <EdgeProps>{
     await fetch(`https://api.meteostat.net/app/place?id=${params?.id}`)
       .then(response => response.json())
       .then(data => {
-        place = data
+        place = data.data
       })
     return {
       data: {

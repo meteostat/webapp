@@ -216,10 +216,6 @@ export default defineComponent({
     tz: {
       type: String,
       default: null
-    },
-    normals: {
-      type: Array,
-      default: (): Array<undefined> => []
     }
   },
 
@@ -258,6 +254,7 @@ export default defineComponent({
         start,
         end
       },
+      normals: [],
       suggestions: [
         // Today
         new Date(),
@@ -327,7 +324,28 @@ export default defineComponent({
     }
   },
 
+  mounted() {
+    this.fetchNormalsData()
+  },
+
   methods: {
+    /**
+     * Fetch climate normals data
+     */
+    async fetchNormalsData(): Promise<void> {
+      // URL
+      let url = `${this.$api}/proxy/`
+      if (this.station) {
+        url += `stations/normals?station=${this.station}`
+      } else {
+        url += `point/normals?lat=${this.lat}&lon=${this.lon}&alt=${this.alt}`
+      }
+      // Fetch data
+      await fetch(url)
+        .then(response => response.json())
+        .then(data => this.normals = data.data)
+    },
+
     updateSections(): void {
       (this.$refs as any).sections.update()
     },
@@ -339,7 +357,7 @@ export default defineComponent({
         end
       };
       // Change calendar month
-      (this.$refs as any).focusDate(start)
+      (this.$refs as any).calendar?.focusDate(start)
     }
   }
 })

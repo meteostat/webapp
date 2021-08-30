@@ -23,6 +23,7 @@ import {
   faCompress,
   faPause,
   faHistory,
+  faHeart
 } from "@fortawesome/free-solid-svg-icons"
 import { faPatreon, faPaypal, faGithub } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
@@ -45,6 +46,7 @@ library.add(
   faCompress,
   faPause,
   faHistory,
+  faHeart,
   faPatreon,
   faPaypal,
   faGithub
@@ -52,8 +54,8 @@ library.add(
 
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
-    $loading(): any,
-    $loaded(): any,
+    $loading(uid: string): any,
+    $loaded(uid: string): any,
     $bs: any,
     $api: string
   }
@@ -83,17 +85,32 @@ export default vitedge(
     // API Base URL
     app.config.globalProperties.$api = 'https://d.meteostat.net/app' as string
 
+    // App state
+    app.config.globalProperties.$state = {
+      loading: []
+    }
+
     // Pinia store
     app.use(createPinia())
 
+    // FontAwesome Icons
     app.component('Icon', FontAwesomeIcon)
 
+    // Browser only
     if (!import.meta.env.SSR) {
-      app.config.globalProperties.$loading = (): void => {
+      app.config.globalProperties.$loading = (uid: string): void => {
+        // Add loading class to body
         document.body.classList.add('loading')
+        // Add uid to loading queue
+        app.config.globalProperties.$state.loading.push(uid)
       }
-      app.config.globalProperties.$loaded = (): void => {
-        document.body.classList.remove('loading')
+      app.config.globalProperties.$loaded = (uid: string): void => {
+        // Remove uid from loading queue
+        app.config.globalProperties.$state.loading = app.config.globalProperties.$state.loading.filter((item: string): boolean => item !== uid)
+        // Remove loading class from body if queue is empty
+        if (app.config.globalProperties.$state.loading.length === 0) {
+          document.body.classList.remove('loading')
+        }
       }
       app.config.globalProperties.$bs = await import('bootstrap')
       const { DatePicker } = await import('v-calendar')

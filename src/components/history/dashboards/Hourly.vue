@@ -779,7 +779,7 @@ export default defineComponent({
      */
     async fetchData(): Promise<void> {
       // Start loading
-      this.$loading()
+      this.$loading('hourly')
       // Data URL
       let url = `${this.$api}/proxy/`
       if (this.station) {
@@ -804,7 +804,7 @@ export default defineComponent({
         // Finish loading
         .finally(() => {
           // Finish loading state
-          this.$loaded()
+          this.$loaded('hourly')
           // Emit event
           this.$emit('loaded')
           // Init tooltips

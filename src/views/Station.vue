@@ -20,14 +20,12 @@
               :lat="meta.location.latitude"
               :lon="meta.location.longitude"
               :tz="meta.timezone"
-              :normals="normals"
             />
           </template>
           <!-- Climate Data -->
           <template v-if="$route.name === 'StationClimate'">
             <Climate
               :station="meta.id"
-              :normals="normals"
             />
           </template>
         </div>
@@ -94,8 +92,7 @@ export default defineComponent({
 
   data(): Record<string, any> {
     return {
-      nearbyStations: [],
-      normals: null
+      nearbyStations: []
     }
   },
 
@@ -104,8 +101,6 @@ export default defineComponent({
       // Get meta data
       await this.fetchMetaData()
     }
-    // Get climate normals
-    await this.fetchNormalsData()
   },
 
   methods: {
@@ -116,15 +111,6 @@ export default defineComponent({
       await fetch(`https://raw.githubusercontent.com/meteostat/weather-stations/master/stations/${this.$route.params.id}.json`)
         .then(response => response.json())
         .then(data => this.meta = data)
-    },
-
-    /**
-     * Fetch climate normals data
-     */
-    async fetchNormalsData(): Promise<void> {
-      await fetch(`${this.$api}/proxy/stations/normals?station=${this.meta.id}`)
-        .then(response => response.json())
-        .then(data => this.normals = data.data)
     }
   },
 })

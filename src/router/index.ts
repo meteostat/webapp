@@ -1,6 +1,7 @@
 import Home from '~/views/Home.vue'
 import Station from '~/views/Station.vue'
 import Place from '~/views/Place.vue'
+import Contributors from '~/views/Contributors.vue'
 
 export default [
   {
@@ -19,13 +20,18 @@ export default [
     component: Station
   },
   {
-    path: '/station/:id/analysis',
-    name: 'StationAnalysis',
-    component: Station
+    path: '/place/:id',
+    name: 'PlaceHistory',
+    component: Place
   },
   {
-    path: '/place/:id',
-    name: 'Place',
+    path: '/place/:id/climate',
+    name: 'PlaceClimate',
     component: Place
+  },
+  {
+    path: '/contributors',
+    name: 'Contributors',
+    component: Contributors
   }
 ]

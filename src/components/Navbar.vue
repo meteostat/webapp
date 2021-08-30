@@ -115,24 +115,34 @@
             >
               <span class="nav-link">{{ t('home') }}</span>
             </router-link>
-            <router-link
-              class="nav-item"
-              to="/maps"
-            >
-              <span class="nav-link">{{ t('maps') }}</span>
-            </router-link>
             <li class="nav-item">
               <a
                 class="nav-link"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#donationSidebar"
-                aria-controls="donationSidebar"
+                href="https://dev.meteostat.net/"
               >
-                {{ t('donation') }}
+                {{ t('developers') }}
               </a>
             </li>
+            <router-link
+              class="nav-item"
+              to="/contributors"
+            >
+              <span class="nav-link">{{ t('contributors') }}</span>
+            </router-link>
           </ul>
           <div class="d-flex ms-auto mt-2 mt-lg-0">
+            <a
+              class="btn btn-light me-2"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#donationSidebar"
+              aria-controls="donationSidebar"
+            >
+              <icon
+                :icon="['fas', 'heart']"
+                class="text-danger me-1"
+              />
+              {{ t('donation') }}
+            </a>
             <a
               class="btn btn-light"
               data-bs-toggle="offcanvas"
@@ -141,7 +151,7 @@
             >
               <icon
                 :icon="['fas', 'cog']"
-                class="me-1"
+                class="text-secondary me-1"
               />
               {{ t('settings') }}
             </a>
@@ -205,6 +215,7 @@
           </span>
           <span class="link fs-5 ms-2">GitHub</span>
         </a>
+        <hr>
         <strong class="d-block mb-3">{{ t('bankTransfer') }}</strong>
         <div class="form-floating mb-3">
           <input
@@ -235,6 +246,28 @@
             readonly
           >
           <label for="bic">{{ t('bic') }}</label>
+        </div>
+        <hr>
+        <strong class="d-block mb-3">{{ t('cryptoCurrencies') }}</strong>
+        <div class="form-floating mb-3">
+          <input
+            id="bitcoin"
+            type="text"
+            class="form-control"
+            :value="crypto.bitcoin"
+            readonly
+          >
+          <label for="bitcoin">Bitcoin</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            id="ethereum"
+            type="text"
+            class="form-control"
+            :value="crypto.ethereum"
+            readonly
+          >
+          <label for="ethereum">Ethereum</label>
         </div>
       </div>
     </div>
@@ -330,7 +363,12 @@ export default defineComponent({
       bic: 'NTSBDEB1XXX'
     }
 
-    return { t, settings, transfer, settingsChanged }
+    const crypto = {
+      bitcoin: 'bc1qg2alt82ry2ntkslw8ulr9528nmlj6ym6g2x0ms',
+      ethereum: '0x5f4Dde3da1aE75280eFA6a62050c1D5cb1D7f694'
+    }
+
+    return { t, settings, settingsChanged, transfer, crypto }
   },
 
   data(): Record<string, any> {
@@ -409,6 +447,7 @@ export default defineComponent({
         this.results = {}
       }
     },
+
     clearSearch(): void {
       this.term = null
       this.results = {}
@@ -549,7 +588,8 @@ export default defineComponent({
     "stations": "Weather Stations",
     "archive": "Archive",
     "home": "Home",
-    "maps": "Maps",
+    "developers": "Developers",
+    "contributors": "Contributors",
     "donation": "Donation",
     "donationText": "Support Meteostat on its mission of providing open weather and climate data for everyone. Your donation also helps educational and research projects making the world run better using Meteostat data.",
     "online": "Online",
@@ -557,6 +597,7 @@ export default defineComponent({
     "recipient": "Recipient",
     "iban": "IBAN",
     "bic": "BIC",
+    "cryptoCurrencies": "Crypto Currencies",
     "imperialUnits": "Imperial Units",
     "imperialUnitsText": "Use imperial units (Fahrenheit, Inches) for meteorological data. Meteostat uses the metric system by default.",
     "modelData": "Model Data",

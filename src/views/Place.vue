@@ -1,47 +1,33 @@
 <template>
-  <div v-if="meta">
-    <!-- Subnav -->
+  <div v-if="meta?.id">
+    <!-- Navbar -->
     <Navbar
       :id="meta.id"
       ref="subnav"
       type="place"
       :name="meta.name.en"
       :country="meta.country"
-      @update="updateRange"
     />
     <!-- Content -->
-    <div class="container my-4">
+    <div class="container my-3 my-lg-4">
       <div class="row">
         <div class="col-12 col-lg-8">
-          <!-- Hourly Data -->
-          <template v-if="range && mode === 'hourly'">
-            <Hourly
+          <!-- Dashboard -->
+          <!-- Weather History -->
+          <template v-if="$route.name === 'PlaceHistory'">
+            <History
               :lat="meta.location.latitude"
               :lon="meta.location.longitude"
               :alt="meta.location.elevation"
-              :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
-              :tz="place.timezone"
-              @loaded="dataLoaded"
+              :tz="meta.timezone"
             />
           </template>
-          <!-- Daily Data --->
-          <template v-else-if="range && mode === 'daily'">
-            <Daily
+          <!-- Climate Data -->
+          <template v-if="$route.name === 'PlaceClimate'">
+            <Climate
               :lat="meta.location.latitude"
               :lon="meta.location.longitude"
               :alt="meta.location.elevation"
-              :start="format(range.start, 'yyyy-MM-dd')"
-              :end="format(range.end, 'yyyy-MM-dd')"
-            />
-          </template>
-          <!-- Monthly Data -->
-          <template v-else-if="range && mode === 'monthly'">
-            <Monthly
-              :lat="meta.location.latitude"
-              :lon="meta.location.longitude"
-              :alt="meta.location.elevation"
-              :start="format(range.start, 'yyyy-MM-dd')"
-              :end="format(range.end, 'yyyy-MM-dd')"
             />
           </template>
         </div>
@@ -65,9 +51,8 @@ import { format } from 'date-fns'
 import Navbar from '../components/location/Navbar.vue'
 import Meta from '../components/panels/Meta.vue'
 import Nearby from '../components/panels/Nearby.vue'
-import Hourly from '../components/history/dashboards/Hourly.vue'
-import Daily from '../components/history/dashboards/Daily.vue'
-import Monthly from '../components/history/dashboards/Monthly.vue'
+import History from '~/components/history/History.vue'
+import Climate from '~/components/climate/Climate.vue'
 
 export default defineComponent({
   name: 'Place',
@@ -76,9 +61,8 @@ export default defineComponent({
     Navbar,
     Meta,
     Nearby,
-    Hourly,
-    Daily,
-    Monthly
+    History,
+    Climate
   },
 
   props: {
@@ -95,9 +79,7 @@ export default defineComponent({
   data(): Record<string, any> {
     return {
       meta: this.place || null,
-      nearbyStations: [],
-      mode: 'hourly',
-      range: null
+      nearbyStations: []
     }
   },
 
@@ -112,25 +94,9 @@ export default defineComponent({
      * Fetch place meta data
      */
     async fetchMetaData(): Promise<void> {
-      await fetch(`https://api.meteostat.net/app/place?id=${this.$route.params.id}`)
+      await fetch(`${this.$api}/place?id=${this.$route.params.id}`)
         .then(response => response.json())
         .then(data => this.meta = data.data)
-    },
-
-    /**
-     * Update date range
-     * 
-     * @param {Object} range Updated date range
-     */
-    updateRange(range: Record<string, Date>): void {
-      this.range = range
-    },
-
-    /**
-     * Trigger section list update
-     */
-    dataLoaded(): void {
-      (this.$refs as any).subnav.updateSections()
     }
   },
 })
