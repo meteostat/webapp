@@ -149,6 +149,25 @@
             />
           </div>
         </section>
+        <!-- Wind Speed Chart -->
+        <section
+          v-if="anyColData('wspd')"
+          id="wspd"
+          class="card mt-3 mt-md-4"
+        >
+          <div class="card-header card-header-main px-0 rounded-0 bg-white">
+            <h2 class="card-header-title lead">
+              {{ t('wspd') }}
+            </h2>
+          </div>
+          <div class="card-body px-0">
+            <Chart
+              type="line"
+              :data="wspdChart.data"
+              :options="wspdChart.options"
+            />
+          </div>
+        </section>
         <!-- Air Pressure Chart -->
         <section
           v-if="anyColData('pres')"
@@ -293,6 +312,7 @@ export default defineComponent({
             tavg: record.tavg || data[record.month - 1]?.tavg || null,
             tmin: record.tmin || data[record.month - 1]?.tmin || null,
             tmax: record.tmax || data[record.month - 1]?.tmax || null,
+            wspd: record.wspd || data[record.month - 1]?.wspd || null,
             prcp: record.prcp || data[record.month - 1]?.prcp || null,
             pres: record.pres || data[record.month - 1]?.pres || null,
             tsun: record.tsun || data[record.month - 1]?.tsun || null
@@ -390,6 +410,38 @@ export default defineComponent({
             y: {
               title: {
                 text: this.settings.units.prcp
+              }
+            }
+          }
+        }
+      }
+    },
+
+    /**
+     * Configuration for wind speed chart
+     * 
+     * @returns {Object} Configuration object
+     */
+    wspdChart(): ChartDefinitionInterface {
+      return {
+        data: {
+          labels: this.months,
+          datasets: [{
+            label: this.t('wspd'),
+            borderWidth: 2,
+            borderColor: "rgb(51,122,183)",
+            backgroundColor: "rgb(51,122,183)",
+            fill: false,
+            pointBorderColor: "rgb(255,255,255)",
+            pointRadius: 4,
+            data: this.fetchValues('wspd')
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              title: {
+                text: this.settings.units.wspd
               }
             }
           }
