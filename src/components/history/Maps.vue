@@ -23,7 +23,14 @@
       <div class="d-flex align-items-center ms-auto">
         <button
           type="button"
-          class="btn btn-light"
+          class="btn btn-light bg-white"
+          @click="downloadMap()"
+        >
+          <icon :icon="['fas', 'download']" />
+        </button>
+        <button
+          type="button"
+          class="btn btn-light bg-white ms-1"
           @click="toggleFullscreen()"
         >
           <icon
@@ -38,7 +45,7 @@
         <div class="dropdown ms-2">
           <button
             id="dropdownMenuButton"
-            class="btn btn-light dropdown-toggle"
+            class="btn btn-light bg-white dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -97,7 +104,7 @@
       <div class="btn-group btn-group-sm rounded border">
         <button
           type="button"
-          class="btn btn-light px-3"
+          class="btn btn-light bg-white px-3"
           :disabled="subDays(date, 1) < range[0]"
           @click="goBackward()"
         >
@@ -120,7 +127,7 @@
         </button>
         <button
           type="button"
-          class="btn btn-light px-3"
+          class="btn btn-light bg-white px-3"
           :disabled="addDays(date, 1) > range[1]"
           @click="goForward()"
         >
@@ -183,6 +190,8 @@ import { parse } from 'papaparse'
 import { tempScale, prcpScale, wspdScale, presScale, ColorScale } from '../../utils/colorScale'
 import { toFahrenheit, toInches, toMPH } from '../../utils/units'
 import useLeaflet from '../../utils/leaflet'
+import leafletImage from 'leaflet-image'
+import { saveAs } from 'file-saver'
 import '../../../node_modules/leaflet/dist/leaflet.css';
 
 export default defineComponent({
@@ -438,6 +447,15 @@ export default defineComponent({
         }, 2000)
       }
       this.playing = !this.playing
+    },
+
+    downloadMap(): void {
+      let map = this.map
+      leafletImage(map, (err: any, canvas: HTMLCanvasElement): void => {
+				canvas.toBlob(blob => {
+					saveAs(blob, 'DE-C355.png');
+				});
+      });
     },
 
     toggleFullscreen(): void {

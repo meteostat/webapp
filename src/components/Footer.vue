@@ -3,7 +3,9 @@
     <div class="container-fluid p-3 p-md-5">
       <ul class="d-md-flex align-items-center text-center flex-wrap pb-4 m-0">
         <li class="d-inline-block">
-          <a href="/en/about">About Meteostat</a>
+          <router-link to="/about">
+            About Meteostat
+          </router-link>
         </li>
         <li class="d-inline-block ms-3">
           <a href="https://dev.meteostat.net">Developers</a>
@@ -12,49 +14,62 @@
           <a href="https://medium.com/meteostat">Our Blog</a>
         </li>
         <li class="d-block mt-3 my-md-0 ms-md-4">
-          <button
-            type="button"
+          <router-link
+            to="/support"
+            tag="button"
             class="btn btn-light bg-transparent btn-sm border w-100"
             data-toggle="modal"
             data-target="#contact"
           >
-            <i class="fas fa-comment-alt me-2" />Contact
-          </button>
+            <icon
+              :icon="['fas', 'comment-alt']"
+              class="me-2"
+            />
+            {{ t('support') }}
+          </router-link>
         </li>
         <li class="w-100 d-md-none" />
-        <li class="d-inline-block mt-3 mt-md-0 ms-md-auto">
+        <li class="d-inline-block mt-3 mt-md-0 ms-md-auto fs-4">
           <a
             href="https://medium.com/meteostat"
             data-toggle="tooltip"
             data-placement="top"
             title="Blog"
-          ><i class="fab fa-medium" /></a>
+          >
+            <icon :icon="['fab', 'medium']" />
+          </a>
         </li>
-        <li class="d-inline-block mt-3 mt-md-0 ms-3">
+        <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://twitter.com/meteost"
             data-toggle="tooltip"
             data-placement="top"
             title="Twitter"
-          ><i class="fab fa-twitter" /></a>
+          >
+            <icon :icon="['fab', 'twitter']" />
+          </a>
         </li>
-        <li class="d-inline-block mt-3 mt-md-0 ms-3">
+        <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://github.com/meteostat"
             data-toggle="tooltip"
             data-placement="top"
             title="GitHub"
-          ><i class="fab fa-github" /></a>
+          >
+            <icon :icon="['fab', 'github']" />
+          </a>
         </li>
-        <li class="d-inline-block mt-3 mt-md-0 ms-3">
+        <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://www.linkedin.com/company/meteostat/"
             data-toggle="tooltip"
             data-placement="top"
             title="LinkedIn"
-          ><i class="fab fa-linkedin" /></a>
+          >
+            <icon :icon="['fab', 'linkedin']" />
+          </a>
         </li>
-        <li class="d-inline-block mt-3 mt-md-0 ms-3">
+        <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://www.patreon.com/meteostat"
             data-toggle="tooltip"
@@ -86,8 +101,8 @@ import { useI18n } from 'vue-i18n'
 export default defineComponent({
   name: 'Footer',
 
-  setup(): Record<string, any> {
-    const t = useI18n()
+  setup(): Record<string, any> {    
+    const { t } = useI18n()
 
     return { t }
   }

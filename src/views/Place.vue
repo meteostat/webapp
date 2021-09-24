@@ -2,22 +2,22 @@
   <div v-if="meta?.id">
     <!-- Navbar -->
     <Navbar
-      :id="meta.id"
+      :id="$route.params.id"
       ref="subnav"
       type="place"
-      :name="meta.name.en"
+      :name="meta.name[$locale] || meta.name['en']"
       :country="meta.country"
     />
     <!-- Content -->
     <div class="container my-3 my-lg-4">
-      <div class="row">
+      <div class="row gy-4">
         <div class="col-12 col-lg-8">
-          <!-- Dashboard -->
           <!-- Weather History -->
           <template v-if="$route.name === 'PlaceHistory'">
             <History
-              :lat="meta.location.latitude"
-              :lon="meta.location.longitude"
+              :name="meta.name[$locale] || meta.name['en']"
+              :lat="coords[0]"
+              :lon="coords[1]"
               :alt="meta.location.elevation"
               :tz="meta.timezone"
             />
@@ -25,8 +25,9 @@
           <!-- Climate Data -->
           <template v-if="$route.name === 'PlaceClimate'">
             <Climate
-              :lat="meta.location.latitude"
-              :lon="meta.location.longitude"
+              :name="meta.name[$locale] || meta.name['en']"
+              :lat="coords[0]"
+              :lon="coords[1]"
               :alt="meta.location.elevation"
             />
           </template>
@@ -36,8 +37,8 @@
           <Meta :data="meta" />
           <!-- Nearby Stations -->
           <Nearby
-            :lat="meta.location.latitude"
-            :lon="meta.location.longitude"
+            :lat="coords[0]"
+            :lon="coords[1]"
           />
         </div>
       </div>
@@ -47,8 +48,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 import { format } from 'date-fns'
-import Navbar from '../components/location/Navbar.vue'
+import { decodePlacemark } from '~/utils/placemarks'
+import Navbar from '../components/LocationNavbar.vue'
 import Meta from '../components/panels/Meta.vue'
 import Nearby from '../components/panels/Nearby.vue'
 import History from '~/components/history/History.vue'
@@ -72,7 +76,28 @@ export default defineComponent({
     }
   },
 
-  setup(): Record<string, any> {
+  setup(props: Record<string, any>): Record<string, any> {
+    const { t, locale } = useI18n()
+
+    // Meta tags
+    useHead({
+      meta: [
+        {
+          name: 'description',
+          content: t('$meta.description', {
+            name: props.place.name[locale.value] || props.place.name['en'],
+            country: props.place.country
+          })
+        }
+      ],
+      link: [
+        {
+          rel: 'canonical',
+          href: `https://meteostat.net/${locale.value}/place/${props.place.id}`
+        }
+      ]
+    })
+
     return { format }
   },
 
@@ -80,6 +105,12 @@ export default defineComponent({
     return {
       meta: this.place || null,
       nearbyStations: []
+    }
+  },
+
+  computed: {
+    coords(): Array<number> {
+      return decodePlacemark(String(this.$route.params.id))
     }
   },
 
@@ -101,3 +132,13 @@ export default defineComponent({
   },
 })
 </script>
+
+<i18n>
+{
+  "en": {
+    "$meta": {
+      "description": "Historical weather and climate data for {name} ({country}) with information on temperature, precipitation and more."
+    }
+  }
+}
+</i18n>

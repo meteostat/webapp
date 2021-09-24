@@ -45,38 +45,119 @@
         </span>
       </li>
       <li
-        v-if="data.identifiers"
+        v-if="data.identifier"
         class="list-group-item bg-light"
       >
         <small class="fw-bold">{{ t('stationIdentifiers') }}</small>
       </li>
       <li
-        v-if="data.identifiers"
+        v-if="data.identifier"
         class="list-group-item d-flex"
       >
-        {{ t('meteostat') }}:
+        Meteostat:
         <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.id }}</code>
       </li>
       <li
-        v-if="data.identifiers"
+        v-if="data.identifier"
         class="list-group-item d-flex"
       >
         {{ t('national') }}:
-        <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.identifiers.national||'/' }}</code>
+        <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.identifier.national||'/' }}</code>
       </li>
       <li
-        v-if="data.identifiers"
+        v-if="data.identifier"
         class="list-group-item d-flex"
       >
         {{ t('wmo') }}:
-        <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.identifiers.wmo||'/' }}</code>
+        <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.identifier.wmo||'/' }}</code>
       </li>
       <li
-        v-if="data.identifiers"
+        v-if="data.identifier"
         class="list-group-item d-flex"
       >
         {{ t('icao') }}:
-        <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.identifiers.icao||'/' }}</code>
+        <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.identifier.icao||'/' }}</code>
+      </li>
+      <li
+        v-if="data.inventory"
+        class="list-group-item bg-light"
+      >
+        <small class="fw-bold">{{ t('inventory') }}</small>
+      </li>
+      <li
+        v-if="data.inventory"
+        class="list-group-item d-flex align-items-center"
+      >
+        {{ t('hourly') }}:
+        <span
+          class="ms-auto"
+        >
+          <template v-if="data.inventory.hourly.start">
+            <small class="text-muted">
+              {{ format(parseISO(data.inventory.hourly.start), t('dateFormat')) }} - {{ format(parseISO(data.inventory.hourly.end), t('dateFormat')) }}
+            </small>
+            <icon
+              :icon="['fas', 'circle']"
+              class="text-success ms-2"
+            />
+          </template>
+          <template v-else>
+            <icon
+              :icon="['fas', 'circle']"
+              class="text-danger ms-auto"
+            />
+          </template>
+        </span>
+      </li>
+      <li
+        v-if="data.inventory"
+        class="list-group-item d-flex align-items-center"
+      >
+        {{ t('daily') }}:
+        <span
+          class="ms-auto"
+        >
+          <template v-if="data.inventory.daily.start">
+            <small class="text-muted">
+              {{ format(parseISO(data.inventory.daily.start), t('dateFormat')) }} - {{ format(parseISO(data.inventory.daily.end), t('dateFormat')) }}
+            </small>
+            <icon
+              :icon="['fas', 'circle']"
+              class="text-success ms-2"
+            />
+          </template>
+          <template v-else>
+            <icon
+              :icon="['fas', 'circle']"
+              class="text-danger ms-auto"
+            />
+          </template>
+        </span>
+      </li>
+      <li
+        v-if="data.inventory"
+        class="list-group-item d-flex align-items-center"
+      >
+        {{ t('monthly') }}:
+        <span
+          class="ms-auto"
+        >
+          <template v-if="data.inventory.monthly.start">
+            <small class="text-muted">
+              {{ data.inventory.monthly.start }} - {{ data.inventory.monthly.end }}
+            </small>
+            <icon
+              :icon="['fas', 'circle']"
+              class="text-success ms-2"
+            />
+          </template>
+          <template v-else>
+            <icon
+              :icon="['fas', 'circle']"
+              class="text-danger ms-auto"
+            />
+          </template>
+        </span>
       </li>
     </ul>
   </div>
@@ -84,6 +165,8 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n'
+import { format, parseISO } from 'date-fns'
+import { initTooltips } from '~/utils/tooltips'
 import Map from './Map.vue'
 
 export default {
@@ -103,7 +186,11 @@ export default {
   setup(): Record<string, any> {
     const { t } = useI18n()
 
-    return { t }
+    return { t, format, parseISO }
+  },
+
+  updated(): void {
+    initTooltips(this.$bs)
   }
 }
 </script>
@@ -119,7 +206,11 @@ export default {
     "stationIdentifiers": "Station Identifiers",
     "national": "National",
     "wmo": "WMO",
-    "icao": "ICAO"
+    "icao": "ICAO",
+    "inventory": "Inventory",
+    "hourly": "Hourly",
+    "monthly": "Monthly",
+    "daily": "Daily"
   }
 }
 </i18n>

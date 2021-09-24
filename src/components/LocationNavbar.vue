@@ -4,7 +4,7 @@
       <!-- Location Name -->
       <div class="navbar-brand d-flex align-items-center overflow-hidden">
         <img
-          :src="`https://assets.meteostat.net/flags/4x3/${country.toLowerCase()}.svg`"
+          :src="`https://media.meteostat.net/assets/flags/4x3/${country.toLowerCase()}.svg`"
           class="country-flag me-2"
         >
         <h1 class="d-inline-block text-truncate h5 mb-0">

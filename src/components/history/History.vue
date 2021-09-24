@@ -6,6 +6,17 @@
     <!-- Date Range Button -->
     <div class="ms-auto">
       <button
+        class="btn btn-light d-none d-md-inline-block me-2"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exportModal"
+      >
+        <icon
+          :icon="['fas', 'download']"
+        />
+        <span class="ms-2">{{ t('export') }}</span>
+      </button>
+      <button
         v-if="range.start"
         class="btn btn-light"
         type="button"
@@ -168,6 +179,7 @@
 import { defineComponent } from 'vue'
 import { RouteLocationNormalized } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 import {
   parseISO,
   format,
@@ -197,6 +209,10 @@ export default defineComponent({
   },
 
   props: {
+    name: {
+      type: String,
+      default: null
+    },
     station: {
       type: String,
       default: null
@@ -219,8 +235,13 @@ export default defineComponent({
     }
   },
 
-  setup(): Record<string, any> {
+  setup(props: Record<string, any>): Record<string, any> {
     const { t } = useI18n()
+
+    // Meta tags
+    useHead({
+      title: `${props.name} | ${t('$meta.title')} | Meteostat`
+    })
 
     return {
       t,
@@ -366,6 +387,9 @@ export default defineComponent({
 <i18n>
 {
   "en": {
+    "$meta": {
+      "title": "Weather History"
+    },
     "period": "Period",
     "dateRange": "Date Range",
     "today": "Today",

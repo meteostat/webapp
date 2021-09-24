@@ -1,6 +1,6 @@
 <template>
   <div
-    class="alert alert-custom"
+    class="alert alert-danger"
     role="alert"
   >
     <h5 class="alert-heading mb-3">
@@ -50,20 +50,6 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../../style/variables";
-
-.alert-custom {
-  border-left: 3px solid $danger;
-  border-top: 1px solid $gray-200;
-  border-right: 1px solid $gray-200;
-  border-bottom: 1px solid $gray-200;
-}
-</style>
 
 <i18n>
 {

@@ -23,9 +23,26 @@ import {
   faCompress,
   faPause,
   faHistory,
-  faHeart
+  faHeart,
+  faUserFriends,
+  faHandHoldingUsd,
+  faCode,
+  faCommentAlt,
+  faMapMarkerAlt,
+  faTrash,
+  faDownload,
+  faCircle
 } from "@fortawesome/free-solid-svg-icons"
-import { faPatreon, faPaypal, faGithub } from "@fortawesome/free-brands-svg-icons"
+import {
+  faPatreon,
+  faPaypal,
+  faGithub,
+  faLinkedin,
+  faLinkedinIn,
+  faTwitter,
+  faFacebookF,
+  faMedium
+} from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 library.add(
@@ -47,9 +64,22 @@ library.add(
   faPause,
   faHistory,
   faHeart,
+  faUserFriends,
+  faHandHoldingUsd,
+  faCode,
+  faCommentAlt,
+  faMapMarkerAlt,
+  faTrash,
+  faDownload,
+  faCircle,
   faPatreon,
   faPaypal,
-  faGithub
+  faGithub,
+  faLinkedin,
+  faLinkedinIn,
+  faTwitter,
+  faFacebookF,
+  faMedium
 )
 
 declare module '@vue/runtime-core' {
@@ -75,7 +105,7 @@ export default vitedge(
       i.install?.(ctx)
     )
 
-    const { app, initialRoute } = ctx
+    const { app, router, initialRoute } = ctx
 
     // Load language asyncrhonously to avoid bundling all languages
     const locale = extractLocaleFromPath(initialRoute.href)
@@ -98,6 +128,10 @@ export default vitedge(
 
     // Browser only
     if (!import.meta.env.SSR) {
+      // Scroll to top after each navigation
+      router.afterEach(() => {
+        window.scrollTo(0, 0)
+      })
       app.config.globalProperties.$loading = (uid: string): void => {
         // Add loading class to body
         document.body.classList.add('loading')

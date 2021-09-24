@@ -10,12 +10,12 @@
     />
     <!-- Content -->
     <div class="container my-3 my-lg-4">
-      <div class="row">
+      <div class="row gy-4">
         <div class="col-12 col-lg-8">
-          <!-- Dashboard -->
           <!-- Weather History -->
           <template v-if="$route.name === 'StationHistory'">
             <History
+              :name="meta.name[$locale] || meta.name['en']"
               :station="meta.id"
               :lat="meta.location.latitude"
               :lon="meta.location.longitude"
@@ -25,6 +25,7 @@
           <!-- Climate Data -->
           <template v-if="$route.name === 'StationClimate'">
             <Climate
+              :name="meta.name[$locale] || meta.name['en']"
               :station="meta.id"
             />
           </template>
@@ -44,11 +45,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import { format } from 'date-fns'
-import Navbar from '~/components/location/Navbar.vue'
+import Navbar from '~/components/LocationNavbar.vue'
 import Meta from '~/components/panels/Meta.vue'
 import Nearby from '~/components/panels/Nearby.vue'
 import Climate from '~/components/climate/Climate.vue'
@@ -74,16 +75,21 @@ export default defineComponent({
 
   setup(props: Record<string, any>): Record<string, any> {
     // Translations
-    const { t } = useI18n()
+    const { t, locale } = useI18n()
 
     // Meta data
     const meta = ref(props.station || {})
 
     // Meta tags
     useHead({
-      title: computed(() => meta.value.name ? t('title', { name: meta.value.name.en }) : 'Meteostat'),
       meta: [
-        { name: 'description', content: '' }
+        {
+          name: 'description',
+          content: t('$meta.description', {
+            name: props.station.name[locale] || props.station.name['en'],
+            country: props.station.country
+          })
+        }
       ],
     })
 
@@ -108,9 +114,9 @@ export default defineComponent({
      * Fetch station meta data
      */
     async fetchMetaData(): Promise<void> {
-      await fetch(`https://raw.githubusercontent.com/meteostat/weather-stations/master/stations/${this.$route.params.id}.json`)
+      await fetch(`${this.$api}/proxy/stations/meta?id=${this.$route.params.id}`)
         .then(response => response.json())
-        .then(data => this.meta = data)
+        .then(data => this.meta = data.data)
     }
   },
 })
@@ -119,7 +125,9 @@ export default defineComponent({
 <i18n>
 {
   "en": {
-    "title": "{name} - Weather Station - Meteostat"
+    "$meta": {
+      "description": "Historical weather and climate data for the weather station {name} ({country}) with information on temperature, precipitation and more."
+    }
   }
 }
 </i18n>

@@ -123,9 +123,12 @@ export default defineComponent({
     const { t } = useI18n()
 
     useHead({
-      title: t('title'),
+      title: `${t('$meta.title')} | Meteostat`,
       meta: [
-        { name: 'description', content: t('description') }
+        {
+          name: 'description',
+          content: t('$meta.description') 
+        }
       ],
     })
 
@@ -153,8 +156,10 @@ body {
 <i18n>
 {
   "en": {
-    "title": "Meteostat - The Weather's Record Keeper",
-    "description": "Weather and climate database providing detailed weather data for thousands of weather stations and places worldwide."
+    "$meta": {
+      "title": "The Weather's Record Keeper",
+      "description": "Weather and climate database providing detailed weather data for thousands of weather stations and places worldwide."
+    }
   }
 }
 </i18n>

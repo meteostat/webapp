@@ -1,5 +1,10 @@
 <template>
   <template v-if="data && anyData()">
+    <!-- Interpolation Info -->
+    <InterpolationAlert
+      v-if="!station"
+      :stations="meta.stations"
+    />
     <!-- Briefing -->
     <div class="row">
       <div class="col-6 pe-1 pe-md-3">
@@ -81,6 +86,7 @@
         </div>
       </div>
     </div>
+    <Ad />
     <div
       id="sections"
       class="mt-4"
@@ -250,9 +256,9 @@
     v-if="range[0] !== format(new Date(), 'yyyy-MM-dd')"
     id="maps"
     ref="maps"
-    class="card d-none d-lg-block mt-3 mt-md-4 p-3 border rounded"
+    class="card d-none d-lg-block mt-3 mt-md-4 p-3 bg-light rounded"
   >
-    <div class="card-header card-header-main px-0 rounded-0 bg-white">
+    <div class="card-header card-header-main px-0 rounded-0 bg-light">
       <h2 class="card-header-title lead">
         {{ t('maps') }}
       </h2>
@@ -269,6 +275,21 @@
       />
     </div>
   </section>
+  <div
+    v-if="meta.generated"
+    class="mt-3 mt-md-4 text-muted text-end"
+  >
+    {{ t('updated') }}: {{ format(parseISO(meta.generated), t('dateTimeFormat')) }} UTC
+  </div>
+  <!-- Modal -->
+  <div
+    id="exportModal"
+    class="modal fade"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+    <Export :data="data" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -280,14 +301,21 @@ import { tempScale, prcpScale, wspdScale, presScale, tsunScale, ColorScale } fro
 import { ChartDefinitionInterface } from '~/utils/interfaces'
 import isElementInViewport from '~/utils/spy'
 import { initTooltips } from '~/utils/tooltips'
-import DataMixin from '../../location/Data.mixin'
+import DataMixin from '../../Location.mixin'
 import Chart from '../../charts/Chart.vue'
 import { tsTooltips, tsPointRadius, tsScales } from '../../charts/timeseries.config'
 import NoData from '../NoData.vue'
+import Ad from '~/components/Ad.vue'
 
 /**
  * Async Components
  */
+const Export = defineAsyncComponent(() =>
+  import('../Export.vue')
+)
+const InterpolationAlert = defineAsyncComponent(() =>
+  import('~/components/alerts/Interpolation.vue')
+)
 const Table = defineAsyncComponent(() =>
   import('../tables/Hourly.vue')
 )
@@ -302,10 +330,13 @@ export default defineComponent({
   name: 'Hourly',
 
   components: {
+    Export,
+    InterpolationAlert,
     Chart,
     Table,
     NoData,
-    Maps
+    Maps,
+    Ad
   },
 
   mixins: [DataMixin],
@@ -366,6 +397,7 @@ export default defineComponent({
 
   data() {
     return {
+      meta: {},
       data: [],
       showTable: false,
       showMaps: false
@@ -402,7 +434,7 @@ export default defineComponent({
         times.forEach((time, index) => {
           const temp = temps[index]
           const date = parseISO(String(time))
-          const normal = normals[date.getMonth() - 1]?.tavg
+          const normal = normals[date.getMonth()]?.tavg
           if (temp !== null && normal) {
             const anomaly = Number(temp) - normal
             anomalies.push(anomaly)
@@ -444,7 +476,7 @@ export default defineComponent({
         times.forEach((time, index) => {
           const prcp = prcps[index]
           const date = parseISO(String(time))
-          const normal = normals[date.getMonth() - 1]?.prcp / (getDaysInMonth(date) * 24)
+          const normal = normals[date.getMonth()]?.prcp / (getDaysInMonth(date) * 24)
           if (prcp !== null && normal) {
             const anomaly = Number(prcp) - normal
             anomalies.push(anomaly)
@@ -800,7 +832,10 @@ export default defineComponent({
       await fetch(`${url}&start=${this.range[0]}&end=${this.range[1]}`)
         // Convert to JSON
         .then(response => response.json())
-        .then(data => this.data = data.data)
+        .then(data => {
+          this.meta = data.meta
+          this.data = data.data
+        })
         // Finish loading
         .finally(() => {
           // Finish loading state

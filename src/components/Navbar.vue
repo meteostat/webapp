@@ -8,7 +8,7 @@
           to="/"
         >
           <img
-            src="https://assets.meteostat.net/icon.svg"
+            src="https://media.meteostat.net/icon.svg"
             class="logo d-inline-block align-text-top"
           >
           <span class="d-none d-lg-inline-block mb-0 ms-2 h4">Meteostat</span>
@@ -18,18 +18,20 @@
             <icon icon="search" />
           </span>
           <input
+            id="search"
             ref="search"
             v-model="term"
             type="text"
             class="search-input form-control border-0"
-            :placeholder="t('searchPlaceholder')"
+            :placeholder="t('$searchPlaceholder')"
+            autocomplete="off"
             @input="search"
           >
           <span
             v-if="!isMobile"
             class="input-group-text border-0"
           >
-            <img src="https://assets.meteostat.net/search-hotkey.svg">
+            <img src="https://media.meteostat.net/assets/search-hotkey.svg">
           </span>
           <div
             v-if="results.places || results.stations"
@@ -49,7 +51,7 @@
               :to="`/place/${place.placemark}`"
             >
               <img
-                :src="`https://assets.meteostat.net/flags/4x3/${place.country.toLowerCase()}.svg`"
+                :src="`https://media.meteostat.net/assets/flags/4x3/${place.country.toLowerCase()}.svg`"
                 class="country-flag me-2"
               >
               <span class="text-truncate">
@@ -73,7 +75,7 @@
               :to="`/station/${station.id}`"
             >
               <img
-                :src="`https://assets.meteostat.net/flags/4x3/${station.country.toLowerCase()}.svg`"
+                :src="`https://media.meteostat.net/assets/flags/4x3/${station.country.toLowerCase()}.svg`"
                 class="country-flag me-2"
               >
               <span class="text-truncate me-1">
@@ -88,7 +90,9 @@
                   v-if="!station.active"
                   class="badge bg-secondary me-1"
                 >{{ t('archive') }}</span>
-                <code class="badge bg-light text-dark border ms-auto">{{ station.id }}</code>
+                <code class="badge bg-light text-dark border ms-auto">
+                  {{ station.id }}
+                </code>
               </span>
             </router-link>
           </div>
@@ -100,7 +104,6 @@
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon" />
         </button>
@@ -115,19 +118,17 @@
             >
               <span class="nav-link">{{ t('home') }}</span>
             </router-link>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="https://dev.meteostat.net/"
-              >
-                {{ t('developers') }}
-              </a>
-            </li>
             <router-link
               class="nav-item"
-              to="/contributors"
+              to="/insights"
             >
-              <span class="nav-link">{{ t('contributors') }}</span>
+              <span class="nav-link">{{ t('insights') }}</span>
+            </router-link>
+            <router-link
+              class="nav-item"
+              to="/patrons"
+            >
+              <span class="nav-link">{{ t('patrons') }}</span>
             </router-link>
           </ul>
           <div class="d-flex ms-auto mt-2 mt-lg-0">
@@ -166,209 +167,49 @@
       class="offcanvas offcanvas-start"
       tabindex="-1"
     >
-      <div class="offcanvas-header">
-        <h5
-          id="offcanvasExampleLabel"
-          class="offcanvas-title"
-        >
-          {{ t('donation') }}
-        </h5>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        />
-      </div>
-      <div class="offcanvas-body">
-        <div class="mb-4">
-          {{ t('donationText') }}
-        </div>
-        <strong class="d-block mb-3">{{ t('online') }}</strong>
-        <a
-          class="icon-link mb-2"
-          href="https://www.patreon.com/meteostat"
-          target="_blank"
-        >
-          <span class="box fs-5">
-            <icon :icon="['fab', 'patreon']" />
-          </span>
-          <span class="link fs-5 ms-2">Patreon</span>
-        </a>
-        <a
-          class="icon-link mb-2"
-          href="https://www.paypal.com/donate?hosted_button_id=MQ67WRDC8EW38"
-          target="_blank"
-        >
-          <span class="box fs-5">
-            <icon :icon="['fab', 'paypal']" />
-          </span>
-          <span class="link fs-5 ms-2">PayPal</span>
-        </a>
-        <a
-          class="icon-link mb-4"
-          href="https://github.com/sponsors/clampr"
-          target="_blank"
-        >
-          <span class="box fs-5">
-            <icon :icon="['fab', 'github']" />
-          </span>
-          <span class="link fs-5 ms-2">GitHub</span>
-        </a>
-        <hr>
-        <strong class="d-block mb-3">{{ t('bankTransfer') }}</strong>
-        <div class="form-floating mb-3">
-          <input
-            id="recipient"
-            type="text"
-            class="form-control"
-            :value="transfer.recipient"
-            readonly
-          >
-          <label for="recipient">{{ t('recipient') }}</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            id="iban"
-            type="text"
-            class="form-control"
-            :value="transfer.iban"
-            readonly
-          >
-          <label for="iban">{{ t('iban') }}</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            id="bic"
-            type="text"
-            class="form-control"
-            :value="transfer.bic"
-            readonly
-          >
-          <label for="bic">{{ t('bic') }}</label>
-        </div>
-        <hr>
-        <strong class="d-block mb-3">{{ t('cryptoCurrencies') }}</strong>
-        <div class="form-floating mb-3">
-          <input
-            id="bitcoin"
-            type="text"
-            class="form-control"
-            :value="crypto.bitcoin"
-            readonly
-          >
-          <label for="bitcoin">Bitcoin</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            id="ethereum"
-            type="text"
-            class="form-control"
-            :value="crypto.ethereum"
-            readonly
-          >
-          <label for="ethereum">Ethereum</label>
-        </div>
-      </div>
+      <Donation v-if="showDonation" />
     </div>
 
     <!-- Settings -->
     <div
       id="settingsSidebar"
-      ref="settingsSidebar"
       class="offcanvas offcanvas-end"
       tabindex="-1"
     >
-      <div class="offcanvas-header">
-        <h5
-          id="offcanvasExampleLabel"
-          class="offcanvas-title"
-        >
-          {{ t('settings') }}
-        </h5>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        />
-      </div>
-      <div class="offcanvas-body">
-        <div class="form-check form-switch">
-          <input
-            id="imperial"
-            v-model="settings.imperial"
-            class="form-check-input"
-            type="checkbox"
-          >
-          <label for="imperial">{{ t('imperialUnits') }}</label>
-          <div class="form-text">
-            {{ t('imperialUnitsText') }}
-          </div>
-        </div>
-        <div class="form-check form-switch mt-4">
-          <input
-            id="imperial"
-            v-model="settings.model"
-            class="form-check-input"
-            type="checkbox"
-          >
-          <label for="imperial">{{ t('modelData') }}</label>
-          <div class="form-text">
-            {{ t('modelDataText') }}
-          </div>
-        </div>
-        <div class="form-check form-switch mt-4">
-          <input
-            id="imperial"
-            v-model="settings.timezone"
-            class="form-check-input"
-            type="checkbox"
-          >
-          <label for="imperial">{{ t('localTimeZone') }}</label>
-          <div class="form-text">
-            {{ t('localTimeZoneText') }}
-          </div>
-        </div>
-      </div>
+      <Settings
+        v-if="showSettings"
+        @change="settingsChanged = true"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, ref } from 'vue'
+import { defineComponent, defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useSettingsStore } from '../stores/settings'
+
+/**
+ * Async Components
+ */
+const Donation = defineAsyncComponent(() =>
+  import('./Donation.vue')
+)
+const Settings = defineAsyncComponent(() =>
+  import('./Settings.vue')
+)
 
 export default defineComponent({
   name: 'Navbar',
+
+  components: {
+    Donation,
+    Settings
+  },
   
   setup(): Record<string, any> {
     const { t } = useI18n()
-    const settings = useSettingsStore()
-    const settingsChanged = ref(false)
 
-    watch(
-      () => settings.$state,
-      (state) => {
-        window.localStorage.setItem('settings', JSON.stringify(state))
-        settingsChanged.value = true
-      },
-      { deep: true }
-    )
-
-    const transfer = {
-      recipient: 'Christian Lamprecht',
-      iban: 'DE76 1001 1001 2621 1459 29',
-      bic: 'NTSBDEB1XXX'
-    }
-
-    const crypto = {
-      bitcoin: 'bc1qg2alt82ry2ntkslw8ulr9528nmlj6ym6g2x0ms',
-      ethereum: '0x5f4Dde3da1aE75280eFA6a62050c1D5cb1D7f694'
-    }
-
-    return { t, settings, settingsChanged, transfer, crypto }
+    return { t }
   },
 
   data(): Record<string, any> {
@@ -376,7 +217,10 @@ export default defineComponent({
       isMobile: true,
       term: null,
       results: {},
-      activeResult: null
+      activeResult: null,
+      showDonation: false,
+      showSettings: false,
+      settingsChanged: false
     }
   },
 
@@ -388,7 +232,21 @@ export default defineComponent({
 
   mounted(): void {
     // Check if user is on a mobile device
-    this.isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+    this.isMobile = window?.matchMedia('(hover: none) and (pointer: coarse)').matches
+    // Show donation sidebar
+    document.getElementById('donationSidebar')?.addEventListener('show.bs.offcanvas', () => {
+      this.showDonation = true
+    })
+    // Show settings sidebar
+    document.getElementById('settingsSidebar')?.addEventListener('show.bs.offcanvas', () => {
+      this.showSettings = true
+    })
+    // Reload content after change in settings
+    document.getElementById('settingsSidebar')?.addEventListener('hide.bs.offcanvas', () => {
+      if (this.settingsChanged) {
+        this.$router.go(0)
+      }
+    })
     // Register search hot key
     document.addEventListener('keydown', (e) => {
       if (e.key === '/') {
@@ -428,12 +286,6 @@ export default defineComponent({
           }
         }
       }     
-    });
-    // Reload content after change in settings
-    (this.$refs as any).settingsSidebar.addEventListener('hide.bs.offcanvas', () => {
-      if (this.settingsChanged) {
-        this.$router.go(0)
-      }
     })
   },
 
@@ -549,76 +401,23 @@ export default defineComponent({
     }
   }
 }
-
-.icon-link {
-  display: flex;
-  align-items: center;
-  
-  .box {
-    display: flex;
-    justify-content: center;
-    width: 40px;
-    padding: .5rem;
-    color: $white;
-    background: $dark;
-    border-radius: 4px;
-  }
-
-  .link {
-    color: $dark;
-  }
-
-  &:hover {
-    .box {
-      background: $primary;
-    }
-
-    .link {
-      color: $primary;
-    }
-  }
-}
 </style>
 
 <i18n>
 {
   "en": {
-    "searchPlaceholder": "Station or Place",
+    "$searchPlaceholder": "Station or Place",
     "places": "Places",
     "stations": "Weather Stations",
     "archive": "Archive",
     "home": "Home",
-    "developers": "Developers",
-    "contributors": "Contributors",
-    "donation": "Donation",
-    "donationText": "Support Meteostat on its mission of providing open weather and climate data for everyone. Your donation also helps educational and research projects making the world run better using Meteostat data.",
-    "online": "Online",
-    "bankTransfer": "Bank Transfer",
-    "recipient": "Recipient",
-    "iban": "IBAN",
-    "bic": "BIC",
-    "cryptoCurrencies": "Crypto Currencies",
-    "imperialUnits": "Imperial Units",
-    "imperialUnitsText": "Use imperial units (Fahrenheit, Inches) for meteorological data. Meteostat uses the metric system by default.",
-    "modelData": "Model Data",
-    "modelDataText": "Replace missing observations with (less accurate) model data to fill gaps in time series.",
-    "localTimeZone": "Local Time Zone",
-    "localTimeZoneText": "Displays hourly weather data in the local time zone of the respective weather station or place. Otherwise, hourly data is displayed in Coordinated Universal Time (UTC)."
   },
   "de": {
-    "searchPlaceholder": "Wetterstation oder Ort",
+    "$searchPlaceholder": "Wetterstation oder Ort",
     "places": "Orte",
     "stations": "Wetterstationen",
     "archive": "Archiv",
     "home": "Startseite",
-    "maps": "Karten",
-    "donation": "Spenden",
-    "donationText": "Unterstützen Sie Meteostat bei dem Vorhaben, Wetter- und Klimadaten für jedermann frei zugänglich zu machen. Ihre Spende hilft auch zahlreichen Projekten aus Bildung und Forschung, die Meteostat-Daten für ihre Arbeit verwenden.",
-    "online": "Online",
-    "bankTransfer": "Überweisung",
-    "recipient": "Empfänger",
-    "iban": "IBAN",
-    "bic": "BIC"
   }
 }
 </i18n>

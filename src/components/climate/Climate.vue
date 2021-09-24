@@ -30,13 +30,13 @@
             <li><hr class="dropdown-divider"></li>
             <li
               v-for="period in periods"
-              :key="period"
+              :key="period.start"
             >
               <a
-                :class="{ active: period === activePeriod }"
+                :class="{ active: period.start === activePeriod }"
                 class="dropdown-item"
-                @click="setPeriod(period)"
-              >{{ period }} - {{ period + 29 }}</a>
+                @click="setPeriod(period.start)"
+              >{{ period.start }} - {{ period.end }}</a>
             </li>
           </ul>
         </div>
@@ -218,10 +218,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 import { Store } from 'pinia'
 import { useSettingsStore } from '../../stores/settings'
 import { ChartDefinitionInterface } from '../../utils/interfaces'
-import DataMixin from '../location/Data.mixin'
+import DataMixin from '../Location.mixin'
 import Sections from '../Sections.vue'
 import Chart from '../charts/Chart.vue'
 import NoData from './NoData.vue'
@@ -238,6 +239,10 @@ export default defineComponent({
   mixins: [DataMixin],
 
   props: {
+    name: {
+      type: String,
+      default: null
+    },
     station: {
       type: String,
       default: null
@@ -256,33 +261,21 @@ export default defineComponent({
     }
   },
 
-  setup(): Record<string, (Store|Array<string>|any)> {
+  setup(props: Record<string, any>): Record<string, (Store|Array<string>|any)> {
     // Translations
     const { t } = useI18n()
 
     // Store
     const settings = useSettingsStore()
 
-    // Months
-    const months = [
-      'JAN',
-      'FEB',
-      'MAR',
-      'APR',
-      'MAY',
-      'JUN',
-      'JUL',
-      'AUG',
-      'SEP',
-      'OCT',
-      'NOV',
-      'DEC'
-    ]
+    // Meta tags
+    useHead({
+      title: `${props.name} | ${t('$meta.title')} | Meteostat`
+    })
 
     return {
       t,
-      settings,
-      months
+      settings
     }
   },
 
@@ -294,11 +287,14 @@ export default defineComponent({
   },
 
   computed: {
-    periods(): Array<number> {
-      const periods: Array<number> = []
+    periods(): Array<Record<string, number>> {
+      const periods: Array<Record<string, number>> = []
       this.normals?.forEach((record: any): void => {
-        if (!periods.includes(record.start)) {
-          periods.push(record.start)
+        if (!periods.map(period => period.start).includes(record.start)) {
+          periods.push({
+            start: record.start,
+            end: record.end
+          })
         }
       })
       return periods
@@ -354,7 +350,7 @@ export default defineComponent({
     tempChart(): ChartDefinitionInterface {
       return {
         data: {
-          labels: this.months,
+          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
           datasets: [{
             label: this.t('tavg'),
 						type: 'line',
@@ -396,7 +392,7 @@ export default defineComponent({
     prcpChart(): ChartDefinitionInterface {
       return {
         data: {
-          labels: this.months,
+          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
           datasets: [{
             label: this.t('prcp'),
             borderWidth: 2,
@@ -425,7 +421,7 @@ export default defineComponent({
     wspdChart(): ChartDefinitionInterface {
       return {
         data: {
-          labels: this.months,
+          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
           datasets: [{
             label: this.t('wspd'),
             borderWidth: 2,
@@ -457,7 +453,7 @@ export default defineComponent({
     presChart(): ChartDefinitionInterface {
       return {
         data: {
-          labels: this.months,
+          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
           datasets: [{
             label: this.t('pres'),
             borderWidth: 2,
@@ -488,7 +484,7 @@ export default defineComponent({
     tsunChart(): ChartDefinitionInterface {
       return {
         data: {
-          labels: this.months,
+          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
           datasets: [{
             label: this.t('tsun'),
             borderWidth: 2,
@@ -550,8 +546,25 @@ export default defineComponent({
 <i18n>
 {
   "en": {
+    "$meta": {
+      "title": "Climate Data"
+    },
     "latest": "Latest",
-    "$manual": "Climate data provides information on the <strong>typical weather</strong> at a location. The normals are usually based on a <strong>period of 30 years</strong>. At Meteostat you can view data for all available reference periods. The data <strong>accuracy may vary</strong> by period, as not all statistics were generated using the same methods. Also, missing periods may be (partially) replaced based on spatial grid data."
+    "$manual": "Climate data provides information on the <strong>typical weather</strong> at a location. The normals are usually based on a <strong>period of 30 years</strong>. At Meteostat you can view data for all available reference periods. The data <strong>accuracy may vary</strong> by period, as not all statistics were generated using the same methods.",
+    "$months": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC"
+    ]
   }
 }
 </i18n>

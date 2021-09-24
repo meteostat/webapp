@@ -38,7 +38,6 @@ export default defineComponent({
   watch: {
     async data() {
       if (!this.loading) {
-        this.loading = true
         this.createChart()
       }
     }
@@ -50,6 +49,9 @@ export default defineComponent({
 
   methods: {
     async createChart() {
+      // Start loading
+      this.loading = true
+
       if (!import.meta.env.SSR) {
         // Import Chart.js
         const {
@@ -107,11 +109,7 @@ export default defineComponent({
 
         // Chart options
         const options = {
-          animation: {
-            onComplete: () => {
-              this.loading = false
-            }
-          },
+          animation: false,
           ...this.options,
         }
 
@@ -126,6 +124,9 @@ export default defineComponent({
           data: this.data,
           options
         })
+
+        // Finish loading
+        this.loading = false
       }
     }
   }

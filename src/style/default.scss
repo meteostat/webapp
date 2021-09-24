@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./typography";
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./utils";
 @import "./weather-icons/css/weather-icons.min.css";
@@ -25,6 +26,31 @@ button > *, a > * {
 
 .btn:focus {
   box-shadow: none;
+}
+
+/* Alerts */
+.alert {
+  background: $white;
+  color: $dark;
+  border-top: 1px solid $gray-200;
+  border-right: 1px solid $gray-200;
+  border-bottom: 1px solid $gray-200;
+
+  &-danger {
+    border-left: 3px solid $danger;
+  }
+
+  &-warning {
+    border-left: 3px solid $warning;
+  }
+
+  &-success {
+    border-left: 3px solid $success;
+  }
+
+  &-primary {
+    border-left: 2px solid $primary;
+  }
 }
 
 /* Offcanvas */
@@ -58,7 +84,7 @@ button > *, a > * {
   }
 }
 
-/* Card Header */
+/* Header */
 .card {
   border: 1px solid $gray-200;
 
@@ -76,11 +102,8 @@ section.card {
     padding: 0;
 
     .card-header-title {
-      display: inline-block;
+      @extend .heading-main;
       margin: 0;
-      padding-bottom: .8rem;
-      padding-right: 1rem;
-      border-bottom: 3px solid $primary;
     }
   }
 }

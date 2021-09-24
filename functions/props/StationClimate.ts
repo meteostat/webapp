@@ -3,10 +3,10 @@ import type { EdgeProps } from 'vitedge'
 export default <EdgeProps>{
   async handler({ params }) {
     let station = null
-    await fetch(`https://raw.githubusercontent.com/meteostat/weather-stations/master/stations/${params?.id}.json`)
+    await fetch(`https://d.meteostat.net/app/proxy/stations/meta?id=${params?.id}`)
       .then(response => response.json())
       .then(data => {
-        station = data
+        station = data.data
       })
     return {
       data: {
