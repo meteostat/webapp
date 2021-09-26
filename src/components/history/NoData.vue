@@ -8,14 +8,14 @@
         :icon="['fas', 'exclamation-circle']"
         class="me-1 text-danger"
       />
-      {{ t('title') }}
+      {{ t('$title') }}
     </h5>
     <p class="mb-0">
-      {{ t('description') }}
+      {{ t('$description') }}
     </p>
     <template v-if="!settings.model">
       <hr class="mt-3">
-      <p>{{ t('tipModel') }}</p>
+      <p>{{ t('$tipModel') }}</p>
       <button
         class="btn btn-primary"
         @click="enableModel"
@@ -54,9 +54,9 @@ export default defineComponent({
 <i18n>
 {
   "en": {
-    "title": "No Data",
-    "description": "Unfortunately, no data was found for the selected period. Perhaps you would like to try a different time period or a nearby location? Please note that for technical reasons observation data and statistics are always provided with a time delay. So it is quite possible that missing data will be available in a few hours or days.",
-    "tipModel": "You are currently using Meteostat without model data. You might want to try enabling model data to fill gaps in Meteostat's time series data.",
+    "$title": "No Data",
+    "$description": "Unfortunately, no data was found for the selected period. Perhaps you would like to try a different time period or a nearby location? Please note that for technical reasons observation data and statistics are always provided with a time delay. So it is quite possible that missing data will be available in a few hours or days.",
+    "$tipModel": "You are currently using Meteostat without model data. You might want to try enabling model data to fill gaps in Meteostat's time series data.",
     "enableModel": "Enable Moel"
   },
   "de": {

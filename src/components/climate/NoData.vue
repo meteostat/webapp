@@ -8,14 +8,14 @@
         :icon="['fas', 'exclamation-circle']"
         class="me-1 text-danger"
       />
-      {{ t('title') }}
+      {{ t('$title') }}
     </h5>
     <p class="mb-0">
-      {{ t('description') }}
+      {{ t('$description') }}
     </p>
     <template v-if="!settings.model">
       <hr class="mt-3">
-      <p>{{ t('tipModel') }}</p>
+      <p>{{ t('$tipModel') }}</p>
       <button
         class="btn btn-primary"
         @click="enableModel"
@@ -47,8 +47,8 @@ export default defineComponent({
 <i18n>
 {
   "en": {
-    "title": "No Data",
-    "description": "Unfortunately, no climate data was found for this location. Perhaps you would like to try a nearby place or weather station?"
+    "$title": "No Data",
+    "$description": "Unfortunately, no climate data was found for this location. Perhaps you would like to try a nearby place or weather station?"
   }
 }
 </i18n>

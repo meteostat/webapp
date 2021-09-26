@@ -13,7 +13,7 @@
           :icon="['fas', 'exclamation-circle']"
           class="me-1 text-danger"
         />
-        {{ t('noData') }}
+        {{ t('phrases.noData') }}
       </div>
       <div
         v-if="loading"
@@ -60,37 +60,37 @@
               <a
                 class="dropdown-item"
                 @click="setParameter('tavg')"
-              >{{ t('tavg') }}</a>
+              >{{ t('params.tavg') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('tmin')"
-              >{{ t('tmin') }}</a>
+              >{{ t('params.tmin') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('tmax')"
-              >{{ t('tmax') }}</a>
+              >{{ t('params.tmax') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('prcp')"
-              >{{ t('prcp') }}</a>
+              >{{ t('params.prcp') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('wspd')"
-              >{{ t('wspd') }}</a>
+              >{{ t('params.wspd') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('pres')"
-              >{{ t('pres') }}</a>
+              >{{ t('params.pres') }}</a>
             </li>
           </ul>
         </div>
@@ -228,7 +228,7 @@ export default defineComponent({
       map: null,
       date: this.range[0],
       parameter: 'tavg',
-      parameterName: this.t('tavg'),
+      parameterName: this.t('params.tavg'),
       cells: [],
       interval: null,
       playing: false,
@@ -453,7 +453,7 @@ export default defineComponent({
       let map = this.map
       leafletImage(map, (err: any, canvas: HTMLCanvasElement): void => {
 				canvas.toBlob(blob => {
-					saveAs(blob, 'DE-C355.png');
+					saveAs(blob, 'map.png');
 				});
       });
     },

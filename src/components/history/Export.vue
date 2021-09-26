@@ -13,7 +13,7 @@
         />
       </div>
       <div class="modal-body">
-        <p>{{ t('description') }}</p>
+        <p>{{ t('$description') }}</p>
         <template
           v-if="data.length > 0"
         >
@@ -65,7 +65,7 @@
                       {{ key + 1 }}
                     </th>
                     <td>{{ col }}</td>
-                    <td>{{ t(col) }}</td>
+                    <td>{{ t(`params.${col}`) }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -141,15 +141,12 @@ export default defineComponent({
 
   methods: {
     async save() {
-      // Loading
-      this.$loading('export')
       // Save
       loadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js').then(() => {
         const wb = window.XLSX.utils.book_new()
         const ws = window.XLSX.utils.json_to_sheet(this.data)
         window.XLSX.utils.book_append_sheet(wb, ws, 'Export')
         window.XLSX.writeFile(wb, `export.${this.selectedFormat}`)
-        this.$loaded('export')
       })
     }
   }
@@ -159,7 +156,7 @@ export default defineComponent({
 <i18n>
 {
   "en": {
-    "description": "Download selected weather data in the format of your choice.",
+    "$description": "Download selected weather data in the format of your choice.",
     "includeHeader": "Include header row"
   }
 }

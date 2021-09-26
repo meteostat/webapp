@@ -3,6 +3,7 @@
   <div class="d-flex mt-n2 py-2 sticky-top bg-white">
     <!-- Sections -->
     <Sections ref="sections" />
+
     <!-- Date Range Button -->
     <div class="ms-auto">
       <button
@@ -46,20 +47,30 @@
         @loaded="updateSections"
       />
     </template>
+
     <!-- Daily Data --->
     <template v-else-if="range && mode === 'daily'">
       <Daily
-        :station="meta.id"
-        :start="format(range.start, 'yyyy-MM-dd')"
-        :end="format(range.end, 'yyyy-MM-dd')"
+        :station="station"
+        :lat="lat"
+        :lon="lon"
+        :alt="alt"
+        :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
+        :normals="normals"
+        @loaded="updateSections"
       />
     </template>
+
     <!-- Monthly Data -->
     <template v-else-if="range && mode === 'monthly'">
       <Monthly
-        :station="meta.id"
-        :start="format(range.start, 'yyyy-MM-dd')"
-        :end="format(range.end, 'yyyy-MM-dd')"
+        :station="station"
+        :lat="lat"
+        :lon="lon"
+        :alt="alt"
+        :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
+        :normals="normals"
+        @loaded="updateSections"
       />
     </template>
   </div>
@@ -183,6 +194,7 @@ import { useHead } from '@vueuse/head'
 import {
   parseISO,
   format,
+  differenceInDays,
   subDays,
   subMonths,
   subYears,
@@ -270,7 +282,6 @@ export default defineComponent({
       end = subDays(new Date(), 7)
     }
     return {
-      mode: 'hourly',
       range: {
         start,
         end
@@ -321,6 +332,21 @@ export default defineComponent({
           endOfYear(subYears(new Date(), 2))
         ]
       ]
+    }
+  },
+
+  computed: {
+    mode(): string {
+      const dateDiff = differenceInDays(this.range.end, this.range.start)
+      if (dateDiff <= 12) {
+        return 'hourly'
+      }
+      else if (dateDiff <= 366) {
+        return 'daily'
+      }
+      else {
+        return 'monthly'
+      }
     }
   },
 

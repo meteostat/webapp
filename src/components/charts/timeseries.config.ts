@@ -1,4 +1,4 @@
-import { parseISO, intervalToDuration } from 'date-fns'
+import { parseISO, differenceInDays } from 'date-fns'
 
 // Tooltips
 const tsTooltips = {
@@ -35,23 +35,47 @@ const tsScales = (labels: Array<string>, scaleLabel: string): any => {
   // Date range
   const start = parseISO(labels[0])
   const end = parseISO(labels[labels.length - 1])
-  const days = intervalToDuration({
-    start: start,
-    end: end
-  }).days || 1
+  const days = differenceInDays(end, start)
+  // Determine frequency
+  let freq: string
+  if (days <= 12) {
+    freq = 'hourly'
+  }
+  else if (days <= 366) {
+    freq = 'daily'
+  }
+  else {
+    freq = 'monthly'
+  }
+  // Time Unit
+  let timeUnit = 'hour'
+  if (days > 1 && ['hourly', 'daily'].includes(freq)) {
+    timeUnit = 'day'
+  }
+  else if (freq === 'monthly') {
+    timeUnit = 'month'
+  }
+  // Time Tooltip Format
+  let timeFormat = 'MMM d, yyyy - HH:mm'
+  if (freq === 'daily') {
+    timeFormat = 'MMM d, yyyy'
+  }
+  else if (freq === 'monthly') {
+    timeFormat = 'MMM yyyy'
+  }
   // Return scale configuration
   return {
     x: {
       type: 'time',
       offset: false,
       time: {
-        unit: days < 2 ? 'hour' : 'day',
-        stepSize: days < 2 ? 4 : 1,
-        tooltipFormat: 'MMM d, yyyy - HH:mm'
+        unit: timeUnit,
+        tooltipFormat: timeFormat
       },
       ticks: {
         autoSkip: true,
-        maxTicksLimit: 12,
+        maxTicksLimit: 8,
+        maxRotation: 0,
         padding: 16
       },
     },

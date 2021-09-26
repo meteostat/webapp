@@ -2,6 +2,7 @@
   "locale": "en-US",
   "dateFormat": "yyyy-MM-dd",
   "dateTimeFormat": "yyyy-MM-dd HH:mm:ss",
+
   "insights": "Insights",
   "patrons": "Patrons",
   "donation": "Donation",
@@ -13,28 +14,50 @@
   "save": "Save",
   "close": "Close",
   "details": "Details",
-  "noData": "No Data",
-  "someDataMissing": "Some data is missing",
-  "showMore": "Show More",
   "updated": "Updated",
   "support": "Support",
   "documentation": "Documentation",
 
-  "time": "Time",
-  "temp": "Temperature",
-  "tavg": "Avg. Temperature",
-  "tmin": "Min. Temperature",
-  "tmax": "Max. Temperature",
-  "dwpt": "Dew Point",
-  "rhum": "Relative Humidity",
-  "prcp": "Precipitation",
-  "prcpTotal": "Total Precipitation",
-  "snow": "Snow Depth",
-  "wind": "Wind",
-  "wdir": "Wind Direction",
-  "wspd": "Wind Speed",
-  "wpgt": "Peak Gust",
-  "pres": "Air Pressure",
-  "tsun": "Sunshine Duration",
-  "coco": "Weather Condition Code"
+  "phrases": {
+    "noData": "No Data",
+    "someDataMissing": "Some data is missing",
+    "showMore": "Show More",
+  },
+
+  "math": {
+    "avg": "Avg.",
+    "min": "Min.",
+    "max": "Max.",
+    "total": "Total"
+  },
+
+  "meteo": {
+    "weather": "Weather",
+    "air": "Air",
+    "pres": "Pressure",
+    "temp": "Temperature",
+    "prcp": "Precipitation",
+    "snow": "Snow",
+    "wind": "Wind",
+    "gust": "Gust"
+  },
+
+  "params": {
+    "time": "Time",
+    "date": "Date",
+    "temp": "Temperature",
+    "tavg": "Avg. Temperature",
+    "tmin": "Min. Temperature",
+    "tmax": "Max. Temperature",
+    "dwpt": "Dew Point",
+    "rhum": "Relative Humidity",
+    "prcp": "Total Precipitation",
+    "snow": "Snow Depth",
+    "wdir": "Wind Direction",
+    "wspd": "Wind Speed",
+    "wpgt": "Peak Gust",
+    "pres": "Air Pressure",
+    "tsun": "Sunshine Duration",
+    "coco": "Weather Condition Code"
+  }
 }

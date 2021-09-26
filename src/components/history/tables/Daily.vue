@@ -3,11 +3,9 @@
     <table class="table table-striped table-bordered table-hover align-middle">
       <thead class="table-light">
         <tr>
-          <th colspan="2">
-            {{ t('time') }}
-          </th>
+          <th />
           <th colspan="3">
-            {{ t('meteo.weather') }}
+            {{ t('meteo.temp') }}
           </th>
           <th colspan="2">
             {{ t('meteo.prcp') }}
@@ -46,25 +44,11 @@
           :key="index"
         >
           <th scope="row">
-            {{ format(parseISO(row.time), 'yyyy-MM-dd') }}
-          </th>
-          <th scope="row">
-            {{ format(parseISO(row.time), 'HH') }}
+            {{ format(parseISO(row.date), 'yyyy-MM-dd') }}
           </th>
           <td>
-            <template v-if="row.coco">
-              <i :class="`wi wi-${getWeatherIcon(row.coco)}`" />
-            </template>
-            <span
-              v-else
-              class="text-muted"
-            >
-              <i class="wi wi-na" />
-            </span>
-          </td>
-          <td>
-            <template v-if="row.temp !== null">
-              {{ row.temp }}
+            <template v-if="row.tmin !== null">
+              {{ row.tmin }}
               <span class="text-muted">{{ settings.units.temp }}</span>
             </template>
             <span
@@ -73,9 +57,19 @@
             >—</span>
           </td>
           <td>
-            <template v-if="row.tsun !== null">
-              {{ row.tsun }}
-              <span class="text-muted">m</span>
+            <template v-if="row.tavg !== null">
+              {{ row.tavg }}
+              <span class="text-muted">{{ settings.units.temp }}</span>
+            </template>
+            <span
+              v-else
+              class="text-muted"
+            >—</span>
+          </td>
+          <td>
+            <template v-if="row.tmax !== null">
+              {{ row.tmax }}
+              <span class="text-muted">{{ settings.units.temp }}</span>
             </template>
             <span
               v-else
@@ -143,16 +137,6 @@
               class="text-muted"
             >—</span>
           </td>
-          <td>
-            <template v-if="row.rhum !== null">
-              {{ row.rhum }}
-              <span class="text-muted">%</span>
-            </template>
-            <span
-              v-else
-              class="text-muted"
-            >—</span>
-          </td>
         </tr>
       </tbody>
     </table>
@@ -176,7 +160,7 @@ import { Store } from 'pinia'
 import { useSettingsStore } from '~/stores/settings'
 
 export default {
-  name: 'HourlyTable',
+  name: 'DailyTable',
 
   props: {
     data: {
@@ -200,31 +184,27 @@ export default {
     return {
       columns: [
         {
-          name: 'Date',
-          key: 'time'
+          name: this.t('params.date'),
+          key: 'date'
         },
         {
-          name: 'H',
-          key: 'time'
+          name: this.t('math.min'),
+          key: 'tmin'
         },
         {
-          name: '',
-          key: 'coco'
+          name: this.t('math.avg'),
+          key: 'tavg'
         },
         {
-          name: 'Temp.',
-          key: 'temp'
+          name: this.t('math.max'),
+          key: 'tmax'
         },
         {
-          name: 'Sun',
-          key: 'tsun'
-        },
-        {
-          name: '1H',
+          name: this.t('math.total'),
           key: 'prcp'
         },
         {
-          name: 'Snow',
+          name: this.t('meteo.snow'),
           key: 'snow'
         },
         {
@@ -232,21 +212,17 @@ export default {
           key: 'wdir'
         },
         {
-          name: 'Avg.',
+          name: this.t('math.avg'),
           key: 'wspd'
         },
         {
-          name: 'Gust',
+          name: this.t('meteo.gust'),
           key: 'wpgt'
         },
         {
-          name: 'Pres.',
+          name: this.t('meteo.pres'),
           key: 'pres'
         },
-        {
-          name: 'Hum.',
-          key: 'rhum'
-        }
       ],
       count: this.display,
       sort: {
@@ -285,69 +261,6 @@ export default {
     },
     showMore(): void {
       this.count += this.display
-    },
-    getWeatherIcon(code: number): string {
-      let icon = 'na'
-      switch(code) {
-        case 1:
-          icon = 'day-sunny'
-          break
-        case 2:
-          icon = 'day-cloudy'
-          break
-        case 3:
-        case 4:
-          icon = 'cloudy'
-          break
-        case 5:
-        case 6:
-          icon = 'fog'
-          break
-        case 7:
-        case 8:
-        case 9:
-          icon = 'rain'
-          break
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-          icon = 'sleet'
-          break
-        case 14:
-        case 15:
-        case 16:
-          icon = 'snow'
-          break
-        case 17:
-        case 18:
-          icon = 'rain-wind'
-          break
-        case 19:
-        case 20:
-          icon = 'showers'
-          break
-        case 21:
-        case 22:
-          icon = 'snow-wind'
-          break
-        case 23:
-          icon = 'lightning'
-          break
-        case 24:
-          icon = 'hail'
-          break
-        case 25:
-        case 26:
-          icon = 'thunderstorm'
-          break
-        case 27:
-          icon = 'strong-wind'
-          break
-        default:
-          icon = 'na'
-      }
-      return icon
     }
   }
 }
@@ -375,13 +288,3 @@ table {
   }
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "time": "Time",
-    "weather": "Weather",
-    "air": "Air"
-  }
-}
-</i18n>
