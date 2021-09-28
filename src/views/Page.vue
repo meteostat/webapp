@@ -45,6 +45,10 @@ export default defineComponent({
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 
+.container {
+  max-width: 900px;
+}
+
 .markdown {
   h1 {
     @extend .heading-main;

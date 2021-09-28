@@ -134,31 +134,6 @@
           </template>
         </span>
       </li>
-      <li
-        v-if="data.inventory"
-        class="list-group-item d-flex align-items-center"
-      >
-        {{ t('monthly') }}:
-        <span
-          class="ms-auto"
-        >
-          <template v-if="data.inventory.monthly.start">
-            <small class="text-muted">
-              {{ data.inventory.monthly.start }} - {{ data.inventory.monthly.end }}
-            </small>
-            <icon
-              :icon="['fas', 'circle']"
-              class="text-success ms-2"
-            />
-          </template>
-          <template v-else>
-            <icon
-              :icon="['fas', 'circle']"
-              class="text-danger ms-auto"
-            />
-          </template>
-        </span>
-      </li>
     </ul>
   </div>
 </template>

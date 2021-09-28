@@ -60,19 +60,6 @@
         @loaded="updateSections"
       />
     </template>
-
-    <!-- Monthly Data -->
-    <template v-else-if="range && mode === 'monthly'">
-      <Monthly
-        :station="station"
-        :lat="lat"
-        :lon="lon"
-        :alt="alt"
-        :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
-        :normals="normals"
-        @loaded="updateSections"
-      />
-    </template>
   </div>
 
   <!-- Date Range Offcanvas -->
@@ -208,7 +195,6 @@ import {
 import Sections from '../Sections.vue'
 import Hourly from './dashboards/Hourly.vue'
 import Daily from './dashboards/Daily.vue'
-import Monthly from './dashboards/Monthly.vue'
 
 export default defineComponent({
   name: 'History',
@@ -216,8 +202,7 @@ export default defineComponent({
   components: {
     Sections,
     Hourly,
-    Daily,
-    Monthly
+    Daily
   },
 
   props: {
@@ -341,11 +326,8 @@ export default defineComponent({
       if (dateDiff <= 12) {
         return 'hourly'
       }
-      else if (dateDiff <= 366) {
-        return 'daily'
-      }
       else {
-        return 'monthly'
+        return 'daily'
       }
     }
   },

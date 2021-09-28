@@ -13,7 +13,7 @@
           :icon="['fas', 'exclamation-circle']"
           class="me-1 text-danger"
         />
-        {{ t('phrases.noData') }}
+        {{ t('$phrases.noData') }}
       </div>
       <div
         v-if="loading"
@@ -60,37 +60,37 @@
               <a
                 class="dropdown-item"
                 @click="setParameter('tavg')"
-              >{{ t('params.tavg') }}</a>
+              >{{ t('$params.tavg') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('tmin')"
-              >{{ t('params.tmin') }}</a>
+              >{{ t('$params.tmin') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('tmax')"
-              >{{ t('params.tmax') }}</a>
+              >{{ t('$params.tmax') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('prcp')"
-              >{{ t('params.prcp') }}</a>
+              >{{ t('$params.prcp') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('wspd')"
-              >{{ t('params.wspd') }}</a>
+              >{{ t('$params.wspd') }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 @click="setParameter('pres')"
-              >{{ t('params.pres') }}</a>
+              >{{ t('$params.pres') }}</a>
             </li>
           </ul>
         </div>
@@ -228,7 +228,7 @@ export default defineComponent({
       map: null,
       date: this.range[0],
       parameter: 'tavg',
-      parameterName: this.t('params.tavg'),
+      parameterName: this.t('$params.tavg'),
       cells: [],
       interval: null,
       playing: false,

@@ -4,19 +4,19 @@
       <thead class="table-light">
         <tr>
           <th colspan="2">
-            {{ t('time') }}
+            {{ t('$params.time') }}
           </th>
           <th colspan="3">
-            {{ t('meteo.weather') }}
+            {{ t('$meteo.weather') }}
           </th>
           <th colspan="2">
-            {{ t('meteo.prcp') }}
+            {{ t('$meteo.prcp') }}
           </th>
           <th colspan="3">
-            {{ t('meteo.wind') }}
+            {{ t('$meteo.wind') }}
           </th>
           <th colspan="2">
-            {{ t('meteo.air') }}
+            {{ t('$meteo.air') }}
           </th>
         </tr>
         <tr>
@@ -26,7 +26,9 @@
             scope="col"
             @click="sortBy(column.key)"
           >
-            {{ column.name }}
+            <abbr :title="column.name">
+              {{ column.abbr || column.name }}
+            </abbr>
             <icon
               v-if="sort.column === column.key && sort.asc"
               :icon="['fas', 'arrow-up']"
@@ -164,7 +166,7 @@
       :disabled="count >= data.length"
       @click="showMore"
     >
-      {{ t('phrases.showMore') }}
+      {{ t('$phrases.showMore') }}
     </button>
   </div>
 </template>
@@ -200,51 +202,62 @@ export default {
     return {
       columns: [
         {
-          name: 'Date',
+          name: this.t('$params.date'),
+          abbr: null,
           key: 'time'
         },
         {
-          name: 'H',
+          name: this.t('hour'),
+          abbr: 'H',
           key: 'time'
         },
         {
-          name: '',
+          name: null,
+          abbr: null,
           key: 'coco'
         },
         {
-          name: 'Temp.',
+          name: this.t('$params.temp'),
+          abbr: `${this.t('$params.temp').substr(0, 4)}.`,
           key: 'temp'
         },
         {
-          name: 'Sun',
+          name: this.t('$params.tsun'),
+          abbr: `${this.t('$meteo.sunshine').substr(0, 3)}.`,
           key: 'tsun'
         },
         {
-          name: '1H',
+          name: `${this.t('$params.prcp')} (1H)`,
+          abbr: '1H',
           key: 'prcp'
         },
         {
-          name: 'Snow',
+          name: this.t('$params.snow'),
+          abbr: this.t('$meteo.snow'),
           key: 'snow'
         },
         {
-          name: '',
+          name: null,
           key: 'wdir'
         },
         {
-          name: 'Avg.',
+          name: this.t('$params.wspd'),
+          abbr: this.t('avg'),
           key: 'wspd'
         },
         {
-          name: 'Gust',
+          name: this.t('$params.wpgt'),
+          abbr: this.t('$meteo.gust'),
           key: 'wpgt'
         },
         {
-          name: 'Pres.',
+          name: this.t('$params.pres'),
+          abbr: `${this.t('$meteo.pres').substr(0, 4)}.`,
           key: 'pres'
         },
         {
-          name: 'Hum.',
+          name: this.t('$params.rhum'),
+          abbr: `${this.t('$meteo.humidity').substr(0, 3)}.`,
           key: 'rhum'
         }
       ],

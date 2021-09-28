@@ -1,5 +1,5 @@
 {
-  "locale": "en-US",
+  "locale": "en",
   "dateFormat": "yyyy-MM-dd",
   "dateTimeFormat": "yyyy-MM-dd HH:mm:ss",
 
@@ -18,31 +18,31 @@
   "support": "Support",
   "documentation": "Documentation",
 
-  "phrases": {
+  "avg": "Avg.",
+  "min": "Min.",
+  "max": "Max.",
+  "total": "Total",
+
+  "$phrases": {
     "noData": "No Data",
     "someDataMissing": "Some data is missing",
     "showMore": "Show More",
   },
 
-  "math": {
-    "avg": "Avg.",
-    "min": "Min.",
-    "max": "Max.",
-    "total": "Total"
-  },
-
-  "meteo": {
+  "$meteo": {
     "weather": "Weather",
     "air": "Air",
     "pres": "Pressure",
     "temp": "Temperature",
+    "humidity": "Humidity",
     "prcp": "Precipitation",
+    "sunshine": "Sunshine",
     "snow": "Snow",
     "wind": "Wind",
     "gust": "Gust"
   },
 
-  "params": {
+  "$params": {
     "time": "Time",
     "date": "Date",
     "temp": "Temperature",

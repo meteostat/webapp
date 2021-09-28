@@ -5,16 +5,16 @@
         <tr>
           <th />
           <th colspan="3">
-            {{ t('meteo.temp') }}
+            {{ t('$meteo.temp') }}
           </th>
           <th colspan="2">
-            {{ t('meteo.prcp') }}
+            {{ t('$meteo.prcp') }}
           </th>
           <th colspan="3">
-            {{ t('meteo.wind') }}
+            {{ t('$meteo.wind') }}
           </th>
           <th colspan="2">
-            {{ t('meteo.air') }}
+            {{ t('$meteo.air') }}
           </th>
         </tr>
         <tr>
@@ -24,7 +24,9 @@
             scope="col"
             @click="sortBy(column.key)"
           >
-            {{ column.name }}
+            <abbr :title="column.name">
+              {{ column.abbr || column.name }}
+            </abbr>
             <icon
               v-if="sort.column === column.key && sort.asc"
               :icon="['fas', 'arrow-up']"
@@ -148,7 +150,7 @@
       :disabled="count >= data.length"
       @click="showMore"
     >
-      {{ t('phrases.showMore') }}
+      {{ t('$phrases.showMore') }}
     </button>
   </div>
 </template>
@@ -184,27 +186,33 @@ export default {
     return {
       columns: [
         {
-          name: this.t('params.date'),
+          name: this.t('$params.date'),
+          abbr: null,
           key: 'date'
         },
         {
-          name: this.t('math.min'),
+          name: this.t('$params.tmin'),
+          abbr: this.t('min'),
           key: 'tmin'
         },
         {
-          name: this.t('math.avg'),
+          name: this.t('$params.tavg'),
+          abbr: this.t('avg'),
           key: 'tavg'
         },
         {
-          name: this.t('math.max'),
+          name: this.t('$params.tmax'),
+          abbr: this.t('max'),
           key: 'tmax'
         },
         {
-          name: this.t('math.total'),
+          name: this.t('$params.prcp'),
+          abbr: this.t('total'),
           key: 'prcp'
         },
         {
-          name: this.t('meteo.snow'),
+          name: this.t('$params.snow'),
+          abbr: this.t('$meteo.snow'),
           key: 'snow'
         },
         {
@@ -212,15 +220,18 @@ export default {
           key: 'wdir'
         },
         {
-          name: this.t('math.avg'),
+          name: this.t('$params.wspd'),
+          abbr: this.t('avg'),
           key: 'wspd'
         },
         {
-          name: this.t('meteo.gust'),
+          name: this.t('$params.wpgt'),
+          abbr: this.t('$meteo.gust'),
           key: 'wpgt'
         },
         {
-          name: this.t('meteo.pres'),
+          name: this.t('$params.pres'),
+          abbr: this.t('$meteo.pres'),
           key: 'pres'
         },
       ],

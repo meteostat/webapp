@@ -12,7 +12,7 @@
       <div class="col-6 pe-1 pe-md-3">
         <div
           class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-temp h-100"
-          :title="anyColGaps('temp') ? t('phrases.someDataMissing') : undefined"
+          :title="anyColGaps('temp') ? t('$phrases.someDataMissing') : undefined"
           data-bs-toggle="tooltip"
           data-bs-placement="bottom"
         >
@@ -30,7 +30,7 @@
                 <small class="text-muted ms-1">°C</small>
               </template>
               <template v-else>
-                <span class="text-muted">{{ t('phrases.noData') }}</span>
+                <span class="text-muted">{{ t('$phrases.noData') }}</span>
               </template>
             </h5>
             <div class="text-muted text-truncate">
@@ -39,7 +39,7 @@
                 :icon="['fas', 'exclamation-circle']"
                 class="me-2"
               />
-              <span class="card-text">{{ t('params.tavg') }}</span>
+              <span class="card-text">{{ t('$params.tavg') }}</span>
             </div>
           </div>
           <div class="card-icon d-none d-lg-block">
@@ -52,7 +52,7 @@
       <div class="col-6 ps-1 ps-md-3">
         <div
           class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-prcp h-100"
-          :title="prcpKPI && anyColGaps('prcp') ? t('phrases.someDataMissing') : undefined"
+          :title="prcpKPI && anyColGaps('prcp') ? t('$phrases.someDataMissing') : undefined"
           data-bs-toggle="tooltip"
           data-bs-placement="bottom"
         >
@@ -70,7 +70,7 @@
                 <small class="text-muted ms-1">mm</small>
               </template>
               <template v-else>
-                <span class="text-muted">{{ t('phrases.noData') }}</span>
+                <span class="text-muted">{{ t('$phrases.noData') }}</span>
               </template>
             </h5>
             <div class="text-muted text-truncate">
@@ -79,7 +79,7 @@
                 :icon="['fas', 'exclamation-circle']"
                 class="me-2"
               />
-              <span class="card-text">{{ t('params.prcp') }}</span>
+              <span class="card-text">{{ t('$params.prcp') }}</span>
             </div>
           </div>
           <div class="card-icon d-none d-lg-block">
@@ -103,7 +103,7 @@
       >
         <div class="card-header card-header-main px-0 rounded-0 bg-white">
           <h2 class="card-header-title lead">
-            {{ t('meteo.temp') }}
+            {{ t('$meteo.temp') }}
           </h2>
         </div>
         <div class="card-body px-0">
@@ -123,7 +123,7 @@
       >
         <div class="card-header card-header-main px-0 rounded-0 bg-white">
           <h2 class="card-header-title lead">
-            {{ t('meteo.prcp') }}
+            {{ t('$meteo.prcp') }}
           </h2>
         </div>
         <div class="card-body px-0">
@@ -143,7 +143,7 @@
       >
         <div class="card-header card-header-main px-0 rounded-0 bg-white">
           <h2 class="card-header-title lead">
-            {{ t('params.wspd') }}
+            {{ t('$params.wspd') }}
           </h2>
         </div>
         <div class="card-body px-0">
@@ -163,7 +163,7 @@
       >
         <div class="card-header card-header-main px-0 rounded-0 bg-white">
           <h2 class="card-header-title lead">
-            {{ t('params.wdir') }}
+            {{ t('$params.wdir') }}
           </h2>
         </div>
         <div class="card-body px-0">
@@ -183,7 +183,7 @@
       >
         <div class="card-header card-header-main px-0 rounded-0 bg-white">
           <h2 class="card-header-title lead">
-            {{ t('params.pres') }}
+            {{ t('$params.pres') }}
           </h2>
         </div>
         <div class="card-body px-0">
@@ -203,7 +203,7 @@
       >
         <div class="card-header card-header-main px-0 rounded-0 bg-white">
           <h2 class="card-header-title lead">
-            {{ t('meteo.snow') }}
+            {{ t('$meteo.snow') }}
           </h2>
         </div>
         <div class="card-body px-0">
@@ -223,7 +223,7 @@
       >
         <div class="card-header card-header-main px-0 rounded-0 bg-white">
           <h2 class="card-header-title lead">
-            {{ t('params.tsun') }}
+            {{ t('$params.tsun') }}
           </h2>
         </div>
         <div class="card-body px-0">
@@ -529,7 +529,7 @@ export default defineComponent({
         data: {
           labels: this.fetchValues('time'),
           datasets: [{
-            label: this.t('params.temp'),
+            label: this.t('$params.temp'),
             borderWidth: 2,
             borderColor: "rgb(217,83,79)",
             backgroundColor: "rgb(217,83,79)",
@@ -538,7 +538,7 @@ export default defineComponent({
             pointRadius: tsPointRadius(tempValues),
             data: tempValues
           }, {
-            label: this.t('params.dwpt'),
+            label: this.t('$params.dwpt'),
             borderWidth: 2,
             borderColor: "rgb(99,73,139)",
             backgroundColor: "rgb(99,73,139)",
@@ -573,7 +573,7 @@ export default defineComponent({
         data: {
           labels: this.fetchValues('time'),
           datasets: [{
-            label: this.t('params.prcp'),
+            label: this.t('$params.prcp'),
             borderWidth: 2,
             borderColor: "rgb(91,192,222)",
             backgroundColor: "rgb(91,192,222)",
@@ -606,7 +606,7 @@ export default defineComponent({
         data: {
           labels: this.fetchValues('time'),
           datasets: [{
-            label: this.t('params.wspd'),
+            label: this.t('$params.wspd'),
             borderWidth: 2,
             borderColor: "rgb(51,122,183)",
             backgroundColor: "rgb(51,122,183)",
@@ -615,7 +615,7 @@ export default defineComponent({
             pointRadius: tsPointRadius(wspdValues),
             data: wspdValues
           }, {
-            label: this.t('params.wpgt'),
+            label: this.t('$params.wpgt'),
             borderWidth: 2,
             borderColor: "rgb(217,83,79)",
             backgroundColor: "rgb(217,83,79)",
@@ -646,7 +646,7 @@ export default defineComponent({
         data: {
           labels: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
           datasets: [{
-            label: this.t('params.wdir'),
+            label: this.t('$params.wdir'),
             fill: true,
             borderColor: 'rgb(51, 122, 183)',
             backgroundColor: 'rgba(51, 122, 183, 0.4)',
@@ -709,7 +709,7 @@ export default defineComponent({
         data: {
           labels: this.fetchValues('time'),
           datasets: [{
-            label: this.t('params.pres'),
+            label: this.t('$params.pres'),
             borderWidth: 2,
             borderColor: "rgb(92,184,92)",
             backgroundColor: "rgb(92,184,92)",
@@ -743,7 +743,7 @@ export default defineComponent({
         data: {
           labels: this.fetchValues('time'),
           datasets: [{
-            label: this.t('meteo.snow'),
+            label: this.t('$meteo.snow'),
             borderWidth: 2,
             borderColor: "rgb(111,66,193)",
             backgroundColor: "rgb(111,66,193)",
@@ -777,7 +777,7 @@ export default defineComponent({
         data: {
           labels: this.fetchValues('time'),
           datasets: [{
-            label: this.t('params.tsun'),
+            label: this.t('$params.tsun'),
             borderWidth: 2,
             borderColor: "rgb(253,126,20)",
             backgroundColor: "rgb(253,126,20)",

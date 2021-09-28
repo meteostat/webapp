@@ -65,7 +65,7 @@
                       {{ key + 1 }}
                     </th>
                     <td>{{ col }}</td>
-                    <td>{{ t(`params.${col}`) }}</td>
+                    <td>{{ t(`$params.${col}`) }}</td>
                   </tr>
                 </tbody>
               </table>

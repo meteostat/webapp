@@ -41,11 +41,8 @@ const tsScales = (labels: Array<string>, scaleLabel: string): any => {
   if (days <= 12) {
     freq = 'hourly'
   }
-  else if (days <= 366) {
-    freq = 'daily'
-  }
   else {
-    freq = 'monthly'
+    freq = 'daily'
   }
   // Time Unit
   let timeUnit = 'hour'
@@ -59,9 +56,6 @@ const tsScales = (labels: Array<string>, scaleLabel: string): any => {
   let timeFormat = 'MMM d, yyyy - HH:mm'
   if (freq === 'daily') {
     timeFormat = 'MMM d, yyyy'
-  }
-  else if (freq === 'monthly') {
-    timeFormat = 'MMM yyyy'
   }
   // Return scale configuration
   return {
