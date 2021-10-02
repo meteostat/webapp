@@ -363,7 +363,7 @@ export default defineComponent({
      */
     async fetchNormalsData(): Promise<void> {
       // URL
-      let url = `${this.$api}/proxy/`
+      let url = `${this.$api}/app/proxy/`
       if (this.station) {
         url += `stations/normals?station=${this.station}`
       } else {

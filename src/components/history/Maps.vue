@@ -308,7 +308,7 @@ export default defineComponent({
         Math.min(180, this.map.getBounds().getEast() + 0.5)
       ]
 
-      await parse(`${this.$api}/spatial?parameter=${this.parameter}&date=${format(this.date, 'yyyy-MM-dd')}&bounds=${bounds.join()}`, {
+      await parse(`${this.$api}/app/spatial?parameter=${this.parameter}&date=${format(this.date, 'yyyy-MM-dd')}&bounds=${bounds.join()}`, {
         download: true,
         dynamicTyping: true,
         complete: (result: Record<string, any>): void => {

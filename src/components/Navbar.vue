@@ -292,7 +292,7 @@ export default defineComponent({
   methods: {
     async search(): Promise<void> {
       if (this.term.length > 2) {
-        await fetch(`${this.$api}/autocomplete?match=${this.term}&lang=de`)
+        await fetch(`${this.$api}/app/autocomplete?match=${this.term}&lang=${this.$locale}`)
           .then(response => response.json())
           .then(data => this.results = data.data)
       } else {

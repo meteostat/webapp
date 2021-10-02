@@ -1,17 +1,20 @@
 <template>
-  <div class="container py-4">
+  <div
+    v-if="item?.title"
+    class="container py-4"
+  >
     <header class="mb-4">
       <p class="mb-3">
-        <span class="header-topic pb-2 pe-3 fs-5 text-primary text-uppercase">{{ topic }}</span>
+        <span class="header-topic pb-2 pe-3 fs-5 text-primary text-uppercase">{{ item.topic }}</span>
       </p>
       <h1 class="display-5 fw-bold">
-        {{ title }}
+        {{ item.title }}
       </h1>
       <div class="d-flex flex-column-reverse flex-sm-row align-items-center-sm mt-4">
         <div class="d-flex align-items-center mt-3 mt-sm-0">
-          <span>{{ author }}</span>
+          <span>{{ item.author }}</span>
           <span class="mx-2">·</span>
-          <span>{{ date }}</span>
+          <span>{{ item.date }}</span>
         </div>
         <div class="d-flex align-items-center ms-md-auto">
           <button
@@ -35,7 +38,7 @@
         </div>
       </div>
     </header>
-    <div class="markdown" v-html="body" />
+    <div class="markdown" v-html="item.body" />
   </div>
 </template>
 
@@ -50,32 +53,8 @@ export default defineComponent({
   name: 'Insight',
 
   props: {
-    date: {
-      type: String,
-      default: null
-    },
-    topic: {
-      type: String,
-      default: null
-    },
-    author: {
-      type: String,
-      default: null
-    },
-    teaser: {
-      type: String,
-      default: null
-    },
-    title: {
-      type: String,
-      default: null
-    },
-    cover: {
-      type: String,
-      default: null
-    },
-    body: {
-      type: String,
+    insight: {
+      type: Object,
       default: null
     }
   },
@@ -83,23 +62,24 @@ export default defineComponent({
   setup(props: Record<string, any>): Record<string, any> { 
     const { t } = useI18n()
 
-    useHead({
-      title: `${props.title} | Meteostat`,
-      meta: [
-        {
-          name: 'description',
-          content: props.teaser
-        }
-      ],
-    })
-
-    return {
-      t
+    if (props.insight?.title) {
+      useHead({
+        title: `${props.insight.title} | Meteostat`,
+        meta: [
+          {
+            name: 'description',
+            content: props.insight.teaser
+          }
+        ],
+      })
     }
+
+    return { t }
   },
 
   data() {
     return {
+      item: this.insight || null,
       socialLinks: {
         twitter(link: string) {
           return `https://twitter.com/intent/tweet?url=${link}`
@@ -114,11 +94,23 @@ export default defineComponent({
     }
   },
 
-  mounted() {
-    Prism.highlightAll();
+  async mounted() {
+    if (!this.item) {
+      // Fetch insights article
+      await this.fetchItem()
+    }
+    Prism.highlightAll()
   },
 
   methods: {
+    /**
+     * Fetch item
+     */
+    async fetchItem(): Promise<void> {
+      await fetch(`${this.$api}/cms/insights/single?lang=${this.$locale}&year=${this.$route.params.year}&month=${this.$route.params.month}&slug=${this.$route.params.slug}`)
+        .then(response => response.json())
+        .then(data => this.item = data.data)
+    },
     share(socialLink: any) {
       window?.open(socialLink(window.location), '_blank')?.focus()
     }

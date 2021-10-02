@@ -829,7 +829,7 @@ export default defineComponent({
       // Start loading
       this.$loading('hourly')
       // Data URL
-      let url = `${this.$api}/proxy/`
+      let url = `${this.$api}/app/proxy/`
       if (this.station) {
         url += `stations/hourly?station=${this.station}`
       } else {

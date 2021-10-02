@@ -2,24 +2,18 @@ import type { EdgeProps } from 'vitedge'
 
 export default <EdgeProps>{
   async handler({ name, href }) {
-    let updated: string|null = null
-    let title: string|null = null
-    let body: string|null = null
+    let page: Record<string, string> = {}
     if (name && href) {
       const locale = href.split('/')[1]
       await fetch(`https://d.meteostat.net/cms/pages/page?lang=${locale}&slug=${name.toLowerCase()}`)
       .then(response => response.json())
       .then(data => {
-        updated = data.data.updated
-        title = data.data.title
-        body = data.data.body
+        page = data.data
       })
     }
     return {
       data: {
-        updated,
-        title,
-        body
+        page
       },
     }
   },

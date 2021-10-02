@@ -102,25 +102,40 @@
       </svg>
     </div>
   </div>
+
+  <!-- Cookie Modal -->
+  <ClientOnly>
+    <CookieModal v-if="!settings.returning" />
+  </ClientOnly>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
+import { useSettingsStore } from '~/stores/settings'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+
+/**
+ * Async Components
+ */
+const CookieModal = defineAsyncComponent(() =>
+  import('~/components/CookieModal.vue')
+)
 
 export default defineComponent({
   name: 'App',
 
   components: {
     Navbar,
-    Footer
+    Footer,
+    CookieModal
   },
 
   setup(): Record<string, any> {
     const { t } = useI18n()
+    const settings = useSettingsStore()
 
     useHead({
       title: `${t('$meta.title')} | Meteostat`,
@@ -132,7 +147,7 @@ export default defineComponent({
       ],
     })
 
-    return { t }
+    return { t, settings }
   }
 })
 </script>

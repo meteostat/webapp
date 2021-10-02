@@ -11,9 +11,11 @@ if (typeof window !== 'undefined') {
 export const useSettingsStore = defineStore({
   id: 'settings',
   state: () => ({
+    returning: false,
     imperial: false,
     model: true,
     timezone: true,
+    personCookies: false,
     dismiss: {
       climateManual: false
     },

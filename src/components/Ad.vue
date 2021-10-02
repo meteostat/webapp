@@ -1,17 +1,27 @@
 <template>
-  <div class="my-3 bg-light ad" />
+  <ins
+    class="adsbygoogle"
+    data-ad-client="ca-pub-6830849181977374"
+    data-ad-slot="3216865845"
+    data-ad-format="auto"
+    data-full-width-responsive="true"
+  />
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Ad'
+  name: 'Ad',
+
+  mounted() {
+    (window.adsbygoogle = window.adsbygoogle || []).push({})
+  }
 })
 </script>
 
 <style lang="scss" scoped>
-.ad {
-  height: 0px;
+.adsbygoogle {
+  display: block;
 }
 </style>

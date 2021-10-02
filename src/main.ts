@@ -113,7 +113,7 @@ export default vitedge(
     app.config.globalProperties.$locale = locale
 
     // API Base URL
-    app.config.globalProperties.$api = 'https://d.meteostat.net/app' as string
+    app.config.globalProperties.$api = 'https://d.meteostat.net' as string
 
     // App state
     app.config.globalProperties.$state = {

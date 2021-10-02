@@ -13,33 +13,33 @@
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div
-        v-for="(insight, key) in insights"
+        v-for="(item, key) in items"
         :key="key"
         class="col cursor-pointer"
-        @click="open(insight)"
+        @click="open(item)"
       >
         <div
           class="card h-100"
         >
           <img
-            :src="insight.cover"
+            :src="item.cover"
             class="card-img rounded-3 insight-img"
-            :alt="insight.title"
+            :alt="item.title"
             loading="lazy"
           >
           <div class="card-img-overlay d-flex flex-column justify-content-end">
             <p class="card-text mb-auto text-end">
               <span
-                v-if="insight.lang !== $locale"
+                v-if="item.lang !== $locale"
                 class="badge border border-white text-white fw-bold text-uppercase me-2"
-              >{{ insight.lang }}</span>
-              <span class="badge bg-primary border border-primary fw-bold text-uppercase">{{ insight.topic }}</span>
+              >{{ item.lang }}</span>
+              <span class="badge bg-primary border border-primary fw-bold text-uppercase">{{ item.topic }}</span>
             </p>
             <h5 class="card-title fw-bold text-white">
-              {{ insight.title }}
+              {{ item.title }}
             </h5>
             <p class="card-text fw-light text-white">
-              {{ insight.teaser }}
+              {{ item.teaser }}
             </p>
           </div>
         </div>
@@ -79,7 +79,28 @@ export default defineComponent({
     return { t }
   },
 
+  data() {
+    return {
+      items: this.insights || null
+    }
+  },
+
+  async mounted(): Promise<void> {
+    if (!this.items) {
+      // Get insights articles
+      await this.fetchItems()
+    }
+  },
+
   methods: {
+    /**
+     * Fetch items
+     */
+    async fetchItems(): Promise<void> {
+      await fetch(`${this.$api}/cms/insights/latest?lang=${this.$locale}&limit=9`)
+        .then(response => response.json())
+        .then(data => this.items = data.data)
+    },
     open(insight: any) {
       // Get year & month
       const year = insight.date.substr(0, 4)

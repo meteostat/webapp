@@ -1,5 +1,5 @@
 <template>
-  <div v-if="meta.id">
+  <div v-if="meta?.id">
     <!-- Navbar -->
     <Navbar
       :id="meta.id"
@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import { format } from 'date-fns'
@@ -77,27 +77,27 @@ export default defineComponent({
     // Translations
     const { t, locale } = useI18n()
 
-    // Meta data
-    const meta = ref(props.station || {})
+    if (props.station?.id) {
+      // Meta tags
+      useHead({
+        meta: [
+          {
+            name: 'description',
+            content: t('$meta.description', {
+              name: props.station.name[locale.value] || props.station.name['en'],
+              country: props.station.country
+            })
+          }
+        ],
+      })
+    }
 
-    // Meta tags
-    useHead({
-      meta: [
-        {
-          name: 'description',
-          content: t('$meta.description', {
-            name: props.station.name[locale] || props.station.name['en'],
-            country: props.station.country
-          })
-        }
-      ],
-    })
-
-    return { t, format, meta }
+    return { t, format }
   },
 
   data(): Record<string, any> {
     return {
+      meta: this.station || null,
       nearbyStations: []
     }
   },
@@ -114,7 +114,7 @@ export default defineComponent({
      * Fetch station meta data
      */
     async fetchMetaData(): Promise<void> {
-      await fetch(`${this.$api}/proxy/stations/meta?id=${this.$route.params.id}`)
+      await fetch(`${this.$api}/app/proxy/stations/meta?id=${this.$route.params.id}`)
         .then(response => response.json())
         .then(data => this.meta = data.data)
     }

@@ -20,27 +20,27 @@
           <p
             class="text-muted"
           >
-            Meteostat processes data from various public sources. This allows both developers and end users to access weather and climate data through a single interface.
+            Meteostat processes data from various public sources. This allows both developers and end users to access weather and climate data through a single interface. Think of it as a gateway to meteorological data which puts user experience first.
           </p>
         </div>
         <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white rounded-3">
           <h3 class="mb-4">
-            Real Observations & Common Standards
+            Real Observations and Common Standards
           </h3>
           <p
             class="text-muted"
           >
-            Our weather stations meet the World Meteorological Organization's criteria for location and observation methods. Also, Meteostat is one of the rare sources which focuses on real observation data.
+            Our weather stations meet the World Meteorological Organization's criteria for location and observation methods. Also, Meteostat is one of the rare sources which focuses on real observation data instead of supra-regional models.
           </p>
         </div>
         <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white rounded-3">
           <h3 class="mb-4">
-            A Search Engine for Weather Data
+            Weather is Common Property
           </h3>
           <p
             class="text-muted"
           >
-            Meteostat processes data from various public sources. This allows both developers and end users to access weather and climate data through a single interface.
+            Meteorological data should not be exclusive to those who can afford it. Meteostat democratizes weather and climate data by providing open and free access to its archive. With climate change on the rise, transparency is more important than ever.
           </p>
         </div>
       </div>

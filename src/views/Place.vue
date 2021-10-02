@@ -79,24 +79,26 @@ export default defineComponent({
   setup(props: Record<string, any>): Record<string, any> {
     const { t, locale } = useI18n()
 
-    // Meta tags
-    useHead({
-      meta: [
-        {
-          name: 'description',
-          content: t('$meta.description', {
-            name: props.place.name[locale.value] || props.place.name['en'],
-            country: props.place.country
-          })
-        }
-      ],
-      link: [
-        {
-          rel: 'canonical',
-          href: `https://meteostat.net/${locale.value}/place/${props.place.id}`
-        }
-      ]
-    })
+    if (props.place?.id) {
+      // Meta tags
+      useHead({
+        meta: [
+          {
+            name: 'description',
+            content: t('$meta.description', {
+              name: props.place.name[locale.value] || props.place.name['en'],
+              country: props.place.country
+            })
+          }
+        ],
+        link: [
+          {
+            rel: 'canonical',
+            href: `https://meteostat.net/${locale.value}/place/${props.place.id}`
+          }
+        ]
+      })
+    }
 
     return { format }
   },
@@ -125,7 +127,7 @@ export default defineComponent({
      * Fetch place meta data
      */
     async fetchMetaData(): Promise<void> {
-      await fetch(`${this.$api}/place?id=${this.$route.params.id}`)
+      await fetch(`${this.$api}/app/place?id=${this.$route.params.id}`)
         .then(response => response.json())
         .then(data => this.meta = data.data)
     }

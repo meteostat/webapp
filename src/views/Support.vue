@@ -166,7 +166,7 @@ export default defineComponent({
 
   methods: {
     sendMessage() {
-      fetch(`${this.$api}/contact`, {
+      fetch(`${this.$api}/app/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

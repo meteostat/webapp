@@ -80,6 +80,27 @@
           </a>
         </li>
       </ul>
+      <div class="mb-3 fs-6">
+        <span class="me-2">Language:</span>
+        <div class="dropdown d-inline">
+          <a
+            class="dropdown-toggle"
+            data-bs-toggle="dropdown"
+          >
+            {{ lang.name }}
+          </a>
+          <div class="dropdown-menu">
+            <a
+              v-for="language in languages"
+              :key="language"
+              class="dropdown-item"
+              :href="i18nLink(language.locale)"
+            >
+              {{ language.name }}
+            </a>
+          </div>
+        </div>
+      </div>
       <small>Copyright &copy; Meteostat 2021. <a href="/en/legal">Legal Disclosure</a> & <a href="/en/privacy">Privacy</a>.<br>Weather data provided by <a
         href="http://www.noaa.gov/"
         target="_blank"
@@ -97,14 +118,51 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { SUPPORTED_LANGUAGES } from '~/i18n/locales'
 
 export default defineComponent({
   name: 'Footer',
 
   setup(): Record<string, any> {    
-    const { t } = useI18n()
+    const { t, locale } = useI18n()
 
-    return { t }
+    const languages = SUPPORTED_LANGUAGES
+    const lang = languages.filter(l => l.locale === locale.value)[0]
+
+    return {
+      t,
+      languages,
+      lang
+    }
+  },
+
+  data() {
+    return {
+      translateableRoutes: [
+        'StationHistory',
+        'StationClimate',
+        'PlaceHistory',
+        'PlaceClimate',
+        'Insights',
+        'Patrons',
+        'About',
+        'Support'
+      ]
+    }
+  },
+
+  computed: {
+    path() {
+      return this.translateableRoutes.includes(
+        this.$route.name
+      ) ? this.$route.path : null
+    }
+  },
+
+  methods: {
+    i18nLink(locale: string): string {
+      return this.path ? `/${locale}${this.path}` : `/${locale}`
+    }
   }
 })
 </script>
