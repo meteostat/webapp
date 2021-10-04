@@ -131,6 +131,8 @@ export default vitedge(
       // Scroll to top after each navigation
       router.afterEach(() => {
         window.scrollTo(0, 0)
+				window._paq?.push(['setCustomUrl', location.pathname+location.search]);
+				window._paq?.push(['trackPageView']);
       })
       app.config.globalProperties.$loading = (uid: string): void => {
         // Add loading class to body
