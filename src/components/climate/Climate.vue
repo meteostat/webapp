@@ -529,6 +529,10 @@ export default defineComponent({
       } else {
         url += `point/normals?lat=${this.lat}&lon=${this.lon}&alt=${this.alt}`
       }
+      // Imperial units?
+      if (this.settings.imperial) {
+        url += '&units=imperial'
+      }
       // Fetch data
       await fetch(url)
         .then(response => response.json())

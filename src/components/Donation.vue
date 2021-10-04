@@ -20,7 +20,9 @@
         {{ t('donorPrivacy') }}
       </small>
     </div>
-    <strong class="d-block mb-3">{{ t('online') }}</strong>
+    <h6 class="d-block mb-3">
+      {{ t('online') }}
+    </h6>
     <a
       class="icon-link mb-2"
       href="https://www.patreon.com/meteostat"
@@ -52,7 +54,9 @@
       <span class="link fs-5 ms-2">GitHub</span>
     </a>
     <hr>
-    <strong class="d-block mb-3">{{ t('bankTransfer') }}</strong>
+    <h6 class="d-block mb-3">
+      {{ t('bankTransfer') }}
+    </h6>
     <div class="form-floating mb-3">
       <input
         id="recipient"
@@ -84,26 +88,90 @@
       <label for="bic">{{ t('bic') }}</label>
     </div>
     <hr>
-    <strong class="d-block mb-3">{{ t('cryptoCurrencies') }}</strong>
-    <div class="form-floating mb-3">
-      <input
-        id="bitcoin"
-        type="text"
-        class="form-control"
-        :value="crypto.bitcoin"
-        readonly
+    <h6 class="d-block mb-3">
+      {{ t('cryptoCurrencies') }}
+    </h6>
+    <ul
+      class="nav nav-pills mb-3"
+      role="tablist"
+    >
+      <li
+        class="nav-item"
+        role="presentation"
       >
-      <label for="bitcoin">Bitcoin</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input
-        id="ethereum"
-        type="text"
-        class="form-control"
-        :value="crypto.ethereum"
-        readonly
+        <button
+          class="nav-link active"
+          data-bs-toggle="pill"
+          data-bs-target="#crypto-bitcoin"
+          type="button"
+          role="tab"
+          aria-controls="crypto-bitcoin"
+          aria-selected="true"
+        >
+          Bitcoin
+        </button>
+      </li>
+      <li
+        class="nav-item"
+        role="presentation"
       >
-      <label for="ethereum">Ethereum</label>
+        <button
+          class="nav-link"
+          data-bs-toggle="pill"
+          data-bs-target="#crypto-ethereum"
+          type="button"
+          role="tab"
+          aria-controls="crypto-ethereum"
+          aria-selected="false"
+        >
+          Ethereum
+        </button>
+      </li>
+    </ul>
+    <div
+      class="tab-content"
+    >
+      <div
+        id="crypto-bitcoin"
+        class="tab-pane fade show active"
+        role="tabpanel"
+      >
+        <div class="form-floating mb-3">
+          <input
+            id="bitcoin"
+            type="text"
+            class="form-control"
+            :value="crypto.bitcoin"
+            readonly
+          >
+          <label for="bitcoin">Bitcoin</label>
+        </div>
+        <img
+          src="https://media.meteostat.net/assets/qr-bitcoin.png"
+          class="img-fluid img-thumbnail"
+        >
+      </div>
+      <div
+        id="crypto-ethereum"
+        class="tab-pane fade"
+        role="tabpanel"
+        aria-labelledby="pills-profile-tab"
+      >
+        <div class="form-floating mb-3">
+          <input
+            id="ethereum"
+            type="text"
+            class="form-control"
+            :value="crypto.ethereum"
+            readonly
+          >
+          <label for="ethereum">Ethereum</label>
+        </div>
+        <img
+          src="https://media.meteostat.net/assets/qr-ethereum.png"
+          class="img-fluid img-thumbnail"
+        >
+      </div>
     </div>
   </div>
 </template>

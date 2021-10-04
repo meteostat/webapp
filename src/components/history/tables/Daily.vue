@@ -132,7 +132,7 @@
           <td>
             <template v-if="row.pres !== null">
               {{ row.pres }}
-              <span class="text-muted">{{ settings.units.pres }}</span>
+              <span class="text-muted">hPa</span>
             </template>
             <span
               v-else

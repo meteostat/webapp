@@ -192,6 +192,7 @@ import {
   startOfYear,
   endOfYear
 } from 'date-fns'
+import { useSettingsStore } from '~/stores/settings'
 import Sections from '../Sections.vue'
 import Hourly from './dashboards/Hourly.vue'
 import Daily from './dashboards/Daily.vue'
@@ -234,6 +235,7 @@ export default defineComponent({
 
   setup(props: Record<string, any>): Record<string, any> {
     const { t } = useI18n()
+    const settings = useSettingsStore()
 
     // Meta tags
     useHead({
@@ -242,6 +244,7 @@ export default defineComponent({
 
     return {
       t,
+      settings,
       format,
       subDays,
       subMonths,
@@ -368,6 +371,10 @@ export default defineComponent({
         url += `stations/normals?station=${this.station}`
       } else {
         url += `point/normals?lat=${this.lat}&lon=${this.lon}&alt=${this.alt}`
+      }
+      // Imperial units?
+      if (this.settings.imperial) {
+        url += '&units=imperial'
       }
       // Fetch data
       await fetch(url)

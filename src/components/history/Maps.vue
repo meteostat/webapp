@@ -371,7 +371,7 @@ export default defineComponent({
               definition = presScale
               min = 990
               max = 1025
-              this.scale.label = this.settings.units.pres
+              this.scale.label = 'hPa'
               this.scale.min = min
               this.scale.max = max
               break
@@ -408,7 +408,7 @@ export default defineComponent({
 
     setParameter(parameter: string): void {
       this.parameter = parameter
-      this.parameterName = this.t(parameter)
+      this.parameterName = this.t(`$params.${parameter}`)
       this.fetchData()
     },
 

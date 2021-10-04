@@ -27,17 +27,26 @@ export const useSettingsStore = defineStore({
         return {
           temp: '°C',
           prcp: 'mm',
-          wspd: 'km/h',
-          pres: 'hPa'
+          wspd: 'km/h'
         }
       } else {
         return {
           temp: '°F',
           prcp: 'in',
-          wspd: 'mph',
-          pres: 'hPa'
+          wspd: 'mph'
         }        
       }
+    },
+    unitPrecision(state) {
+      if (state.imperial === false) {
+        return {
+          prcp: 1
+        }
+      } else {
+        return {
+          prcp: 3
+        }        
+      }      
     }
   }
 })

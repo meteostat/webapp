@@ -27,7 +27,9 @@
                 >
                   ({{ tempAnomalyKPI }})
                 </small>
-                <small class="text-muted ms-1">°C</small>
+                <small class="text-muted ms-1">
+                  {{ settings.units.temp }}
+                </small>
               </template>
               <template v-else>
                 <span class="text-muted">{{ t('$phrases.noData') }}</span>
@@ -67,7 +69,9 @@
                 >
                   ({{ prcpAnomalyKPI }})
                 </small>
-                <small class="text-muted ms-1">mm</small>
+                <small class="text-muted ms-1">
+                  {{ settings.units.prcp }}
+                </small>
               </template>
               <template v-else>
                 <span class="text-muted">{{ t('$phrases.noData') }}</span>
@@ -426,12 +430,12 @@ export default defineComponent({
      * 
      * @returns {null|String} Average temperature
      */
-    tempKPI(): null|string {
+    tempKPI(): null|number {
       const temp = this.fetchValues('temp').filter(t => t !== null)
       if (temp.length > 0) {
         const sum = temp.reduce((a, b) => Number(a) + Number(b), 0)
         const avg = (Number(sum) / temp.length);
-        return avg.toFixed(1)
+        return Number(avg.toFixed(1))
       }
       return null
     },
@@ -469,11 +473,11 @@ export default defineComponent({
      * 
      * @returns {null|String} Total precipitation
      */
-    prcpKPI(): null|string {
+    prcpKPI(): null|number {
       const prcp = this.fetchValues('prcp').filter(p => p !== null)
       if (prcp.length > 0) {
-        const sum = prcp.reduce((a, b) => Number(a) + Number(b), 0)
-        return Number(sum).toFixed(1)
+        const sum = Number(prcp.reduce((a, b) => Number(a) + Number(b), 0))
+        return Number(sum.toFixed(this.settings.unitPrecision.prcp))
       }
       return null
     },
@@ -499,7 +503,7 @@ export default defineComponent({
           }
         })
         const anomalySum = anomalies.reduce((a, b) => a + b, 0)
-        let anomaly = Number(anomalySum).toFixed(1)
+        let anomaly = String(Number(Number(anomalySum).toFixed(this.settings.unitPrecision.prcp)))
         anomaly = Number(anomaly) < 0 ? anomaly : `+${anomaly}`
         return anomalies.length ? anomaly : null
       }
