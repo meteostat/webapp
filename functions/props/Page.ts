@@ -19,7 +19,8 @@ export default <EdgeProps>{
   },
   options: {
     cache: {
-      html: 0,
+      api: 60*60*24*7,
+      html: 60*60*24*14
     },
   },
 }

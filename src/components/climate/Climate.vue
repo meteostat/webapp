@@ -44,22 +44,16 @@
     </div>
 
     <div class="mt-2 pt-1">
-      <!-- Manual -->
-      <div
-        v-if="!settings.dismiss.climateManual"
-        class="alert alert-primary alert-dismissible fade show"
-        role="alert"
-      >
-        <span v-html="t('$manual')" />
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-          @click="settings.dismiss.climateManual = true"
-        />
-      </div>
-
+      <!-- Guide -->
+      <Guide
+        id="climate"
+        :text="t('$manual')"
+      />
+      <!-- Interpolation Info -->
+      <InterpolationAlert
+        v-if="!station"
+        :stations="meta.stations"
+      />
       <!-- Briefing -->
       <div class="row">
         <div class="col-6 pe-1 pe-md-3">
@@ -216,24 +210,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import { Store } from 'pinia'
-import { useSettingsStore } from '../../stores/settings'
-import { ChartDefinitionInterface } from '../../utils/interfaces'
+import { useSettingsStore } from '~/stores/settings'
+import { ChartDefinitionInterface } from '~/utils/interfaces'
 import DataMixin from '../Location.mixin'
 import Sections from '../Sections.vue'
 import Chart from '../charts/Chart.vue'
+import { tsTooltips } from '~/components/charts/timeseries.config'
 import NoData from './NoData.vue'
+import Guide from '~/components/Guide.vue'
+
+/**
+ * Async Components
+ */
+const InterpolationAlert = defineAsyncComponent(() =>
+  import('~/components/alerts/Interpolation.vue')
+)
 
 export default defineComponent({
   name: 'Climate',
 
   components: {
     Sections,
+    InterpolationAlert,
     Chart,
-    NoData
+    NoData,
+    Guide
   },
 
   mixins: [DataMixin],
@@ -281,6 +286,7 @@ export default defineComponent({
 
   data(): Record<string, any> {
     return {
+      meta: {},
       normals: null,
       activePeriod: null
     }
@@ -379,6 +385,9 @@ export default defineComponent({
                 text: this.settings.units.temp
               }
             }
+          },
+          plugins: {
+            tooltip: tsTooltips
           }
         }
       }
@@ -408,6 +417,9 @@ export default defineComponent({
                 text: this.settings.units.prcp
               }
             }
+          },
+          plugins: {
+            tooltip: tsTooltips
           }
         }
       }
@@ -440,6 +452,9 @@ export default defineComponent({
                 text: this.settings.units.wspd
               }
             }
+          },
+          plugins: {
+            tooltip: tsTooltips
           }
         }
       }
@@ -471,6 +486,9 @@ export default defineComponent({
               },
               beginAtZero: false
             }
+          },
+          plugins: {
+            tooltip: tsTooltips
           }
         }
       }
@@ -500,6 +518,9 @@ export default defineComponent({
                 text: 'm'
               }
             }
+          },
+          plugins: {
+            tooltip: tsTooltips
           }
         }
       }
@@ -536,7 +557,10 @@ export default defineComponent({
       // Fetch data
       await fetch(url)
         .then(response => response.json())
-        .then(data => this.normals = data.data)
+        .then(data => {
+          this.meta = data.meta
+          this.normals = data.data
+        })
         .finally(() => this.$loaded('normals'))
     },
 
@@ -554,7 +578,154 @@ export default defineComponent({
       "title": "Climate Data"
     },
     "latest": "Latest",
-    "$manual": "Climate data provides information on the <strong>typical weather</strong> at a location. The normals are usually based on a <strong>period of 30 years</strong>. At Meteostat you can view data for all available reference periods. The data <strong>accuracy may vary</strong> by period, as not all statistics were generated using the same methods.",
+    "$manual": "Climate data provides information on the typical weather at a location. The normals are usually based on a period of 30 years. At Meteostat you can view data for all available reference periods. Inconsistencies can occur between the individual periods, as not all statistics were generated using the same methods.",
+    "$months": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC"
+    ]
+  },
+  "de": {
+    "$meta": {
+      "title": "Klimadaten"
+    },
+    "latest": "Neueste",
+    "$manual": "Klimadaten liefern Informationen über das typische Wetter an einem Ort. Die Normalwerte beziehen sich in der Regel auf einen Zeitraum von 30 Jahren. Bei Meteostat können Sie die Daten für alle verfügbaren Referenzzeiträume einsehen. Zwischen den einzelnen Zeiträumen kann es zu Inkonsistenzen kommen, da nicht alle Statistiken mit den gleichen Methoden erstellt wurden.",
+    "$months": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAI",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OKT",
+      "NOV",
+      "DEZ"
+    ]
+  },
+  "it": {
+    "$meta": {
+      "title": "Dati climatici"
+    },
+    "latest": "Ultimo",
+    "$manual": "I dati climatici forniscono informazioni sul tempo tipico di una località. Le norme sono solitamente basate su un periodo di 30 anni. Su Meteostat è possibile visualizzare i dati per tutti i periodi di riferimento disponibili. Possono verificarsi incongruenze tra i singoli periodi, poiché non tutte le statistiche sono state generate con gli stessi metodi.",
+    "$months": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC"
+    ]
+  },
+  "es": {
+    "$meta": {
+      "title": "Datos Climáticos"
+    },
+    "latest": "Más Reciente",
+    "$manual": "Los datos climáticos proporcionan información sobre el tiempo típico en un lugar. Los valores normales suelen basarse en un periodo de 30 años. En Meteostat puede ver los datos de todos los períodos de referencia disponibles. Pueden producirse incoherencias entre los distintos períodos, ya que no todas las estadísticas se generaron con los mismos métodos.",
+    "$months": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC"
+    ]
+  },
+  "nl": {
+    "$meta": {
+      "title": "Climate Data"
+    },
+    "latest": "Laatste",
+    "$manual": "Klimaatgegevens geven informatie over het typische weer op een locatie. De normalen zijn meestal gebaseerd op een periode van 30 jaar. Bij Meteostat kunt u gegevens bekijken voor alle beschikbare referentieperioden. Er kunnen inconsistenties optreden tussen de afzonderlijke perioden, omdat niet alle statistieken volgens dezelfde methoden zijn gegenereerd.",
+    "$months": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC"
+    ]
+  },
+  "fr": {
+    "$meta" : {
+      "title" : "Données Climatiques"
+    },
+    "latest" : "Les plus récents",
+    "$manual" : "Les données climatiques fournissent des informations sur les conditions météorologiques typiques d'un lieu. Les normales sont généralement basées sur une période de 30 ans. Sur Meteostat, vous pouvez consulter les données pour toutes les périodes de référence disponibles. Des incohérences peuvent apparaître entre les différentes périodes, car toutes les statistiques n'ont pas été générées en utilisant les mêmes méthodes.",
+    "$months": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC"
+    ]
+  },
+  "pt": {
+    "$meta": {
+      "title": "Dados Climáticos"
+    },
+    "latest": "Mais Recente",
+    "$manual": "Os dados climáticos fornecem informações sobre o tempo típico de um local. As normas são normalmente baseadas num período de 30 anos. No Meteostat é possível visualizar dados para todos os períodos de referência disponíveis. Podem ocorrer inconsistências entre os períodos individuais, uma vez que nem todas as estatísticas foram geradas utilizando os mesmos métodos.",
+    "$months": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC"
+    ]
+  },
+  "ru": {
+    "$meta": {
+      "title": "Климатические данные"
+    },
+    "latest": "Последние",
+    "$manual": "Климатические данные предоставляют информацию о типичной погоде в том или ином месте. Нормальные показатели обычно основываются на периоде в 30 лет. В Meteostat вы можете просмотреть данные за все доступные периоды. Между отдельными периодами могут возникать несоответствия, поскольку не все статистические данные были получены с использованием одних и тех же методов.",
     "$months": [
       "JAN",
       "FEB",

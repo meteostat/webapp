@@ -1,8 +1,9 @@
 {
   "locale": "en",
-  "dateFormat": "yyyy-MM-dd",
-  "dateTimeFormat": "yyyy-MM-dd HH:mm:ss",
+  "dateFormat": "MM/dd/yyyy",
+  "dateTimeFormat": "MM/dd/yyyy HH:mm:ss",
 
+  "home": "Home",
   "insights": "Insights",
   "patrons": "Patrons",
   "donation": "Donation",
@@ -26,7 +27,7 @@
   "$phrases": {
     "noData": "No Data",
     "someDataMissing": "Some data is missing",
-    "showMore": "Show More",
+    "showMore": "Show More"
   },
 
   "$meteo": {

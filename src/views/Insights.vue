@@ -147,5 +147,61 @@ export default defineComponent({
     "$title": "Meteostat Insights",
     "$description": "Gain insights into the stories behind our data and learn more about weather, climate and Meteostat."
   },
+  "de": {
+    "$meta": {
+      "title": "Insights",
+      "description": "Gewinnen Sie Einblicke in die Geschichten hinter unseren Daten und erfahren Sie mehr über Wetter, Klima und Meteostat."
+    },
+    "$title": "Meteostat Insights",
+    "$description": "Gewinnen Sie Einblicke in die Geschichten hinter unseren Daten und erfahren Sie mehr über Wetter, Klima und Meteostat."
+  },
+  "it": {
+    "$meta": {
+      "title": "Insights",
+      "description": "Approfondisci le storie dietro i nostri dati e impara di più su meteo, clima e Meteostat."
+    },
+    "$title": "Meteostat Insights",
+    "$description": "Approfondisci le storie dietro i nostri dati e impara di più su meteo, clima e Meteostat."
+  },
+  "es": {
+    "$meta": {
+      "title": "Insights",
+      "description": "Conozca las historias que hay detrás de nuestros datos y aprenda más sobre el tiempo, el clima y Meteostat."
+    },
+    "$title": "Meteostat Insights",
+    "$description": "Conozca las historias que hay detrás de nuestros datos y aprenda más sobre el tiempo, el clima y Meteostat."
+  },
+  "nl": {
+    "$meta": {
+      "title": "Insights",
+      "description": "Krijg inzicht in de verhalen achter onze gegevens en kom meer te weten over weer, klimaat en Meteostat."
+    },
+    "$title": "Meteostat Insights",
+    "$description": "Krijg inzicht in de verhalen achter onze gegevens en kom meer te weten over weer, klimaat en Meteostat."
+  },
+  "fr": {
+    "$meta": {
+      "title": "Insights",
+      "description": "Découvrez les histoires qui se cachent derrière nos données et apprenez-en davantage sur la météo, le climat et Meteostat."
+    },
+    "$title": "Meteostat Insights",
+    "$description": "Découvrez les histoires qui se cachent derrière nos données et apprenez-en davantage sur la météo, le climat et Meteostat."
+  },
+  "pt": {
+    "$meta": {
+      "title": "Insights",
+      "description": "Obtenha informações sobre as histórias por detrás dos nossos dados e saiba mais sobre o tempo, o clima e o Meteostat."
+    },
+    "$title": "Meteostat Insights",
+    "$description": "Obtenha informações sobre as histórias por detrás dos nossos dados e saiba mais sobre o tempo, o clima e o Meteostat."
+  },
+  "ru": {
+    "$meta": {
+      "title": "Insights",
+      "description": "Познакомьтесь с историями, стоящими за нашими данными, и узнайте больше о погоде, климате и Meteostat."
+    },
+    "$title": "Meteostat Insights",
+    "$description": "Познакомьтесь с историями, стоящими за нашими данными, и узнайте больше о погоде, климате и Meteostat."    
+  }
 }
 </i18n>

@@ -4,14 +4,18 @@
       <ul class="d-md-flex align-items-center text-center flex-wrap pb-4 m-0">
         <li class="d-inline-block">
           <router-link to="/about">
-            About Meteostat
+            {{ t('aboutMeteostat') }}
           </router-link>
         </li>
         <li class="d-inline-block ms-3">
-          <a href="https://dev.meteostat.net">Developers</a>
+          <a href="https://dev.meteostat.net">
+            {{ t('developers') }}
+          </a>
         </li>
         <li class="d-inline-block ms-3">
-          <a href="https://medium.com/meteostat">Our Blog</a>
+          <router-link to="/insights">
+            {{ t('insights') }}
+          </router-link>
         </li>
         <li class="d-block mt-3 my-md-0 ms-md-4">
           <router-link
@@ -30,16 +34,6 @@
         </li>
         <li class="w-100 d-md-none" />
         <li class="d-inline-block mt-3 mt-md-0 ms-md-auto fs-4">
-          <a
-            href="https://medium.com/meteostat"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Blog"
-          >
-            <icon :icon="['fab', 'medium']" />
-          </a>
-        </li>
-        <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://twitter.com/meteost"
             data-toggle="tooltip"
@@ -80,8 +74,10 @@
           </a>
         </li>
       </ul>
-      <div class="mb-3 fs-6">
-        <span class="me-2">Language:</span>
+      <div class="mb-3">
+        <span class="me-2">
+          {{ t('language') }}:
+        </span>
         <div class="dropdown d-inline">
           <a
             class="dropdown-toggle"
@@ -101,68 +97,118 @@
           </div>
         </div>
       </div>
-      <small>Copyright &copy; Meteostat 2021. <a href="/en/legal">Legal Disclosure</a> & <a href="/en/privacy">Privacy</a>.<br>Weather data provided by <a
-        href="http://www.noaa.gov/"
-        target="_blank"
-      >NOAA</a>, <a
-        href="https://www.dwd.de/"
-        target="_blank"
-      >Deutscher Wetterdienst</a> and <a
-        href="https://weather.gc.ca/"
-        target="_blank"
-      >Environment Canada</a>. Learn more about <a href="/en/sources">our sources</a>.</small>
+      <i18n-t
+        keypath="$legal"
+        tag="small"
+      >
+        <template #legal>
+          <a :href="t('$legalLink')">
+            {{ t('legalDisclosure') }}
+          </a>
+        </template>
+        <template #privacy>
+          <a :href="t('$privacyLink')">
+            {{ t('privacy') }}
+          </a>
+        </template>
+      </i18n-t>
+      <br>
+      <i18n-t
+        keypath="$sources"
+        tag="small"
+      >
+        <template #noaa>
+          <a
+            href="http://www.noaa.gov/"
+            target="_blank"
+          >NOAA</a>
+        </template>
+        <template #dwd>
+          <a
+            href="https://www.dwd.de/"
+            target="_blank"
+          >Deutscher Wetterdienst</a>
+        </template>
+        <template #ec>
+          <a
+            href="https://weather.gc.ca/"
+            target="_blank"
+          >Environment Canada</a>
+        </template>
+        <template #sources>
+          <a href="https://dev.meteostat.net/sources.html">
+            {{ t('sources') }}
+          </a>
+        </template>
+      </i18n-t>
     </div>
   </footer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, Ref} from 'vue'
+import { useRouter, useRoute, RouteLocationNormalizedLoaded } from 'vue-router'
+import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n'
 import { SUPPORTED_LANGUAGES } from '~/i18n/locales'
 
 export default defineComponent({
   name: 'Footer',
 
-  setup(): Record<string, any> {    
+  setup(): Record<string, any> {
+    const router = useRouter()
+    const route = useRoute()
     const { t, locale } = useI18n()
 
+    // Get current language
     const languages = SUPPORTED_LANGUAGES
     const lang = languages.filter(l => l.locale === locale.value)[0]
 
-    return {
-      t,
-      languages,
-      lang
-    }
-  },
+    // Translateable routes
+    const translateableRoutes = [
+      'StationHistory',
+      'StationClimate',
+      'PlaceHistory',
+      'PlaceClimate',
+      'Insights',
+      'Patrons',
+      'About',
+      'Support'
+    ]
 
-  data() {
-    return {
-      translateableRoutes: [
-        'StationHistory',
-        'StationClimate',
-        'PlaceHistory',
-        'PlaceClimate',
-        'Insights',
-        'Patrons',
-        'About',
-        'Support'
-      ]
-    }
-  },
+    // Current router path
+    let path: Ref<string|null> = ref(null)
 
-  computed: {
-    path() {
-      return this.translateableRoutes.includes(
-        this.$route.name
-      ) ? this.$route.path : null
+    const updatePath = (to: RouteLocationNormalizedLoaded) => {
+      path.value = translateableRoutes.includes(
+        String(to.name)
+      ) ? String(to.path) : null
     }
-  },
 
-  methods: {
-    i18nLink(locale: string): string {
-      return this.path ? `/${locale}${this.path}` : `/${locale}`
+    router.beforeEach(updatePath)
+    updatePath(route)
+
+    // Get alternate i18n links
+    const i18nLink = (l: string): string => {
+      return path.value ? `/${l}${path.value}` : `/${l}`
     }
+
+    // Add alternate links
+    const alternates = languages.filter(
+      l => l.locale !== locale.value
+    ).map((l): any => {
+      return {
+        rel: 'alternate',
+        hreflang: l.locale,
+        href: `https://meteostat.net${i18nLink(l.locale)}`
+      }
+    })
+
+    useHead({
+      link: alternates
+    })
+
+    return { t, lang, languages, i18nLink }
   }
 })
 </script>
@@ -199,13 +245,100 @@ footer ul a > i {
 <i18n>
 {
   "en": {
-    "donation": "Donation",
-    "donationText": "Support Meteostat on its mission of providing open weather and climate data for everyone. Your donation also helps educational and research projects making the world run better using Meteostat data.",
-    "online": "Online",
-    "bankTransfer": "Bank Transfer",
-    "recipient": "Recipient",
-    "iban": "IBAN",
-    "bic": "BIC"
+    "aboutMeteostat": "About Meteostat",
+    "developers": "Developers",
+    "language": "Language",
+    "legalDisclosure": "Legal Disclosure",
+    "privacy": "Privacy",
+    "sources": "sources",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
+    "$sources": "Weather data provided by {noaa}, {dwd} and {ec}. Learn more about our {sources}.",
+    "$legalLink": "/en/legal",
+    "$privacyLink": "/en/privacy"
+  },
+  "de": {
+    "aboutMeteostat": "Über Meteostat",
+    "developers": "Entwickler",
+    "language": "Sprache",
+    "legalDisclosure": "Impressum",
+    "privacy": "Datenschutz",
+    "sources": "Quellen",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
+    "$sources": "Wetterdaten bereitgestellt von {noaa}, {dwd} und {ec}. Erfahren Sie mehr über unsere {sources}.",
+    "$legalLink": "/de/legal",
+    "$privacyLink": "/de/privacy"
+  },
+  "it": {
+    "aboutMeteostat": "Su Meteostat",
+    "developers": "Sviluppatori",
+    "language": "Lingua",
+    "legalDisclosure": "Divulgazione Legale",
+    "privacy": "Privacy",
+    "sources": "fonti",
+    "$legale": "Copyright © Meteostat. {legal} & {privacy}.",
+    "$fonti": "Dati meteo forniti da {noaa}, {dwd} e {ec}. Scopri di più sulle nostre {sources}.",
+    "$legalLink": "/en/legal",
+    "$privacyLink": "/en/privacy"
+  },
+  "es": {
+    "aboutMeteostat": "Acerca de Meteostat",
+    "developers": "Desarrolladores",
+    "language": "Idioma",
+    "legalDisclosure": "Información Legal",
+    "privacy": "Privacidad",
+    "sources": "fuentes",
+    "legal": "Copyright © Meteostat. {legal} & {privacy}",
+    "$sources": "Datos meteorológicos proporcionados por {noaa}, {dwd} y {ec}. Más información sobre nuestras {sources}.",
+    "$legalLink": "/en/legal",
+    "$privacyLink": "/en/privacy"
+  },
+  "nl": {
+    "aboutMeteostat": "Over Meteostat",
+    "developers": "Developers",
+    "language": "Language",
+    "legalDisclosure": "Wettelijke Openbaarmaking",
+    "privacy": "Privacy",
+    "sources": "bronnen",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
+    "$sources": "Weergegevens verstrekt door {noaa}, {dwd} en {ec}. Meer informatie over onze {sources}.",
+    "$legalLink": "/en/legal",
+    "$privacyLink": "/en/privacy"
+  },
+  "fr": {
+    "aboutMeteostat" : "A Propos de Meteostat",
+    "developers" : "Développeurs",
+    "language" : "Langue",
+    "legalDisclosure" : "Divulgation Légale",
+    "privacy" : "Vie Privée",
+    "sources" : "sources",
+    "$legal" : "Copyright © Meteostat. {legal} & {privacy}.",
+    "$sources" : "Données météorologiques fournies par {noaa}, {dwd} et {ec}. En savoir plus sur nos {sources}.",
+    "$legalLink": "/en/legal",
+    "$privacyLink": "/en/privacy"
+  },
+  "pt": {
+    "aboutMeteostat": "Sobre o Meteostat",
+    "developers": "Desenvolvedores",
+    "language": "Linguagem",
+    "legalDisclosure": "Divulgação Jurídica",
+    "privacy": "Privacidade",
+    "sources": "fontes",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
+    "$sources": "Dados meteorológicos fornecidos por {noaa}, {dwd} e {ec}. Saiba mais sobre as nossas {sources}.",
+    "$legalLink": "/en/legal",
+    "$privacyLink": "/en/privacy"
+  },
+  "ru": {
+    "aboutMeteostat": "О Мeteostat",
+    "developers": "Разработчики",
+    "language": "Язык",
+    "legalDisclosure": "Юридическое раскрытие",
+    "privacy": "Конфиденциальность",
+    "sources": "источники",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
+    "$sources": "Погодные данные предоставлены {noaa}, {dwd} и {ec}. Узнайте больше о наших {sources}.",
+    "$legalLink": "/en/legal",
+    "$privacyLink": "/en/privacy"
   }
 }
 </i18n>

@@ -1,3 +1,64 @@
 {
-  "locale": "pt"
+  "locale": "pt",
+  "dateFormat": "dd/MM/yyyy",
+  "dateTimeFormat": "dd/MM/yyyy HH:mm:ss",
+
+  "home": "Casa",
+  "insights": "Percepções",
+  "patrons": "Patronos",
+  "donation": "Doação",
+  "settings": "Definições",
+  "history": "História",
+  "climate": "Clima",
+  "maps": "Mapas",
+  "export": "Exportar",
+  "save": "Salvar",
+  "close": "Fechar",
+  "details": "detalhes",
+  "updated": "Actualizado",
+  "support": "Apoio",
+  "documentation": "Documentação",
+
+  "avg": "Avg.",
+  "min": "Min.",
+  "max": "Max.",
+  "total": "Total",
+
+  "$phrases": {
+    "noData": "Sem Dados",
+    "someDataMissing": "Faltam alguns dados",
+    "showMore": "Mostrar Mais"
+  },
+
+  "$meteo": {
+    "weather": "Clima",
+    "air": "Ar",
+    "pres": "Pressão",
+    "temp": "Temperatura",
+    "humidity": "Humidade",
+    "prcp": "Precipitação",
+    "sunshine": "Brilho do Sol",
+    "snow": "Neve",
+    "wind": "Vento",
+    "gust": "Rajada"
+  },
+
+  "$params": {
+    "time": "Tempo",
+    "date": "Data",
+    "temp": "Temperatura",
+    "tavg": "Avg. Temperatura",
+    "tmin": "Min. Temperatura",
+    "tmax": "Max. Temperatura",
+    "dwpt": "Ponto de Orvalho",
+    "rhum": "Humidade Relativa",
+    "prcp": "Precipitação Total",
+    "neve": "Profundidade da Neve",
+    "wdir": "Direcção do Vento",
+    "wspd": "Velocidade do Vento",
+    "wpgt": "Peak Gust",
+    "pres": "Pressão de Ar",
+    "tsun": "Duração da Luz do Sol",
+    "coco": "Código de Condições Meteorológicas"
+  }
 }

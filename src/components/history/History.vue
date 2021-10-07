@@ -34,6 +34,11 @@
 
   <!-- Dashboard -->
   <div class="mt-2 pt-1">
+    <!-- Guide -->
+    <Guide
+      id="history"
+      :text="t('$manual')"
+    />
     <!-- Hourly Data -->
     <template v-if="range && mode === 'hourly'">
       <Hourly
@@ -97,7 +102,7 @@
         <div class="row row-cols-3 g-1 text-center">
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[0], suggestions[0])"
             >
               {{ t('today') }}
@@ -105,7 +110,7 @@
           </div>
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[1], suggestions[1])"
             >
               {{ t('yesterday') }}
@@ -113,7 +118,7 @@
           </div>
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[2][0], suggestions[2][1])"
             >
               {{ t('lastWeek') }}
@@ -121,7 +126,7 @@
           </div>
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[3][0], suggestions[3][1])"
             >
               {{ t('lastMonth') }}
@@ -129,7 +134,7 @@
           </div>
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[4][0], suggestions[4][1])"
             >
               {{ format(suggestions[4][0], 'MMM yyyy') }}
@@ -137,7 +142,7 @@
           </div>
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[5][0], suggestions[5][1])"
             >
               {{ format(suggestions[5][0], 'MMM yyyy') }}
@@ -145,7 +150,7 @@
           </div>
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[6][0], suggestions[6][1])"
             >
               {{ format(suggestions[6][0], 'MMM yyyy') }}
@@ -153,7 +158,7 @@
           </div>
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[7][0], suggestions[7][1])"
             >
               {{ format(suggestions[7][0], 'yyyy') }}
@@ -161,7 +166,7 @@
           </div>
           <div class="col">
             <a
-              class="d-block bg-light p-2"
+              class="d-flex align-items-center justify-content-center bg-light p-2 h-100"
               @click="setRange(suggestions[8][0], suggestions[8][1])"
             >
               {{ format(suggestions[8][0], 'yyyy') }}
@@ -194,6 +199,7 @@ import {
 } from 'date-fns'
 import { useSettingsStore } from '~/stores/settings'
 import Sections from '../Sections.vue'
+import Guide from '~/components/Guide.vue'
 import Hourly from './dashboards/Hourly.vue'
 import Daily from './dashboards/Daily.vue'
 
@@ -202,6 +208,7 @@ export default defineComponent({
 
   components: {
     Sections,
+    Guide,
     Hourly,
     Daily
   },
@@ -405,12 +412,97 @@ export default defineComponent({
     "$meta": {
       "title": "Weather History"
     },
+    "$manual": "Historical weather data is available in hourly and daily resolution. For all date ranges up to seven days, hourly data is shown. If you choose a longer period, Meteostat will switch to daily frequency. Please note that hourly and daily data do not always match. This can happen due to different aggregation methods or levels of detail.",
     "period": "Period",
     "dateRange": "Date Range",
     "today": "Today",
     "yesterday": "Yesterday",
     "lastWeek": "Last Week",
     "lastMonth": "Last Month"
+  },
+  "de": {
+    "$meta": {
+      "title": "Wetterrückblick"
+    },
+    "$manual": "Historische Wetterdaten sind in stündlicher und täglicher Auflösung verfügbar. Für alle Zeiträume bis zu sieben Tagen werden stündliche Daten angezeigt. Wenn Sie einen längeren Zeitraum wählen, schaltet Meteostat auf die tägliche Frequenz um. Bitte beachten Sie, dass stündliche und tägliche Daten nicht immer übereinstimmen. Dies kann aufgrund unterschiedlicher Aggregationsmethoden oder Detaillierungsgrade vorkommen.",
+    "period": "Zeitraum",
+    "dateRange": "Zeitraum",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "lastWeek": "Letzte Woche",
+    "lastMonth": "Letzter Monat"
+  },
+  "it": {
+    "$meta": {
+      "title": "Cronologia Meteo"
+    },
+    "$manual": "I dati meteo storici sono disponibili con risoluzione oraria e giornaliera. Per tutti gli intervalli di date fino a sette giorni, vengono mostrati dati orari. Se scegli un periodo più lungo, Meteostat passerà alla frequenza giornaliera. Si prega di notare che i dati orari e giornalieri non sempre corrispondono. Questo può accadere a causa di diversi metodi di aggregazione o livelli di dettaglio.",
+    "period": "Periodo",
+    "dateRange": "Intervallo di Date",
+    "today": "Oggi",
+    "yesterday": "Ieri",
+    "lastWeek": "Settimana Scorsa",
+    "lastMonth": "Ultimo Mese"
+  },
+  "es": {
+    "$meta": {
+      "title": "Historial Meteorológico"
+    },
+    "$manual": "Los datos meteorológicos históricos están disponibles en resolución horaria y diaria. Para todos los intervalos de fechas de hasta siete días, se muestran los datos horarios. Si elige un periodo más largo, Meteostat cambiará a la frecuencia diaria. Tenga en cuenta que los datos horarios y diarios no siempre coinciden. Esto puede ocurrir debido a diferentes métodos de agregación o niveles de detalle.",
+    "period": "Period",
+    "dateRange": "Rango de Fechas",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "lastWeek": "Última Semana",
+    "lastMonth": "Último Mes"
+  },
+  "nl": {
+    "$meta": {
+      "title": "Weather History"
+    },
+    "$manual": "Historische weergegevens zijn beschikbaar in uurlijkse en dagelijkse resolutie. Voor alle datumbereiken tot zeven dagen, worden uurlijkse gegevens getoond. Als u een langere periode kiest, schakelt Meteostat over naar de dagelijkse frequentie. Houd er rekening mee dat uurlijkse en dagelijkse gegevens niet altijd overeenkomen. Dit kan gebeuren als gevolg van verschillende aggregatiemethoden of detailniveaus.",
+    "period": "Periode",
+    "dateRange": "Datumbereik",
+    "today": "Vandaag",
+    "gisteren": "Gisteren",
+    "lastWeek": "Vorige week",
+    "lastMonth": "Afgelopen Maand"
+  },
+  "fr": {
+    "$meta" : {
+      "title" : "Historique des Conditions Météorologiques"
+    },
+    "$manual" : "Les données météorologiques historiques sont disponibles en résolution horaire et quotidienne. Pour toutes les plages de dates jusqu'à sept jours, les données horaires sont affichées. Si vous choisissez une période plus longue, Meteostat passera à la fréquence quotidienne. Veuillez noter que les données horaires et quotidiennes ne correspondent pas toujours. Cela peut se produire en raison de différentes méthodes d'agrégation ou de niveaux de détail.",
+    "période" : "Période",
+    "dateRange" : "Plage de Dates",
+    "today" : "Aujourd'hui",
+    "yesterday" : "Hier",
+    "lastWeek" : "Semaine Dernière",
+    "lastMonth" : "Mois Dernier"
+  },
+  "pt": {
+    "$meta": {
+      "title": "História do Tempo"
+    },
+    "$manual": "Os dados meteorológicos históricos estão disponíveis em resolução horária e diária. Para todos os intervalos de datas até sete dias, os dados horários são mostrados. Se escolher um período mais longo, o Meteostat mudará para a frequência diária. Note-se que os dados horários e diários nem sempre coincidem. Isto pode acontecer devido a diferentes métodos de agregação ou níveis de detalhe.",
+    "period": "Período",
+    "dateRange": "Intervalo de Datas",
+    "today": "Hoje",
+    "yesterday": "Ontem",
+    "lastWeek": "Última Semana",
+    "lastMonth": "Último Mês"
+  },
+  "ru": {
+    "$meta": {
+      "title": "История погоды"
+    },
+    "$manual": "Исторические данные о погоде доступны в почасовом и ежедневном разрешении. Для всех диапазонов дат до семи дней отображаются почасовые данные. Если вы выберете более длительный период, Meteostat переключится на ежедневную частоту. Обратите внимание, что почасовые и суточные данные не всегда совпадают. Это может происходить из-за различных методов агрегирования или уровней детализации.",
+    "period": "Период",
+    "dateRange": "Диапазон дат",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "lastWeek": "Последняя неделя",
+    "lastMonth": "Последний месяц"
   }
 }
 </i18n>

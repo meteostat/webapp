@@ -30,7 +30,7 @@
     "@vueuse/core": "^4.11.0",
     "@vueuse/head": "^0.5.1",
     "bootstrap": "^5.1.1",
-    "chart.js": "^3.4.1",
+    "chart.js": "^3.5.1",
     "chartjs-adapter-date-fns": "^2.0.0",
     "date-fns": "^2.22.1",
     "eslint-plugin-vue": "^7.15.1",
@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^2.1.2",
+    "@types/file-saver": "^2.0.3",
     "@types/markdown-it": "^12.2.1",
     "@types/prismjs": "^1.16.6",
     "@vitejs/plugin-vue": "^1.2.2",

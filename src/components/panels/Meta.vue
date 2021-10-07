@@ -68,14 +68,14 @@
         v-if="data.identifier"
         class="list-group-item d-flex"
       >
-        {{ t('wmo') }}:
+        WMO:
         <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.identifier.wmo||'/' }}</code>
       </li>
       <li
         v-if="data.identifier"
         class="list-group-item d-flex"
       >
-        {{ t('icao') }}:
+        ICAO:
         <code class="badge bg-light text-dark border ms-auto d-flex align-items-center">{{ data.identifier.icao||'/' }}</code>
       </li>
       <li
@@ -141,7 +141,6 @@
 <script lang="ts">
 import { useI18n } from 'vue-i18n'
 import { format, parseISO } from 'date-fns'
-import { initTooltips } from '~/utils/tooltips'
 import Map from './Map.vue'
 
 export default {
@@ -162,10 +161,6 @@ export default {
     const { t } = useI18n()
 
     return { t, format, parseISO }
-  },
-
-  updated(): void {
-    initTooltips(this.$bs)
   }
 }
 </script>
@@ -180,12 +175,93 @@ export default {
     "coordinates": "Coordinates",
     "stationIdentifiers": "Station Identifiers",
     "national": "National",
-    "wmo": "WMO",
-    "icao": "ICAO",
     "inventory": "Inventory",
     "hourly": "Hourly",
-    "monthly": "Monthly",
     "daily": "Daily"
+  },
+  "de": {
+    "country": "Land",
+    "region": "Region",
+    "elevation": "Höhe",
+    "timezone": "Zeitzone",
+    "coordinates": "Koordinaten",
+    "stationIdentifiers": "Stationskennungen",
+    "national": "National",
+    "inventory": "Datenverfügbarkeit",
+    "hourly": "Stündlich",
+    "daily": "Täglich"
+  },
+  "it": {
+    "country": "Paese",
+    "region": "Regione",
+    "elevation": "Elevazione",
+    "timezone": "Fuso orario",
+    "coordinates": "Coordinate",
+    "stationIdentifiers": "Identificatori di Stazione",
+    "national": "Nazionale",
+    "inventory": "Inventario",
+    "hourly": "Oraria",
+    "daily": "Giornaliero"
+  },
+  "es": {
+    "country": "País",
+    "region": "Región",
+    "elevation": "Elevación",
+    "timezone": "Zona Horaria",
+    "coordinates": "Coordenadas",
+    "stationIdentifiers": "Identificadores de Estación",
+    "national": "Nacional",
+    "inventory": "Inventario",
+    "hourly": "Por Hora",
+    "daily": "Diario"
+  },
+  "nl": {
+    "country": "Land",
+    "region": "Regio",
+    "elevation": "Verhoging",
+    "timezone": "Tijdzone",
+    "coordinates": "Coördinaten",
+    "stationIdentifiers": "Identificatie Stations",
+    "national": "Nationaal",
+    "inventory": "Inventaris",
+    "hourly": "Uurlijks",
+    "daily": "Dagelijks"
+  },
+  "fr": {
+    "country": "Pays",
+    "region": "Région",
+    "elevation": "Élévation",
+    "timezone": "Fuseau Horaire",
+    "coordinates": "Coordonnées",
+    "stationIdentifiers": "Identificateurs de Station",
+    "national": "National",
+    "inventory": "Inventaire",
+    "hourly": "Horaire",
+    "daily": "Quotidiennement"
+  },
+  "pt": {
+    "country": "País",
+    "region": "Região",
+    "elevation": "Elevação",
+    "timezone": "Fuso Horário",
+    "coordinates": "Coordenadas",
+    "stationIdentifiers": "Identificadores de Estação",
+    "national": "Nacional",
+    "inventory": "Inventário",
+    "hourly": "Horário",
+    "daily": "Diariamente"
+  },
+  "ru": {
+    "country": "Страна",
+    "region": "Регион",
+    "elevation": "Высота",
+    "timezone": "Часовой пояс",
+    "coordinates": "Координаты",
+    "stationIdentifiers": "Идентификаторы станции",
+    "national": "национальный",
+    "inventory": "инвентаризация",
+    "hourly": "Почасовая",
+    "daily": "Ежедневно" 
   }
 }
 </i18n>

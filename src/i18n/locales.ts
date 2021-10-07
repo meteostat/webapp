@@ -27,6 +27,10 @@ export const SUPPORTED_LANGUAGES = [
   {
     locale: 'pt',
     name: 'Português'
+  },
+  {
+    locale: 'ru',
+    name: 'русский язык'
   }
 ]
 
@@ -36,7 +40,17 @@ export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES.find((l) => l.default)
 
 export const DEFAULT_LOCALE = DEFAULT_LANGUAGE?.locale as string
 
-export function extractLocaleFromPath(path = ''): string {
+export function extractLocaleFromPath(path = '', userLang: null|string = null): string {
   const [_, maybeLocale] = path.split('/')
-  return SUPPORTED_LOCALES.includes(maybeLocale) ? maybeLocale : DEFAULT_LOCALE
+  if (!import.meta.env.SSR) {
+    userLang = (
+      navigator.language || navigator.userLanguage
+    )?.substr(0, 2) || null
+  }
+  userLang = typeof userLang === 'string' && SUPPORTED_LOCALES.includes(
+    userLang
+  ) ? userLang : null
+  return SUPPORTED_LOCALES.includes(
+    maybeLocale
+  ) ? maybeLocale : userLang || DEFAULT_LOCALE
 }

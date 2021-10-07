@@ -295,6 +295,7 @@ export default defineComponent({
         await fetch(`${this.$api}/app/autocomplete?match=${this.term}&lang=${this.$locale}`)
           .then(response => response.json())
           .then(data => this.results = data.data)
+        window._paq?.push(['trackSiteSearch', this.term, false, false])
       } else {
         this.results = {}
       }
@@ -409,15 +410,49 @@ export default defineComponent({
     "$searchPlaceholder": "Station or Place",
     "places": "Places",
     "stations": "Weather Stations",
-    "archive": "Archive",
-    "home": "Home",
+    "archive": "Archive"
   },
   "de": {
     "$searchPlaceholder": "Wetterstation oder Ort",
     "places": "Orte",
     "stations": "Wetterstationen",
-    "archive": "Archiv",
-    "home": "Startseite",
+    "archive": "Archiv"
+  },
+  "it": {
+    "$searchPlaceholder": "Stazione o Luogo",
+    "places": "Luoghi",
+    "stations": "Stazioni Meteorologiche",
+    "archive": "Archivio"
+  },
+  "es": {
+    "$searchPlaceholder": "Estación o Lugar",
+    "places": "Lugares",
+    "stations": "Estaciones Meteorológicas",
+    "archive": "Archivo"
+  },
+  "nl": {
+    "$searchPlaceholder": "Station of Plaats",
+    "places": "Plaatsen",
+    "stations": "Weerstations",
+    "archive": "Archive"
+  },
+  "fr": {
+    "$searchPlaceholder" : "Station ou Lieu",
+    "places" : "Lieux",
+    "stations" : "Stations Météo",
+    "archive": "Archives"
+  },
+  "pt": {
+    "$searchPlaceholder": "Estação ou Local",
+    "places": "Lugares",
+    "stations": "Estações Meteorológicas",
+    "archive": "Arquivo"
+  },
+  "ru": {
+    "$searchPlaceholder": "Станция или место",
+    "places": "Орте",
+    "stations": "Погодные станции",
+    "archive": "Архив"   
   }
 }
 </i18n>

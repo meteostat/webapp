@@ -1,3 +1,64 @@
 {
-  "locale": "es"
+  "locale": "es",
+  "dateFormat": "dd/MM/yyyy",
+  "dateTimeFormat": "dd/MM/yyyy HH:mm:ss",
+
+  "home": "Home",
+  "insights": "Insights",
+  "patrons": "Patrons",
+  "donation": "Donación",
+  "settings": "Ajustes",
+  "history": "Historia",
+  "climate": "Clima",
+  "maps": "Mapas",
+  "export": "Exportar",
+  "save": "Guardar",
+  "close": "Cerrar",
+  "details": "Detalles",
+  "updated": "Actualizado",
+  "support": "Soporte",
+  "documentation": "Documentación",
+
+  "avg": "Avg.",
+  "min": "Min.",
+  "max": "Max.",
+  "total": "Total",
+
+  "$phrases": {
+    "noData": "Sin Datos",
+    "someDataMissing": "Faltan algunos datos",
+    "showMore": "Mostrar Más"
+  },
+
+  "$meteo": {
+    "weather": "Tiempo",
+    "air": "Aire",
+    "pres": "Presión",
+    "temp": "Temperatura",
+    "humidity": "Humedad",
+    "prcp": "Precipitación",
+    "sunshine": "Sol",
+    "snow": "Nieve",
+    "wind": "Viento",
+    "gust": "Ráfaga"
+  },
+
+  "$params": {
+    "time": "Hora",
+    "date": "Fecha",
+    "temp": "Temperatura",
+    "tavg": "Avg. Temperatura",
+    "tmin": "Min. Temperatura",
+    "tmax": "Max. Temperatura",
+    "dwpt": "Punto de Rocío",
+    "rhum": "Humedad Relativa",
+    "prcp": "Precipitación Total",
+    "snow": "Profundidad de la Nieve",
+    "wdir": "Dirección del Viento",
+    "wspd": "Velocidad del Viento",
+    "wpgt": "Ráfaga de Viento",
+    "pres": "Presión del Aire",
+    "tsun": "Duración del Sol",
+    "coco": "Código de Condición Meteorológica"
+  }
 }

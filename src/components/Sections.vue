@@ -83,6 +83,27 @@ export default defineComponent({
 {
   "en": {
     "sections": "Sections"
+  },
+  "de": {
+    "sections": "Menü"
+  },
+  "it": {
+    "sections": "Sezioni"
+  },
+  "es": {
+    "sections": "Secciones"
+  },
+  "nl": {
+    "sections": "Secties"
+  },
+  "fr": {
+    "sections": "Sections"
+  },
+  "pt": {
+    "sections": "Secções"
+  },
+  "ru": {
+    "sections": "Разделы" 
   }
 }
 </i18n>

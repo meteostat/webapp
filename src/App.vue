@@ -175,6 +175,48 @@ body {
       "title": "The Weather's Record Keeper",
       "description": "Weather and climate database providing detailed weather data for thousands of weather stations and places worldwide."
     }
+  },
+  "de": {
+    "$meta": {
+      "title": "Die Historie des Wetters",
+      "description": "Wetter- und Klimadatenbank mit detaillierten Wetteraufzeichnungen und Klimastatistiken für tausende Wetterstationen und Orte weltweit."
+    }
+  },
+  "it": {
+    "$meta": {
+      "title": "Il Guardiano del Tempo",
+      "description": "Banca dati meteorologici e climatici con record meteo dettagliati e statistiche climatiche per migliaia di stazioni meteorologiche e località in tutto il mondo."
+    }
+  },
+  "es": {
+    "$meta": {
+      "title": "El Guardián del Tiempo",
+      "description": "Meteostat ofrece informaciones alrededor del tiempo y clima para miles de estaciones meteorológicas."
+    }
+  },
+  "nl": {
+    "$meta": {
+      "title": "Weerbericht en Klimaatgegevens",
+      "description": "Weer- en klimaatdatabase met gedetailleerde weergegevens en klimaatstatistieken voor duizenden weerstations en locaties wereldwijd."
+    }
+  },
+  "fr": {
+    "$meta": {
+      "title": "Le Gardien du Temps",
+      "description": "Base de données météorologiques et climatiques avec des enregistrements météorologiques détaillés pour des milliers de stations météorologiques dans le monde entier."
+    }
+  },
+  "pt": {
+    "$meta": {
+      "title": "O Recordista Meteorológico",
+      "description": "Base de dados meteorológicos e climáticos com registos meteorológicos detalhados e estatísticas climáticas para milhares de estações meteorológicas e locais em todo o mundo."
+    }
+  },
+  "ru": {
+    "$meta": {
+      "title": "Записи погоды и данные климата",
+      "description": "База данных погоды и климата с детальными записями погоды тысяч метеорологических станций всего мира."
+    }    
   }
 }
 </i18n>

@@ -32,7 +32,7 @@
                   {{ format.name }}
                 </option>
               </select>
-              <label for="formatSelect">Format</label>
+              <label for="formatSelect">{{ t('format') }}</label>
             </div>
           </form>
           <div>
@@ -42,7 +42,7 @@
               aria-expanded="false"
               aria-controls="exportColumnsCollapse"
             >
-              Show Columns
+              {{ t('showColumns') }}
             </a>
             <div
               id="exportColumnsCollapse"
@@ -52,8 +52,8 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Column</th>
-                    <th>Description</th>
+                    <th>{{ t('column') }}</th>
+                    <th>{{ t('description') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -157,7 +157,59 @@ export default defineComponent({
 {
   "en": {
     "$description": "Download selected weather data in the format of your choice.",
-    "includeHeader": "Include header row"
+    "format": "Format",
+    "showColumns": "Show columns",
+    "column": "Column",
+    "description": "Description"
+  },
+  "de": {
+    "$description": "Laden Sie die ausgewählten Wetterdaten in einem Format Ihrer Wahl herunter.",
+    "format": "Format",
+    "showColumns": "Spalten anzeigen",
+    "column": "Spalte",
+    "description": "Beschreibung"
+  },
+  "it": {
+    "$description": "Scarica i dati meteo selezionati nel formato di tua scelta.",
+    "format": "Formato",
+    "showColumns": "Mostra Colonne",
+    "Column": "Colonna",
+    "description": "Descrizione"
+  },
+  "es": {
+    "$description": "Descarga los datos meteorológicos seleccionados en el formato que elijas.",
+    "format": "Formato",
+    "showColumns": "Mostrar Columnas",
+    "column": "Columna",
+    "description": "Descripción"
+  },
+  "nl": {
+    "$description": "Download geselecteerde weergegevens in het formaat van uw keuze.",
+    "format": "Formaat",
+    "showColumns": "Toon kolommen",
+    "column": "Column",
+    "description": "Description"
+  },
+  "fr": {
+    "$description" : "Télécharger les données météorologiques sélectionnées dans le format de votre choix.",
+    "format" : "Format",
+    "showColumns" : "Afficher les colonnes",
+    "column" : "Colonne",
+    "description" : "Description"
+  },
+  "pt": {
+    "$description": "Descarregar dados meteorológicos seleccionados no formato da sua escolha.",
+    "format": "Formato",
+    "showColumns": "Mostrar Colunas",
+    "column": "Coluna",
+    "description": "Descrição"
+  },
+  "ru": {
+    "$description": "Загрузить выбранные данные о погоде в выбранном вами формате.",
+    "format": "Формат",
+    "showColumns": "Показать столбцы",
+    "column": "Колонка",
+    "description": "Описание"
   }
 }
 </i18n>

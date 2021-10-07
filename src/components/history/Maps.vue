@@ -190,9 +190,8 @@ import { parse } from 'papaparse'
 import { tempScale, prcpScale, wspdScale, presScale, ColorScale } from '../../utils/colorScale'
 import { toFahrenheit, toInches, toMPH } from '../../utils/units'
 import useLeaflet from '../../utils/leaflet'
+import '../../../node_modules/leaflet/dist/leaflet.css'
 import leafletImage from 'leaflet-image'
-import { saveAs } from 'file-saver'
-import '../../../node_modules/leaflet/dist/leaflet.css';
 
 export default defineComponent({
   name: 'MeteoMaps',
@@ -324,12 +323,12 @@ export default defineComponent({
             case 'tmin':
             case 'tmax':
               if (this.parameter === 'tmin') {
-                min = -15
-                max = 25
+                min = -10
+                max = 30
               }
               else if (this.parameter == 'tmax') {
-                min = 0
-                max = 40
+                min = -10
+                max = 30
               }
               this.scale.label = this.settings.units.temp
               if (this.settings.imperial) {
@@ -383,21 +382,17 @@ export default defineComponent({
           const scale = new ColorScale(definition, min, max, zero)
           // Create cells
           result.data.forEach((data: Array<number>): void => {
-            if (data[2] !== null) {
-              try {
-                this.cells.push(
-                  this.L.rectangle([
-                    [data[0]+0.5, data[1]-0.5],
-                    [data[0]-0.5, data[1]+0.5]
-                  ], {
-                    fillColor: scale.getColor(data[2]),
-                    fillOpacity: 0.6,
-                    weight: 0
-                  }).addTo(this.map)
-                )
-              } catch {
-                console.log("Error")
-              }
+            if (data[0] !== null && data[1] !== null && data[2] !== null) {
+              this.cells.push(
+                this.L.rectangle([
+                  [data[0]+0.5, data[1]-0.5],
+                  [data[0]-0.5, data[1]+0.5]
+                ], {
+                  fillColor: scale.getColor(data[2]),
+                  fillOpacity: 0.6,
+                  weight: 0
+                }).addTo(this.map)
+              )
             }
           })
           // Finish loading
@@ -449,7 +444,8 @@ export default defineComponent({
       this.playing = !this.playing
     },
 
-    downloadMap(): void {
+    async downloadMap(): Promise<void> {
+      const { saveAs } = await import('file-saver')
       let map = this.map
       leafletImage(map, (err: any, canvas: HTMLCanvasElement): void => {
 				canvas.toBlob(blob => {

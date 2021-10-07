@@ -598,8 +598,9 @@ export default defineComponent({
         options: {
           scales: tsScales(this.timeValues, this.settings.units.prcp),
           plugins: {
+            tooltip: tsTooltips,
             colorStripe: {
-              scale: new ColorScale(prcpScale, 0, 10, '#eeeeee')
+              scale: new ColorScale(prcpScale, 0, 30, '#eeeeee')
             }
           }
         }
@@ -642,6 +643,7 @@ export default defineComponent({
         options: {
           scales: tsScales(this.timeValues, this.settings.units.wspd),
           plugins: {
+            tooltip: tsTooltips,
             colorStripe: {
               scale: new ColorScale(wspdScale, 0, 40, null)
             }
@@ -736,6 +738,7 @@ export default defineComponent({
         options: {
           scales: tsScales(this.timeValues, 'hPa'),
           plugins: {
+            tooltip: tsTooltips,
             colorStripe: {
               scale: new ColorScale(presScale, 990, 1025, null)
             }
@@ -770,6 +773,7 @@ export default defineComponent({
         options: {
           scales: tsScales(this.timeValues, this.settings.units.prcp),
           plugins: {
+            tooltip: tsTooltips,
             colorStripe: {
               scale: new ColorScale(prcpScale, 0, 500, '#eeeeee')
             }
@@ -804,8 +808,9 @@ export default defineComponent({
         options: {
           scales: tsScales(this.timeValues, 'm'),
           plugins: {
+            tooltip: tsTooltips,
             colorStripe: {
-              scale: new ColorScale(tsunScale, 0, 60, '#eeeeee')
+              scale: new ColorScale(tsunScale, 0, 600, '#eeeeee')
             }
           }
         }

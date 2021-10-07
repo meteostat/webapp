@@ -1,3 +1,64 @@
 {
-  "locale": "fr"
+  "locale" : "fr",
+  "dateFormat" : "dd/MM/yyyy",
+  "dateTimeFormat" : "dd/MM/yyyy HH:mm:ss",
+
+  "home" : "Home",
+  "insights" : "Insights",
+  "patrons" : "Patrons",
+  "donation" : "Donation",
+  "settings" : "Paramètres",
+  "history" : "Histoire",
+  "climate" : "Climat",
+  "maps" : "Cartes",
+  "export" : "Exporter",
+  "save" : "Sauver",
+  "close" : "Fermer",
+  "details" : "Détails",
+  "updated" : "Mis à Jour",
+  "support" : "Soutien",
+  "documentation" : "Documentation",
+
+  "avg" : "Avg.",
+  "min" : "Min.",
+  "max" : "Max.",
+  "total" : "Total",
+
+  "$phrases" : {
+    "noData" : "Pas de Données",
+    "someDataMissing" : "Certaines données sont manquantes",
+    "showMore" : "Afficher Plus"
+  },
+
+  "$meteo" : {
+    "weather" : "Météo",
+    "air" : "Air",
+    "pres" : "Pression",
+    "temp" : "Température",
+    "humidity" : "Humidité",
+    "prcp" : "Précipitation",
+    "sunshine" : "Sunshine",
+    "snow" : "Snow",
+    "wind" : "Vent",
+    "gust" : "Rafale"
+  },
+
+  "$params" : {
+    "time" : "Temps",
+    "date" : "Date",
+    "temp" : "Température",
+    "tavg" : "Avg. Température",
+    "tmin" : "Min. Temperature",
+    "tmax" : "Max. Température",
+    "dwpt" : "Point de Rosée",
+    "rhum" : "Humidité Relative",
+    "prcp" : "Précipitation Totale",
+    "snow" : "Épaisseur de la Neige",
+    "wdir" : "Direction du Vent",
+    "wspd" : "Vitesse du Vent",
+    "wpgt" : "Pic de Rafale",
+    "pres" : "Pression de l'air",
+    "tsun" : "Durée de l'ensoleillement",
+    "coco" : "Code de Condition Météorologique"
+  }
 }

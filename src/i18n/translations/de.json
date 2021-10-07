@@ -1,4 +1,64 @@
 {
   "locale": "de",
-  "settings": "Einstellungen"
+  "dateFormat": "dd.MM.yyyy",
+  "dateTimeFormat": "dd.MM.yyyy HH:mm:ss",
+
+  "home": "Startseite",
+  "insights": "Insights",
+  "patrons": "Unterstützer",
+  "donation": "Spende",
+  "settings": "Einstellungen",
+  "history": "Rückblick",
+  "climate": "Klima",
+  "maps": "Karten",
+  "export": "Export",
+  "save": "Speichern",
+  "close": "Schließen",
+  "details": "Details",
+  "updated": "Aktualisiert",
+  "support": "Kontakt",
+  "documentation": "Dokumentation",
+
+  "avg": "Avg.",
+  "min": "Min.",
+  "max": "Max.",
+  "total": "Summe",
+
+  "$phrases": {
+    "noData": "Keine Daten",
+    "someDataMissing": "Daten unvollständig",
+    "showMore": "Mehr Anzeigen"
+  },
+
+  "$meteo": {
+    "weather": "Wetter",
+    "air": "Luft",
+    "pres": "Druck",
+    "temp": "Temperatur",
+    "humidity": "Luftfeuchte",
+    "prcp": "Niederschlag",
+    "sunshine": "Sonnenschein",
+    "snow": "Schnee",
+    "wind": "Wind",
+    "gust": "Böe"
+  },
+
+  "$params": {
+    "time": "Zeit",
+    "date": "Datum",
+    "temp": "Temperatur",
+    "tavg": "Durchschnittstemperatur",
+    "tmin": "Min. Temperatur",
+    "tmax": "Max. Temperatur",
+    "dwpt": "Taupunkt",
+    "rhum": "Relative Luftfeuchte",
+    "prcp": "Gesamtniederschlag",
+    "snow": "Schneehöhe",
+    "wdir": "Windrichtung",
+    "wspd": "Windgeschwindigkeit",
+    "wpgt": "Spitzenböe",
+    "pres": "Luftdruck",
+    "tsun": "Sonnenscheindauer",
+    "coco": "Wetterzustand (Code)"
+  }
 }

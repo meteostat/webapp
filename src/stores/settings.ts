@@ -15,9 +15,9 @@ export const useSettingsStore = defineStore({
     imperial: false,
     model: true,
     timezone: true,
-    personCookies: false,
+    personalizedAds: false,
     dismiss: {
-      climateManual: false
+      guide: {}
     },
     ...state
   }),

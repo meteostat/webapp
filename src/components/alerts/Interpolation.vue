@@ -59,6 +59,27 @@ export default defineComponent({
 {
   "en": {
     "$interpolationAlert": "Interpolated data based on nearby weather stations ({stations})."
+  },
+  "de": {
+    "$interpolationAlert": "Gerechnete Werte, basierend auf Wetterstationen in der Nähe ({stations})."
+  },
+  "it": {
+    "$interpolationAlert": "Dati interpolati basati su stazioni meteorologiche vicine ({stations})."
+  },
+  "es": {
+    "$interpolationAlert": "Datos interpolados basados en estaciones meteorológicas cercanas ({stations})."
+  },
+  "nl": {
+    "$interpolationAlert": "Geïnterpoleerde gegevens op basis van nabijgelegen weerstations ({stations})."
+  },
+  "fr": {
+    "$interpolationAlert": "Données interpolées basées sur les stations météorologiques proches ({stations})."
+  },
+  "pt": {
+    "$interpolationAlert": "Dados interpolados baseados em estações meteorológicas próximas ({stations})."
+  },
+  "ru": {
+     "$interpolationAlert": "Интерполированные данные, основанные на данных близлежащих метеостанций ({stations})."   
   }
 }
 </i18n>

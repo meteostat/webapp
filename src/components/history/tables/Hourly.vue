@@ -388,13 +388,3 @@ table {
   }
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "time": "Time",
-    "weather": "Weather",
-    "air": "Air"
-  }
-}
-</i18n>

@@ -27,7 +27,7 @@ export default defineComponent({
 
     if (props.page?.title) {
       useHead({
-        title: `${props.title} | Meteostat`
+        title: `${props.page.title} | Meteostat`
       })
     }
 

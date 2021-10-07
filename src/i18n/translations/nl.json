@@ -1,3 +1,64 @@
 {
-  "locale": "nl"
+  "locale": "nl",
+  "dateFormat": "dd-MM-yyyy",
+  "dateTimeFormat": "dd-MM-yyyy HH:mm:ss",
+
+  "home": "Home",
+  "insights": "Insights",
+  "patrons": "Patrons",
+  "donation": "Donatie",
+  "settings": "Instellingen",
+  "history": "Geschiedenis",
+  "climate": "Klimaat",
+  "maps": "Kaarten",
+  "export": "Exporteren",
+  "save": "Opslaan",
+  "close": "Sluiten",
+  "details": "Details",
+  "updated": "Bijgewerkt",
+  "support": "Ondersteuning",
+  "documentation": "Documentatie",
+
+  "avg": "Avg.",
+  "min.": "Min.",
+  "max": "Max.",
+  "total": "Totaal",
+
+  "$phrases": {
+    "noData": "Geen Gegevens",
+    "someDataMissing": "Sommige gegevens ontbreken",
+    "showMore": "Meer Tonen"
+  },
+
+  "$meteo": {
+    "weather": "Weer",
+    "air": "Air",
+    "pres": "Druk",
+    "temp": "Temperatuur",
+    "humidity": "Vochtigheid",
+    "prcp": "Neerslag",
+    "sunshine": "Zonneschijn",
+    "snow": "Sneeuw",
+    "wind": "Wind",
+    "gust": "Windvlaag"
+  },
+
+  "$params": {
+    "time": "Time",
+    "date": "Date",
+    "temp": "Temperature",
+    "tavg": "Avg. Temperatuur",
+    "tmin": "Min. Temperatuur",
+    "tmax": "Max. Temperatuur",
+    "dwpt": "Dauwpunt",
+    "rhum": "Relatieve Vochtigheid",
+    "prcp": "Totale Neerslag",
+    "snow": "Sneeuwhoogte",
+    "wdir": "Windrichting",
+    "wspd": "Windsnelheid",
+    "wpgt": "Piekvlaag",
+    "pres": "Luchtdruk",
+    "tsun": "Sunshine Duration",
+    "coco": "Weather Condition Code"
+  }
 }

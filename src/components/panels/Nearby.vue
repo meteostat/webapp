@@ -56,6 +56,27 @@ export default {
 {
   "en": {
     "nearbyStations": "Nearby Stations"
+  },
+  "de": {
+    "nearbyStations": "Wetterstationen in der Nähe"
+  },
+  "it": {
+    "nearbyStations": "Stazioni Vicine"
+  },
+  "es": {
+    "nearbyStations": "Estaciones Cercanas"
+  },
+  "nl": {
+    "nearbyStations": "Stations in de Buurt"
+  },
+  "fr": {
+    "nearbyStations": "Stations à Proximité"
+  },
+  "pt": {
+    "nearbyStations": "Estações Próximas"
+  },
+  "ru": {
+    "nearbyStations": "Близлежащие станции"
   }
 }
 </i18n>

@@ -1,3 +1,64 @@
 {
-  "locale": "it"
+  "locale": "it",
+  "dateFormat": "dd/MM/yyyy",
+  "dateTimeFormat": "dd/MM/yyyy HH:mm:ss",
+
+  "home": "Home",
+  "insights": "Insights",
+  "patrons": "Patroni",
+  "donation": "Donazione",
+  "settings": "Impostazioni",
+  "history": "Storia",
+  "climate": "Clima",
+  "maps": "Mappe",
+  "export": "Esportazione",
+  "save": "Salva",
+  "close": "Chiudi",
+  "details": "Dettagli",
+  "updated": "Aggiornato",
+  "support": "Supporto",
+  "documentation": "Documentazione",
+
+  "avg": "Media",
+  "min": "Min.",
+  "max": "Max.",
+  "totale": "Totale",
+
+  "$phrases": {
+    "noData": "Nessun dato",
+    "someDataMissing": "Mancano alcuni dati",
+    "showMore": "Mostra di Più"
+  },
+
+  "$meteo": {
+    "weather": "meteo",
+    "air": "Aria",
+    "pres": "Pressione",
+    "temp": "Temperatura",
+    "humidity": "Umidità",
+    "prcp": "Precipitazioni",
+    "sunshine": "Sole",
+    "snow": "Neve",
+    "wind": "Vento",
+    "gust": "Raffica"
+  },
+
+  "$params": {
+    "time": "Ora",
+    "data": "Data",
+    "temp": "Temperatura",
+    "tavg": "Media Temperatura",
+    "tmin": "Min. Temperatura",
+    "tmax": "Max. Temperatura",
+    "dwpt": "Punto di Rugiada",
+    "rhum": "Umidità Relativa",
+    "prcp": "Precipitazione Totale",
+    "snow": "Profondità della Neve",
+    "wdir": "Direzione del Vento",
+    "wspd": "Velocità del Vento",
+    "wpgt": "Raffica di picco",
+    "pres": "Pressione dell'aria",
+    "tsun": "Durata del Sole",
+    "coco": "Codice Condizione Meteo"
+  }
 }

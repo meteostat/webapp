@@ -141,6 +141,41 @@ export default defineComponent({
     "$meta": {
       "description": "Historical weather and climate data for {name} ({country}) with information on temperature, precipitation and more."
     }
+  },
+  "de": {
+    "$meta": {
+      "description": "Wetterrückblick und Klimadaten für {name} ({country}) mit Informationen zu Temperatur, Niederschlag und mehr."
+    }
+  },
+  "it": {
+    "$meta": {
+      "description": "Dati meteorologici e climatici storici per {name} ({country}) con informazioni su temperatura, precipitazioni e altro."
+    }
+  },
+  "es": {
+    "$meta": {
+      "description": "Datos históricos del tiempo y del clima para {name} ({country}) con información sobre la temperatura, las precipitaciones y mucho más."
+    }
+  },
+  "nl": {
+    "$meta": {
+      "description": "Historische weer- en klimaatgegevens voor {name} ({country}) met informatie over temperatuur, neerslag en meer."
+    }
+  },
+  "fr": {
+    "$meta": {
+      "description": "Données météorologiques et climatiques historiques pour {name} ({country}) avec des informations sur la température, les précipitations et plus encore."
+    }
+  },
+  "pt": {
+    "$meta": {
+      "description": "Dados climáticos e meteorológicos históricos para {name} ({country}) com informações sobre temperatura, precipitação e muito mais."
+    }
+  },
+  "ru": {
+     "$meta": {
+      "description": "Исторические данные о погоде и климате для {name} ({country}) с информацией о температуре, осадках и многом другом."
+    }   
   }
 }
 </i18n>
