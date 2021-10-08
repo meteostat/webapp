@@ -18,7 +18,7 @@
         >
           <div class="card-body py-2">
             <h5 class="card-title">
-              <template v-if="tempKPI">
+              <template v-if="tempKPI !== null && anyColData('tavg')">
                 {{ tempKPI }}
                 <small
                   v-if="tempAnomalyKPI"
@@ -60,7 +60,7 @@
         >
           <div class="card-body py-2">
             <h5 class="card-title">
-              <template v-if="prcpKPI">
+              <template v-if="prcpKPI !== null && anyColData('prcp')">
                 {{ prcpKPI }}
                 <small
                   v-if="prcpAnomalyKPI"
@@ -93,7 +93,9 @@
       </div>
     </div>
 
-    <Ad />
+    <div class="my-3">
+      <Ad />
+    </div>
 
     <div
       id="sections"

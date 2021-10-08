@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/',
+    path: '',
     name: 'Home',
     component: (): Promise<any> => import('~/views/Home.vue')
   },

@@ -286,6 +286,10 @@ table {
     text-align: center;
   }
 
+  tbody {
+    border-top: 0 !important;
+  }
+
   td, tbody th {
     white-space: nowrap;
     font-size: .9rem;

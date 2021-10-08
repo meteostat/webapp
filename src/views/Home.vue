@@ -211,7 +211,7 @@ export default defineComponent({
     ]
   },
   "de": {
-    "$slogan": "Die Historie des Wetters",
+    "$slogan": "Wetterrückblick und Klimadaten",
     "$heroText": "Wetter- und Klimadatenbank mit detaillierten Wetteraufzeichnungen und Klimastatistiken für tausende Wetterstationen und Orte weltweit. Werfen Sie einen Blick auf die gestrigen Temperaturen oder auf das Wetter vor 100 Jahren.",
     "myLocation": "Mein Standort",
     "findStations": "Station Finden",

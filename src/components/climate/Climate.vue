@@ -63,7 +63,7 @@
           >
             <div class="card-body py-2">
               <h5 class="card-title">
-                <template v-if="tavgKPI">
+                <template v-if="tavgKPI !== null && anyColData('tavg')">
                   {{ tavgKPI }}
                   <small class="text-muted ms-1">°C</small>
                 </template>
@@ -85,7 +85,7 @@
           >
             <div class="card-body py-2">
               <h5 class="card-title">
-                <template v-if="prcpKPI">
+                <template v-if="prcpKPI !== null && anyColData('prcp')">
                   {{ prcpKPI }}
                   <small class="text-muted ms-1">mm</small>
                 </template>
@@ -101,6 +101,11 @@
           </div>
         </div>
       </div>
+
+      <div class="my-3">
+        <Ad />
+      </div>
+
       <div
         id="sections"
         class="mt-4"
@@ -222,6 +227,7 @@ import Chart from '../charts/Chart.vue'
 import { tsTooltips } from '~/components/charts/timeseries.config'
 import NoData from './NoData.vue'
 import Guide from '~/components/Guide.vue'
+import Ad from '~/components/Ad.vue'
 
 /**
  * Async Components
@@ -238,7 +244,8 @@ export default defineComponent({
     InterpolationAlert,
     Chart,
     NoData,
-    Guide
+    Guide,
+    Ad
   },
 
   mixins: [DataMixin],

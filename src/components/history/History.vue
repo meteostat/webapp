@@ -93,9 +93,10 @@
           show-weeknumbers="right"
           :locale="t('locale')"
           color="gray"
+          :attributes="pickerAttrs"
           is-range
           is-expanded
-          :max-date="new Date()"
+          :max-date="addDays(new Date(), 7)"
         />
       </ClientOnly>
       <div class="container p-0 mt-4">
@@ -179,7 +180,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, defineAsyncComponent } from 'vue'
 import { RouteLocationNormalized } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
@@ -188,6 +189,7 @@ import {
   format,
   differenceInDays,
   subDays,
+  addDays,
   subMonths,
   subYears,
   startOfWeek,
@@ -200,8 +202,16 @@ import {
 import { useSettingsStore } from '~/stores/settings'
 import Sections from '../Sections.vue'
 import Guide from '~/components/Guide.vue'
-import Hourly from './dashboards/Hourly.vue'
-import Daily from './dashboards/Daily.vue'
+
+/**
+ * Async Components
+ */
+const Hourly = defineAsyncComponent(() =>
+  import('./dashboards/Hourly.vue')
+)
+const Daily = defineAsyncComponent(() =>
+  import('./dashboards/Daily.vue')
+)
 
 export default defineComponent({
   name: 'History',
@@ -254,6 +264,7 @@ export default defineComponent({
       settings,
       format,
       subDays,
+      addDays,
       subMonths,
       subYears,
       startOfWeek,
@@ -281,6 +292,16 @@ export default defineComponent({
         start,
         end
       },
+      pickerAttrs: [
+        {
+          key: 'today',
+          highlight: {
+            color: 'blue',
+            fillMode: 'light',
+          },
+          dates: new Date(),
+        },
+      ],
       normals: [],
       suggestions: [
         // Today

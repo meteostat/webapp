@@ -10,6 +10,7 @@ export default <EdgeProps>{
       })
     return {
       data: {
+        status: place === null ? 404 : 200,
         place: place,
       },
     }

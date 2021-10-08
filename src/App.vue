@@ -178,7 +178,7 @@ body {
   },
   "de": {
     "$meta": {
-      "title": "Die Historie des Wetters",
+      "title": "Wetterrückblick und Klimadaten",
       "description": "Wetter- und Klimadatenbank mit detaillierten Wetteraufzeichnungen und Klimastatistiken für tausende Wetterstationen und Orte weltweit."
     }
   },

@@ -38,6 +38,10 @@
             :lat="meta.location.latitude"
             :lon="meta.location.longitude"
           />
+          <!-- Ads -->
+          <div class="sticky-top pb-3 pb-md-0 pt-3">
+            <Ad />
+          </div>
         </div>
       </div>
     </div>
@@ -45,15 +49,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import { format } from 'date-fns'
 import Navbar from '~/components/LocationNavbar.vue'
 import Meta from '~/components/panels/Meta.vue'
 import Nearby from '~/components/panels/Nearby.vue'
-import Climate from '~/components/climate/Climate.vue'
-import History from '~/components/history/History.vue'
+import Ad from '~/components/Ad.vue'
+
+/**
+ * Async Components
+ */
+const Climate = defineAsyncComponent(() =>
+  import('~/components/climate/Climate.vue')
+)
+const History = defineAsyncComponent(() =>
+  import('~/components/history/History.vue')
+)
 
 export default defineComponent({
   name: 'Station',
@@ -63,7 +76,8 @@ export default defineComponent({
     Meta,
     Nearby,
     Climate,
-    History
+    History,
+    Ad
   },
 
   props: {

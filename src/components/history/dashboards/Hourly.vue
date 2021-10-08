@@ -18,7 +18,7 @@
         >
           <div class="card-body py-2">
             <h5 class="card-title">
-              <template v-if="tempKPI">
+              <template v-if="tempKPI !== null && anyColData('temp')">
                 {{ tempKPI }}
                 <small
                   v-if="tempAnomalyKPI"
@@ -60,7 +60,7 @@
         >
           <div class="card-body py-2">
             <h5 class="card-title">
-              <template v-if="prcpKPI">
+              <template v-if="prcpKPI !== null && anyColData('prcp')">
                 {{ prcpKPI }}
                 <small
                   v-if="prcpAnomalyKPI"
@@ -79,7 +79,7 @@
             </h5>
             <div class="text-muted text-truncate">
               <icon
-                v-if="prcpKPI && anyColGaps('temp')"
+                v-if="prcpKPI && anyColGaps('prcp')"
                 :icon="['fas', 'exclamation-circle']"
                 class="me-2"
               />
@@ -93,7 +93,9 @@
       </div>
     </div>
 
-    <Ad />
+    <div class="my-3">
+      <Ad />
+    </div>
 
     <div
       id="sections"
