@@ -128,6 +128,7 @@
               class="btn btn-dark btn-lg px-4"
               href="https://github.com/meteostat"
               target="_blank"
+              rel="noreferrer"
             >
               <icon
                 :icon="['fab', 'github']"

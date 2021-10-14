@@ -52,6 +52,7 @@
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue'
+import { useContext } from 'vitedge'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import { format } from 'date-fns'
@@ -113,6 +114,10 @@ export default defineComponent({
         ]
       })
     }
+    else if (import.meta.env.SSR) {
+      const { writeResponse } = useContext()
+      writeResponse({ status: 404 })
+    }
 
     return { format }
   },
@@ -144,6 +149,11 @@ export default defineComponent({
       await fetch(`${this.$api}/app/place?id=${this.$route.params.id}`)
         .then(response => response.json())
         .then(data => this.meta = data.data)
+        .catch(() => {
+          this.$router.replace({
+            name: 'Home'
+          })
+        })
     }
   },
 })

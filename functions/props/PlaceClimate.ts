@@ -8,6 +8,7 @@ export default <EdgeProps>{
       .then(data => {
         place = data.data
       })
+      .catch(() => console.log('Place Not Found'))
     return {
       data: {
         status: place === null ? 404 : 200,

@@ -138,13 +138,19 @@
         <a
           href="https://www.openstreetmap.org/"
           target="_blank"
+          rel="noreferrer nofollow"
           class="text-muted"
-        >OpenStreetMap</a>,
+        >
+          OpenStreetMap
+        </a>,
         <a
           href="https://carto.com/attribution"
           target="_blank"
+          rel="noreferrer nofollow"
           class="text-muted"
-        >CARTO</a>
+        >
+          CARTO
+        </a>
       </small>
     </div>
     <div class="legend mt-4">

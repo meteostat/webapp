@@ -266,13 +266,18 @@
   </template>
 
   <!-- No Data -->
-  <template v-else>
+  <template v-else-if="meta.generated">
     <NoData />
   </template>
 
+  <!-- Ads -->
+  <div class="my-3">
+    <Ad />
+  </div>
+
   <!-- Meteo Maps -->
   <section
-    v-if="range[0] !== format(new Date(), 'yyyy-MM-dd')"
+    v-if="differenceInDays(parseISO(range[0]), new Date()) < 0"
     id="maps"
     ref="maps"
     class="card d-none d-lg-block mt-3 mt-md-4 p-3 bg-light rounded"
@@ -317,7 +322,7 @@
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { parseISO, getDaysInMonth, format } from 'date-fns'
+import { parseISO, getDaysInMonth, format, differenceInDays } from 'date-fns'
 import { useSettingsStore } from '~/stores/settings'
 import { tempScale, prcpScale, wspdScale, presScale, tsunScale, ColorScale } from '~/utils/colorScale'
 import { ChartDefinitionInterface } from '~/utils/interfaces'
@@ -326,7 +331,6 @@ import { initTooltips } from '~/utils/tooltips'
 import DataMixin from '../../Location.mixin'
 import Chart from '../../charts/Chart.vue'
 import { tsTooltips, tsPointRadius, tsScales } from '~/components/charts/timeseries.config'
-import NoData from '../NoData.vue'
 import Ad from '~/components/Ad.vue'
 
 /**
@@ -343,6 +347,9 @@ const Table = defineAsyncComponent(() =>
 )
 const Maps = defineAsyncComponent(() =>
   import('../Maps.vue')
+)
+const NoData = defineAsyncComponent(() =>
+  import('../NoData.vue')
 )
 
 /**
@@ -407,6 +414,7 @@ export default defineComponent({
       t,
       parseISO,
       format,
+      differenceInDays,
       settings,
       tempScale,
       prcpScale,

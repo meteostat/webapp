@@ -32,6 +32,7 @@
               class="btn btn-primary btn-sm me-1"
               href="https://www.linkedin.com/in/clampr/"
               target="_blank"
+              rel="noreferrer"
             >
               <icon
                 :icon="['fab', 'linkedin']"
@@ -45,6 +46,7 @@
               class="btn btn-dark btn-sm me-2"
               href="https://github.com/clampr"
               target="_blank"
+              rel="noreferrer"
             >
               <icon
                 :icon="['fab', 'github']"
@@ -90,6 +92,7 @@
             :href="sponsor.link"
             class="d-block text-center p-3"
             target="_blank"
+            rel="noreferrer nofollow"
           >
             <img
               :src="sponsor.logo"
@@ -125,7 +128,13 @@
             v-for="backer in backers.sort()"
             :key="backer"
           >
-            {{ backer }}
+            <a
+              :href="backer.link"
+              target="_blank"
+              rel="noreferrer nofollow"
+            >
+              {{ backer.name }}
+            </a>
           </li>
         </ul>
         <hr>
@@ -137,13 +146,19 @@
             <a
               href="https://www.patreon.com/meteostat"
               target="_blank"
-            >Patreon</a>
+              rel="noreferrer"
+            >
+              Patreon
+            </a>
           </template>
           <template #github>
             <a
               href="https://github.com/sponsors/clampr"
               target="_blank"
-            >GitHub</a>
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
           </template>
           <template #donation>
             <a
@@ -185,7 +200,10 @@
             <a
               href="https://www.paypal.com/donate?hosted_button_id=MQ67WRDC8EW38"
               target="_blank"
-            >PayPal</a>
+              rel="noreferrer"
+            >
+              PayPal
+            </a>
           </template>
           <template #donation>
             <a
@@ -218,6 +236,7 @@
             <a
               :href="`https://github.com/${contributor}`"
               target="_blank"
+              rel="noreferrer nofollow"
             >@{{ contributor }}</a>
           </li>
         </ul>
@@ -230,7 +249,10 @@
             <a
               href="https://github.com/meteostat"
               target="_blank"
-            >GitHub</a>
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
           </template>
         </i18n-t>
       </div>
@@ -272,7 +294,12 @@ export default defineComponent({
         }
       ],
       generousBackers: [],
-      backers: [],
+      backers: [
+        {
+          name: 'Benjamin Gutzmann',
+          link: 'https://github.com/gutzbenj'
+        }
+      ],
       donors: [
         'Birgit Becherer',
         'Yan Nusinovich',
@@ -335,7 +362,7 @@ export default defineComponent({
   },
   "de": {
     "$meta": {
-      "title": "Unterstützer",
+      "title": "Förderer",
       "description": "Lernen Sie die Menschen kennen, die Meteostat unterstützen und fördern."
     },
     "meetChristian": "Liebe Nutzer,",
@@ -344,8 +371,8 @@ export default defineComponent({
     "sponsorsAndPartners": "Förderer & Partner",
     "these": "diesen",
     "otherOptions": "dieser Optionen",
-    "backers": "Förderer",
-    "$backersText": "Unsere großartigen Förderer, die Meteostat mit wiederkehrender finanzieller Unterstützung am Laufen halten.",
+    "backers": "Unterstützer",
+    "$backersText": "Unsere großartigen Unterstützer, die Meteostat mit wiederkehrenden finanziellen Beiträgen am Laufen halten.",
     "$backersAction": "Werden Sie Unterstützer auf {patreon} oder {github}. Alternativ können Sie auch mit {donation} Optionen regelmäßige Förderbeiträge einrichten.",
     "donors": "Spender",
     "$donorsText": "Einige der großzügigen Menschen und Unternehmen, die in der Vergangenheit Geld an Meteostat gespendet haben.",

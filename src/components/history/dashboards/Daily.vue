@@ -79,7 +79,7 @@
             </h5>
             <div class="text-muted text-truncate">
               <icon
-                v-if="prcpKPI && anyColGaps('temp')"
+                v-if="prcpKPI && anyColGaps('prcp')"
                 :icon="['fas', 'exclamation-circle']"
                 class="me-2"
               />
@@ -266,9 +266,14 @@
   </template>
 
   <!-- No Data -->
-  <template v-else>
+  <template v-else-if="meta.generated">
     <NoData />
   </template>
+
+  <!-- Ads -->
+  <div class="my-3">
+    <Ad />
+  </div>
 
   <!-- Meteo Maps -->
   <section
@@ -326,7 +331,6 @@ import { initTooltips } from '~/utils/tooltips'
 import DataMixin from '../../Location.mixin'
 import Chart from '../../charts/Chart.vue'
 import { tsTooltips, tsPointRadius, tsScales } from '../../charts/timeseries.config'
-import NoData from '../NoData.vue'
 import Ad from '~/components/Ad.vue'
 
 /**
@@ -343,6 +347,9 @@ const Table = defineAsyncComponent(() =>
 )
 const Maps = defineAsyncComponent(() =>
   import('../Maps.vue')
+)
+const NoData = defineAsyncComponent(() =>
+  import('../NoData.vue')
 )
 
 /**

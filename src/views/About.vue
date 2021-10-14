@@ -56,6 +56,7 @@
             href="https://github.com/meteostat"
             class="btn btn-outline-light"
             target="_blank"
+            rel="noreferrer"
           >
             <icon
               :icon="['fab', 'github']"

@@ -209,7 +209,7 @@
     </div>
   </template>
   <!-- No Data -->
-  <template v-else>
+  <template v-else-if="meta.generated">
     <NoData />
   </template>
 </template>
@@ -222,18 +222,20 @@ import { Store } from 'pinia'
 import { useSettingsStore } from '~/stores/settings'
 import { ChartDefinitionInterface } from '~/utils/interfaces'
 import DataMixin from '../Location.mixin'
-import Sections from '../Sections.vue'
-import Chart from '../charts/Chart.vue'
 import { tsTooltips } from '~/components/charts/timeseries.config'
-import NoData from './NoData.vue'
+import Sections from '../Sections.vue'
 import Guide from '~/components/Guide.vue'
 import Ad from '~/components/Ad.vue'
+import Chart from '../charts/Chart.vue'
 
 /**
  * Async Components
  */
 const InterpolationAlert = defineAsyncComponent(() =>
   import('~/components/alerts/Interpolation.vue')
+)
+const NoData = defineAsyncComponent(() =>
+  import('./NoData.vue')
 )
 
 export default defineComponent({

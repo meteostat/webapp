@@ -303,3 +303,8 @@ table {
   }
 }
 </style>
+
+<style>
+@import "~/style/weather-icons/css/weather-icons-meteostat.css";
+@import "~/style/weather-icons/css/weather-icons-wind-meteostat.css";
+</style>

@@ -27,6 +27,7 @@
       class="icon-link mb-2"
       href="https://www.patreon.com/meteostat"
       target="_blank"
+      rel="noreferrer"
     >
       <span class="box fs-5">
         <icon :icon="['fab', 'patreon']" />
@@ -37,6 +38,7 @@
       class="icon-link mb-2"
       href="https://www.paypal.com/donate?hosted_button_id=MQ67WRDC8EW38"
       target="_blank"
+      rel="noreferrer"
     >
       <span class="box fs-5">
         <icon :icon="['fab', 'paypal']" />
@@ -47,6 +49,7 @@
       class="icon-link mb-4"
       href="https://github.com/sponsors/clampr"
       target="_blank"
+      rel="noreferrer"
     >
       <span class="box fs-5">
         <icon :icon="['fab', 'github']" />

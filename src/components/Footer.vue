@@ -121,19 +121,28 @@
           <a
             href="http://www.noaa.gov/"
             target="_blank"
-          >NOAA</a>
+            rel="noreferrer nofollow"
+          >
+            NOAA
+          </a>
         </template>
         <template #dwd>
           <a
             href="https://www.dwd.de/"
             target="_blank"
-          >Deutscher Wetterdienst</a>
+            rel="noreferrer nofollow"
+          >
+            Deutscher Wetterdienst
+          </a>
         </template>
         <template #ec>
           <a
             href="https://weather.gc.ca/"
             target="_blank"
-          >Environment Canada</a>
+            rel="noreferrer nofollow"
+          >
+            Environment Canada
+          </a>
         </template>
         <template #sources>
           <a href="https://dev.meteostat.net/sources.html">
