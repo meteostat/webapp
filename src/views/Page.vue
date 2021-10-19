@@ -3,7 +3,7 @@
     v-if="item?.title"
     class="container py-4 markdown"
   >
-    <div v-html="item.body" />
+    <div v-html="decodeURIComponent(item.body)" />
   </div>
 </template>
 
@@ -25,11 +25,9 @@ export default defineComponent({
   setup(props: Record<string, any>): Record<string, any> { 
     const { t } = useI18n()
 
-    if (props.page?.title) {
-      useHead({
-        title: `${props.page.title} | Meteostat`
-      })
-    }
+    useHead({
+      title: `${props.page?.title} | Meteostat`
+    })
 
     return { t }
   },

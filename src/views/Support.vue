@@ -8,6 +8,9 @@
         <p class="lead">
           {{ t('intro') }}
         </p>
+        <div class="my-3">
+          <Ad />
+        </div>
         <form>
           <!-- Alert: Failed -->
           <p
@@ -111,6 +114,9 @@
             </div>
           </div>
         </div>
+        <div class="my-3">
+          <Ad />
+        </div>
       </div>
     </div>
   </div>
@@ -120,9 +126,14 @@
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
+import Ad from '~/components/Ad.vue'
 
 export default defineComponent({
   name: 'Support',
+
+  components: {
+    Ad
+  },
 
   setup(): Record<string, any> { 
     const { t, messages } = useI18n()

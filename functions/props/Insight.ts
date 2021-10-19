@@ -15,7 +15,10 @@ export default <EdgeProps>{
     }
     return {
       data: {
-        insight
+        insight: {
+          ...insight,
+          body: encodeURIComponent(insight.body)
+        }
       },
     }
   },

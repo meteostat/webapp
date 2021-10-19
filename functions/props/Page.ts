@@ -13,7 +13,10 @@ export default <EdgeProps>{
     }
     return {
       data: {
-        page
+        page: {
+          ...page,
+          body: encodeURIComponent(page.body)
+        }
       },
     }
   },

@@ -175,6 +175,7 @@ export default defineComponent({
 
     // Translateable routes
     const translateableRoutes = [
+      'Home',
       'StationHistory',
       'StationClimate',
       'PlaceHistory',
@@ -213,9 +214,11 @@ export default defineComponent({
       }
     })
 
-    useHead({
-      link: alternates
-    })
+    if (path.value) {
+      useHead({
+        link: alternates
+      })
+    }
 
     return { t, lang, languages, i18nLink }
   }

@@ -305,7 +305,8 @@ export default defineComponent({
         'Yan Nusinovich',
         'Maximilian Hüttner',
         'Maximilian Hennebach',
-        'Benedikt Allendorf'
+        'Benedikt Allendorf',
+        'Danny Latuske'
       ],
       contributors: [
         'weyaaron',

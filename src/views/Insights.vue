@@ -11,6 +11,10 @@
       </div>
     </div>
 
+    <div class="mb-4 text-center">
+      <Ad />
+    </div>
+
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div
         v-for="(item, key) in items"
@@ -18,27 +22,32 @@
         class="col cursor-pointer"
         @click="open(item)"
       >
-        <div
-          class="card h-100"
-        >
+        <div class="card h-100">
           <img
             :src="item.cover"
-            class="card-img rounded-3 insight-img"
+            class="card-img-top insight-img"
             :alt="item.title"
             loading="lazy"
           >
-          <div class="card-img-overlay d-flex flex-column justify-content-end">
-            <p class="card-text mb-auto text-end">
+          <div class="card-body">
+            <p class="card-text d-flex align-items-center">
               <span
                 v-if="item.lang !== $locale"
-                class="badge border border-white text-white fw-bold text-uppercase me-2"
-              >{{ item.lang }}</span>
-              <span class="badge bg-primary border border-primary fw-bold text-uppercase">{{ item.topic }}</span>
-            </p>
-            <h5 class="card-title fw-bold text-white">
+                class="badge border border-dark text-dark fw-bold text-uppercase me-2"
+              >
+                {{ item.lang }}
+              </span>
+              <span class="badge bg-primary border border-primary fw-bold text-uppercase me-2">
+                {{ item.topic }}
+              </span>
+              <span class="ms-auto">
+                {{ format(parseISO(item.date), t('dateFormat')) }}
+              </span>
+            </p>            
+            <h5 class="card-title">
               {{ item.title }}
             </h5>
-            <p class="card-text fw-light text-white">
+            <p class="card-text">
               {{ item.teaser }}
             </p>
           </div>
@@ -52,9 +61,15 @@
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
+import { parseISO, format } from 'date-fns'
+import Ad from '~/components/Ad.vue'
 
 export default defineComponent({
   name: 'Insights',
+
+  components: {
+    Ad
+  },
 
   props: {
     insights: {
@@ -76,7 +91,7 @@ export default defineComponent({
       ],
     })
 
-    return { t }
+    return { t, parseISO, format }
   },
 
   data() {
@@ -128,12 +143,8 @@ export default defineComponent({
 }
 
 .insight-img {
-  max-height: 300px;
+  height: 250px;
   object-fit: cover;
-}
-
-.card-img-overlay {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
 </style>
 

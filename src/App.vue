@@ -134,7 +134,7 @@ export default defineComponent({
   },
 
   setup(): Record<string, any> {
-    const { t } = useI18n()
+    const { t, locale } = useI18n()
     const settings = useSettingsStore()
 
     useHead({
@@ -145,6 +145,9 @@ export default defineComponent({
           content: t('$meta.description') 
         }
       ],
+      htmlAttrs: {
+        lang: locale
+      }
     })
 
     return { t, settings }

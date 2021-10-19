@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <router-link
           class="navbar-brand d-flex align-items-center p-0"
-          to="/"
+          :to="{ name: 'Home' }"
         >
           <img
             src="https://media.meteostat.net/icon.svg"

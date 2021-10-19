@@ -3,7 +3,7 @@
     v-if="item?.title"
     class="container py-4"
   >
-    <header class="mb-4">
+    <header class="mb-5">
       <p class="mb-3">
         <span class="header-topic pb-2 pe-3 fs-5 text-primary text-uppercase">{{ item.topic }}</span>
       </p>
@@ -38,7 +38,10 @@
         </div>
       </div>
     </header>
-    <div class="markdown" v-html="item.body" />
+    <div class="mb-4">
+      <Ad />
+    </div>
+    <div class="markdown" v-html="decodeURIComponent(item.body)" />
   </div>
 </template>
 
@@ -48,9 +51,14 @@ import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-python'
+import Ad from '~/components/Ad.vue'
 
 export default defineComponent({
   name: 'Insight',
+
+  components: {
+    Ad
+  },
 
   props: {
     insight: {
@@ -62,17 +70,15 @@ export default defineComponent({
   setup(props: Record<string, any>): Record<string, any> { 
     const { t } = useI18n()
 
-    if (props.insight?.title) {
-      useHead({
-        title: `${props.insight.title} | Meteostat`,
-        meta: [
-          {
-            name: 'description',
-            content: props.insight.teaser
-          }
-        ],
-      })
-    }
+    useHead({
+      title: `${props.insight?.title} | Meteostat`,
+      meta: [
+        {
+          name: 'description',
+          content: props.insight?.teaser
+        }
+      ],
+    })
 
     return { t }
   },
@@ -95,7 +101,7 @@ export default defineComponent({
   },
 
   async mounted() {
-    if (!this.item) {
+    if (!this.insight) {
       // Fetch insights article
       await this.fetchItem()
     }
@@ -107,9 +113,11 @@ export default defineComponent({
      * Fetch item
      */
     async fetchItem(): Promise<void> {
-      await fetch(`${this.$api}/cms/insights/single?lang=${this.$locale}&year=${this.$route.params.year}&month=${this.$route.params.month}&slug=${this.$route.params.slug}`)
-        .then(response => response.json())
-        .then(data => this.item = data.data)
+      await fetch(
+        `${this.$api}/cms/insights/single?lang=${this.$locale}&year=${this.$route.params.year}&month=${this.$route.params.month}&slug=${this.$route.params.slug}`
+      )
+      .then(response => response.json())
+      .then(data => this.item = data.data)
     },
     share(socialLink: any) {
       window?.open(socialLink(window.location), '_blank')?.focus()
@@ -144,6 +152,7 @@ export default defineComponent({
 }
 
 .cover-img {
+  height: 100%;
   max-height: 300px;
   object-fit: cover;
 }
@@ -164,11 +173,19 @@ export default defineComponent({
   h2 {
     border-bottom: 1px solid $gray-300;
     padding-bottom: map-get($spacers, 2);
+    margin-top: 1.6rem;
+    margin-bottom: 1.4rem;
+    font-size: 1.5rem;
   }
 
   img {
     max-width: 100%;
     height: 100%;
+    margin: map-get($spacers, 3) 0;
+  }
+
+  ul, ol {
+    font-size: 1.1rem;
   }
 
   blockquote {
@@ -193,8 +210,7 @@ export default defineComponent({
   }
 
   & > p {
-    font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
-    font-size: $font-size-lg;
+    font-size: 1.1rem;
 
     & > code {
       padding: map-get($spacers, 1) map-get($spacers, 2);
