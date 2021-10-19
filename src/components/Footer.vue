@@ -45,6 +45,16 @@
         </li>
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
+            href="https://medium.com/meteostat"
+            data-toggle="tooltip"
+            data-placement="top"
+            :title="t('blog')"
+          >
+            <icon :icon="['fab', 'medium']" />
+          </a>
+        </li>
+        <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
+          <a
             href="https://github.com/meteostat"
             data-toggle="tooltip"
             data-placement="top"

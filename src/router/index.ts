@@ -25,16 +25,6 @@ export default [
     component: (): Promise<any> => import('~/views/Place.vue')
   },
   {
-    path: '/insights',
-    name: 'Insights',
-    component: (): Promise<any> => import('~/views/Insights.vue')
-  },
-  {
-    path: '/insights/:year/:month/:slug',
-    name: 'Insight',
-    component: (): Promise<any> => import('~/views/Insight.vue')
-  },
-  {
     path: '/patrons',
     name: 'Patrons',
     component: (): Promise<any> => import('~/views/Patrons.vue')

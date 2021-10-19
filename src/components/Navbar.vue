@@ -120,16 +120,17 @@
             </router-link>
             <router-link
               class="nav-item"
-              to="/insights"
-            >
-              <span class="nav-link">{{ t('insights') }}</span>
-            </router-link>
-            <router-link
-              class="nav-item"
               to="/patrons"
             >
               <span class="nav-link">{{ t('patrons') }}</span>
             </router-link>
+            <a
+              class="nav-item"
+              href="https://medium.com/meteostat"
+              target="_blank"
+            >
+              <span class="nav-link">{{ t('blog') }}</span>
+            </a>
           </ul>
           <div class="d-flex ms-auto mt-2 mt-lg-0">
             <a
