@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "engines": {
-    "node": ">=14.16"
+    "node": ">=14.17"
   },
   "scripts": {
     "dev": "vitedge --port 3333 --open --ssr",

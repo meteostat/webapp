@@ -13,9 +13,9 @@
           </a>
         </li>
         <li class="d-inline-block ms-3">
-          <router-link to="/insights">
-            {{ t('insights') }}
-          </router-link>
+          <a href="https://medium.com/meteostat">
+            {{ t('blog') }}
+          </a>
         </li>
         <li class="d-block mt-3 my-md-0 ms-md-4">
           <router-link
