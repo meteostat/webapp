@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 
@@ -25,11 +25,13 @@ export default defineComponent({
   setup(props: Record<string, any>): Record<string, any> { 
     const { t } = useI18n()
 
+    const pageTitle = ref(props.page?.title || '')
+
     useHead({
-      title: `${props.page?.title} | Meteostat`
+      title: computed(() => `${pageTitle.value} | Meteostat`)
     })
 
-    return { t }
+    return { t, pageTitle }
   },
 
   data() {
@@ -52,7 +54,10 @@ export default defineComponent({
     async fetchItem(): Promise<void> {
       await fetch(`${this.$api}/cms/pages/page?lang=${this.$locale}&slug=${String(this.$route.name)?.toLowerCase()}`)
         .then(response => response.json())
-        .then(data => this.item = data.data)
+        .then(data => {
+          this.item = data.data
+          this.pageTitle = this.item.title
+        })
     }
   }
 })
