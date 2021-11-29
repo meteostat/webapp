@@ -1,11 +1,22 @@
 <template>
-  <ins
-    class="adsbygoogle"
-    data-ad-client="ca-pub-6830849181977374"
-    data-ad-slot="3216865845"
-    data-ad-format="auto"
-    data-full-width-responsive="true"
-  />
+  <template v-if="display">
+    <ins
+      class="adsbygoogle"
+      data-ad-client="ca-pub-6830849181977374"
+      :data-ad-slot="slot"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    />
+  </template>
+  <template v-else>
+    <ins
+      class="adsbygoogle"
+      data-ad-format="fluid"
+      data-ad-layout-key="-6s+ed+2g-1n-4q"
+      data-ad-client="ca-pub-6830849181977374"
+      :data-ad-slot="slot"
+    />
+  </template>
 </template>
 
 <script>
@@ -14,6 +25,14 @@ import { useSettingsStore } from '~/stores/settings'
 
 export default defineComponent({
   name: 'Ad',
+
+  props: {
+    slot: String,
+    display: {
+      type: Boolean,
+      default: false
+    }
+  },
 
   setup() {
     const settings = useSettingsStore()

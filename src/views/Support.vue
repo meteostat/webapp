@@ -9,7 +9,7 @@
           {{ t('intro') }}
         </p>
         <div class="my-3">
-          <Ad />
+          <Ad slot="6350244830" />
         </div>
         <form>
           <!-- Alert: Failed -->
@@ -115,7 +115,7 @@
           </div>
         </div>
         <div class="my-3">
-          <Ad />
+          <Ad slot="3216865845" :display="true" />
         </div>
       </div>
     </div>
