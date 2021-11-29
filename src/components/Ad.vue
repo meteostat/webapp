@@ -56,6 +56,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 ins.adsbygoogle {
   display: block;
+  max-height: 280px;
 
   &[data-ad-status="unfilled"] {
     display: none !important;
