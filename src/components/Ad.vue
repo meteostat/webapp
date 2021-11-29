@@ -12,7 +12,7 @@
     <ins
       class="adsbygoogle"
       data-ad-format="fluid"
-      data-ad-layout-key="-6s+ed+2g-1n-4q"
+      data-ad-layout-key="-fb+5w+4e-db+86"
       data-ad-client="ca-pub-6830849181977374"
       :data-ad-slot="slot"
     />

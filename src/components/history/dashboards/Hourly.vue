@@ -94,7 +94,7 @@
     </div>
 
     <div class="my-3">
-      <Ad slot="6350244830" />
+      <Ad slot="1641693690" />
     </div>
 
     <div
