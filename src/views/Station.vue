@@ -40,7 +40,7 @@
           />
           <!-- Ads -->
           <div class="sticky-top pb-3 pb-md-0 pt-3">
-            <Ad slot="3216865845" :display="true" />
+            <Ad slot="3216865845" />
           </div>
         </div>
       </div>

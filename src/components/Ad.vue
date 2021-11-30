@@ -1,22 +1,11 @@
 <template>
-  <template v-if="display">
-    <ins
-      class="adsbygoogle"
-      data-ad-client="ca-pub-6830849181977374"
-      :data-ad-slot="slot"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
-    />
-  </template>
-  <template v-else>
-    <ins
-      class="adsbygoogle"
-      data-ad-format="fluid"
-      data-ad-layout-key="-fb+5w+4e-db+86"
-      data-ad-client="ca-pub-6830849181977374"
-      :data-ad-slot="slot"
-    />
-  </template>
+  <ins
+    class="adsbygoogle bg-light rounded"
+    data-ad-client="ca-pub-6830849181977374"
+    :data-ad-slot="slot"
+    data-ad-format="auto"
+    data-full-width-responsive="true"
+  />
 </template>
 
 <script>
@@ -27,11 +16,7 @@ export default defineComponent({
   name: 'Ad',
 
   props: {
-    slot: String,
-    display: {
-      type: Boolean,
-      default: false
-    }
+    slot: String
   },
 
   setup() {
