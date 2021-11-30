@@ -1,11 +1,14 @@
 <template>
   <ins
-    class="adsbygoogle bg-light rounded"
+    class="adsbygoogle shadow-sm"
     data-ad-client="ca-pub-6830849181977374"
     :data-ad-slot="slot"
     data-ad-format="auto"
     data-full-width-responsive="true"
   />
+  <div class="text-end mt-1 pt-1">
+    <span class="badge text-success border border-success">Ad</span>
+  </div>
 </template>
 
 <script>
@@ -44,6 +47,10 @@ ins.adsbygoogle {
 
   &[data-ad-status="unfilled"] {
     display: none !important;
+
+    & + .text-end {
+      display: none;
+    }
   }
 }
 </style>
