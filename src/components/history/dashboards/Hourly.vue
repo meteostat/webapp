@@ -246,6 +246,7 @@
       <section
         id="details"
         ref="details"
+        class="d-none d-lg-block"
         :class="{ 'skeleton skeleton-table': !showTable }"
         :data-section-title="t('details')"
       >

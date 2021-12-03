@@ -1,5 +1,5 @@
 <template>
-  <div class="card d-none d-lg-block mt-3 mt-md-4">
+  <div class="card mt-3 mt-md-4">
     <div class="card-header card-header-main px-0 rounded-0 bg-white">
       <h2 class="card-header-title lead">
         {{ t('details') }}
