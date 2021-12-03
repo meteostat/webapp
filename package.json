@@ -29,7 +29,7 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vueuse/core": "^4.11.2",
     "@vueuse/head": "^0.5.1",
-    "bootstrap": "^5.1.2",
+    "bootstrap": "^5.1.3",
     "chart.js": "^3.5.1",
     "chartjs-adapter-date-fns": "^2.0.0",
     "date-fns": "^2.25.0",

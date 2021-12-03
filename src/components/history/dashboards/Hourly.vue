@@ -11,7 +11,7 @@
       <!-- Average Temperature -->
       <div class="col-6 pe-1 pe-md-3">
         <div
-          class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-temp h-100"
+          class="card d-flex flex-row overflow-hidden py-1 card-kpi card-temp h-100"
           :title="anyColGaps('temp') ? t('$phrases.someDataMissing') : undefined"
           data-bs-toggle="tooltip"
           data-bs-placement="bottom"
@@ -53,7 +53,7 @@
       <!-- Total Precipitation -->
       <div class="col-6 ps-1 ps-md-3">
         <div
-          class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-prcp h-100"
+          class="card d-flex flex-row overflow-hidden py-1 card-kpi card-prcp h-100"
           :title="prcpKPI && anyColGaps('prcp') ? t('$phrases.someDataMissing') : undefined"
           data-bs-toggle="tooltip"
           data-bs-placement="bottom"
@@ -93,6 +93,7 @@
       </div>
     </div>
 
+    <!-- Main Content Ad -->
     <div class="my-3">
       <Ad slot="3216865845" />
     </div>
@@ -245,22 +246,13 @@
       <section
         id="details"
         ref="details"
-        class="card d-none d-lg-block mt-3 mt-md-4"
+        :class="{ 'skeleton skeleton-table': !showTable }"
+        :data-section-title="t('details')"
       >
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('details') }}
-          </h2>
-        </div>
-        <div
-          class="card-body px-0"
-          :class="{ 'table-placeholder': !showTable }"
-        >
-          <Table
-            v-if="showTable"
-            :data="data"
-          />
-        </div>
+        <Table
+          v-if="showTable"
+          :data="data"
+        />
       </section>
     </div>
   </template>
@@ -270,7 +262,7 @@
     <NoData />
   </template>
 
-  <!-- Ads -->
+  <!-- Main Content Ad -->
   <div class="my-3">
     <Ad slot="3216865845" />
   </div>
@@ -280,24 +272,15 @@
     v-if="differenceInDays(parseISO(range[0]), new Date()) < 0"
     id="maps"
     ref="maps"
-    class="card d-none d-lg-block mt-3 mt-md-4 p-3 bg-light rounded"
+    :class="{ 'skeleton skeleton-maps': !showMaps }"
+    :data-section-title="t('maps')"
   >
-    <div class="card-header card-header-main px-0 rounded-0 bg-light">
-      <h2 class="card-header-title lead">
-        {{ t('maps') }}
-      </h2>
-    </div>
-    <div
-      class="card-body px-0"
-      :class="{ 'maps-placeholder': !showMaps }"
-    >
-      <Maps
-        v-if="showMaps"
-        :lat="lat"
-        :lon="lon"
-        :range="[parseISO(range[0]), parseISO(range[1])]"
-      />
-    </div>
+    <Maps
+      v-if="showMaps"
+      :lat="lat"
+      :lon="lon"
+      :range="[parseISO(range[0]), parseISO(range[1])]"
+    />
   </section>
 
   <!-- Update Time -->
@@ -898,11 +881,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.table-placeholder {
-  min-height: calc(815px + 16px + 16px);
-}
-
-.maps-placeholder {
-  min-height: calc(587px + 16px + 16px);
-}
+@import "~/style/skeleton.scss";
 </style>

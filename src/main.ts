@@ -20,9 +20,7 @@ import {
   faBackward,
   faForward,
   faExpand,
-  faCompress,
   faPause,
-  faHistory,
   faHeart,
   faUserFriends,
   faHandHoldingUsd,
@@ -31,7 +29,9 @@ import {
   faMapMarkerAlt,
   faTrash,
   faDownload,
-  faCircle
+  faCircle,
+  faQuestionCircle,
+  faTable
 } from "@fortawesome/free-solid-svg-icons"
 import {
   faPatreon,
@@ -60,9 +60,7 @@ library.add(
   faBackward,
   faForward,
   faExpand,
-  faCompress,
   faPause,
-  faHistory,
   faHeart,
   faUserFriends,
   faHandHoldingUsd,
@@ -72,6 +70,8 @@ library.add(
   faTrash,
   faDownload,
   faCircle,
+  faQuestionCircle,
+  faTable,
   faPatreon,
   faPaypal,
   faGithub,

@@ -1,44 +1,56 @@
 <template>
   <!-- Toolbar -->
-  <div class="d-flex mt-n2 py-2 sticky-top bg-white">
+  <div class="toolbar sticky-top bg-white">
     <!-- Sections -->
-    <Sections ref="sections" />
+    <Sections ref="sections" /> 
 
-    <!-- Date Range Button -->
     <div class="ms-auto">
+      <!-- Help Button -->
+      <button
+        class="btn btn-light me-2 px-4 px-md-3"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#helpModal"
+      >
+        <icon
+          :icon="['fas', 'question-circle']"
+        />
+        <span class="d-none d-md-inline ms-2">{{ t('help') }}</span>
+      </button>
+      <!-- Export Button --> 
       <button
         class="btn btn-light d-none d-md-inline-block me-2"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#exportModal"
       >
-        <icon
-          :icon="['fas', 'download']"
-        />
+        <icon :icon="['fas', 'download']" />
         <span class="ms-2">{{ t('export') }}</span>
       </button>
+      <!-- Date Range Button -->
       <button
         v-if="range.start"
-        class="btn btn-light"
+        class="btn btn-light px-4 px-md-3"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#dateRange"
         aria-controls="dateRange"
       >
         <icon :icon="['fas', 'calendar-alt']" />
-        <span class="ms-2 d-sm-none">{{ t('period') }}</span>
-        <span class="ms-2 d-none d-sm-inline">{{ format(range.start, t('dateFormat')) }} - {{ format(range.end, t('dateFormat')) }}</span>
+        <span class="d-none d-sm-inline ms-2">
+          {{ format(range.start, t('dateFormat')) }} - {{ format(range.end, t('dateFormat')) }}
+        </span>
       </button>
     </div>
   </div>
 
+  <!-- Help Modal -->
+  <Help
+    :text="t('$manual')"
+  />
+
   <!-- Dashboard -->
   <div class="mt-2 pt-1">
-    <!-- Guide -->
-    <Guide
-      id="history"
-      :text="t('$manual')"
-    />
     <!-- Hourly Data -->
     <template v-if="range && mode === 'hourly'">
       <Hourly
@@ -53,7 +65,7 @@
       />
     </template>
 
-    <!-- Daily Data --->
+    <!-- Daily Data -->
     <template v-else-if="range && mode === 'daily'">
       <Daily
         :station="station"
@@ -201,7 +213,7 @@ import {
 } from 'date-fns'
 import { useSettingsStore } from '~/stores/settings'
 import Sections from '../Sections.vue'
-import Guide from '~/components/Guide.vue'
+import Help from '~/components/Help.vue'
 
 /**
  * Async Components
@@ -218,7 +230,7 @@ export default defineComponent({
 
   components: {
     Sections,
-    Guide,
+    Help,
     Hourly,
     Daily
   },
@@ -427,6 +439,10 @@ export default defineComponent({
 })
 </script>
 
+<style lang="scss">
+@import '~/style/toolbar.scss';
+</style>
+
 <i18n>
 {
   "en": {
@@ -434,7 +450,6 @@ export default defineComponent({
       "title": "Weather History"
     },
     "$manual": "Historical weather data is available in hourly and daily resolution. For all date ranges up to seven days, hourly data is shown. If you choose a longer period, Meteostat will switch to daily frequency. Please note that hourly and daily data do not always match. This can happen due to different aggregation methods or levels of detail.",
-    "period": "Period",
     "dateRange": "Date Range",
     "today": "Today",
     "yesterday": "Yesterday",
@@ -446,7 +461,6 @@ export default defineComponent({
       "title": "Wetterrückblick"
     },
     "$manual": "Historische Wetterdaten sind in stündlicher und täglicher Auflösung verfügbar. Für alle Zeiträume bis zu sieben Tagen werden stündliche Daten angezeigt. Wenn Sie einen längeren Zeitraum wählen, schaltet Meteostat auf die tägliche Frequenz um. Bitte beachten Sie, dass stündliche und tägliche Daten nicht immer übereinstimmen. Dies kann aufgrund unterschiedlicher Aggregationsmethoden oder Detaillierungsgrade vorkommen.",
-    "period": "Zeitraum",
     "dateRange": "Zeitraum",
     "today": "Heute",
     "yesterday": "Gestern",
@@ -458,7 +472,6 @@ export default defineComponent({
       "title": "Cronologia Meteo"
     },
     "$manual": "I dati meteo storici sono disponibili con risoluzione oraria e giornaliera. Per tutti gli intervalli di date fino a sette giorni, vengono mostrati dati orari. Se scegli un periodo più lungo, Meteostat passerà alla frequenza giornaliera. Si prega di notare che i dati orari e giornalieri non sempre corrispondono. Questo può accadere a causa di diversi metodi di aggregazione o livelli di dettaglio.",
-    "period": "Periodo",
     "dateRange": "Intervallo di Date",
     "today": "Oggi",
     "yesterday": "Ieri",
@@ -470,7 +483,6 @@ export default defineComponent({
       "title": "Historial Meteorológico"
     },
     "$manual": "Los datos meteorológicos históricos están disponibles en resolución horaria y diaria. Para todos los intervalos de fechas de hasta siete días, se muestran los datos horarios. Si elige un periodo más largo, Meteostat cambiará a la frecuencia diaria. Tenga en cuenta que los datos horarios y diarios no siempre coinciden. Esto puede ocurrir debido a diferentes métodos de agregación o niveles de detalle.",
-    "period": "Period",
     "dateRange": "Rango de Fechas",
     "today": "Hoy",
     "yesterday": "Ayer",
@@ -482,7 +494,6 @@ export default defineComponent({
       "title": "Weather History"
     },
     "$manual": "Historische weergegevens zijn beschikbaar in uurlijkse en dagelijkse resolutie. Voor alle datumbereiken tot zeven dagen, worden uurlijkse gegevens getoond. Als u een langere periode kiest, schakelt Meteostat over naar de dagelijkse frequentie. Houd er rekening mee dat uurlijkse en dagelijkse gegevens niet altijd overeenkomen. Dit kan gebeuren als gevolg van verschillende aggregatiemethoden of detailniveaus.",
-    "period": "Periode",
     "dateRange": "Datumbereik",
     "today": "Vandaag",
     "gisteren": "Gisteren",
@@ -494,7 +505,6 @@ export default defineComponent({
       "title" : "Historique des Conditions Météorologiques"
     },
     "$manual" : "Les données météorologiques historiques sont disponibles en résolution horaire et quotidienne. Pour toutes les plages de dates jusqu'à sept jours, les données horaires sont affichées. Si vous choisissez une période plus longue, Meteostat passera à la fréquence quotidienne. Veuillez noter que les données horaires et quotidiennes ne correspondent pas toujours. Cela peut se produire en raison de différentes méthodes d'agrégation ou de niveaux de détail.",
-    "période" : "Période",
     "dateRange" : "Plage de Dates",
     "today" : "Aujourd'hui",
     "yesterday" : "Hier",
@@ -506,7 +516,6 @@ export default defineComponent({
       "title": "História do Tempo"
     },
     "$manual": "Os dados meteorológicos históricos estão disponíveis em resolução horária e diária. Para todos os intervalos de datas até sete dias, os dados horários são mostrados. Se escolher um período mais longo, o Meteostat mudará para a frequência diária. Note-se que os dados horários e diários nem sempre coincidem. Isto pode acontecer devido a diferentes métodos de agregação ou níveis de detalhe.",
-    "period": "Período",
     "dateRange": "Intervalo de Datas",
     "today": "Hoje",
     "yesterday": "Ontem",
@@ -518,7 +527,6 @@ export default defineComponent({
       "title": "История погоды"
     },
     "$manual": "Исторические данные о погоде доступны в почасовом и ежедневном разрешении. Для всех диапазонов дат до семи дней отображаются почасовые данные. Если вы выберете более длительный период, Meteostat переключится на ежедневную частоту. Обратите внимание, что почасовые и суточные данные не всегда совпадают. Это может происходить из-за различных методов агрегирования или уровней детализации.",
-    "period": "Период",
     "dateRange": "Диапазон дат",
     "today": "Сегодня",
     "yesterday": "Вчера",

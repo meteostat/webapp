@@ -8,6 +8,7 @@
         <p class="lead">
           {{ t('intro') }}
         </p>
+        <!-- Main Content Ad -->
         <div class="my-3">
           <Ad slot="3216865845" />
         </div>

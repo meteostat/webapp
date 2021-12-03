@@ -28,11 +28,9 @@ button > *, a > * {
 
 /* Alerts */
 .alert {
-  background: $white;
+  background: $gray-100;
   color: $dark;
-  border-top: 1px solid $gray-200;
-  border-right: 1px solid $gray-200;
-  border-bottom: 1px solid $gray-200;
+  border: 0;
 
   &-danger {
     border-left: 3px solid $danger;
@@ -87,12 +85,11 @@ button > *, a > * {
   border: 1px solid $gray-200;
 
   .card-header {
-    background-color: $light;
     border-bottom: 1px solid $gray-200;
   }
 }
 
-section.card {
+section.card, section>.card {
   border: 0;
 
   .card-header-main {
@@ -109,7 +106,7 @@ section.card {
 /* Parameter Cards */
 .card {
   &-kpi {
-    border: 1px solid $gray-100;
+    border: 1px solid $gray-200;
 
     .card-body {
       overflow: hidden;

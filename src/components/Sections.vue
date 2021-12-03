@@ -13,12 +13,27 @@
       <li
         v-for="item in sections"
         :key="item.id"
-        :class="{ 'pt-1 mt-1 border-top': item.id === 'details' }"
+        :class="{ 'pt-1 mt-1 border-top': item.id === 'details' || item.id === 'maps' }"
       >
         <a
           class="dropdown-item"
           @click="scrollTo(item.id)"
-        >{{ item.title }}</a>
+        >
+          <span
+            v-if="item.id === 'details' || item.id === 'maps'"
+            class="dropdown-icon d-inline-block me-1 text-center"
+          >
+            <icon
+              v-if="item.id === 'details'"
+              :icon="['fas', 'table']"
+            />
+            <icon
+              v-if="item.id === 'maps'"
+              :icon="['fas', 'map-marker-alt']"
+            />
+          </span>
+          {{ item.title }}
+        </a>
       </li>
     </ul>
   </div>
@@ -65,7 +80,7 @@ export default defineComponent({
           const heading = section.querySelector('h2')
           this.sections.push({
             id: section.id,
-            title: heading?.innerText
+            title: heading?.innerText || section.dataset.sectionTitle
           })
         }
       })
@@ -78,6 +93,12 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.dropdown-icon {
+  width: 1rem;
+}
+</style>
 
 <i18n>
 {

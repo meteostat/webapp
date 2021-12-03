@@ -1,20 +1,32 @@
 <template>
   <template v-if="periods.length > 0 && normals && anyData()">
     <!-- Toolbar -->
-    <div class="d-flex mt-n2 py-2 sticky-top bg-white">
+    <div class="toolbar sticky-top bg-white">
       <!-- Sections -->
       <Sections ref="sections" />
-      <!-- Reference Periods -->
       <div class="ms-auto">
-        <div class="dropdown">
+        <!-- Help Button -->
+        <button
+          class="btn btn-light me-2 px-4 px-md-3"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#helpModal"
+        >
+          <icon
+            :icon="['fas', 'question-circle']"
+          />
+          <span class="d-none d-md-inline ms-2">{{ t('help') }}</span>
+        </button>
+        <!-- Reference Periods Dropdown -->
+        <div class="dropdown d-inline-block">
           <button
-            class="btn btn-light dropdown-toggle"
+            class="btn btn-light px-4 px-md-3"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <icon :icon="['fas', 'history']" />
-            <span class="ms-2">
+            <icon :icon="['fas', 'calendar-alt']" />
+            <span class="d-none d-sm-inline ms-2">
               <template v-if="activePeriod === null">{{ t('latest') }}</template>
               <template v-else>{{ activePeriod }} - {{ activePeriod + 29 }}</template>
             </span>
@@ -43,12 +55,12 @@
       </div>
     </div>
 
+    <!-- Help Modal -->
+    <Help
+      :text="t('$manual')"
+    />
+
     <div class="mt-2 pt-1">
-      <!-- Guide -->
-      <Guide
-        id="climate"
-        :text="t('$manual')"
-      />
       <!-- Interpolation Info -->
       <InterpolationAlert
         v-if="!station"
@@ -59,7 +71,7 @@
         <div class="col-6 pe-1 pe-md-3">
           <!-- Average Temperature -->
           <div
-            class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-temp h-100"
+            class="card d-flex flex-row overflow-hidden py-1 card-kpi card-temp h-100"
           >
             <div class="card-body py-2">
               <h5 class="card-title">
@@ -81,7 +93,7 @@
         <div class="col-6 ps-1 ps-md-3">
           <!-- Total Precipitation -->
           <div
-            class="card d-flex flex-row overflow-hidden py-1 rounded shadow-sm card-kpi card-prcp h-100"
+            class="card d-flex flex-row overflow-hidden py-1 card-kpi card-prcp h-100"
           >
             <div class="card-body py-2">
               <h5 class="card-title">
@@ -102,6 +114,7 @@
         </div>
       </div>
 
+      <!-- Main Content Ad -->
       <div class="my-3">
         <Ad slot="3216865845" />
       </div>
@@ -224,7 +237,7 @@ import { ChartDefinitionInterface } from '~/utils/interfaces'
 import DataMixin from '../Location.mixin'
 import { tsTooltips } from '~/components/charts/timeseries.config'
 import Sections from '../Sections.vue'
-import Guide from '~/components/Guide.vue'
+import Help from '~/components/Help.vue'
 import Ad from '~/components/Ad.vue'
 import Chart from '../charts/Chart.vue'
 
@@ -246,7 +259,7 @@ export default defineComponent({
     InterpolationAlert,
     Chart,
     NoData,
-    Guide,
+    Help,
     Ad
   },
 
@@ -579,6 +592,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss">
+@import '~/style/toolbar.scss';
+</style>
 
 <i18n>
 {

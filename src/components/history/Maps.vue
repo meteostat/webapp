@@ -1,185 +1,189 @@
 <template>
-  <div
-    ref="wrapper"
-    class="wrapper"
-  >
-    <div class="d-flex align-items-center">
-      <span class="lead">{{ format(date, 'yyyy-MM-dd') }}</span>
-      <div
-        v-if="cells.length === 0"
-        class="ms-2"
-      >
-        <icon
-          :icon="['fas', 'exclamation-circle']"
-          class="me-1 text-danger"
-        />
-        {{ t('$phrases.noData') }}
-      </div>
-      <div
-        v-if="loading"
-        class="spinner-border spinner-border-sm ms-2"
-        role="status"
-      />
-      <div class="d-flex align-items-center ms-auto">
-        <button
-          type="button"
-          class="btn btn-light bg-white"
-          @click="downloadMap()"
-        >
-          <icon :icon="['fas', 'download']" />
-        </button>
-        <button
-          type="button"
-          class="btn btn-light bg-white ms-1"
-          @click="toggleFullscreen()"
-        >
-          <icon
-            v-if="!fullscreen"
-            :icon="['fas', 'expand']"
-          />
-          <icon
-            v-if="fullscreen"
-            :icon="['fas', 'compress']"
-          />
-        </button>
-        <div class="dropdown ms-2">
-          <button
-            id="dropdownMenuButton"
-            class="btn btn-light bg-white dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {{ parameterName }}
-          </button>
-          <ul
-            class="dropdown-menu"
-            aria-labelledby="dropdownMenuButton"
-          >
-            <li>
-              <a
-                class="dropdown-item"
-                @click="setParameter('tavg')"
-              >{{ t('$params.tavg') }}</a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                @click="setParameter('tmin')"
-              >{{ t('$params.tmin') }}</a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                @click="setParameter('tmax')"
-              >{{ t('$params.tmax') }}</a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                @click="setParameter('prcp')"
-              >{{ t('$params.prcp') }}</a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                @click="setParameter('wspd')"
-              >{{ t('$params.wspd') }}</a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                @click="setParameter('pres')"
-              >{{ t('$params.pres') }}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <div class="card mt-3 mt-md-4 p-3 bg-light rounded">
+    <div class="card-header card-header-main px-0 rounded-0 bg-light">
+      <h2 class="card-header-title lead">
+        {{ t('maps') }}
+      </h2>
     </div>
     <div
-      ref="map"
-      class="map my-2 rounded"
-    />
-    <div class="d-flex align-items-center">
-      <div class="btn-group btn-group-sm rounded border">
-        <button
-          type="button"
-          class="btn btn-light bg-white px-3"
-          :disabled="subDays(date, 1) < range[0]"
-          @click="goBackward()"
-        >
-          <icon :icon="['fas', 'backward']" />
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary px-4"
-          :disabled="differenceInDays(range[1], range[0]) === 0"
-          @click="play()"
-        >
-          <icon
-            v-if="!playing"
-            :icon="['fas', 'play']"
+      class="card-body px-0"
+    >
+      <div
+        ref="wrapper"
+        class="wrapper"
+      >
+        <div class="d-flex align-items-center">
+          <span class="lead">{{ format(date, 'yyyy-MM-dd') }}</span>
+          <div
+            v-if="cells.length === 0 && !loading"
+            class="ms-2"
+          >
+            <icon
+              :icon="['fas', 'exclamation-circle']"
+              class="me-1 text-danger"
+            />
+            {{ t('$phrases.noData') }}
+          </div>
+          <div
+            v-if="loading"
+            class="spinner-border spinner-border-sm ms-2"
+            role="status"
           />
-          <icon
-            v-if="playing"
-            :icon="['fas', 'pause']"
-          />
-        </button>
-        <button
-          type="button"
-          class="btn btn-light bg-white px-3"
-          :disabled="addDays(date, 1) > range[1]"
-          @click="goForward()"
-        >
-          <icon :icon="['fas', 'forward']" />
-        </button>
-      </div>
-      <small class="ms-auto">
-        <a
-          href="https://www.openstreetmap.org/"
-          target="_blank"
-          rel="noreferrer nofollow"
-          class="text-muted"
-        >
-          OpenStreetMap
-        </a>,
-        <a
-          href="https://carto.com/attribution"
-          target="_blank"
-          rel="noreferrer nofollow"
-          class="text-muted"
-        >
-          CARTO
-        </a>
-      </small>
-    </div>
-    <div class="legend mt-4">
-      <div class="d-flex align-item-center">
+          <div class="d-flex align-items-center ms-auto">
+            <button
+              type="button"
+              class="btn btn-light d-none d-md-inline-block bg-white"
+              @click="downloadMap()"
+            >
+              <icon :icon="['fas', 'download']" />
+            </button>
+            <button
+              type="button"
+              class="btn btn-light d-none d-md-inline-block bg-white ms-1"
+              @click="toggleFullscreen()"
+            >
+              <icon :icon="['fas', 'expand']" />
+            </button>
+            <div class="dropdown ms-2">
+              <button
+                id="dropdownMenuButton"
+                class="btn btn-light bg-white dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ parameterName }}
+              </button>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a
+                    class="dropdown-item"
+                    @click="setParameter('tavg')"
+                  >{{ t('$params.tavg') }}</a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    @click="setParameter('tmin')"
+                  >{{ t('$params.tmin') }}</a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    @click="setParameter('tmax')"
+                  >{{ t('$params.tmax') }}</a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    @click="setParameter('prcp')"
+                  >{{ t('$params.prcp') }}</a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    @click="setParameter('wspd')"
+                  >{{ t('$params.wspd') }}</a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    @click="setParameter('pres')"
+                  >{{ t('$params.pres') }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div
-          v-if="scale.zero"
-          class="legend-item"
-          :style="`background: ${scale.zero}`"
+          ref="map"
+          class="map my-2 rounded"
         />
-        <div
-          v-for="color in scale.colors"
-          :key="color"
-          class="legend-item"
-          :style="`background: ${color}`"
-        />
-      </div>
-      <div class="d-flex align-items-center justify-content-between mt-2">
-        <span>
-          {{ scale.min }}
-          <span class="text-muted">{{ scale.label }}</span>
-        </span>
-        <span>
-          {{ Math.round((scale.min + scale.max) / 2) }}
-          <span class="text-muted">{{ scale.label }}</span>
-        </span>
-        <span>
-          {{ scale.max }}
-          <span class="text-muted">{{ scale.label }}</span>
-        </span>
+        <div class="d-flex align-items-center">
+          <div class="btn-group btn-group-sm rounded border">
+            <button
+              type="button"
+              class="btn btn-light bg-white px-3"
+              :disabled="subDays(date, 1) < range[0]"
+              @click="goBackward()"
+            >
+              <icon :icon="['fas', 'backward']" />
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary px-4"
+              :disabled="differenceInDays(range[1], range[0]) === 0"
+              @click="play()"
+            >
+              <icon
+                v-if="!playing"
+                :icon="['fas', 'play']"
+              />
+              <icon
+                v-if="playing"
+                :icon="['fas', 'pause']"
+              />
+            </button>
+            <button
+              type="button"
+              class="btn btn-light bg-white px-3"
+              :disabled="addDays(date, 1) > range[1]"
+              @click="goForward()"
+            >
+              <icon :icon="['fas', 'forward']" />
+            </button>
+          </div>
+          <small class="ms-auto">
+            <a
+              href="https://www.openstreetmap.org/"
+              target="_blank"
+              rel="noreferrer nofollow"
+              class="text-muted"
+            >
+              OSM,
+            </a>
+            <a
+              href="https://carto.com/attribution"
+              target="_blank"
+              rel="noreferrer nofollow"
+              class="text-muted"
+            >
+              CARTO
+            </a>
+          </small>
+        </div>
+        <div class="legend mt-4">
+          <div class="d-flex align-item-center">
+            <div
+              v-if="scale.zero"
+              class="legend-item"
+              :style="`background: ${scale.zero}`"
+            />
+            <div
+              v-for="color in scale.colors"
+              :key="color"
+              class="legend-item"
+              :style="`background: ${color}`"
+            />
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <span>
+              {{ scale.min }}
+              <span class="text-muted">{{ scale.label }}</span>
+            </span>
+            <span>
+              {{ Math.round((scale.min + scale.max) / 2) }}
+              <span class="text-muted">{{ scale.label }}</span>
+            </span>
+            <span>
+              {{ scale.max }}
+              <span class="text-muted">{{ scale.label }}</span>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -238,7 +242,6 @@ export default defineComponent({
       interval: null,
       playing: false,
       loading: true,
-      fullscreen: false,
       scale: {
         colors: [],
         label: null,
@@ -389,16 +392,21 @@ export default defineComponent({
           // Create cells
           result.data.forEach((data: Array<number>): void => {
             if (data[0] !== null && data[1] !== null && data[2] !== null) {
-              this.cells.push(
-                this.L.rectangle([
-                  [data[0]+0.5, data[1]-0.5],
-                  [data[0]-0.5, data[1]+0.5]
-                ], {
-                  fillColor: scale.getColor(data[2]),
-                  fillOpacity: 0.6,
-                  weight: 0
-                }).addTo(this.map)
-              )
+              try {
+                this.cells.push(
+                  this.L.rectangle([
+                    [data[0]+0.5, data[1]-0.5],
+                    [data[0]-0.5, data[1]+0.5]
+                  ], {
+                    fillColor: scale.getColor(data[2]),
+                    fillOpacity: 0.6,
+                    weight: 0
+                  }).addTo(this.map)
+                )
+              }
+              catch {
+                return false
+              }
             }
           })
           // Finish loading
@@ -468,7 +476,6 @@ export default defineComponent({
           document.exitFullscreen()
         }
       }
-      this.fullscreen = !this.fullscreen
     }
   }
 })
@@ -479,25 +486,39 @@ export default defineComponent({
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 
+.card {
+  @include media-breakpoint-down(sm) {
+    margin: 0 -0.75rem;
+    border: 0;
+    border-radius: 0 !important;
+  }
+}
+
 .map {
   width: 100%;
   height: 500px;
+
+  @include media-breakpoint-down(sm) {
+    max-height: 50vh;
+  }
 
   a, a:hover, a:active {
     color: #333 !important;
   }
 }
 
-.wrapper:fullscreen {
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  background: $white;
-
-  .map {
+.wrapper {
+  &:fullscreen {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
     height: 100%;
+    padding: 1rem;
+    background: $white;
+
+    .map {
+      height: 100%;
+    }
   }
 }
 

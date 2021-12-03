@@ -28,8 +28,7 @@
             @input="search"
           >
           <span
-            v-if="!isMobile"
-            class="input-group-text border-0"
+            class="input-group-text d-none d-lg-flex border-0"
           >
             <img src="https://media.meteostat.net/assets/search-hotkey.svg">
           </span>
@@ -215,7 +214,6 @@ export default defineComponent({
 
   data(): Record<string, any> {
     return {
-      isMobile: true,
       term: null,
       results: {},
       activeResult: null,
@@ -232,8 +230,6 @@ export default defineComponent({
   },
 
   mounted(): void {
-    // Check if user is on a mobile device
-    this.isMobile = window?.matchMedia('(hover: none) and (pointer: coarse)').matches
     // Show donation sidebar
     document.getElementById('donationSidebar')?.addEventListener('show.bs.offcanvas', () => {
       this.showDonation = true
@@ -346,6 +342,11 @@ export default defineComponent({
 
     .input-group-text, .form-control {
       background: $gray-200;
+
+      @include media-breakpoint-down(lg) {
+        border-top-right-radius: 0.25rem !important;
+        border-bottom-right-radius: 0.25rem !important;
+      }
     }
 
     .search-results {

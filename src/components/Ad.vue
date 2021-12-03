@@ -1,14 +1,11 @@
 <template>
   <ins
-    class="adsbygoogle shadow-sm"
+    class="adsbygoogle"
     data-ad-client="ca-pub-6830849181977374"
     :data-ad-slot="slot"
     data-ad-format="auto"
     data-full-width-responsive="true"
   />
-  <div class="text-end mt-1 pt-1">
-    <span class="badge text-success border border-success">Ad</span>
-  </div>
 </template>
 
 <script>
