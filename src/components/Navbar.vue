@@ -125,8 +125,7 @@
             </router-link>
             <a
               class="nav-item"
-              href="https://medium.com/meteostat"
-              target="_blank"
+              href="https://blog.meteostat.net"
             >
               <span class="nav-link">{{ t('blog') }}</span>
             </a>

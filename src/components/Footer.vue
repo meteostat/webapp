@@ -13,7 +13,7 @@
           </a>
         </li>
         <li class="d-inline-block ms-3">
-          <a href="https://medium.com/meteostat">
+          <a href="https://blog.meteostat.net">
             {{ t('blog') }}
           </a>
         </li>

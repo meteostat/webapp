@@ -97,7 +97,7 @@ export default vitedge(
     routes,
     base: ({ url }) => {
       const locale = extractLocaleFromPath(url.pathname)
-      return `/${locale}`
+      return `/${locale}/`
     }
   },
   async (ctx) => {

@@ -5,6 +5,10 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^www.meteostat.net$ [NC]
 RewriteRule ^(.*)$ https://meteostat.net/$1 [R=301,L]
 
+# Remove trailing slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z]{2})/(.*)/$ /$1/$2 [R=301,L]
+
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
