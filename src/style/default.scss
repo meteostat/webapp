@@ -3,6 +3,21 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./utils";
 
+body {
+  &.loading {
+    .loading-overlay {
+      visibility: visible !important;
+      display: flex !important;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 99999;
+    }
+  }
+}
+
 /* Links & Buttons */
 a, a:hover, a:focus, a:active {
   text-decoration: none;
@@ -68,6 +83,11 @@ button > *, a > * {
 /* Navbars */
 .navbar {
   border-bottom: 1px solid $gray-200;
+
+  .logo {
+    width: 36px;
+    height: 36px;
+  }
 
   .navbar-toggler:focus {
     box-shadow: none;

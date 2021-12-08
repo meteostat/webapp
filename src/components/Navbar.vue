@@ -313,11 +313,6 @@ export default defineComponent({
 @import "../node_modules/bootstrap/scss/mixins";
 
 .navbar {
-  .logo {
-    width: 36px;
-    height: 36px;
-  }
-
   .search {
     flex: 1;
     max-width: 420px;

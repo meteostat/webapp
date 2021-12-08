@@ -125,6 +125,7 @@ export default vitedge(
 
     // FontAwesome Icons
     app.component('Icon', FontAwesomeIcon)
+
     // Browser only
     if (!import.meta.env.SSR) {
       // Scroll to top after each navigation
