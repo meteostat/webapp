@@ -10,6 +10,8 @@
           <img
             src="https://media.meteostat.net/icon.svg"
             class="logo d-inline-block align-text-top"
+            width="36"
+            height="36"
           >
           <span class="d-none d-lg-inline-block mb-0 ms-2 h4">Meteostat</span>
         </router-link>

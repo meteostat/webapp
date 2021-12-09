@@ -64,7 +64,8 @@ export default defineComponent({
 
   mounted() {
     this.$nextTick(() => {
-      document.body.removeAttribute('style')
+      document.getElementById('app')?.removeAttribute('style')
+      this.$loaded()
     })
   }
 })

@@ -85,7 +85,7 @@ library.add(
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
     $loading(uid: string): any,
-    $loaded(uid: string): any,
+    $loaded(uid?: string): any,
     $bs: any,
     $api: string
   }
@@ -141,9 +141,14 @@ export default vitedge(
         // Add uid to loading queue
         app.config.globalProperties.$state.loading.push(uid)
       }
-      app.config.globalProperties.$loaded = (uid: string): void => {
+      app.config.globalProperties.$loaded = (uid?: string): void => {
         // Remove uid from loading queue
-        app.config.globalProperties.$state.loading = app.config.globalProperties.$state.loading.filter((item: string): boolean => item !== uid)
+        if (uid) {
+          app.config.globalProperties.$state.loading =
+            app.config.globalProperties.$state.loading.filter(
+              (item: string): boolean => item !== uid
+            )
+        }
         // Remove loading class from body if queue is empty
         if (app.config.globalProperties.$state.loading.length === 0) {
           document.body.classList.remove('loading')

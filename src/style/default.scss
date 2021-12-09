@@ -6,7 +6,6 @@
 body {
   &.loading {
     .loading-overlay {
-      visibility: visible !important;
       display: flex !important;
       width: 100vw;
       height: 100vh;
@@ -83,11 +82,6 @@ button > *, a > * {
 /* Navbars */
 .navbar {
   border-bottom: 1px solid $gray-200;
-
-  .logo {
-    width: 36px;
-    height: 36px;
-  }
 
   .navbar-toggler:focus {
     box-shadow: none;
