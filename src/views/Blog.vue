@@ -18,7 +18,11 @@
               class="fw-bold d-flex justify-content-center align-items-center text-white"
             >{{ post.lang }}</span>
           </div>
-          <img :src="post.img" class="story-img img-fluid mb-3" />
+          <img
+            :src="post.img"
+            class="story-img img-fluid mb-3"
+            loading="lazy"
+          />
           <h5 class="text-dark">
             {{ post.title }}
           </h5>
@@ -30,7 +34,7 @@
     </div>
     <div
       v-if="!complete"
-      ref="loading"
+      ref="spinner"
       class="d-flex justify-content-center my-4"
     >
       <div
@@ -74,7 +78,7 @@ export default defineComponent({
     const isTag = ref(!!route.params.tag)
     const tag = reactive(props._tag || {})
     const loading = ref(false)
-    const complete = ref(false)
+    const complete = ref(props._posts && props._posts.length < 9 ? true : false)
 
     // Meta
     useHead({
@@ -113,16 +117,16 @@ export default defineComponent({
   },
 
   methods: {
-    async viewportCheck() {
+    viewportCheck() {
       if (!this.loading && !this.complete) {
-        if (isElementInViewport(this.$refs.loading as HTMLElement)) {
+        if (isElementInViewport(this.$refs.spinner as HTMLElement)) {
           this.loading = true
           if (this.isTag && (this.tag as any).count > this.posts.length) {
-            await this.fetchTag(this.posts.length)
+            this.fetchTag(this.posts.length)
           } else if ((this.isTag && this.tag as any).count === this.posts.length) {
             this.complete = true
           } else if (!this.isTag) {
-            await this.fetchPosts(this.posts.length)
+            this.fetchPosts(this.posts.length)
           }
         }
       }
