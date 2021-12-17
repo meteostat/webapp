@@ -5,6 +5,24 @@ export default [
     component: (): Promise<any> => import('~/views/Home.vue')
   },
   {
+    path: '/blog',
+    name: 'Blog',
+    component: (): Promise<any> => import('~/views/Blog.vue')
+  },
+  {
+    path: '/blog/tag/:tag',
+    name: 'BlogTag',
+    component: (): Promise<any> => import('~/views/Blog.vue'),
+    meta: {
+      propsGetter: 'Blog'
+    }
+  },
+  {
+    path: '/blog/:slug',
+    name: 'BlogPost',
+    component: (): Promise<any> => import('~/views/BlogPost.vue')
+  },
+  {
     path: '/station/:id',
     name: 'StationHistory',
     component: (): Promise<any> => import('~/views/Station.vue')

@@ -125,12 +125,12 @@
             >
               <span class="nav-link">{{ t('patrons') }}</span>
             </router-link>
-            <a
+            <router-link
               class="nav-item"
-              href="https://blog.meteostat.net"
+              to="/blog"
             >
               <span class="nav-link">{{ t('blog') }}</span>
-            </a>
+            </router-link>
           </ul>
           <div class="d-flex ms-auto mt-2 mt-lg-0">
             <a
