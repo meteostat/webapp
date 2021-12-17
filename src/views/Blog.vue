@@ -20,7 +20,7 @@
           </div>
           <div
             v-if="imgLoaded[index] === undefined"
-            class="story-img placeholder bg-dark"
+            class="story-img placeholder mb-3 bg-dark"
           />
           <img
             :src="post.img"
