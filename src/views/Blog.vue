@@ -5,9 +5,9 @@
     >
       <div class="row">
         <router-link
-          v-for="post in posts"
+          v-for="(post, index) in posts"
           :key="post.url"
-          class="col-12 col-md-4 p-4 story bg-light border border-white rounded-3"
+          class="col-12 col-md-4 p-4 story bg-light border border-white rounded-3 placeholder-glow"
           :to="`/blog/${post.slug}`"
         >
           <div
@@ -18,10 +18,16 @@
               class="fw-bold d-flex justify-content-center align-items-center text-white"
             >{{ post.lang }}</span>
           </div>
+          <div
+            v-if="imgLoaded[index] === undefined"
+            class="story-img placeholder bg-dark"
+          />
           <img
             :src="post.img"
             class="story-img img-fluid mb-3"
             loading="lazy"
+            v-show="imgLoaded[index] || false"
+            @load="imgLoaded[index] = true"
           />
           <h5 class="text-dark">
             {{ post.title }}
@@ -98,6 +104,12 @@ export default defineComponent({
       tag,
       loading,
       complete
+    }
+  },
+
+  data() {
+    return {
+      imgLoaded: []
     }
   },
 
