@@ -25,7 +25,6 @@
           <img
             :src="post.img"
             class="story-img img-fluid mb-3"
-            loading="lazy"
             v-show="imgLoaded[index] || false"
             @load="imgLoaded[index] = true"
           />
@@ -83,6 +82,7 @@ export default defineComponent({
     const posts = reactive(props._posts || [])
     const isTag = ref(!!route.params.tag)
     const tag = reactive(props._tag || {})
+    const imgLoaded = reactive([])
     const loading = ref(false)
     const complete = ref(props._posts && props._posts.length < 9 ? true : false)
 
@@ -102,18 +102,14 @@ export default defineComponent({
       posts,
       isTag,
       tag,
+      imgLoaded,
       loading,
       complete
     }
   },
 
-  data() {
-    return {
-      imgLoaded: []
-    }
-  },
-
   mounted() {
+    setTimeout(() => { console.log(this) }, 1000)
     if (this.isTag && !this._tag) {
       this.fetchTag()
     }
