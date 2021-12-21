@@ -1,5 +1,5 @@
 <template>
-  <div v-if="post?.title" class="container py-5">
+  <div v-if="post.slug" class="container py-5">
     <div class="row">
       <div class="col-12 col-md-9">
         <h1 class="post-title mb-4">
@@ -10,10 +10,10 @@
       <div class="col-12 col-md-3">
         <div class="sticky-top py-3 px-2">
           <div class="d-flex align-items-center mb-2">
-            <img :src="post.author.avatar" class="rounded-circle me-2" width="28" height="28" />
-            <strong>{{ post.author.name }}</strong>
+            <img :src="post.author?.avatar" class="rounded-circle me-2" width="28" height="28" />
+            <strong>{{ post.author?.name }}</strong>
           </div>
-          <p class="text-muted">{{ post.author.description }}</p>
+          <p class="text-muted">{{ post.author?.description }}</p>
           <p class="text-muted mb-4">
             <icon
               :icon="['fas', 'calendar-alt']"
@@ -55,7 +55,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 
@@ -72,29 +72,46 @@ export default defineComponent({
   setup(props: Record<string, any>): Record<string, any> { 
     const { t } = useI18n()
 
-    const pageTitle = ref(props._post?.title || '')
-    const pageDescription = ref(props._post?.excerpt || '')
+    const post = reactive(props._post || {})
 
     useHead({
-      title: computed(() => `${pageTitle.value} | Meteostat`),
+      title: computed(() => `${post.title || ''} | Meteostat`),
       meta: [
         {
           name: 'description',
-          content: pageDescription.value
-        }
+          content: computed(() => post.excerpt || null)
+        },
+        {
+          name: 'author',
+          content: computed(() => post.author?.name || null)
+        },
+        {
+          property: 'og:type',
+          content: 'article'
+        },
+        {
+          property: 'og:title',
+          content: computed(() => `${post.title || ''} | Meteostat`)
+        },
+        {
+          property: 'og:image',
+          content: computed(() => post.img || null)
+        },
+        {
+          property: 'article:published_time',
+          content: computed(() => post.date || null)
+        },
       ],
     })
 
     return {
       t,
-      pageTitle,
-      pageDescription
+      post
     }
   },
 
   data() {
     return {
-      post: this._post || null,
       socialLinks: {
         twitter(link: string) {
           return `https://twitter.com/intent/tweet?url=${link}`
@@ -109,7 +126,7 @@ export default defineComponent({
     }
   },
   async mounted() {
-    if (!this.post) {
+    if (!this._post) {
       // Fetch insights article
       await this.fetchPost()
     }
@@ -123,9 +140,7 @@ export default defineComponent({
       await fetch(`${this.$api}/cms/blog/post?lang=${this.$locale}&slug=${this.$route.params.slug}`)
         .then(response => response.json())
         .then(data => {
-          this.post = data.data
-          this.pageTitle = this.post.title
-          this.pageDescription = this.post.excerpt
+          Object.assign(this.post, data.data)
         })
     },
 
