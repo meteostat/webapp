@@ -56,6 +56,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, computed } from 'vue'
+import { useContext } from 'vitedge'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 
@@ -73,6 +74,11 @@ export default defineComponent({
     const { t } = useI18n()
 
     const post = reactive(props._post || {})
+
+    if (!post.slug && import.meta.env.SSR) {
+      const { writeResponse } = useContext()
+      writeResponse({ status: 404 })
+    }
 
     useHead({
       title: computed(() => `${post.title || ''} | Meteostat`),

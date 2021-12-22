@@ -4,37 +4,25 @@
       class="container-fluid mb-4"
     >
       <div class="row">
-        <router-link
-          v-for="(post, index) in posts"
+        <template
+          v-for="post in posts"
           :key="post.url"
-          class="col-12 col-md-4 p-4 story bg-light border border-white rounded-3 placeholder-glow"
-          :to="`/blog/${post.slug}`"
         >
-          <div
-            v-if="post.lang !== $locale"
-            class="ribbon ribbon-lang"
+          <router-link
+            v-if="post.lang === $locale"
+            class="col-12 col-md-4 p-4 story position-relative bg-light border border-white rounded-3 placeholder-glow"
+            :to="`/blog/${post.slug}`"
           >
-            <span
-              class="fw-bold d-flex justify-content-center align-items-center text-white"
-            >{{ post.lang }}</span>
-          </div>
-          <div
-            v-if="imgLoaded[index] === undefined"
-            class="story-img placeholder mb-3 bg-dark"
-          />
-          <img
-            :src="post.img"
-            class="story-img img-fluid mb-3"
-            v-show="imgLoaded[index] || false"
-            @load="imgLoaded[index] = true"
-          />
-          <h5 class="text-dark">
-            {{ post.title }}
-          </h5>
-          <p class="text-muted mb-0">
-            {{ post.excerpt }}
-          </p>
-        </router-link>
+            <blog-post-card :post="post" />
+          </router-link>
+          <a
+            v-else
+            class="col-12 col-md-4 p-4 story position-relative bg-light border border-white rounded-3 placeholder-glow"
+            :href="`/${post.lang}/blog/${post.slug}`"
+          >
+            <blog-post-card :post="post" />
+          </a>
+        </template>
       </div>
     </div>
     <div
@@ -56,9 +44,14 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import isElementInViewport from '~/utils/spy'
+import BlogPostCard from '~/components/BlogPostCard.vue'
 
 export default defineComponent({
   name: 'Blog',
+
+  components: {
+    BlogPostCard
+  },
 
   props: {
     _posts: {
@@ -82,7 +75,6 @@ export default defineComponent({
     const posts = reactive(props._posts || [])
     const isTag = ref(!!route.params.tag)
     const tag = reactive(props._tag || {})
-    const imgLoaded = reactive([])
     const loading = ref(false)
     const complete = ref(props._posts && props._posts.length < 9 ? true : false)
 
@@ -102,7 +94,6 @@ export default defineComponent({
       posts,
       isTag,
       tag,
-      imgLoaded,
       loading,
       complete
     }
@@ -185,46 +176,6 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-@import '~/style/variables';
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-
-.story-img {
-  height: 180px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.story {
-  position: relative;
-
-  .ribbon {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    text-align: right;
-    z-index: 1;
-    overflow: hidden;
-    width: 75px;
-    height: 75px;
-
-    span {
-      font-size: 80%;
-      transform: rotate(45deg);
-      background: $primary;
-      top: 16px;
-      right: -22px;
-      text-transform: uppercase;
-      width: 100px;
-      position: absolute;
-      padding: 2px 0;
-    }  
-  }
-}
-</style>
 
 <i18n>
 {

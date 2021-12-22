@@ -24,6 +24,7 @@ export default <EdgeProps>{
 
       return {
         data: {
+          status: post.slug ? 200 : 404,
           _post: post
         },
       }
