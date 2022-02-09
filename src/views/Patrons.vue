@@ -113,19 +113,21 @@
       <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
         <h3 class="mb-4">
           <icon
-            :icon="['fas', 'user-friends']"
-            class="me-2"
+            :icon="['fas', 'heart']"
+            class="me-2 text-danger"
           />
-          {{ t('backers') }}
+          GitHub Sponsors
         </h3>
-        <p
+        <i18n-t
+          keypath="$backersText"
+          tag="p"
           class="text-muted"
         >
-          {{ t('$backersText') }}
-        </p>
+          <template #service>GitHub Sponsors</template>
+        </i18n-t>
         <ul>
           <li
-            v-for="backer in backers.sort()"
+            v-for="backer in ghBackers"
             :key="backer"
           >
             <a
@@ -147,18 +149,14 @@
               href="https://www.patreon.com/meteostat"
               target="_blank"
               rel="noreferrer"
-            >
-              Patreon
-            </a>
+            >Patreon</a>
           </template>
           <template #github>
             <a
               href="https://github.com/sponsors/clampr"
               target="_blank"
               rel="noreferrer"
-            >
-              GitHub
-            </a>
+            >GitHub</a>
           </template>
           <template #donation>
             <a
@@ -173,37 +171,50 @@
       <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
         <h3 class="mb-4">
           <icon
-            :icon="['fas', 'hand-holding-usd']"
+            :icon="['fab', 'patreon']"
             class="me-2"
           />
-          {{ t('donors') }}
+          Patreon
         </h3>
-        <p
+        <i18n-t
+          keypath="$backersText"
+          tag="p"
           class="text-muted"
         >
-          {{ t('$donorsText') }}
-        </p>
+          <template #service>Patreon</template>
+        </i18n-t>
         <ul>
           <li
-            v-for="donor in donors.sort()"
-            :key="donor"
+            v-for="patron in patrons"
+            :key="patron.name"
           >
-            {{ donor }}
+            <a
+              :href="patron.link"
+              target="_blank"
+              rel="noreferrer nofollow"
+            >
+              {{ patron.name }}
+            </a>
           </li>
         </ul>
         <hr>
         <i18n-t
-          keypath="$donorsAction"
+          keypath="$backersAction"
           tag="p"
         >
-          <template #paypal>
+          <template #patreon>
             <a
-              href="https://www.paypal.com/donate?hosted_button_id=MQ67WRDC8EW38"
+              href="https://www.patreon.com/meteostat"
               target="_blank"
               rel="noreferrer"
-            >
-              PayPal
-            </a>
+            >Patreon</a>
+          </template>
+          <template #github>
+            <a
+              href="https://github.com/sponsors/clampr"
+              target="_blank"
+              rel="noreferrer"
+            >GitHub</a>
           </template>
           <template #donation>
             <a
@@ -211,14 +222,14 @@
               data-bs-toggle="offcanvas"
               data-bs-target="#donationSidebar"
               aria-controls="donationSidebar"
-            >{{ t('otherOptions') }}</a>
+            >{{ t('these') }}</a>
           </template>
         </i18n-t>
       </div>
       <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
         <h3 class="mb-4">
           <icon
-            :icon="['fas', 'code']"
+            :icon="['fab', 'github']"
             class="me-2"
           />
           {{ t('contributors') }}
@@ -293,29 +304,30 @@ export default defineComponent({
           link: 'https://api3.org/'
         }
       ],
-      generousBackers: [],
-      backers: [
+      ghBackers: [
         {
           name: 'Benjamin Gutzmann',
           link: 'https://github.com/gutzbenj'
-        }
+        }        
       ],
-      donors: [
-        'Birgit Becherer',
-        'Yan Nusinovich',
-        'Maximilian Hüttner',
-        'Maximilian Hennebach',
-        'Benedikt Allendorf',
-        'Danny Latuske'
+      patrons: [
+        {
+          name: 'Tyler Kontra',
+          link: 'https://www.patreon.com/user?u=18076117'
+        },
+        {
+          name: 'Erica Kovac',
+          link: 'https://www.patreon.com/digitalfox'
+        }
       ],
       contributors: [
         'weyaaron',
         'mrsjuli',
-        'mstaessen',
-        'ghostrider',
         'amotl',
-        'ida',
-        'ajhaupt7'
+        'meteoDaniel',
+        'rfoel',
+        'Kkoile',
+        'clampr'
       ]
     }
   }
@@ -350,13 +362,8 @@ export default defineComponent({
     "$cTitle": "Founder & Maintainer",
     "sponsorsAndPartners": "Sponsors & Partners",
     "these": "these",
-    "otherOptions": "other options",
-    "backers": "Backers",
-    "$backersText": "Our incredible patrons who keep Meteostat running with recurring financial support.",
-    "$backersAction": "Become a backer on {patreon} or {github}. Alternatively, you can also set up recurring pledges using {donation} options.",
-    "donors": "Donors",
-    "$donorsText": "Some of the generous people and companies who donated money to Meteostat in the past.",
-    "$donorsAction": "Use {paypal} to make a one-time donation or check for {donation}.",
+    "$backersText": "Our incredible patrons on {service}.",
+    "$backersAction": "Become a backer on {patreon} or {github}. Alternatively, you can also set up recurring pledges or a one-time donation using {donation} options.",
     "contributors": "Contributors",
     "$contributorsText": "The taltented developers and contributors who are building Meteostat and its interfaces.",
     "$contributorsAction": "If you are familiar with coding, head over to {github} and help us building Meteostat."
@@ -371,13 +378,8 @@ export default defineComponent({
     "$cTitle": "Gründer & Geschäftsführer",
     "sponsorsAndPartners": "Förderer & Partner",
     "these": "diesen",
-    "otherOptions": "dieser Optionen",
-    "backers": "Unterstützer",
-    "$backersText": "Unsere großartigen Unterstützer, die Meteostat mit wiederkehrenden finanziellen Beiträgen am Laufen halten.",
-    "$backersAction": "Werden Sie Unterstützer auf {patreon} oder {github}. Alternativ können Sie auch mit {donation} Optionen regelmäßige Förderbeiträge einrichten.",
-    "donors": "Spender",
-    "$donorsText": "Einige der großzügigen Menschen und Unternehmen, die in der Vergangenheit Geld an Meteostat gespendet haben.",
-    "$donorsAction": "Verwenden Sie {paypal} für eine einmalige Spende oder nutzen Sie eine {donation}.",
+    "$backersText": "Unsere großartigen Unterstützer auf {service}.",
+    "$backersAction": "Werden Sie Unterstützer auf {patreon} oder {github}. Alternativ können Sie auch mit {donation} Optionen regelmäßige Förderbeiträge einrichten oder eine einmalige Spende tätigen.",
     "contributors": "Mitwirkende",
     "$contributorsText": "Die engagierten Entwickler und Mitwirkenden, die Meteostat und seine Schnittstellen programmieren und unterhalten.",
     "$contributorsAction": "Sie haben selbst Spaß am Programmieren? Schauen Sie sich unsere Projekte bei {github} an und helfen Sie uns bei der Weiterentwicklung von Meteostat."
@@ -392,13 +394,8 @@ export default defineComponent({
     "$cTitle": "Fondatore e Manutentore",
     "sponsorsAndPartners": "Sponsor e Partner",
     "these": "questi",
-    "otherOptions": "altre opzioni",
-    "backers": "Sostenitori",
-    "$backersText": "I nostri incredibili sostenitori che mantengono Meteostat in funzione con un sostegno finanziario ricorrente.",
+    "$backersText": "I nostri incredibili clienti su {service}.",
     "$backersAction": "Diventa un sostenitore su {patreon} o {github}. In alternativa, puoi anche impostare impegni ricorrenti usando le opzioni di {donation}.",
-    "donors": "Donatori",
-    "$donorsText": "Alcune delle generose persone e aziende che hanno donato denaro a Meteostat in passato.",
-    "$donorsAction": "Usa {paypal} per fare una donazione unica o un assegno per {donation}.",
     "contributors": "Contributori",
     "$contributorsText": "I talentuosi sviluppatori e collaboratori che stanno costruendo Meteostat e le sue interfacce.",
     "$contributorsAction": "Se hai familiarità con la codifica, vai su {github} e aiutaci a costruire Meteostat."
@@ -413,13 +410,8 @@ export default defineComponent({
     "$cTitle": "Fundador y Mantenedor",
     "sponsorsAndPartners": "Patrocinadores y Socios",
     "these": "estos",
-    "otherOptions": "otras opciones",
-    "backers": "Respaldantes",
-    "$backersText": "Nuestros increíbles mecenas que mantienen el funcionamiento de Meteostat con un apoyo financiero recurrente.",
+    "$backersText": "Nuestros increíbles clientes en {service}.",
     "$backersAction": "Hazte mecenas en {patreon} o {github}. Alternativamente, también puedes establecer promesas recurrentes utilizando las opciones de {donation}.",
-    "donors": "Donantes",
-    "$donorsText": "Algunas de las generosas personas y empresas que donaron dinero a Meteostat en el pasado.",
-    "$donorsAction": "Usa {paypal} para hacer una donación única o un cheque por {donation}.",
     "contributors": "Colaboradores",
     "$contributorsText": "Los talentosos desarrolladores y colaboradores que están construyendo Meteostat y sus interfaces",
     "$contributorsAction": "Si estás familiarizado con la codificación, dirígete a {github} y ayúdanos a construir Meteostat."
@@ -434,13 +426,8 @@ export default defineComponent({
     "$cTitle": "Oprichter & Onderhouder",
     "sponsorsAndPartners": "Sponsors en Partners",
     "these": "deze",
-    "otherOptions": "andere opties",
-    "backers": "Backers",
-    "$backersText": "Onze ongelooflijke begunstigers die Meteostat draaiende houden met terugkerende financiële steun.",
+    "$backersText": "Onze ongelooflijke beschermheren op {service}.",
     "$backersAction": "Word een backer op {patreon} of {github}. Als alternatief kunt u ook terugkerende toezeggingen instellen met behulp van {donation} opties.",
-    "donors": "Donors",
-    "$donorsText": "Enkele van de gulle mensen en bedrijven die in het verleden geld hebben gedoneerd aan Meteostat.",
-    "$donorsAction": "Gebruik {paypal} om een eenmalige donatie te doen of een cheque voor {donation}.",
     "contributors": "Contributors",
     "$contributorsText": "De getalenteerde ontwikkelaars en bijdragers die Meteostat en zijn interfaces bouwen.",
     "$contributorsAction": "Als je bekend bent met coderen, ga dan naar {github} en help ons met het bouwen van Meteostat."
@@ -455,13 +442,8 @@ export default defineComponent({
     "$cTitle" : "Fondateur et Mainteneur",
     "sponsorsAndPartners" : "Sponsors et Partenaires",
     "these" : "ces",
-    "otherOptions" : "autres options",
-    "backers" : "Backers",
-    "$backersText" : "Nos incroyables mécènes qui maintiennent le fonctionnement de Meteostat grâce à un soutien financier récurrent.",
+    "$backersText" : "Nos incroyables clients sur {service}.",
     "$backersAction" : "Devenez un mécène sur {patreon} ou {github}. Alternativement, vous pouvez également mettre en place des promesses de dons récurrents en utilisant les options {donation}.",
-    "donors" : "Donateurs",
-    "$donorsText" : "Certaines des personnes et entreprises généreuses qui ont donné de l'argent à Meteostat dans le passé.",
-    "$donorsAction" : "Utilisez {paypal} pour faire un don unique ou un chèque de {donation}.",
     "contributors" : "Contributeurs",
     "$contributorsText" : "Les développeurs et contributeurs talentueux qui construisent Meteostat et ses interfaces.",
     "$contributorsAction" : "Si vous êtes familier avec le codage, rendez-vous sur {github} et aidez-nous à construire Meteostat."
@@ -476,13 +458,8 @@ export default defineComponent({
     "$cTitle": "Fundador & Mantenedor",
     "sponsorsAndPartners": "Patrocinadores e Parceiros",
     "these": "estes",
-    "otherOptions": "outras opções",
-    "backers": "Apoiantes",
-    "$backersText": "Os nossos incríveis mecenas que mantêm o Meteostat a funcionar com um apoio financeiro recorrente.",
+    "$backersText": "Os nossos incríveis patronos no {service}.",
     "$backersAction": "Torne-se um backer no {patreon} ou {github}. Alternativamente, pode também estabelecer promessas recorrentes usando opções {donation}.",
-    "donors": "Doadores",
-    "$donorsText": "Algumas das pessoas e empresas generosas que doaram dinheiro ao Meteostat no passado.",
-    "$donorsAction": "Use {paypal} para fazer uma doação única ou cheque para {donation}.",
     "contributors": "Contribuintes",
     "$contributorsText": "Os talentosos criadores e contribuintes que estão a construir o Meteostat e as suas interfaces.",
     "$contributorsAction": "Se está familiarizado com a codificação, dirija-se a {github} e ajude-nos a construir o Meteostat."
@@ -497,13 +474,8 @@ export default defineComponent({
     "$cTitle": "Основатель и разработчик",
     "sponsorsAndPartners": "Спонсоры и партнеры",
     "these": "эти",
-    "otherOptions": "другие варианты",
-    "backers": "бекеры",
-    "$backersText": "Наши невероятные меценаты, которые поддерживают работу Meteostat с помощью постоянной финансовой поддержки.",
+    "$backersText": "Наши невероятные покровители на {service}.",
     "$backersAction": "Станьте беккером на {patreon} или {github}. Кроме того, вы можете установить периодические взносы, используя опции {donation}.",
-    "donors": "Доноры",
-    "$donorsText": "Некоторые из щедрых людей и компаний, которые жертвовали деньги Метеостату в прошлом.",
-    "$donorsAction": "Используйте {paypal} для единовременного пожертвования или чек на {donation}.",
     "contributors": "Вкладчики",
     "$contributorsText": "Талантливые разработчики и соавторы, которые создают Meteostat и его интерфейсы",
     "$contributorsAction": "Если вы знакомы с кодированием, зайдите на {github} и помогите нам создать Meteostat."
