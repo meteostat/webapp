@@ -154,9 +154,32 @@ export default vitedge(
           document.body.classList.remove('loading')
         }
       }
-      app.config.globalProperties.$bs = await import('bootstrap')
+      const Collapse = await import('bootstrap/js/dist/collapse.js')
+      const Offcanvas = await import('bootstrap/js/dist/offcanvas.js')
+      const ScrollSpy = await import('bootstrap/js/dist/scrollspy.js')
+      const Modal = await import('bootstrap/js/dist/modal.js')
+      const Alert = await import('bootstrap/js/dist/alert.js')
+      const Dropdown = await import('bootstrap/js/dist/dropdown.js')
+      const Tooltip = await import('bootstrap/js/dist/tooltip.js')
+      app.config.globalProperties.$bs = {
+        Offcanvas,
+        ScrollSpy,
+        Modal,
+        Alert,
+        Dropdown,
+        Collapse,
+        Tooltip
+      }
       const { DatePicker } = await import('v-calendar')
       app.component('DatePicker', DatePicker)
     }
+    // Tooltip directive
+    app.directive('tooltip', (el: HTMLElement, binding: any) => {
+      if (!import.meta.env.SSR && binding.value) {
+        new app.config.globalProperties.$bs.Tooltip.default(el, {
+          title: binding.value
+        })
+      }
+    })
   }
 )

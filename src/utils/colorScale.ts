@@ -114,49 +114,17 @@ const presScale: Array<string> = [
   '#8c1c56'
 ]
 
-// https://gka.github.io/palettes/#/25|d|5cb85c,fff055,e27a50|e27a50,8c1c56|0|1
-const tsunScale: Array<string> = [
-  '#5cb85c',
-  '#6abd5b',
-  '#77c15b',
-  '#85c65a',
-  '#92cb5a',
-  '#a0cf59',
-  '#aed459',
-  '#bbd958',
-  '#c9dd57',
-  '#d6e257',
-  '#e4e756',
-  '#f1eb56',
-  '#fff055',
-  '#fde655',
-  '#fadc54',
-  '#f8d354',
-  '#f5c953',
-  '#f3bf53',
-  '#f1b553',
-  '#eeab52',
-  '#eca152',
-  '#e99851',
-  '#e78e51',
-  '#e48450',
-  '#e27a50'
-]
-
 class ColorScale {
-
   private scale: Array<string>
   private min: number
   private max: number
   private zero: (null|string)
 
   constructor(scale: Array<string>, min: number, max: number, zero: (null|string) = null) {
-
     this.scale = scale
     this.min = min
     this.max = max
     this.zero = zero
-
   }
 
   /**
@@ -166,7 +134,6 @@ class ColorScale {
    * @returns {string} The HEX color code
    */
   public getColor(value: (null|number)): string|null {
-
     if (value === null) {
       return null
     }
@@ -188,6 +155,5 @@ export {
   prcpScale,
   wspdScale,
   presScale,
-  tsunScale,
   ColorScale
 }

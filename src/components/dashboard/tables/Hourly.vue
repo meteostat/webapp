@@ -32,10 +32,9 @@
                 :key="column.key"
                 scope="col"
                 @click="sortBy(column.key)"
+                v-tooltip="column.name"
               >
-                <abbr :title="column.name">
-                  {{ column.abbr || column.name }}
-                </abbr>
+                {{ column.abbr || column.name }}
                 <icon
                   v-if="sort.column === column.key && sort.asc"
                   :icon="['fas', 'arrow-up']"

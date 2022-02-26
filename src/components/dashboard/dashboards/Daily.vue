@@ -12,9 +12,6 @@
       <div class="col-6 pe-1 pe-md-3">
         <div
           class="card d-flex flex-row overflow-hidden py-1 card-kpi card-temp h-100"
-          :title="anyColGaps('tavg') ? t('$phrases.someDataMissing') : undefined"
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
         >
           <div class="card-body py-2">
             <h5 class="card-title">
@@ -37,9 +34,10 @@
             </h5>
             <div class="text-muted text-truncate">
               <icon
-                v-if="anyColGaps('tavg')"
+                v-if="tempKPI && anyColGaps('tavg')"
                 :icon="['fas', 'exclamation-circle']"
                 class="me-2"
+                v-tooltip="t('$phrases.someDataMissing')"
               />
               <span class="card-text">{{ t('$params.tavg') }}</span>
             </div>
@@ -54,9 +52,6 @@
       <div class="col-6 ps-1 ps-md-3">
         <div
           class="card d-flex flex-row overflow-hidden py-1 card-kpi card-prcp h-100"
-          :title="prcpKPI && anyColGaps('prcp') ? t('$phrases.someDataMissing') : undefined"
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
         >
           <div class="card-body py-2">
             <h5 class="card-title">
@@ -82,6 +77,7 @@
                 v-if="prcpKPI && anyColGaps('prcp')"
                 :icon="['fas', 'exclamation-circle']"
                 class="me-2"
+                v-tooltip="t('$phrases.someDataMissing')"
               />
               <span class="card-text">{{ t('$params.prcp') }}</span>
             </div>
@@ -95,7 +91,7 @@
 
     <!-- Main Content Ad -->
     <div class="my-3">
-      <Ad slot="3216865845" />
+      <Ad slot-id="3216865845" />
     </div>
 
     <div
@@ -202,56 +198,13 @@
         </div>
       </section>
 
-      <!-- Snow Chart -->
-      <section
-        v-if="anyColData('snow')"
-        id="snow"
-        class="card mt-3 mt-md-4"
-      >
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('$meteo.snow') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart
-            type="bar"
-            :data="snowChart.data"
-            :options="snowChart.options"
-          />
-        </div>
-      </section>
-
-      <!-- Sunshine Duration Chart -->
-      <section
-        v-if="anyColData('tsun')"
-        id="tsun"
-        class="card mt-3 mt-md-4"
-      >
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('$params.tsun') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart
-            type="bar"
-            :data="tsunChart.data"
-            :options="tsunChart.options"
-          />
-        </div>
-      </section>
-
       <!-- Details Table -->
       <section
         id="details"
-        ref="details"
         class="d-none d-lg-block"
-        :class="{ 'skeleton skeleton-table': !showTable }"
         :data-section-title="t('details')"
       >
         <Table
-          v-if="showTable"
           :data="data"
         />
       </section>
@@ -265,24 +218,8 @@
 
   <!-- Main Content Ad -->
   <div class="my-3">
-    <Ad slot="3216865845" />
+    <Ad slot-id="3216865845" />
   </div>
-
-  <!-- Meteo Maps -->
-  <section
-    v-if="range[0] !== format(new Date(), 'yyyy-MM-dd')"
-    id="maps"
-    ref="maps"
-    :class="{ 'skeleton skeleton-maps': !showMaps }"
-    :data-section-title="t('maps')"
-  >
-    <Maps
-      v-if="showMaps"
-      :lat="lat"
-      :lon="lon"
-      :range="[parseISO(range[0]), parseISO(range[1])]"
-    />
-  </section>
 
   <!-- Update Time -->
   <div
@@ -308,11 +245,9 @@ import { defineComponent, defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { parseISO, getDaysInMonth, format } from 'date-fns'
 import { useSettingsStore } from '~/stores/settings'
-import { tempScale, prcpScale, wspdScale, presScale, tsunScale, ColorScale } from '~/utils/colorScale'
+import { tempScale, prcpScale, wspdScale, presScale, ColorScale } from '~/utils/colorScale'
 import { ChartDefinitionInterface } from '~/utils/interfaces'
-import isElementInViewport from '~/utils/spy'
-import { initTooltips } from '~/utils/tooltips'
-import DataMixin from '../../Location.mixin'
+import DataMixin from '../../Data.mixin'
 import Chart from '../../charts/Chart.vue'
 import { tsTooltips, tsPointRadius, tsScales } from '../../charts/timeseries.config'
 import Ad from '~/components/Ad.vue'
@@ -328,9 +263,6 @@ const InterpolationAlert = defineAsyncComponent(() =>
 )
 const Table = defineAsyncComponent(() =>
   import('../tables/Daily.vue')
-)
-const Maps = defineAsyncComponent(() =>
-  import('../Maps.vue')
 )
 const NoData = defineAsyncComponent(() =>
   import('../NoData.vue')
@@ -348,7 +280,6 @@ export default defineComponent({
     Chart,
     Table,
     NoData,
-    Maps,
     Ad
   },
 
@@ -399,7 +330,6 @@ export default defineComponent({
       prcpScale,
       wspdScale,
       presScale,
-      tsunScale,
       ColorScale
     }
   },
@@ -407,9 +337,7 @@ export default defineComponent({
   data() {
     return {
       meta: {},
-      data: [],
-      showTable: false,
-      showMaps: false
+      data: []
     }
   },
 
@@ -738,76 +666,6 @@ export default defineComponent({
          }
         }
       }
-    },
-
-    /**
-     * Configuration for snow chart
-     * 
-     * @returns {Object} Configuration object
-     */
-    snowChart(): ChartDefinitionInterface {
-      // Fetch values
-      const snowValues = this.fetchValues('snow')
-      // Return configuration object
-      return {
-        data: {
-          labels: this.fetchValues('date'),
-          datasets: [{
-            label: this.t('$params.snow'),
-            borderWidth: 2,
-            borderColor: "rgb(111,66,193)",
-            backgroundColor: "rgb(111,66,193)",
-            fill: false,
-            pointBorderColor: "rgb(255,255,255)",
-            pointRadius: tsPointRadius(snowValues),
-            data: snowValues
-          }]
-        },
-        options: {
-          scales: tsScales(this.timeValues, this.settings.units.prcp),
-          plugins: {
-            tooltip: tsTooltips,
-            colorStripe: {
-              scale: new ColorScale(prcpScale, 0, 500, '#eeeeee')
-            }
-          }
-        }
-      }
-    },
-
-    /**
-     * Configuration for sunshine duration chart
-     * 
-     * @returns {Object} Configuration object
-     */
-    tsunChart(): ChartDefinitionInterface {
-      // Fetch values
-      const tsunValues = this.fetchValues('tsun')
-      // Return configuration object
-      return {
-        data: {
-          labels: this.fetchValues('date'),
-          datasets: [{
-            label: this.t('$params.tsun'),
-            borderWidth: 2,
-            borderColor: "rgb(253,126,20)",
-            backgroundColor: "rgb(253,126,20)",
-            fill: false,
-            pointBorderColor: "rgb(255,255,255)",
-            pointRadius: tsPointRadius(tsunValues),
-            data: tsunValues
-          }]
-        },
-        options: {
-          scales: tsScales(this.timeValues, 'm'),
-          plugins: {
-            tooltip: tsTooltips,
-            colorStripe: {
-              scale: new ColorScale(tsunScale, 0, 600, '#eeeeee')
-            }
-          }
-        }
-      }
     }
   },
 
@@ -823,14 +681,7 @@ export default defineComponent({
   },
 
   async mounted(): Promise<void> {
-    // Fetch data
     await this.fetchData()
-
-    // Check async components in viewport
-    this.viewportCheck()
-    window.addEventListener('scroll', () => {
-      this.viewportCheck()
-    })
   },
 
   methods: {
@@ -867,26 +718,8 @@ export default defineComponent({
           this.$loaded('daily')
           // Emit event
           this.$emit('loaded')
-          // Init tooltips
-          initTooltips(this.$bs)
         })
-    },
-
-    /**
-     * Check if async components in viewport
-     */
-    viewportCheck(): void {
-      if (isElementInViewport(this.$refs.details as HTMLElement)) {
-        this.showTable = true
-      }
-      if (isElementInViewport(this.$refs.maps as HTMLElement)) {
-        this.showMaps = true
-      }
-    } 
+    }
   }
 })
 </script>
-
-<style lang="scss">
-@import "~/style/skeleton.scss";
-</style>

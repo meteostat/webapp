@@ -2,7 +2,7 @@
   <ins
     class="adsbygoogle"
     data-ad-client="ca-pub-6830849181977374"
-    :data-ad-slot="slot"
+    :data-ad-slot="slotId"
     data-ad-format="auto"
     data-full-width-responsive="true"
   />
@@ -16,7 +16,7 @@ export default defineComponent({
   name: 'Ad',
 
   props: {
-    slot: String
+    slotId: String
   },
 
   setup() {

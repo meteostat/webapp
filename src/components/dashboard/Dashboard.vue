@@ -1,10 +1,17 @@
 <template>
   <!-- Toolbar -->
-  <div class="toolbar sticky-top bg-white">
+  <div class="toolbar">
     <!-- Sections -->
-    <Sections ref="sections" /> 
-
-    <div class="ms-auto">
+      <!-- Export Button --> 
+      <button
+        class="btn btn-light me-2 px-4 px-md-3"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exportModal"
+      >
+        <icon :icon="['fas', 'download']" />
+        <span class="d-none d-md-inline ms-2">{{ t('export') }}</span>
+      </button>
       <!-- Help Button -->
       <button
         class="btn btn-light me-2 px-4 px-md-3"
@@ -17,16 +24,8 @@
         />
         <span class="d-none d-md-inline ms-2">{{ t('help') }}</span>
       </button>
-      <!-- Export Button --> 
-      <button
-        class="btn btn-light d-none d-md-inline-block me-2"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#exportModal"
-      >
-        <icon :icon="['fas', 'download']" />
-        <span class="ms-2">{{ t('export') }}</span>
-      </button>
+
+    <div class="ms-auto">
       <!-- Date Range Button -->
       <button
         v-if="range.start"
@@ -49,8 +48,8 @@
     :text="t('$manual')"
   />
 
-  <!-- Dashboard -->
-  <div class="mt-2 pt-1">
+  <!-- Main Dashboard -->
+  <div class="mt-3">
     <!-- Hourly Data -->
     <template v-if="range && mode === 'hourly'">
       <Hourly
@@ -61,7 +60,7 @@
         :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
         :tz="tz"
         :normals="normals"
-        @loaded="updateSections"
+        @loaded="$emit('loaded')"
       />
     </template>
 
@@ -74,9 +73,33 @@
         :alt="alt"
         :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
         :normals="normals"
-        @loaded="updateSections"
+        @loaded="$emit('loaded')"
       />
     </template>
+
+    <!-- Meteo Maps -->
+    <section
+      v-if="differenceInCalendarDays(new Date(), range.start) > 0"
+      id="maps"
+      ref="maps"
+      :data-section-title="t('maps')"
+    >
+      <Maps
+        :lat="lat"
+        :lon="lon"
+        :range="[range.start, range.end]"
+      />
+    </section>
+
+    <!-- Climate Data -->
+    <section
+      v-if="normals.length"
+      id="climate"
+      ref="climate"
+      :data-section-title="t('climate')"
+    >
+      <Climate :normals="normals" />
+    </section>
   </div>
 
   <!-- Date Range Offcanvas -->
@@ -209,10 +232,10 @@ import {
   startOfMonth,
   endOfMonth,
   startOfYear,
-  endOfYear
+  endOfYear,
+  differenceInCalendarDays
 } from 'date-fns'
 import { useSettingsStore } from '~/stores/settings'
-import Sections from '../Sections.vue'
 import Help from '~/components/Help.vue'
 
 /**
@@ -224,15 +247,24 @@ const Hourly = defineAsyncComponent(() =>
 const Daily = defineAsyncComponent(() =>
   import('./dashboards/Daily.vue')
 )
+const Maps = defineAsyncComponent(() =>
+  import('./Maps.vue')
+)
+const Climate = defineAsyncComponent(() =>
+  import('./Climate.vue')
+)
 
 export default defineComponent({
   name: 'History',
 
+  emits: ['loaded'],
+
   components: {
-    Sections,
     Help,
     Hourly,
-    Daily
+    Daily,
+    Maps,
+    Climate
   },
 
   props: {
@@ -284,7 +316,8 @@ export default defineComponent({
       startOfMonth,
       endOfMonth,
       startOfYear,
-      endOfYear
+      endOfYear,
+      differenceInCalendarDays
     }
   },
 
@@ -384,19 +417,19 @@ export default defineComponent({
         }
       })
       // Hide offcanvas
-      const offcanvas = this.$bs.Offcanvas.getInstance(this.$refs.dateRange)
+      const offcanvas = this.$bs.Offcanvas.default.getInstance(this.$refs.dateRange)
       if (offcanvas) {
         offcanvas.hide()
       }
       // Hide sub navbar menu
-      const subnav = this.$bs.Collapse.getInstance(this.$refs.subnav)
+      const subnav = this.$bs.Collapse.default.getInstance(this.$refs.subnav)
       if (subnav) {
         subnav.hide()
       }
     }
   },
 
-  mounted() {
+  async mounted() {
     this.fetchNormalsData()
   },
 

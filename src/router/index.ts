@@ -24,23 +24,23 @@ export default [
   },
   {
     path: '/station/:id',
-    name: 'StationHistory',
-    component: (): Promise<any> => import('~/views/Station.vue')
-  },
-  {
-    path: '/station/:id/climate',
-    name: 'StationClimate',
+    name: 'Station',
     component: (): Promise<any> => import('~/views/Station.vue')
   },
   {
     path: '/place/:id',
-    name: 'PlaceHistory',
+    name: 'Place',
     component: (): Promise<any> => import('~/views/Place.vue')
+  },
+  {
+    path: '/station/:id/climate',
+    name: 'StationClimate',
+    component: (): Promise<any> => import('~/views/NotFound.vue')
   },
   {
     path: '/place/:id/climate',
     name: 'PlaceClimate',
-    component: (): Promise<any> => import('~/views/Place.vue')
+    component: (): Promise<any> => import('~/views/NotFound.vue')
   },
   {
     path: '/patrons',

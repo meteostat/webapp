@@ -203,11 +203,7 @@ export default defineComponent({
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/highlight.js/styles/a11y-dark";
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
-
-.post-title {
-  font-family: 'Merriweather', serif;
-}
+//@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
 .post-tags {
   .badge {
@@ -226,7 +222,6 @@ export default defineComponent({
 }
 
 .post-content {
-  font-family: 'Merriweather', serif;
   line-height: 1.7;
 
   h2 {

@@ -27,7 +27,7 @@
             class="search-input form-control border-0"
             :placeholder="t('$searchPlaceholder')"
             autocomplete="off"
-            @input="search"
+            @input="debounce(search, 500, 'search')"
           >
           <span
             class="input-group-text d-none d-lg-flex border-0"
@@ -188,6 +188,7 @@
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
+import DebounceMixin from './Debounce.mixin'
 
 /**
  * Async Components
@@ -206,6 +207,8 @@ export default defineComponent({
     Donation,
     Settings
   },
+
+  mixins: [DebounceMixin],
   
   setup(): Record<string, any> {
     const { t } = useI18n()
@@ -230,7 +233,7 @@ export default defineComponent({
     }
   },
 
-  mounted(): void {
+  mounted(this: any): void {
     // Show donation sidebar
     document.getElementById('donationSidebar')?.addEventListener('show.bs.offcanvas', () => {
       this.showDonation = true
@@ -288,7 +291,7 @@ export default defineComponent({
   },
 
   methods: {
-    async search(): Promise<void> {
+    async search(this: any): Promise<void> {
       if (this.term.length > 2) {
         await fetch(`${this.$api}/app/autocomplete?match=${this.term}&lang=${this.$locale}`)
           .then(response => response.json())
@@ -299,7 +302,7 @@ export default defineComponent({
       }
     },
 
-    clearSearch(): void {
+    clearSearch(this: any): void {
       this.term = null
       this.results = {}
     }

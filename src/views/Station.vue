@@ -12,23 +12,15 @@
     <div class="container my-3 my-lg-4">
       <div class="row gy-4">
         <div class="col-12 col-lg-8">
-          <!-- Weather History -->
-          <template v-if="$route.name === 'StationHistory'">
-            <History
-              :name="meta.name[$locale] || meta.name['en']"
-              :station="meta.id"
-              :lat="meta.location.latitude"
-              :lon="meta.location.longitude"
-              :tz="meta.timezone"
-            />
-          </template>
-          <!-- Climate Data -->
-          <template v-if="$route.name === 'StationClimate'">
-            <Climate
-              :name="meta.name[$locale] || meta.name['en']"
-              :station="meta.id"
-            />
-          </template>
+          <!-- Dashboard -->
+          <Dashboard
+            :name="meta.name[$locale] || meta.name['en']"
+            :station="meta.id"
+            :lat="meta.location.latitude"
+            :lon="meta.location.longitude"
+            :tz="meta.timezone"
+            @loaded="updateNavbarItems()"
+          />
         </div>
         <div class="col-12 col-lg-4">
           <!-- Meta Data -->
@@ -39,8 +31,8 @@
             :lon="meta.location.longitude"
           />
           <!-- Ads -->
-          <div class="sticky-top pb-3 pb-md-0 pt-3">
-            <Ad slot="3216865845" />
+          <div class="pb-3 pb-md-0 pt-3">
+            <Ad slot-id="3216865845" />
           </div>
         </div>
       </div>
@@ -61,11 +53,8 @@ import Ad from '~/components/Ad.vue'
 /**
  * Async Components
  */
-const Climate = defineAsyncComponent(() =>
-  import('~/components/climate/Climate.vue')
-)
-const History = defineAsyncComponent(() =>
-  import('~/components/history/History.vue')
+const Dashboard = defineAsyncComponent(() =>
+  import('~/components/dashboard/Dashboard.vue')
 )
 
 export default defineComponent({
@@ -75,8 +64,7 @@ export default defineComponent({
     Navbar,
     Meta,
     Nearby,
-    Climate,
-    History,
+    Dashboard,
     Ad
   },
 
@@ -131,6 +119,10 @@ export default defineComponent({
       await fetch(`${this.$api}/app/proxy/stations/meta?id=${this.$route.params.id}`)
         .then(response => response.json())
         .then(data => this.meta = data.data)
+    },
+
+    updateNavbarItems(): void {
+      (this.$refs as any).subnav.updateItems()
     }
   },
 })

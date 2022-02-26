@@ -1,5 +1,5 @@
 export default function (url: string): Promise<HTMLScriptElement> {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		const head = document.getElementsByTagName('head')[0]
 		const script = document.createElement('script')
 		script.type = 'text/javascript'

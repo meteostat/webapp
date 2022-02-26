@@ -28,7 +28,7 @@ export default {
   async mounted(): Promise<void> {
     const L = await useLeaflet()
 
-    let map = L.map(this.$refs.map).setView([this.lat, this.lon], 6)
+    let map = L.map(this.$refs.map as HTMLElement).setView([this.lat, this.lon], 4)
 
     map.dragging.disable()
     map.touchZoom.disable()

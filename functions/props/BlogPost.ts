@@ -14,9 +14,8 @@ export default <EdgeProps>{
     // Fetch page data
     else {
       const locale = href.split('/')[1]
-
       let post: Record<string, string> = {}
-      await fetch(`https://d.meteostat.net/cms/blog/post?lang=${locale}&slug=${params.slug}`)
+      await fetch(`https://d.meteostat.net/cms/blog/post?lang=${locale}&slug=${params?.slug}`)
         .then(response => response.json())
         .then(data => {
           post = data.data

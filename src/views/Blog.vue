@@ -59,7 +59,7 @@ export default defineComponent({
       default: null
     },
     _tag: {
-      type: Array,
+      type: Object,
       default: null
     }
   },

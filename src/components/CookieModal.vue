@@ -68,7 +68,7 @@ export default defineComponent({
   },
 
   mounted() {
-    this.$bs.Modal.getOrCreateInstance(document.getElementById('cookieModal')).show()
+    this.$bs.Modal.default.getOrCreateInstance(document.getElementById('cookieModal')).show()
   },
 
   methods: {

@@ -7,10 +7,13 @@
 
 <script lang="js">
 import { defineComponent } from 'vue'
+import DebounceMixin from '../Debounce.mixin.ts'
 import ColorStripePlugin from './ColorStripe.plugin.ts'
 
 export default defineComponent({
   name: 'Chart',
+
+  mixins: [DebounceMixin],
 
   props: {
     type: {
@@ -31,7 +34,8 @@ export default defineComponent({
 
   data() {
     return {
-      loading: false
+      loading: false,
+      uid: (Math.random() + 1).toString().substr(2, 5)
     }
   },
 
@@ -45,6 +49,9 @@ export default defineComponent({
 
   mounted() {
     this.createChart()
+    window.addEventListener('resize', () => {
+      this.debounce(this.createChart, 500, `chart-${this.uid}`)
+    });
   },
 
   methods: {

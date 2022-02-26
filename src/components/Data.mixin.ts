@@ -7,7 +7,7 @@ export default defineComponent({
      * 
      * @returns {Array} The column's values
      */
-     fetchValues(column: string): Array<string|number|null> {
+     fetchValues(this: any, column: string): Array<string|number|null> {
       if (this.data) {
         return this.data.map((record: Record<string, number>) => {
           return record[column]
@@ -21,7 +21,7 @@ export default defineComponent({
      * 
      * @returns {Boolean}
      */
-    anyData(): boolean {
+    anyData(this: any): boolean {
       return this.data?.some(
         (record: Record<string, number>) => Object.values(record).slice(1).some(
           parameter => parameter !== null
@@ -34,8 +34,19 @@ export default defineComponent({
      * 
      * @returns {Boolean}
      */
-    anyColData(column: string): boolean {
-      return this.data?.some((record: Record<string, number>) => record[column] !== null)
+    anyColData(this: any, col: string | string[]): boolean {
+      if (typeof col === 'string') {
+        return this.data?.some((record: Record<string, number>) => record[col] !== null)
+      }
+      else if (col.length) {
+        for (let i = 0; i < col.length; i++) {
+          const anyData = this.data?.some((record: Record<string, number>) => record[col[i]] !== null)
+          if (anyData) {
+            return true
+          }
+        }
+      }
+      return false
     },
 
     /**
@@ -43,7 +54,7 @@ export default defineComponent({
      * 
      * @returns {Boolean}
      */
-    anyColGaps(column: string): boolean {
+    anyColGaps(this: any, column: string): boolean {
       return this.data?.some((record: Record<string, number>) => record[column] === null)
     }
   }

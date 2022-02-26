@@ -36,9 +36,7 @@
         <li class="d-inline-block mt-3 mt-md-0 ms-md-auto fs-4">
           <a
             href="https://twitter.com/meteost"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Twitter"
+            v-tooltip="'Twitter'"
           >
             <icon :icon="['fab', 'twitter']" />
           </a>
@@ -46,9 +44,7 @@
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://medium.com/meteostat"
-            data-toggle="tooltip"
-            data-placement="top"
-            :title="t('blog')"
+            v-tooltip="t('blog')"
           >
             <icon :icon="['fab', 'medium']" />
           </a>
@@ -56,9 +52,7 @@
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://github.com/meteostat"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="GitHub"
+            v-tooltip="'GitHub'"
           >
             <icon :icon="['fab', 'github']" />
           </a>
@@ -66,9 +60,7 @@
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://www.linkedin.com/company/meteostat/"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="LinkedIn"
+            v-tooltip="'LinkedIn'"
           >
             <icon :icon="['fab', 'linkedin']" />
           </a>
@@ -76,9 +68,7 @@
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a
             href="https://www.patreon.com/meteostat"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Patreon"
+            v-tooltip="'Patreon'"
           >
             <icon :icon="['fab', 'patreon']" />
           </a>

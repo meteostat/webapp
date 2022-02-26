@@ -10,7 +10,7 @@
         </p>
         <!-- Main Content Ad -->
         <div class="my-3">
-          <Ad slot="3216865845" />
+          <Ad slot-id="3216865845" />
         </div>
         <form>
           <!-- Alert: Failed -->
@@ -69,7 +69,7 @@
               type="button"
               class="btn btn-primary ms-auto"
               :disabled="!isFilled"
-              @click="sendMessage()"
+              @click="sendMessage"
             >
               {{ t('send') }}
             </button>
@@ -116,7 +116,7 @@
           </div>
         </div>
         <div class="my-3">
-          <Ad slot="3216865845" />
+          <Ad slot-id="3216865845" />
         </div>
       </div>
     </div>
@@ -167,7 +167,7 @@ export default defineComponent({
   },
 
   computed: {
-    isFilled() {
+    isFilled(this: any) {
       return (
         this.subject.length > 1 &&
         this.email.length > 3 &&
@@ -177,7 +177,8 @@ export default defineComponent({
   },
 
   methods: {
-    sendMessage() {
+    sendMessage(event: Event) {
+      (event.target as HTMLButtonElement).disabled = true
       fetch(`${this.$api}/app/contact`, {
         method: 'POST',
         headers: {
@@ -196,6 +197,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '~/style/variables';
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/accordion";
+
 .form-message {
   height: 200px !important;
 }

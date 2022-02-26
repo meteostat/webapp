@@ -14,9 +14,8 @@ export default <EdgeProps>{
     // Fetch page data
     else {
       const locale = href.split('/')[1]
-
       let endpoint = 'https://d.meteostat.net/cms/blog/'
-      if (params.tag) {
+      if (params?.tag) {
         endpoint += `tag?tag="${params.tag}&limit=9`
       } else {
         endpoint += 'latest?limit=9'
@@ -29,7 +28,7 @@ export default <EdgeProps>{
         .then(response => response.json())
         .then(data => {
           posts = data.data
-          if (params.tag) {
+          if (params?.tag) {
             tag = data.meta.tag
           }
         })

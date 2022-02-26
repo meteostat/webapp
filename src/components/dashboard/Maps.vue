@@ -405,7 +405,7 @@ export default defineComponent({
                 )
               }
               catch {
-                return false
+                return
               }
             }
           })
@@ -463,7 +463,7 @@ export default defineComponent({
       let map = this.map
       leafletImage(map, (err: any, canvas: HTMLCanvasElement): void => {
 				canvas.toBlob(blob => {
-					saveAs(blob, 'map.png');
+					saveAs(blob as Blob, 'map.png');
 				});
       });
     },

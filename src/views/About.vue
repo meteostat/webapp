@@ -211,7 +211,7 @@ export default defineComponent({
         "title": "Über Uns",
         "description": "Meteostat ist einer der größten Anbieter von offenen Wetter- und Klimadaten."
     },
-    "$title": "Die Historie des Wetters",
+    "$title": "Wetterrückblick und Klimadaten",
     "$description": "Meteostat ist einer der größten Anbieter von offenen Wetter- und Klimadaten. Die Plattform bietet Zugang zu langjährigen Zeitreihen von Tausenden von Wetterstationen.",
     "$features": [
       {

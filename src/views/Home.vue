@@ -218,7 +218,7 @@ export default defineComponent({
     "findStations": "Station Finden",
     "$sections": [
       {
-        "title": "Ein Gemeinschaftsprojekt.",
+        "title": "Freie Daten.",
         "text": "Meteostat bietet offene Wetter- und Klimadaten für jedermann. Werden Sie Förderer und unterstützen Sie Meteostat bei der Mission, meteorologische Daten zu demokratisieren. Ihre Spende hilft auch Dutzenden von Bildungs- und Forschungsprojekten, die mit ihrer Arbeit Großes leisten."
       },
       {

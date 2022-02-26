@@ -29,6 +29,7 @@ interface NormalsRecordInterface {
 }
 
 interface ChartDefinitionInterface {
+  type?: string,
   data: ChartData | any,
   options?: ChartOptions | any
 }

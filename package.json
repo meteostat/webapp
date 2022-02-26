@@ -1,6 +1,6 @@
 {
   "name": "meteostat-webapp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "engines": {
     "node": ">=14.17"
@@ -58,6 +58,7 @@
     "esbuild": "^0.11.23",
     "eslint": "^7.32.0",
     "node-fetch": "^2.6.5",
+    "patch-vue-directive-ssr": "0.0.1",
     "rimraf": "^3.0.2",
     "sass": "^1.42.1",
     "sass-loader": "^10.0.0",

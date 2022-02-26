@@ -116,7 +116,7 @@
             :icon="['fas', 'heart']"
             class="me-2 text-danger"
           />
-          GitHub Sponsors
+          GitHub
         </h3>
         <i18n-t
           keypath="$backersText"
