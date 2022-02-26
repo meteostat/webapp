@@ -452,7 +452,12 @@ export default defineComponent({
       // Fetch data
       await fetch(url)
         .then(response => response.json())
-        .then(data => this.normals = data.data)
+        .then(data => {
+          this.normals = data.data
+          if (this.normals.length) {
+            this.$emit('loaded')
+          }
+        })
     },
 
     updateSections(): void {

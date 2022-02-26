@@ -80,9 +80,10 @@ export default defineComponent({
     return { t }
   },
 
-  data(): Record<string, Array<Record<string, string>>> {
+  data(): Record<string, any> {
     return {
-      items: []
+      items: [],
+      scrollspy: null
     }
   },
 
@@ -116,13 +117,9 @@ export default defineComponent({
           })
         }
       })
-      // Handle anchor
-      const hash = window.location.hash.substr(1)
-      if (hash.length === 4 || hash.length === 7) {
-        this.scrollTo(hash)
-      }
       // Scrollspy
-      new this.$bs.ScrollSpy.default(document.body, {
+      this.scrollspy?.dispose()
+      this.scrollspy = new this.$bs.ScrollSpy.default(document.body, {
         target: '#location-navbar',
         offset: 80
       })
