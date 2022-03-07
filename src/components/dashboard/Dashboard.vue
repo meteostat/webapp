@@ -50,6 +50,11 @@
 
   <!-- Main Dashboard -->
   <div class="mt-3">
+    <!-- Ad (Bottom) -->
+    <div class="mb-3">
+      <Ad slot-id="3216865845" />
+    </div>
+
     <!-- Hourly Data -->
     <template v-if="range && mode === 'hourly'">
       <Hourly
