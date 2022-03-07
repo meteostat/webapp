@@ -6,9 +6,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Ad from './Ad.vue'
 
 export default defineComponent({
-  name: 'AdStickyTop'
+  name: 'AdStickyTop',
+
+  components: {
+    Ad
+  }
 })
 </script>
 
