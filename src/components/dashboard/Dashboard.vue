@@ -92,7 +92,7 @@
     </section>
 
     <!-- Ad (Bottom) -->
-    <div class="mt-3">
+    <div class="my-3">
       <Ad slot-id="8728201947" />
     </div>
 
