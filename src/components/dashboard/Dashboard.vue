@@ -93,7 +93,7 @@
 
     <!-- Ad (Bottom) -->
     <div class="my-3">
-      <Ad slot-id="8728201947" />
+      <Ad slot-id="3216865845" />
     </div>
 
     <!-- Climate Data -->
