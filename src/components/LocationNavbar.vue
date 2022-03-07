@@ -1,5 +1,5 @@
 <template>
-  <nav id="location-navbar" class="navbar navbar-expand-lg navbar-light bg-light py-0 sticky-top">
+  <nav id="location-navbar" class="navbar navbar-expand-lg navbar-light bg-light py-lg-0 sticky-top">
     <div class="container-fluid">
       <!-- Location Name -->
       <div class="navbar-brand d-flex align-items-center overflow-hidden" @click="scrollTop()">

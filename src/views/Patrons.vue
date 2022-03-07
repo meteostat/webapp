@@ -314,10 +314,6 @@ export default defineComponent({
         {
           name: 'Tyler Kontra',
           link: 'https://www.patreon.com/user?u=18076117'
-        },
-        {
-          name: 'Erica Kovac',
-          link: 'https://www.patreon.com/digitalfox'
         }
       ],
       contributors: [

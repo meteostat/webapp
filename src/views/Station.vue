@@ -31,9 +31,7 @@
             :lon="meta.location.longitude"
           />
           <!-- Ads -->
-          <div class="pb-3 pb-md-0 pt-3">
-            <Ad slot-id="3216865845" />
-          </div>
+          <AdStickyTop />
         </div>
       </div>
     </div>
@@ -48,7 +46,7 @@ import { format } from 'date-fns'
 import Navbar from '~/components/LocationNavbar.vue'
 import Meta from '~/components/panels/Meta.vue'
 import Nearby from '~/components/panels/Nearby.vue'
-import Ad from '~/components/Ad.vue'
+import AdStickyTop from '~/components/AdStickyTop.vue'
 
 /**
  * Async Components
@@ -65,7 +63,7 @@ export default defineComponent({
     Meta,
     Nearby,
     Dashboard,
-    Ad
+    AdStickyTop
   },
 
   props: {

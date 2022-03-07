@@ -215,11 +215,6 @@
     <NoData />
   </template>
 
-  <!-- Main Content Ad -->
-  <div class="my-3">
-    <Ad slot-id="3216865845" />
-  </div>
-
   <!-- Update Time -->
   <div
     v-if="meta.generated"

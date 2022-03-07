@@ -91,6 +91,11 @@
       />
     </section>
 
+    <!-- Ad (Bottom) -->
+    <div class="mt-3">
+      <Ad slot-id="8728201947" />
+    </div>
+
     <!-- Climate Data -->
     <section
       v-if="normals.length"
@@ -237,6 +242,7 @@ import {
 } from 'date-fns'
 import { useSettingsStore } from '~/stores/settings'
 import Help from '~/components/Help.vue'
+import Ad from '~/components/Ad.vue'
 
 /**
  * Async Components
@@ -264,7 +270,8 @@ export default defineComponent({
     Hourly,
     Daily,
     Maps,
-    Climate
+    Climate,
+    Ad
   },
 
   props: {

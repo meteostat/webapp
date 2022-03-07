@@ -100,7 +100,6 @@ export default defineComponent({
   },
 
   mounted() {
-    setTimeout(() => { console.log(this) }, 1000)
     if (this.isTag && !this._tag) {
       this.fetchTag()
     }
