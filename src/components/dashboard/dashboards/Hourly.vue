@@ -89,6 +89,11 @@
       </div>
     </div>
 
+    <!-- Main Content Ad -->
+    <div class="my-3">
+      <Ad slot-id="3216865845" />
+    </div>
+
     <div
       id="sections"
       class="mt-4"
@@ -239,6 +244,7 @@ import { ChartDefinitionInterface } from '~/utils/interfaces'
 import DataMixin from '../../Data.mixin'
 import Chart from '../../charts/Chart.vue'
 import { tsTooltips, tsPointRadius, tsScales } from '~/components/charts/timeseries.config'
+import Ad from '~/components/Ad.vue'
 
 /**
  * Async Components
@@ -267,7 +273,8 @@ export default defineComponent({
     InterpolationAlert,
     Chart,
     Table,
-    NoData
+    NoData,
+    Ad
   },
 
   mixins: [DataMixin],
