@@ -16,8 +16,16 @@
           <span class="d-none d-lg-inline-block mb-0 ms-2 h4">Meteostat</span>
         </router-link>
         <div class="input-group search ms-lg-3">
-          <span class="input-group-text pe-0 border-0">
-            <icon icon="search" />
+          <span class="input-group-text pe-1 border-0">
+            <div
+              v-if="loadingResults"
+              class="spinner-border spinner-border-sm"
+              role="status"
+            />
+            <icon
+              v-else
+              icon="search"
+            />
           </span>
           <input
             id="search"
@@ -219,6 +227,7 @@ export default defineComponent({
   data(): Record<string, any> {
     return {
       term: null,
+      loadingResults: false,
       results: {},
       activeResult: null,
       showDonation: false,
@@ -293,9 +302,11 @@ export default defineComponent({
   methods: {
     async search(this: any): Promise<void> {
       if (this.term.length > 2) {
+        this.loadingResults = true
         await fetch(`${this.$api}/app/autocomplete?match=${this.term}&lang=${this.$locale}`)
           .then(response => response.json())
           .then(data => this.results = data.data)
+          .then(() => this.loadingResults = false)
         window._paq?.push(['trackSiteSearch', this.term, false, false])
       } else {
         this.results = {}

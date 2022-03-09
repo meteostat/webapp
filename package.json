@@ -1,6 +1,6 @@
 {
   "name": "meteostat-webapp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "engines": {
     "node": ">=14.17"

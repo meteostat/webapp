@@ -152,6 +152,8 @@ export default defineComponent({
 }
 
 .navbar {
+  z-index: 1021;
+
   .navbar-brand {
     cursor: pointer;
 

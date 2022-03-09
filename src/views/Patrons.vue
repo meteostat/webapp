@@ -306,6 +306,10 @@ export default defineComponent({
       ],
       ghBackers: [
         {
+          name: 'Joe Shull',
+          link: 'https://github.com/joeshull'
+        },
+        {
           name: 'Benjamin Gutzmann',
           link: 'https://github.com/gutzbenj'
         }        
