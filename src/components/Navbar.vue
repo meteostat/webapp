@@ -36,6 +36,7 @@
             :placeholder="t('$searchPlaceholder')"
             autocomplete="off"
             @input="debounce(search, 500, 'search')"
+            @keyup.enter="search"
           >
           <span
             class="input-group-text d-none d-lg-flex border-0"
