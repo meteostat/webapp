@@ -58,7 +58,7 @@
               v-for="place in results.places"
               :key="place.id"
               class="search-result list-group-item list-group-item-action"
-              :to="`/place/${place.placemark}`"
+              :to="`/place/${place.country.toLowerCase()}/${place.id}`"
             >
               <img
                 :src="`https://media.meteostat.net/assets/flags/4x3/${place.country.toLowerCase()}.svg`"
@@ -304,7 +304,7 @@ export default defineComponent({
     async search(this: any): Promise<void> {
       if (this.term.length > 2) {
         this.loadingResults = true
-        await fetch(`${this.$api}/app/autocomplete?match=${this.term}&lang=${this.$locale}`)
+        await fetch(`${this.$api}/app/autocomplete?q=${this.term}&lang=${this.$locale}`)
           .then(response => response.json())
           .then(data => this.results = data.data)
           .then(() => this.loadingResults = false)

@@ -28,8 +28,13 @@ export default [
     component: (): Promise<any> => import('~/views/Station.vue')
   },
   {
-    path: '/place/:id',
+    path: '/place/:country/:id',
     name: 'Place',
+    component: (): Promise<any> => import('~/views/Place.vue')
+  },
+  {
+    path: '/place/:id',
+    name: 'PlaceLegacy',
     component: (): Promise<any> => import('~/views/Place.vue')
   },
   {

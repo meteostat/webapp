@@ -13,8 +13,9 @@ export default <EdgeProps>{
     }
     // Fetch meta data
     else {
+      const locale = href.split('/')[1]
       let place = null
-      await fetch(`https://d.meteostat.net/app/place?id=${params?.id}`)
+      await fetch(`https://d.meteostat.net/app/place?country=${params?.country}&id=${params?.id}&lang=${locale}`)
         .then(response => response.json())
         .then(data => {
           place = data.data

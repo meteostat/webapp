@@ -2,10 +2,10 @@
   <div v-if="meta?.id">
     <!-- Navbar -->
     <Navbar
-      :id="$route.params.id"
+      :id="meta.id"
       ref="subnav"
       type="place"
-      :name="meta.name[$locale] || meta.name['en']"
+      :name="meta.name"
       :country="meta.country"
     />
     <!-- Content -->
@@ -14,9 +14,9 @@
         <div class="col-12 col-lg-8">
           <!-- Dashboard -->
           <Dashboard
-            :name="meta.name[$locale] || meta.name['en']"
-            :lat="coords[0]"
-            :lon="coords[1]"
+            :name="meta.name"
+            :lat="meta.location.latitude"
+            :lon="meta.location.longitude"
             :alt="meta.location.elevation"
             :tz="meta.timezone"
             @loaded="updateNavbarItems()"
@@ -27,8 +27,8 @@
           <Meta :data="meta" />
           <!-- Nearby Stations -->
           <Nearby
-            :lat="coords[0]"
-            :lon="coords[1]"
+            :lat="meta.location.latitude"
+            :lon="meta.location.longitude"
           />
           <!-- Ads -->
           <AdStickyTop />
@@ -44,7 +44,6 @@ import { useContext } from 'vitedge'
 import { useI18n } from 'vue-i18n'
 import { useHead } from '@vueuse/head'
 import { format } from 'date-fns'
-import { decodePlacemark } from '~/utils/placemarks'
 import Navbar from '../components/LocationNavbar.vue'
 import Meta from '../components/panels/Meta.vue'
 import Nearby from '../components/panels/Nearby.vue'
@@ -85,7 +84,7 @@ export default defineComponent({
           {
             name: 'description',
             content: t('$meta.description', {
-              name: props.place.name[locale.value] || props.place.name['en'],
+              name: props.place.name,
               country: props.place.country
             })
           }
@@ -93,7 +92,7 @@ export default defineComponent({
         link: [
           {
             rel: 'canonical',
-            href: `https://meteostat.net/${locale.value}/place/${props.place.id}`
+            href: `https://meteostat.net/${locale.value}/place/${props.place.country.toLowerCase()}/${props.place.id}`
           }
         ]
       })
@@ -113,12 +112,6 @@ export default defineComponent({
     }
   },
 
-  computed: {
-    coords(): Array<number> {
-      return decodePlacemark(String(this.$route.params.id))
-    }
-  },
-
   async mounted(): Promise<void> {
     if (!this.place) {
       await this.fetchMetaData()
@@ -130,7 +123,9 @@ export default defineComponent({
      * Fetch place meta data
      */
     async fetchMetaData(): Promise<void> {
-      await fetch(`${this.$api}/app/place?id=${this.$route.params.id}`)
+      await fetch(
+        `${this.$api}/app/place?country=${this.$route.params.country}&id=${this.$route.params.id}&lang=${this.$locale}`
+      )
         .then(response => response.json())
         .then(data => this.meta = data.data)
         .catch(() => {
