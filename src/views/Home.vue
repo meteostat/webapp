@@ -158,13 +158,21 @@ export default defineComponent({
   },
 
   methods: {
-    myLocation() {
+    async myLocation() {
       if (navigator.geolocation) {
         this.$loading('myLocation')
-        navigator.geolocation.getCurrentPosition(position => {
+        navigator.geolocation.getCurrentPosition(async (position) => {
           const placemark = encodePlacemark(position.coords.latitude, position.coords.longitude)
-          this.$loaded('myLocation')
-          this.$router.push(`/place/${placemark}`)
+          await fetch(
+            `${this.$api}/app/place?placemark=${placemark}`
+          )
+            .then(response => response.json())
+            .then(data => data.data)
+            .then(place => {
+              this.$loaded('myLocation')
+              this.$router.push(`/place/${place.country.toLowerCase()}/${place.id}`)
+            })
+            .catch(() => this.$loaded('myLocation'))
         })
       }
     },
