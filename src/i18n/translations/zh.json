@@ -1,0 +1,65 @@
+{
+  "locale": "zh",
+  "dateFormat": "yyyy/MM/dd",
+  "dateTimeFormat": "yyyy/MM/dd HH:mm:ss",
+
+  "home": "首页",
+  "blog": "博客",
+  "patrons": "资助者",
+  "donation": "捐赠",
+  "settings": "设置",
+  "history": "历史",
+  "climate": "气候",
+  "maps": "地图",
+  "export": "导出",
+  "save": "保存",
+  "close": "关闭",
+  "details": "细节",
+  "updated": "更新于",
+  "support": "支持",
+  "documentation": "文档",
+  "help": "帮助",
+
+  "avg": "平均",
+  "min": "最小",
+  "max": "最大",
+  "total": "总",
+
+  "$phrases": {
+    "noData": "暂无数据",
+    "someDataMissing": "存在缺失的数据",
+    "showMore": "显示更多"
+  },
+
+  "$meteo": {
+    "weather": "天气",
+    "air": "大气",
+    "pres": "压强",
+    "temp": "气温",
+    "humidity": "湿度",
+    "prcp": "降水量",
+    "sunshine": "日照",
+    "snow": "降雪",
+    "wind": "风",
+    "gust": "阵风"
+  },
+
+  "$params": {
+    "time": "时间",
+    "date": "日期",
+    "temp": "气温",
+    "tavg": "平均气温",
+    "tmin": "最低温度",
+    "tmax": "最高温度",
+    "dwpt": "露点",
+    "rhum": "相对湿度",
+    "prcp": "总降水量",
+    "snow": "雪深",
+    "wdir": "风向",
+    "wspd": "风速",
+    "wpgt": "最大阵风",
+    "pres": "气压",
+    "tsun": "日照时长",
+    "coco": "天气状况代码"
+  }
+}
