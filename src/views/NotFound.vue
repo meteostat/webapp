@@ -111,6 +111,14 @@ export default defineComponent({
     },
     "error": "Error",
     "$description": "Мы не смогли найти эту страницу."    
+  },
+  "zh": {
+    "$meta": {
+      "title": "页面不存在",
+      "description": "抱歉，我们找不到这个页面。"
+    },
+    "error": "错误",
+    "$description": "找不到此页面。"
   }
 }
 </i18n>
