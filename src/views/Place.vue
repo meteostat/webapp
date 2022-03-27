@@ -183,6 +183,11 @@ export default defineComponent({
      "$meta": {
       "description": "Исторические данные о погоде и климате для {name} ({country}) с информацией о температуре, осадках и многом другом."
     }   
+  },
+  "zh": {
+    "$meta": {
+      "description": "{name} ({country}) 的历史天气与气候数据。包括温度，湿度以及更多信息。"
+    }
   }
 }
 </i18n>
