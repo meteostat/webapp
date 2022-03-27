@@ -479,6 +479,22 @@ export default defineComponent({
     "contributors": "Вкладчики",
     "$contributorsText": "Талантливые разработчики и соавторы, которые создают Meteostat и его интерфейсы",
     "$contributorsAction": "Если вы знакомы с кодированием, зайдите на {github} и помогите нам создать Meteostat."
+   },
+  zh": {
+    "$meta": {
+      "title": "资助者",
+      "description": "了解谁在支持 Meteostat"
+    },
+    "meetChristian": "了解 Christian。",
+    "$quote": "运行开源项目可能具有挑战性。 你总是缺乏各种资源——尤其是时间和金钱。 正是我们对天气和气候的热情让我们不断前进。 Meteostat 之所以成为可能，是因为我们有数十名慷慨的支持者和贡献者一直支持该项目。 感谢大家！",
+    "$cTitle": "建立者 & 维护者",
+    "sponsorsAndPartners": "资助者 & 合作伙伴",
+    "these": "这些",
+    "$backersText": "我们在 {service} 上极好的资助者。",
+    "$backersAction": "成为 {patreon} 或 {github} 上的资助者。 或者，您也可以使用{donation}选项设置定期承诺或一次性捐赠。",
+    "contributors": "贡献者",
+    "$contributorsText": "正在构建 Meteostat 及其接口的才华横溢的开发人员和贡献者。",
+    "$contributorsAction": "如果您熟悉编码，请前往 {github} 并帮助我们构建 Meteostat。"
   }
 }
 </i18n>
