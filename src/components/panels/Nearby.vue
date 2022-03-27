@@ -77,6 +77,9 @@ export default {
   },
   "ru": {
     "nearbyStations": "Близлежащие станции"
+  },
+  "zh": {
+    "nearbyStations": "附近站点"
   }
 }
 </i18n>

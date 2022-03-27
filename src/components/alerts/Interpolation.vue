@@ -80,6 +80,9 @@ export default defineComponent({
   },
   "ru": {
      "$interpolationAlert": "Интерполированные данные, основанные на данных близлежащих метеостанций ({stations})."   
+  },
+  "zh": {
+    "$interpolationAlert": "该数据根据附近气象站（{stations}）插值得到。"
   }
 }
 </i18n>

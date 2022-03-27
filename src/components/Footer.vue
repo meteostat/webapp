@@ -351,6 +351,18 @@ footer ul a > i {
     "$sources": "Погодные данные предоставлены {noaa}, {dwd} и {ec}. Узнайте больше о наших {sources}.",
     "$legalLink": "/en/legal",
     "$privacyLink": "/en/privacy"
+  },
+  "zh": {
+    "aboutMeteostat": "关于 Meteostat",
+    "developers": "开发者",
+    "language": "语言",
+    "legalDisclosure": "法律",
+    "privacy": "隐私",
+    "sources": "数据来源",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}。",
+    "$sources": "天气数据由 {noaa}, {dwd} 和 {ec} 提供。 了解更多关于我们的 {sources}.",
+    "$legalLink": "/en/legal",
+    "$privacyLink": "/en/privacy"
   }
 }
 </i18n>
