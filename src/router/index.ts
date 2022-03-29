@@ -83,4 +83,4 @@ export default [
     name: 'NotFound',
     component: (): Promise<any> => import('~/views/NotFound.vue')
   }
-]
+];

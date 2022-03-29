@@ -15,39 +15,24 @@
           </div>
           <p class="text-muted">{{ post.author?.description }}</p>
           <p class="text-muted mb-4">
-            <icon
-              :icon="['fas', 'calendar-alt']"
-              class="me-2"
-            />
+            <icon :icon="['fas', 'calendar-alt']" class="me-2" />
             {{ post.date }}
           </p>
           <div class="d-flex align-items-center mb-4">
-            <button
-              class="btn btn-light btn-circle me-2"
-              @click="share(socialLinks.twitter)"
-            >
+            <button class="btn btn-light btn-circle me-2" @click="share(socialLinks.twitter)">
               <icon :icon="['fab', 'twitter']" />
             </button>
-            <button
-              class="btn btn-light btn-circle me-2"
-              @click="share(socialLinks.facebook)"
-            >
+            <button class="btn btn-light btn-circle me-2" @click="share(socialLinks.facebook)">
               <icon :icon="['fab', 'facebook-f']" />
             </button>
-            <button
-              class="btn btn-light btn-circle"
-              @click="share(socialLinks.linkedin)"
-            >
+            <button class="btn btn-light btn-circle" @click="share(socialLinks.linkedin)">
               <icon :icon="['fab', 'linkedin-in']" />
             </button>
           </div>
           <div class="post-tags d-flex flex-wrap">
-            <router-link
-              :to="`/blog/tag/${tag.slug}`"
-              v-for="tag in post.tags"
-              :key="tag.slug"
-              class="badge"
-            >{{ tag.name }}</router-link>
+            <router-link :to="`/blog/tag/${tag.slug}`" v-for="tag in post.tags" :key="tag.slug" class="badge">{{
+              tag.name
+            }}</router-link>
           </div>
         </div>
       </div>
@@ -55,10 +40,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, computed } from 'vue'
-import { useContext } from 'vitedge'
-import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
+import { defineComponent, reactive, computed } from 'vue';
+import { useContext } from 'vitedge';
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@vueuse/head';
 
 export default defineComponent({
   name: 'BlogPost',
@@ -70,14 +55,14 @@ export default defineComponent({
     }
   },
 
-  setup(props: Record<string, any>): Record<string, any> { 
-    const { t } = useI18n()
+  setup(props: Record<string, any>): Record<string, any> {
+    const { t } = useI18n();
 
-    const post = reactive(props._post || {})
+    const post = reactive(props._post || {});
 
     if (!post.slug && import.meta.env.SSR) {
-      const { writeResponse } = useContext()
-      writeResponse({ status: 404 })
+      const { writeResponse } = useContext();
+      writeResponse({ status: 404 });
     }
 
     useHead({
@@ -106,35 +91,35 @@ export default defineComponent({
         {
           property: 'article:published_time',
           content: computed(() => post.date || null)
-        },
-      ],
-    })
+        }
+      ]
+    });
 
     return {
       t,
       post
-    }
+    };
   },
 
   data() {
     return {
       socialLinks: {
         twitter(link: string) {
-          return `https://twitter.com/intent/tweet?url=${link}`
+          return `https://twitter.com/intent/tweet?url=${link}`;
         },
         facebook(link: string) {
-          return `https://www.facebook.com/sharer/sharer.php?u=${link}`
+          return `https://www.facebook.com/sharer/sharer.php?u=${link}`;
         },
         linkedin(link: string) {
-          return `https://www.linkedin.com/sharing/share-offsite/?url=${link}`
+          return `https://www.linkedin.com/sharing/share-offsite/?url=${link}`;
         }
       }
-    }
+    };
   },
   async mounted() {
     if (!this._post) {
       // Fetch insights article
-      await this.fetchPost()
+      await this.fetchPost();
     }
   },
 
@@ -144,24 +129,24 @@ export default defineComponent({
      */
     async fetchPost(): Promise<void> {
       await fetch(`${this.$api}/cms/blog/post?lang=${this.$locale}&slug=${this.$route.params.slug}`)
-        .then(response => response.json())
-        .then(data => {
-          Object.assign(this.post, data.data)
-        })
+        .then((response) => response.json())
+        .then((data) => {
+          Object.assign(this.post, data.data);
+        });
     },
 
     share(socialLink: any) {
-      window?.open(socialLink(window.location), '_blank')?.focus()
+      window?.open(socialLink(window.location), '_blank')?.focus();
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 @import '~/style/variables';
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 .container {
   max-width: 1080px;
@@ -199,10 +184,10 @@ export default defineComponent({
 
 <style lang="scss">
 @import '~/style/variables';
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/highlight.js/styles/a11y-dark";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/highlight.js/styles/a11y-dark';
 //@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
 .post-tags {
@@ -211,8 +196,8 @@ export default defineComponent({
     font-weight: normal;
     background: $gray-200;
     color: $dark;
-    margin-right: .25rem;
-    margin-bottom: .3rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.3rem;
 
     &:hover {
       background: $primary;

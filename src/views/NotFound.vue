@@ -6,7 +6,7 @@
       alt="404"
       width="400"
       loading="lazy"
-    >
+    />
     <p class="lead mt-5">
       <strong>{{ t('error') }} 404</strong>.
       <span class="text-muted">{{ t('$description') }}</span>
@@ -15,21 +15,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useContext } from 'vitedge'
-import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
+import { defineComponent } from 'vue';
+import { useContext } from 'vitedge';
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@vueuse/head';
 
 export default defineComponent({
   name: 'NotFound',
 
   setup(): Record<string, any> {
     if (import.meta.env.SSR) {
-      const { writeResponse } = useContext()
-      writeResponse({ status: 404 })
+      const { writeResponse } = useContext();
+      writeResponse({ status: 404 });
     }
-    
-    const { t } = useI18n()
+
+    const { t } = useI18n();
 
     useHead({
       title: `${t('$meta.title')} | Meteostat`,
@@ -38,12 +38,12 @@ export default defineComponent({
           name: 'description',
           content: t('$meta.description')
         }
-      ],
-    })
+      ]
+    });
 
-    return { t }
+    return { t };
   }
-})
+});
 </script>
 
 <i18n>

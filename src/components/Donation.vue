@@ -1,17 +1,9 @@
 <template>
   <div class="offcanvas-header">
-    <h5
-      id="offcanvasExampleLabel"
-      class="offcanvas-title"
-    >
+    <h5 id="offcanvasExampleLabel" class="offcanvas-title">
       {{ t('donation') }}
     </h5>
-    <button
-      type="button"
-      class="btn-close text-reset"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    />
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" />
   </div>
   <div class="offcanvas-body">
     <div class="mb-4">
@@ -23,12 +15,7 @@
     <h6 class="d-block mb-3">
       {{ t('online') }}
     </h6>
-    <a
-      class="icon-link mb-2"
-      href="https://www.patreon.com/meteostat"
-      target="_blank"
-      rel="noreferrer"
-    >
+    <a class="icon-link mb-2" href="https://www.patreon.com/meteostat" target="_blank" rel="noreferrer">
       <span class="box fs-5">
         <icon :icon="['fab', 'patreon']" />
       </span>
@@ -45,63 +32,34 @@
       </span>
       <span class="link fs-5 ms-2">PayPal</span>
     </a>
-    <a
-      class="icon-link mb-4"
-      href="https://github.com/sponsors/clampr"
-      target="_blank"
-      rel="noreferrer"
-    >
+    <a class="icon-link mb-4" href="https://github.com/sponsors/clampr" target="_blank" rel="noreferrer">
       <span class="box fs-5">
         <icon :icon="['fab', 'github']" />
       </span>
       <span class="link fs-5 ms-2">GitHub</span>
     </a>
-    <hr>
+    <hr />
     <h6 class="d-block mb-3">
       {{ t('bankTransfer') }}
     </h6>
     <div class="form-floating mb-3">
-      <input
-        id="recipient"
-        type="text"
-        class="form-control"
-        :value="transfer.recipient"
-        readonly
-      >
+      <input id="recipient" type="text" class="form-control" :value="transfer.recipient" readonly />
       <label for="recipient">{{ t('recipient') }}</label>
     </div>
     <div class="form-floating mb-3">
-      <input
-        id="iban"
-        type="text"
-        class="form-control"
-        :value="transfer.iban"
-        readonly
-      >
+      <input id="iban" type="text" class="form-control" :value="transfer.iban" readonly />
       <label for="iban">{{ t('iban') }}</label>
     </div>
     <div class="form-floating mb-3">
-      <input
-        id="bic"
-        type="text"
-        class="form-control"
-        :value="transfer.bic"
-        readonly
-      >
+      <input id="bic" type="text" class="form-control" :value="transfer.bic" readonly />
       <label for="bic">{{ t('bic') }}</label>
     </div>
-    <hr>
+    <hr />
     <h6 class="d-block mb-3">
       {{ t('cryptoCurrencies') }}
     </h6>
-    <ul
-      class="nav nav-pills mb-3"
-      role="tablist"
-    >
-      <li
-        class="nav-item"
-        role="presentation"
-      >
+    <ul class="nav nav-pills mb-3" role="tablist">
+      <li class="nav-item" role="presentation">
         <button
           class="nav-link active"
           data-bs-toggle="pill"
@@ -114,10 +72,7 @@
           Bitcoin
         </button>
       </li>
-      <li
-        class="nav-item"
-        role="presentation"
-      >
+      <li class="nav-item" role="presentation">
         <button
           class="nav-link"
           data-bs-toggle="pill"
@@ -131,95 +86,66 @@
         </button>
       </li>
     </ul>
-    <div
-      class="tab-content"
-    >
-      <div
-        id="crypto-bitcoin"
-        class="tab-pane fade show active"
-        role="tabpanel"
-      >
+    <div class="tab-content">
+      <div id="crypto-bitcoin" class="tab-pane fade show active" role="tabpanel">
         <div class="form-floating mb-3">
-          <input
-            id="bitcoin"
-            type="text"
-            class="form-control"
-            :value="crypto.bitcoin"
-            readonly
-          >
+          <input id="bitcoin" type="text" class="form-control" :value="crypto.bitcoin" readonly />
           <label for="bitcoin">Bitcoin</label>
         </div>
-        <img
-          src="https://media.meteostat.net/assets/qr-bitcoin.png"
-          class="img-fluid img-thumbnail"
-        >
+        <img src="https://media.meteostat.net/assets/qr-bitcoin.png" class="img-fluid img-thumbnail" />
       </div>
-      <div
-        id="crypto-ethereum"
-        class="tab-pane fade"
-        role="tabpanel"
-        aria-labelledby="pills-profile-tab"
-      >
+      <div id="crypto-ethereum" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div class="form-floating mb-3">
-          <input
-            id="ethereum"
-            type="text"
-            class="form-control"
-            :value="crypto.ethereum"
-            readonly
-          >
+          <input id="ethereum" type="text" class="form-control" :value="crypto.ethereum" readonly />
           <label for="ethereum">Ethereum</label>
         </div>
-        <img
-          src="https://media.meteostat.net/assets/qr-ethereum.png"
-          class="img-fluid img-thumbnail"
-        >
+        <img src="https://media.meteostat.net/assets/qr-ethereum.png" class="img-fluid img-thumbnail" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'Donation',
 
   setup(): Record<string, any> {
-    const { t } = useI18n()
+    const { t } = useI18n();
 
     const transfer = {
       recipient: 'Christian Lamprecht',
       iban: 'DE76 1001 1001 2621 1459 29',
       bic: 'NTSBDEB1XXX'
-    }
+    };
 
     const crypto = {
       bitcoin: 'bc1qg2alt82ry2ntkslw8ulr9528nmlj6ym6g2x0ms',
       ethereum: '0x5f4Dde3da1aE75280eFA6a62050c1D5cb1D7f694'
-    }
+    };
 
-    return { t, transfer, crypto }
+    return { t, transfer, crypto };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@import "~/style/variables";
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '~/style/variables';
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 .icon-link {
   display: flex;
   align-items: center;
-  
+
   .box {
     display: flex;
     justify-content: center;
     width: 40px;
-    padding: .5rem;
+    padding: 0.5rem;
     color: $white;
     background: $dark;
     border-radius: 4px;

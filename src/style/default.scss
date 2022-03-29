@@ -1,42 +1,43 @@
 /* Meteostat Custom Styling */
-@import "./variables";
-@import "./typography";
+@import './variables';
+@import './typography';
 
 /* Bootstrap CSS */
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/utilities";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../node_modules/bootstrap/scss/utilities';
 
-@import "../node_modules/bootstrap/scss/root";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/type";
-@import "../node_modules/bootstrap/scss/images";
-@import "../node_modules/bootstrap/scss/containers";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/tables";
-@import "../node_modules/bootstrap/scss/forms";
-@import "../node_modules/bootstrap/scss/buttons";
-@import "../node_modules/bootstrap/scss/transitions";
-@import "../node_modules/bootstrap/scss/dropdown";
-@import "../node_modules/bootstrap/scss/nav";
-@import "../node_modules/bootstrap/scss/navbar";
-@import "../node_modules/bootstrap/scss/card";
-@import "../node_modules/bootstrap/scss/accordion";
-@import "../node_modules/bootstrap/scss/badge";
-@import "../node_modules/bootstrap/scss/alert";
-@import "../node_modules/bootstrap/scss/list-group";
-@import "../node_modules/bootstrap/scss/close";
-@import "../node_modules/bootstrap/scss/modal";
-@import "../node_modules/bootstrap/scss/tooltip";
-@import "../node_modules/bootstrap/scss/spinners";
-@import "../node_modules/bootstrap/scss/offcanvas";
+@import '../node_modules/bootstrap/scss/root';
+@import '../node_modules/bootstrap/scss/reboot';
+@import '../node_modules/bootstrap/scss/type';
+@import '../node_modules/bootstrap/scss/images';
+@import '../node_modules/bootstrap/scss/containers';
+@import '../node_modules/bootstrap/scss/grid';
+@import '../node_modules/bootstrap/scss/tables';
+@import '../node_modules/bootstrap/scss/forms';
+@import '../node_modules/bootstrap/scss/buttons';
+@import '../node_modules/bootstrap/scss/button-group';
+@import '../node_modules/bootstrap/scss/transitions';
+@import '../node_modules/bootstrap/scss/dropdown';
+@import '../node_modules/bootstrap/scss/nav';
+@import '../node_modules/bootstrap/scss/navbar';
+@import '../node_modules/bootstrap/scss/card';
+@import '../node_modules/bootstrap/scss/accordion';
+@import '../node_modules/bootstrap/scss/badge';
+@import '../node_modules/bootstrap/scss/alert';
+@import '../node_modules/bootstrap/scss/list-group';
+@import '../node_modules/bootstrap/scss/close';
+@import '../node_modules/bootstrap/scss/modal';
+@import '../node_modules/bootstrap/scss/tooltip';
+@import '../node_modules/bootstrap/scss/spinners';
+@import '../node_modules/bootstrap/scss/offcanvas';
 
-@import "../node_modules/bootstrap/scss/helpers";
-@import "../node_modules/bootstrap/scss/utilities/api";
+@import '../node_modules/bootstrap/scss/helpers';
+@import '../node_modules/bootstrap/scss/utilities/api';
 
 /* Utilities */
-@import "./utils";
+@import './utils';
 
 body {
   &.loading {
@@ -60,21 +61,27 @@ body {
 }
 
 /* Links & Buttons */
-a, a:hover, a:focus, a:active {
+a,
+a:hover,
+a:focus,
+a:active {
   text-decoration: none;
   cursor: pointer;
 }
 
 .btn {
   font-weight: 500;
-  padding: .4rem 1rem;
+  padding: 0.4rem 1rem;
 
-  &-light, &-light:hover, &-light:focus {
+  &-light,
+  &-light:hover,
+  &-light:focus {
     border-color: $gray-200;
   }
 }
 
-button > *, a > * {
+button > *,
+a > * {
   pointer-events: none;
 }
 
@@ -106,15 +113,16 @@ button > *, a > * {
 }
 
 /* Offcanvas */
-.loading::before, .offcanvas-backdrop::before {
+.loading::before,
+.offcanvas-backdrop::before {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1039;
   width: 100vw;
   height: 100vh;
-  content: "";
-  background-color: rgba(200, 200, 200, .5);
+  content: '';
+  background-color: rgba(200, 200, 200, 0.5);
 }
 
 .offcanvas {
@@ -145,7 +153,8 @@ button > *, a > * {
   }
 }
 
-section.card, section>.card {
+section.card,
+section > .card {
   border: 0;
 
   .card-header-main {
@@ -159,43 +168,11 @@ section.card, section>.card {
   }
 }
 
-/* Parameter Cards */
-.card {
-  &-kpi {
-    border: 0;
-    border-radius: 0;
-
-    .card-body {
-      overflow: hidden;
-
-      h5 {
-        white-space: nowrap;
-        overflow: hidden;
-      }
-    }
-  }
-  &-temp {
-    border-left: 3px solid $red;
-  }
-  &-prcp {
-    border-left: 3px solid $cyan-600;
-  }
-  &-icon {
-    font-size: 3rem;
-    margin-right: .5rem;
-    color: $gray-400;
-  }
-  .anomaly-negative {
-    color: $cyan-700;
-  }
-  .anomaly-positive {
-    color: $red-700;
-  }
-}
-
 /* Leaflet Maps */
 .map {
-  a, a:hover, a:active {
+  a,
+  a:hover,
+  a:active {
     color: #333 !important;
   }
 }

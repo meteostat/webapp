@@ -2,7 +2,7 @@ export const SUPPORTED_LANGUAGES = [
   {
     locale: 'en',
     name: 'English',
-    default: true,
+    default: true
   },
   {
     locale: 'de',
@@ -32,25 +32,19 @@ export const SUPPORTED_LANGUAGES = [
     locale: 'ru',
     name: 'русский язык'
   }
-]
+];
 
-export const SUPPORTED_LOCALES = SUPPORTED_LANGUAGES.map((l) => l.locale)
+export const SUPPORTED_LOCALES = SUPPORTED_LANGUAGES.map((l) => l.locale);
 
-export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES.find((l) => l.default)
+export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES.find((l) => l.default);
 
-export const DEFAULT_LOCALE = DEFAULT_LANGUAGE?.locale as string
+export const DEFAULT_LOCALE = DEFAULT_LANGUAGE?.locale as string;
 
-export function extractLocaleFromPath(path = '', userLang: null|string = null): string {
-  const [_, maybeLocale] = path.split('/')
+export function extractLocaleFromPath(path = '', userLang: null | string = null): string {
+  const [_, maybeLocale] = path.split('/');
   if (!import.meta.env.SSR) {
-    userLang = (
-      navigator.language || navigator.userLanguage
-    )?.substr(0, 2) || null
+    userLang = (navigator.language || navigator.userLanguage)?.substr(0, 2) || null;
   }
-  userLang = typeof userLang === 'string' && SUPPORTED_LOCALES.includes(
-    userLang
-  ) ? userLang : null
-  return SUPPORTED_LOCALES.includes(
-    maybeLocale
-  ) ? maybeLocale : userLang || DEFAULT_LOCALE
+  userLang = typeof userLang === 'string' && SUPPORTED_LOCALES.includes(userLang) ? userLang : null;
+  return SUPPORTED_LOCALES.includes(maybeLocale) ? maybeLocale : userLang || DEFAULT_LOCALE;
 }

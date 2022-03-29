@@ -1,22 +1,9 @@
 <template>
-  <div
-    v-if="post.lang !== $locale"
-    class="ribbon ribbon-lang"
-  >
-    <span
-      class="fw-bold d-flex justify-content-center align-items-center text-white"
-    >{{ post.lang }}</span>
+  <div v-if="post.lang !== $locale" class="ribbon ribbon-lang">
+    <span class="fw-bold d-flex justify-content-center align-items-center text-white">{{ post.lang }}</span>
   </div>
-  <div
-    v-if="!imgLoaded"
-    class="story-img placeholder mb-3 bg-dark"
-  />
-  <img
-    :src="post.img"
-    class="story-img img-fluid mb-3"
-    v-show="imgLoaded"
-    @load="imgLoaded = true"
-  />
+  <div v-if="!imgLoaded" class="story-img placeholder mb-3 bg-dark" />
+  <img :src="post.img" class="story-img img-fluid mb-3" v-show="imgLoaded" @load="imgLoaded = true" />
   <h5 class="text-dark">
     {{ post.title }}
   </h5>
@@ -26,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'BlogPostCard',
@@ -36,18 +23,18 @@ export default defineComponent({
   },
 
   setup() {
-    const imgLoaded = ref(false)
+    const imgLoaded = ref(false);
 
-    return { imgLoaded }
+    return { imgLoaded };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 @import '~/style/variables';
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 .story-img {
   height: 180px;
@@ -75,6 +62,6 @@ export default defineComponent({
     width: 100px;
     position: absolute;
     padding: 2px 0;
-  }  
+  }
 }
 </style>

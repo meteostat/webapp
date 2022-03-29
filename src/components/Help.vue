@@ -1,17 +1,10 @@
 <template>
-  <div
-    id="helpModal"
-    class="modal fade"
-    tabindex="-1"
-  >
+  <div id="helpModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">
-            <icon
-              :icon="['fas', 'question-circle']"
-              class="me-1"
-            />
+            <icon :icon="['fas', 'question-circle']" class="me-1" />
             {{ t('help') }}
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -25,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'Help',
@@ -38,9 +31,9 @@ export default defineComponent({
     }
   },
 
-  setup(): Record<string, (Store|Array<string>|any)> {
-    const { t } = useI18n()
-    return { t }
+  setup(): Record<string, Store | Array<string> | any> {
+    const { t } = useI18n();
+    return { t };
   }
-})
+});
 </script>

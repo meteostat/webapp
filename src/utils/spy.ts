@@ -1,13 +1,10 @@
 const isElementInViewport = (el: HTMLElement): boolean => {
   if (el) {
-    const rect = el.getBoundingClientRect()
+    const rect = el.getBoundingClientRect();
 
-    return (
-      el.offsetParent !== null &&
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-    )
+    return el.offsetParent !== null && rect.top <= (window.innerHeight || document.documentElement.clientHeight);
   }
-  return true
-}
+  return true;
+};
 
-export default isElementInViewport
+export default isElementInViewport;

@@ -2,10 +2,7 @@
   <div class="d-flex flex-column h-100">
     <!-- Loading Animation -->
     <div class="loading-overlay d-none">
-      <div
-        class="spinner-border text-primary"
-        role="status"
-      />
+      <div class="spinner-border text-primary" role="status" />
     </div>
 
     <!-- Navbar -->
@@ -27,19 +24,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
-import { useSettingsStore } from '~/stores/settings'
-import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer.vue'
+import { defineComponent, defineAsyncComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@vueuse/head';
+import { useSettingsStore } from '~/stores/settings';
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 
 /**
  * Async Components
  */
-const CookieModal = defineAsyncComponent(() =>
-  import('~/components/CookieModal.vue')
-)
+const CookieModal = defineAsyncComponent(() => import('~/components/CookieModal.vue'));
 
 export default defineComponent({
   name: 'App',
@@ -51,32 +46,32 @@ export default defineComponent({
   },
 
   setup(): Record<string, any> {
-    const { t, locale } = useI18n()
-    const settings = useSettingsStore()
+    const { t, locale } = useI18n();
+    const settings = useSettingsStore();
 
     useHead({
       title: `${t('$meta.title')} | Meteostat`,
       meta: [
         {
           name: 'description',
-          content: t('$meta.description') 
+          content: t('$meta.description')
         }
       ],
       htmlAttrs: {
         lang: locale
       }
-    })
+    });
 
-    return { t, settings }
+    return { t, settings };
   },
 
   mounted() {
     this.$nextTick(() => {
-      document.body.removeAttribute('style')
-      this.$loaded()
-    })
+      document.body.removeAttribute('style');
+      this.$loaded();
+    });
   }
-})
+});
 </script>
 
 <i18n>

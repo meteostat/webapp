@@ -1,12 +1,12 @@
 <template>
-  <nav id="location-navbar" class="navbar navbar-expand-lg navbar-light bg-light py-lg-0 sticky-top">
+  <nav id="location-navbar" class="navbar navbar-expand-lg navbar-light bg-light py-0 sticky-top">
     <div class="container-fluid">
       <!-- Location Name -->
-      <div class="navbar-brand d-flex align-items-center overflow-hidden" @click="scrollTop()">
+      <div class="navbar-brand d-flex align-items-center overflow-hidden py-2" @click="scrollTop()">
         <img
           :src="`https://media.meteostat.net/assets/flags/4x3/${country.toLowerCase()}.svg`"
           class="country-flag me-2"
-        >
+        />
         <h1 class="d-inline-block text-truncate h5 mb-0">
           {{ name }}
         </h1>
@@ -22,11 +22,7 @@
         <span class="navbar-toggler-icon" />
       </button>
       <!-- Menu -->
-      <div
-        id="subnav"
-        ref="subnav"
-        class="collapse navbar-collapse ms-1 mt-2 mt-sm-0"
-      >
+      <div id="subnav" ref="subnav" class="collapse navbar-collapse ms-1 mt-2 mt-sm-0">
         <ul class="navbar-nav w-100">
           <li
             v-for="item in items"
@@ -34,11 +30,7 @@
             class="nav-item"
             :class="{ 'nav-item-end': ['details', 'maps', 'climate'].includes(item.id) }"
           >
-            <a
-              class="nav-link"
-              :href="`#${item.id}`"
-              @click="scrollTo(item.id, $event)"
-            >
+            <a class="nav-link" :href="`#${item.id}`" @click="scrollTo(item.id, $event)">
               {{ item.title }}
             </a>
           </li>
@@ -49,8 +41,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'Subnav',
@@ -75,80 +67,97 @@ export default defineComponent({
   },
 
   setup(): Record<string, any> {
-    const { t } = useI18n()
+    const { t } = useI18n();
 
-    return { t }
+    return { t };
   },
 
   data(): Record<string, any> {
     return {
       items: [],
       scrollspy: null
-    }
+    };
   },
 
   methods: {
     scrollTo(id: string, event?: Event): void {
+      // Prevent default behaviour
       if (event) {
         event.preventDefault();
         event.stopPropagation();
       }
-      const el = document.getElementById(id)
-      if (el) {
-        const top = (el.getBoundingClientRect().top + window.pageYOffset) - 78
-        window.scrollTo({
-          top: top,
-          behavior: 'smooth'
-        })
+      // Get element & collapse instance
+      const subnav = this.$refs.subnav as HTMLElement;
+      const collapse = this.$bs.Collapse.default.getInstance(subnav);
+      // Scroll to element & remove event listener if set
+      const scrollTo = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.pageYOffset - 78;
+          window.scrollTo({
+            top: top,
+            behavior: 'smooth'
+          });
+        }
+        if (collapse) {
+          subnav.removeEventListener('hidden.bs.collapse', scrollTo);
+        }
+      };
+      // Hide location navbar menu
+      if (collapse) {
+        collapse.hide();
+        subnav.addEventListener('hidden.bs.collapse', scrollTo);
+      } else {
+        scrollTo();
       }
     },
 
     updateItems(): void {
       // Clear sections list
-      this.items = []
+      this.items = [];
       // Populate sections list
-      const sections = document.getElementsByTagName('section')
-      Array.from(sections).forEach(section => {
+      const sections = document.getElementsByTagName('section');
+      Array.from(sections).forEach((section) => {
         if (section.offsetParent !== null) {
-          const heading = section.querySelector('h2')
+          const heading = section.querySelector('h2');
           this.items.push({
             id: section.id,
             title: heading?.innerText || section.dataset.sectionTitle
-          })
+          });
         }
-      })
+      });
       // Scrollspy
-      this.scrollspy?.dispose()
+      this.scrollspy?.dispose();
       this.scrollspy = new this.$bs.ScrollSpy.default(document.body, {
         target: '#location-navbar',
         offset: 80
-      })
+      });
     },
 
     scrollTop(): void {
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
-      })
+      });
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@import "~/style/variables";
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '~/style/variables';
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 @include media-breakpoint-up(lg) {
   .nav-item-end {
     margin-left: auto;
   }
 
-  .nav-item-end ~.nav-item-end {
+  .nav-item-end ~ .nav-item-end {
     margin-left: 0;
-  }  
+  }
 }
 
 .navbar {

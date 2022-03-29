@@ -25,7 +25,7 @@ const tempScale: Array<string> = [
   '#b35057',
   '#a13756',
   '#8c1c56'
-]
+];
 
 // https://gka.github.io/palettes/#/25|d|5cb85c,51aed4|51aed4,4d6fb7,9b50ba|0|1
 const prcpScale: Array<string> = [
@@ -54,7 +54,7 @@ const prcpScale: Array<string> = [
   '#885eba',
   '#9157ba',
   '#9b50ba'
-]
+];
 
 // https://gka.github.io/palettes/#/25|d|eeeeee,51aed4,5cb85c,fff055|fff055,e27a50,8c1c56,9b50ba|0|1
 const wspdScale: Array<string> = [
@@ -83,7 +83,7 @@ const wspdScale: Array<string> = [
   '#9f438f',
   '#9c47a2',
   '#9b50ba'
-]
+];
 
 // https://gka.github.io/palettes/#/25|d|9b50ba,4d6fb7,51aed4,5cb85c|5cb85c,fff055,e27a50,8c1c56|0|1
 const presScale: Array<string> = [
@@ -112,30 +112,30 @@ const presScale: Array<string> = [
   '#b35057',
   '#a13756',
   '#8c1c56'
-]
+];
 
 class ColorScale {
-  private scale: Array<string>
-  private min: number
-  private max: number
-  private zero: (null|string)
+  private scale: Array<string>;
+  private min: number;
+  private max: number;
+  private zero: null | string;
 
-  constructor(scale: Array<string>, min: number, max: number, zero: (null|string) = null) {
-    this.scale = scale
-    this.min = min
-    this.max = max
-    this.zero = zero
+  constructor(scale: Array<string>, min: number, max: number, zero: null | string = null) {
+    this.scale = scale;
+    this.min = min;
+    this.max = max;
+    this.zero = zero;
   }
 
   /**
    * getColor
-   * 
+   *
    * @property {number} value
    * @returns {string} The HEX color code
    */
-  public getColor(value: (null|number)): string|null {
+  public getColor(value: null | number): string | null {
     if (value === null) {
-      return null
+      return null;
     }
 
     if (this.zero !== null && value === 0) {
@@ -146,14 +146,8 @@ class ColorScale {
     const startValue = value - this.min;
     const percentage = Math.min(1, Math.max(0, startValue / range));
     const index = Math.floor((this.scale.length - 1) * percentage);
-    return this.scale[index];   
+    return this.scale[index];
   }
 }
 
-export {
-  tempScale,
-  prcpScale,
-  wspdScale,
-  presScale,
-  ColorScale
-}
+export { tempScale, prcpScale, wspdScale, presScale, ColorScale };

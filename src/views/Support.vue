@@ -14,82 +14,42 @@
         </div>
         <form>
           <!-- Alert: Failed -->
-          <p
-            v-if="status === 400"
-            class="alert alert-danger"
-          >
+          <p v-if="status === 400" class="alert alert-danger">
             {{ t('alertFailed') }}
           </p>
           <!-- Alert: Success -->
-          <p
-            v-if="status === 200"
-            class="alert alert-success"
-          >
+          <p v-if="status === 200" class="alert alert-success">
             {{ t('alertSuccess') }}
           </p>
           <div class="form-floating mb-3">
-            <input
-              id="subject"
-              v-model="subject"
-              type="text"
-              class="form-control"
-            >
+            <input id="subject" v-model="subject" type="text" class="form-control" />
             <label for="subject">{{ t('subject') }}</label>
           </div>
           <div class="form-floating mb-3">
-            <input
-              id="email"
-              v-model="email"
-              type="email"
-              class="form-control"
-            >
+            <input id="email" v-model="email" type="email" class="form-control" />
             <label for="email">{{ t('email') }}</label>
           </div>
           <div class="form-floating mb-3">
-            <textarea
-              id="message"
-              v-model="message"
-              class="form-control form-message"
-            />
+            <textarea id="message" v-model="message" class="form-control form-message" />
             <label for="message">{{ t('message') }}</label>
           </div>
-          <p
-            class="alert alert-primary"
-          >
+          <p class="alert alert-primary">
             {{ t('alertPrivacy') }}
           </p>
           <div class="d-flex align-items-center">
-            <span
-              v-if="!isFilled"
-              class="text-danger"
-            >
+            <span v-if="!isFilled" class="text-danger">
               {{ t('completeForm') }}
             </span>
-            <button
-              type="button"
-              class="btn btn-primary ms-auto"
-              :disabled="!isFilled"
-              @click="sendMessage"
-            >
+            <button type="button" class="btn btn-primary ms-auto" :disabled="!isFilled" @click="sendMessage">
               {{ t('send') }}
             </button>
           </div>
         </form>
       </div>
       <div class="col-12 col-md-4">
-        <div
-          id="faqAccordion"
-          class="accordion"
-        >
-          <div
-            v-for="(item, key) in i18n.messages.value[$locale].faq"
-            :key="key"
-            class="accordion-item"
-          >
-            <h2
-              :id="`faq-heading-${key}`"
-              class="accordion-header"
-            >
+        <div id="faqAccordion" class="accordion">
+          <div v-for="(item, key) in i18n.messages.value[$locale].faq" :key="key" class="accordion-item">
+            <h2 :id="`faq-heading-${key}`" class="accordion-header">
               <button
                 class="accordion-button"
                 :class="key === 0 ? '' : 'collapsed'"
@@ -124,10 +84,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
-import Ad from '~/components/Ad.vue'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@vueuse/head';
+import Ad from '~/components/Ad.vue';
 
 export default defineComponent({
   name: 'Support',
@@ -136,8 +96,8 @@ export default defineComponent({
     Ad
   },
 
-  setup(): Record<string, any> { 
-    const { t, messages } = useI18n()
+  setup(): Record<string, any> {
+    const { t, messages } = useI18n();
 
     useHead({
       title: `${t('$meta.title')} | Meteostat`,
@@ -146,15 +106,15 @@ export default defineComponent({
           name: 'description',
           content: t('$meta.description')
         }
-      ],
-    })
+      ]
+    });
 
     return {
       t,
       i18n: {
         messages
       }
-    }
+    };
   },
 
   data() {
@@ -163,45 +123,40 @@ export default defineComponent({
       email: '',
       message: '',
       status: 0
-    }
+    };
   },
 
   computed: {
     isFilled(this: any) {
-      return (
-        this.subject.length > 1 &&
-        this.email.length > 3 &&
-        this.message.length > 3
-      )
+      return this.subject.length > 1 && this.email.length > 3 && this.message.length > 3;
     }
   },
 
   methods: {
     sendMessage(event: Event) {
-      (event.target as HTMLButtonElement).disabled = true
+      (event.target as HTMLButtonElement).disabled = true;
       fetch(`${this.$api}/app/contact`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           subject: this.subject,
           email: this.email,
           message: this.message
-        }),
-      })
-      .then(response => this.status = response.status)
+        })
+      }).then((response) => (this.status = response.status));
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 @import '~/style/variables';
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/accordion";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '../../node_modules/bootstrap/scss/accordion';
 
 .form-message {
   height: 200px !important;

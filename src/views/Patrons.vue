@@ -1,8 +1,5 @@
 <template>
-  <section
-    id="christian"
-    class="bg-light"
-  >
+  <section id="christian" class="bg-light">
     <div class="container col-xxl-8 px-4">
       <div class="row align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-6 align-items-center">
@@ -13,19 +10,15 @@
             width="400"
             height="400"
             loading="lazy"
-          >
+          />
         </div>
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold lh-1 mb-4">
             {{ t('meetChristian') }}
           </h1>
           <figure>
-            <blockquote class="blockquote fst-italic">
-              "{{ t('$quote') }}"
-            </blockquote>
-            <figcaption class="blockquote-footer text-end mt-3">
-              Christian Lamprecht, {{ t('$cTitle') }}
-            </figcaption>
+            <blockquote class="blockquote fst-italic">"{{ t('$quote') }}"</blockquote>
+            <figcaption class="blockquote-footer text-end mt-3">Christian Lamprecht, {{ t('$cTitle') }}</figcaption>
           </figure>
           <div class="d-flex mt-3">
             <a
@@ -34,27 +27,12 @@
               target="_blank"
               rel="noreferrer"
             >
-              <icon
-                :icon="['fab', 'linkedin']"
-                class="me-sm-1"
-              />
-              <span class="d-none d-sm-inline">
-                LinkedIn
-              </span>
+              <icon :icon="['fab', 'linkedin']" class="me-sm-1" />
+              <span class="d-none d-sm-inline"> LinkedIn </span>
             </a>
-            <a
-              class="btn btn-dark btn-sm me-2"
-              href="https://github.com/clampr"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <icon
-                :icon="['fab', 'github']"
-                class="me-sm-1"
-              />
-              <span class="d-none d-sm-inline">
-                GitHub
-              </span>
+            <a class="btn btn-dark btn-sm me-2" href="https://github.com/clampr" target="_blank" rel="noreferrer">
+              <icon :icon="['fab', 'github']" class="me-sm-1" />
+              <span class="d-none d-sm-inline"> GitHub </span>
             </a>
             <a
               class="btn btn-danger btn-sm"
@@ -62,10 +40,7 @@
               data-bs-target="#donationSidebar"
               aria-controls="donationSidebar"
             >
-              <icon
-                :icon="['fas', 'heart']"
-                class="me-1"
-              />
+              <icon :icon="['fas', 'heart']" class="me-1" />
               {{ t('donation') }}
             </a>
           </div>
@@ -74,196 +49,101 @@
     </div>
   </section>
   <div class="bar" />
-  <section
-    id="sponsors"
-    class="my-5"
-  >
+  <section id="sponsors" class="my-5">
     <h2 class="display-5 text-center mb-4">
       {{ t('sponsorsAndPartners') }}
     </h2>
     <div class="container overflow-hidden">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center gx-3 gy-3">
-        <div
-          v-for="sponsor in sponsors"
-          :key="sponsor.name"
-          class="col"
-        >
-          <a
-            :href="sponsor.link"
-            class="d-block text-center p-3"
-            target="_blank"
-            rel="noreferrer nofollow"
-          >
-            <img
-              :src="sponsor.logo"
-              :alt="sponsor.name"
-              :title="sponsor.name"
-              class="partner-logo img-fluid"
-            >
+        <div v-for="sponsor in sponsors" :key="sponsor.name" class="col">
+          <a :href="sponsor.link" class="d-block text-center p-3" target="_blank" rel="noreferrer nofollow">
+            <img :src="sponsor.logo" :alt="sponsor.name" :title="sponsor.name" class="partner-logo img-fluid" />
           </a>
         </div>
       </div>
     </div>
   </section>
-  <section
-    id="backers"
-    class="container-fluid"
-  >
+  <section id="backers" class="container-fluid">
     <div class="row border border-white features">
       <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
         <h3 class="mb-4">
-          <icon
-            :icon="['fas', 'heart']"
-            class="me-2 text-danger"
-          />
+          <icon :icon="['fas', 'heart']" class="me-2 text-danger" />
           GitHub
         </h3>
-        <i18n-t
-          keypath="$backersText"
-          tag="p"
-          class="text-muted"
-        >
+        <i18n-t keypath="$backersText" tag="p" class="text-muted">
           <template #service>GitHub Sponsors</template>
         </i18n-t>
         <ul>
-          <li
-            v-for="backer in ghBackers"
-            :key="backer"
-          >
-            <a
-              :href="backer.link"
-              target="_blank"
-              rel="noreferrer nofollow"
-            >
+          <li v-for="backer in ghBackers" :key="backer">
+            <a :href="backer.link" target="_blank" rel="noreferrer nofollow">
               {{ backer.name }}
             </a>
           </li>
         </ul>
-        <hr>
-        <i18n-t
-          keypath="$backersAction"
-          tag="p"
-        >
+        <hr />
+        <i18n-t keypath="$backersAction" tag="p">
           <template #patreon>
-            <a
-              href="https://www.patreon.com/meteostat"
-              target="_blank"
-              rel="noreferrer"
-            >Patreon</a>
+            <a href="https://www.patreon.com/meteostat" target="_blank" rel="noreferrer">Patreon</a>
           </template>
           <template #github>
-            <a
-              href="https://github.com/sponsors/clampr"
-              target="_blank"
-              rel="noreferrer"
-            >GitHub</a>
+            <a href="https://github.com/sponsors/clampr" target="_blank" rel="noreferrer">GitHub</a>
           </template>
           <template #donation>
-            <a
-              href=""
-              data-bs-toggle="offcanvas"
-              data-bs-target="#donationSidebar"
-              aria-controls="donationSidebar"
-            >{{ t('these') }}</a>
+            <a href="" data-bs-toggle="offcanvas" data-bs-target="#donationSidebar" aria-controls="donationSidebar">{{
+              t('these')
+            }}</a>
           </template>
         </i18n-t>
       </div>
       <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
         <h3 class="mb-4">
-          <icon
-            :icon="['fab', 'patreon']"
-            class="me-2"
-          />
+          <icon :icon="['fab', 'patreon']" class="me-2" />
           Patreon
         </h3>
-        <i18n-t
-          keypath="$backersText"
-          tag="p"
-          class="text-muted"
-        >
+        <i18n-t keypath="$backersText" tag="p" class="text-muted">
           <template #service>Patreon</template>
         </i18n-t>
         <ul>
-          <li
-            v-for="patron in patrons"
-            :key="patron.name"
-          >
-            <a
-              :href="patron.link"
-              target="_blank"
-              rel="noreferrer nofollow"
-            >
+          <li v-for="patron in patrons" :key="patron.name">
+            <a :href="patron.link" target="_blank" rel="noreferrer nofollow">
               {{ patron.name }}
             </a>
           </li>
         </ul>
-        <hr>
-        <i18n-t
-          keypath="$backersAction"
-          tag="p"
-        >
+        <hr />
+        <i18n-t keypath="$backersAction" tag="p">
           <template #patreon>
-            <a
-              href="https://www.patreon.com/meteostat"
-              target="_blank"
-              rel="noreferrer"
-            >Patreon</a>
+            <a href="https://www.patreon.com/meteostat" target="_blank" rel="noreferrer">Patreon</a>
           </template>
           <template #github>
-            <a
-              href="https://github.com/sponsors/clampr"
-              target="_blank"
-              rel="noreferrer"
-            >GitHub</a>
+            <a href="https://github.com/sponsors/clampr" target="_blank" rel="noreferrer">GitHub</a>
           </template>
           <template #donation>
-            <a
-              href=""
-              data-bs-toggle="offcanvas"
-              data-bs-target="#donationSidebar"
-              aria-controls="donationSidebar"
-            >{{ t('these') }}</a>
+            <a href="" data-bs-toggle="offcanvas" data-bs-target="#donationSidebar" aria-controls="donationSidebar">{{
+              t('these')
+            }}</a>
           </template>
         </i18n-t>
       </div>
       <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
         <h3 class="mb-4">
-          <icon
-            :icon="['fab', 'github']"
-            class="me-2"
-          />
+          <icon :icon="['fab', 'github']" class="me-2" />
           {{ t('contributors') }}
         </h3>
-        <p
-          class="text-muted"
-        >
+        <p class="text-muted">
           {{ t('$contributorsText') }}
         </p>
         <ul>
-          <li
-            v-for="contributor in contributors.sort()"
-            :key="contributor"
-          >
-            <a
-              :href="`https://github.com/${contributor}`"
-              target="_blank"
-              rel="noreferrer nofollow"
-            >@{{ contributor }}</a>
+          <li v-for="contributor in contributors.sort()" :key="contributor">
+            <a :href="`https://github.com/${contributor}`" target="_blank" rel="noreferrer nofollow"
+              >@{{ contributor }}</a
+            >
           </li>
         </ul>
-        <hr>
-        <i18n-t
-          keypath="$contributorsAction"
-          tag="p"
-        >
+        <hr />
+        <i18n-t keypath="$contributorsAction" tag="p">
           <template #github>
-            <a
-              href="https://github.com/meteostat"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
+            <a href="https://github.com/meteostat" target="_blank" rel="noreferrer"> GitHub </a>
           </template>
         </i18n-t>
       </div>
@@ -272,15 +152,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@vueuse/head';
 
 export default defineComponent({
   name: 'Contributors',
 
   setup(): Record<string, any> {
-    const { t } = useI18n()
+    const { t } = useI18n();
 
     useHead({
       title: `${t('$meta.title')} | Meteostat`,
@@ -289,13 +169,13 @@ export default defineComponent({
           name: 'description',
           content: t('$meta.description')
         }
-      ],
-    })
+      ]
+    });
 
-    return { t }
+    return { t };
   },
 
-  data(): Record<string, Array<string|Record<string, string>>> {
+  data(): Record<string, Array<string | Record<string, string>>> {
     return {
       sponsors: [
         {
@@ -312,7 +192,7 @@ export default defineComponent({
         {
           name: 'Benjamin Gutzmann',
           link: 'https://github.com/gutzbenj'
-        }        
+        }
       ],
       patrons: [
         {
@@ -320,25 +200,17 @@ export default defineComponent({
           link: 'https://www.patreon.com/user?u=18076117'
         }
       ],
-      contributors: [
-        'weyaaron',
-        'mrsjuli',
-        'amotl',
-        'meteoDaniel',
-        'rfoel',
-        'Kkoile',
-        'clampr'
-      ]
-    }
+      contributors: ['weyaaron', 'mrsjuli', 'amotl', 'meteoDaniel', 'rfoel', 'Kkoile', 'clampr']
+    };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 @import '~/style/variables';
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 .bar {
   height: 10px;

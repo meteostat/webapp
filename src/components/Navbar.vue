@@ -3,29 +3,19 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container-fluid">
-        <router-link
-          class="navbar-brand d-flex align-items-center p-0"
-          :to="{ name: 'Home' }"
-        >
+        <router-link class="navbar-brand d-flex align-items-center p-0" :to="{ name: 'Home' }">
           <img
             src="https://media.meteostat.net/icon.svg"
             class="logo d-inline-block align-text-top"
             width="36"
             height="36"
-          >
+          />
           <span class="d-none d-lg-inline-block mb-0 ms-2 h4">Meteostat</span>
         </router-link>
         <div class="input-group search ms-lg-3">
           <span class="input-group-text pe-1 border-0">
-            <div
-              v-if="loadingResults"
-              class="spinner-border spinner-border-sm"
-              role="status"
-            />
-            <icon
-              v-else
-              icon="search"
-            />
+            <div v-if="loadingResults" class="spinner-border spinner-border-sm" role="status" />
+            <icon v-else icon="search" />
           </span>
           <input
             id="search"
@@ -37,21 +27,12 @@
             autocomplete="off"
             @input="debounce(search, 500, 'search')"
             @keyup.enter="search"
-          >
-          <span
-            class="input-group-text d-none d-lg-flex border-0"
-          >
-            <img src="https://media.meteostat.net/assets/search-hotkey.svg">
+          />
+          <span class="input-group-text d-none d-lg-flex border-0">
+            <img src="https://media.meteostat.net/assets/search-hotkey.svg" />
           </span>
-          <div
-            v-if="results.places || results.stations"
-            ref="results"
-            class="search-results list-group"
-          >
-            <div
-              v-if="results.places"
-              class="search-category list-group-item fw-bold"
-            >
+          <div v-if="results.places || results.stations" ref="results" class="search-results list-group">
+            <div v-if="results.places" class="search-category list-group-item fw-bold">
               {{ t('places') }}
             </div>
             <router-link
@@ -63,19 +44,15 @@
               <img
                 :src="`https://media.meteostat.net/assets/flags/4x3/${place.country.toLowerCase()}.svg`"
                 class="country-flag me-2"
-              >
+              />
               <span class="text-truncate">
                 <span>{{ place.name }}</span>
-                <small
-                  v-if="place.region && (place.country == 'US' || place.country == 'CA')"
-                  class="text-muted"
-                >, {{ place.region }}</small>
+                <small v-if="place.region && (place.country == 'US' || place.country == 'CA')" class="text-muted"
+                  >, {{ place.region }}</small
+                >
               </span>
             </router-link>
-            <div
-              v-if="results.stations"
-              class="search-category list-group-item fw-bold"
-            >
+            <div v-if="results.stations" class="search-category list-group-item fw-bold">
               {{ t('stations') }}
             </div>
             <router-link
@@ -87,19 +64,13 @@
               <img
                 :src="`https://media.meteostat.net/assets/flags/4x3/${station.country.toLowerCase()}.svg`"
                 class="country-flag me-2"
-              >
+              />
               <span class="text-truncate me-1">
                 <span>{{ station.name }}</span>
-                <small
-                  v-if="station.region"
-                  class="text-muted"
-                >, {{ station.region }}</small>
+                <small v-if="station.region" class="text-muted">, {{ station.region }}</small>
               </span>
-              <span class="ms-auto">
-                <span
-                  v-if="!station.active"
-                  class="badge bg-secondary me-1"
-                >{{ t('archive') }}</span>
+              <span class="ms-auto text-nowrap">
+                <span v-if="!station.active" class="badge bg-secondary me-1">{{ t('archive') }}</span>
                 <code class="badge bg-light text-dark border ms-auto">
                   {{ station.id }}
                 </code>
@@ -117,27 +88,15 @@
         >
           <span class="navbar-toggler-icon" />
         </button>
-        <div
-          id="navbarNav"
-          class="collapse navbar-collapse ms-3 mt-2 mt-lg-0"
-        >
+        <div id="navbarNav" class="collapse navbar-collapse ms-3 mt-2 mt-lg-0">
           <ul class="navbar-nav">
-            <router-link
-              class="nav-item"
-              to="/"
-            >
+            <router-link class="nav-item" to="/">
               <span class="nav-link">{{ t('home') }}</span>
             </router-link>
-            <router-link
-              class="nav-item"
-              to="/patrons"
-            >
+            <router-link class="nav-item" to="/patrons">
               <span class="nav-link">{{ t('patrons') }}</span>
             </router-link>
-            <router-link
-              class="nav-item"
-              to="/blog"
-            >
+            <router-link class="nav-item" to="/blog">
               <span class="nav-link">{{ t('blog') }}</span>
             </router-link>
           </ul>
@@ -148,10 +107,7 @@
               data-bs-target="#donationSidebar"
               aria-controls="donationSidebar"
             >
-              <icon
-                :icon="['fas', 'heart']"
-                class="text-danger me-1"
-              />
+              <icon :icon="['fas', 'heart']" class="text-danger me-1" />
               {{ t('donation') }}
             </a>
             <a
@@ -160,10 +116,7 @@
               data-bs-target="#settingsSidebar"
               aria-controls="settingsSidebar"
             >
-              <icon
-                :icon="['fas', 'cog']"
-                class="text-secondary me-1"
-              />
+              <icon :icon="['fas', 'cog']" class="text-secondary me-1" />
               {{ t('settings') }}
             </a>
           </div>
@@ -172,42 +125,27 @@
     </nav>
 
     <!-- Donations -->
-    <div
-      id="donationSidebar"
-      class="offcanvas offcanvas-start"
-      tabindex="-1"
-    >
+    <div id="donationSidebar" class="offcanvas offcanvas-start" tabindex="-1">
       <Donation v-if="showDonation" />
     </div>
 
     <!-- Settings -->
-    <div
-      id="settingsSidebar"
-      class="offcanvas offcanvas-end"
-      tabindex="-1"
-    >
-      <Settings
-        v-if="showSettings"
-        @change="settingsChanged = true"
-      />
+    <div id="settingsSidebar" class="offcanvas offcanvas-end" tabindex="-1">
+      <Settings v-if="showSettings" @change="settingsChanged = true" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import DebounceMixin from './Debounce.mixin'
+import { defineComponent, defineAsyncComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import DebounceMixin from './Debounce.mixin';
 
 /**
  * Async Components
  */
-const Donation = defineAsyncComponent(() =>
-  import('./Donation.vue')
-)
-const Settings = defineAsyncComponent(() =>
-  import('./Settings.vue')
-)
+const Donation = defineAsyncComponent(() => import('./Donation.vue'));
+const Settings = defineAsyncComponent(() => import('./Settings.vue'));
 
 export default defineComponent({
   name: 'Navbar',
@@ -218,11 +156,11 @@ export default defineComponent({
   },
 
   mixins: [DebounceMixin],
-  
-  setup(): Record<string, any> {
-    const { t } = useI18n()
 
-    return { t }
+  setup(): Record<string, any> {
+    const { t } = useI18n();
+
+    return { t };
   },
 
   data(): Record<string, any> {
@@ -234,99 +172,95 @@ export default defineComponent({
       showDonation: false,
       showSettings: false,
       settingsChanged: false
-    }
+    };
   },
 
   watch: {
     $route(): void {
-      this.clearSearch()
+      this.clearSearch();
     }
   },
 
   mounted(this: any): void {
     // Show donation sidebar
     document.getElementById('donationSidebar')?.addEventListener('show.bs.offcanvas', () => {
-      this.showDonation = true
-    })
+      this.showDonation = true;
+    });
     // Show settings sidebar
     document.getElementById('settingsSidebar')?.addEventListener('show.bs.offcanvas', () => {
-      this.showSettings = true
-    })
+      this.showSettings = true;
+    });
     // Reload content after change in settings
     document.getElementById('settingsSidebar')?.addEventListener('hide.bs.offcanvas', () => {
       if (this.settingsChanged) {
-        this.$router.go(0)
+        this.$router.go(0);
       }
-    })
+    });
     // Register search hot key
     document.addEventListener('keydown', (e) => {
       if (e.key === '/') {
         e.preventDefault();
-        (this.$refs as any).search.focus()
+        (this.$refs as any).search.focus();
       }
-    })
+    });
     // Clear search on click
-    document.addEventListener('click', this.clearSearch)
+    document.addEventListener('click', this.clearSearch);
     // Handle search results focus
     document.addEventListener('keydown', (e) => {
       if (
         (e.key === 'ArrowDown' || e.key === 'ArrowUp') &&
-        ['search-result', 'search-input'].some(r => document.activeElement?.classList.contains(r))
+        ['search-result', 'search-input'].some((r) => document.activeElement?.classList.contains(r))
       ) {
         e.preventDefault();
-        const results = (this.$refs as any).results.getElementsByTagName('a')
+        const results = (this.$refs as any).results.getElementsByTagName('a');
         if (e.key === 'ArrowDown' && document.activeElement?.classList.contains('search-input')) {
-          results[0].focus()
-        }        
-        else if (e.key === 'ArrowDown') {
-          const activeIndex = Array.from(results).findIndex(item => item === document.activeElement)
+          results[0].focus();
+        } else if (e.key === 'ArrowDown') {
+          const activeIndex = Array.from(results).findIndex((item) => item === document.activeElement);
           if (activeIndex === results.length - 1) {
-            results[0].focus()
+            results[0].focus();
+          } else {
+            results[activeIndex + 1].focus();
           }
-          else {
-            results[activeIndex + 1].focus()
-          }
-        }
-        else if (e.key === 'ArrowUp') {
-          const activeIndex = Array.from(results).findIndex(item => item === document.activeElement)
+        } else if (e.key === 'ArrowUp') {
+          const activeIndex = Array.from(results).findIndex((item) => item === document.activeElement);
           if (activeIndex === 0) {
-            results[results.length - 1].focus()
-          }
-          else {
-            results[activeIndex - 1].focus()
+            results[results.length - 1].focus();
+          } else {
+            results[activeIndex - 1].focus();
           }
         }
-      }     
-    })
+      }
+    });
   },
 
   methods: {
     async search(this: any): Promise<void> {
       if (this.term.length > 2) {
-        this.loadingResults = true
+        this.loadingResults = true;
         await fetch(`${this.$api}/app/autocomplete?q=${this.term}&lang=${this.$locale}`)
-          .then(response => response.json())
-          .then(data => this.results = data.data)
-          .then(() => this.loadingResults = false)
-        window._paq?.push(['trackSiteSearch', this.term, false, false])
+          .then((response) => response.json())
+          .then((data) => (this.results = data.data))
+          .then(() => (this.loadingResults = false));
+        window._paq?.push(['trackSiteSearch', this.term, false, false]);
       } else {
-        this.results = {}
+        this.results = {};
       }
     },
 
     clearSearch(this: any): void {
-      this.term = null
-      this.results = {}
+      this.term = null;
+      this.results = {};
     }
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@import "~/style/variables";
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '~/style/variables';
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 .navbar {
   .search {
@@ -345,13 +279,16 @@ export default defineComponent({
     &:focus-within {
       box-shadow: 0 0 0 0.25rem rgb(6 120 190 / 25%);
 
-      .input-group-text, .form-control, .form-control:focus {
+      .input-group-text,
+      .form-control,
+      .form-control:focus {
         background: $white;
         box-shadow: none;
       }
     }
 
-    .input-group-text, .form-control {
+    .input-group-text,
+    .form-control {
       background: $gray-200;
 
       @include media-breakpoint-down(lg) {
@@ -410,7 +347,7 @@ export default defineComponent({
     }
 
     @include media-breakpoint-up(lg) {
-      margin-bottom: calc(-.5rem - 1px);
+      margin-bottom: calc(-0.5rem - 1px);
       border-bottom: 2px solid $primary;
     }
   }
@@ -422,50 +359,42 @@ export default defineComponent({
   "en": {
     "$searchPlaceholder": "Station or Place",
     "places": "Places",
-    "stations": "Weather Stations",
-    "archive": "Archive"
+    "stations": "Weather Stations"
   },
   "de": {
     "$searchPlaceholder": "Wetterstation oder Ort",
     "places": "Orte",
-    "stations": "Wetterstationen",
-    "archive": "Archiv"
+    "stations": "Wetterstationen"
   },
   "it": {
     "$searchPlaceholder": "Stazione o Luogo",
     "places": "Luoghi",
-    "stations": "Stazioni Meteorologiche",
-    "archive": "Archivio"
+    "stations": "Stazioni Meteorologiche"
   },
   "es": {
     "$searchPlaceholder": "Estación o Lugar",
     "places": "Lugares",
-    "stations": "Estaciones Meteorológicas",
-    "archive": "Archivo"
+    "stations": "Estaciones Meteorológicas"
   },
   "nl": {
     "$searchPlaceholder": "Station of Plaats",
     "places": "Plaatsen",
-    "stations": "Weerstations",
-    "archive": "Archive"
+    "stations": "Weerstations"
   },
   "fr": {
     "$searchPlaceholder" : "Station ou Lieu",
     "places" : "Lieux",
-    "stations" : "Stations Météo",
-    "archive": "Archives"
+    "stations" : "Stations Météo"
   },
   "pt": {
     "$searchPlaceholder": "Estação ou Local",
     "places": "Lugares",
-    "stations": "Estações Meteorológicas",
-    "archive": "Arquivo"
+    "stations": "Estações Meteorológicas"
   },
   "ru": {
     "$searchPlaceholder": "Станция или место",
     "places": "Орте",
-    "stations": "Погодные станции",
-    "archive": "Архив"   
+    "stations": "Погодные станции"
   }
 }
 </i18n>

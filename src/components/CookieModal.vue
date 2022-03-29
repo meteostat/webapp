@@ -1,11 +1,5 @@
 <template>
-  <div
-    id="cookieModal"
-    class="modal"
-    tabindex="-1"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-  >
+  <div id="cookieModal" class="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -17,25 +11,13 @@
           {{ t('$description') }}
         </div>
         <div class="modal-footer">
-          <a
-            :href="t('$privacyLink')"
-          >
+          <a :href="t('$privacyLink')">
             {{ t('privacyPolicy') }}
           </a>
-          <button
-            type="button"
-            class="btn btn-light ms-auto"
-            data-bs-dismiss="modal"
-            @click="dismiss"
-          >
+          <button type="button" class="btn btn-light ms-auto" data-bs-dismiss="modal" @click="dismiss">
             {{ t('reject') }}
           </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-dismiss="modal"
-            @click="accept"
-          >
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="accept">
             {{ t('accept') }}
           </button>
         </div>
@@ -45,42 +27,42 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useSettingsStore } from '../stores/settings'
+import { defineComponent, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useSettingsStore } from '../stores/settings';
 
 export default defineComponent({
   name: 'CookieModal',
 
   setup() {
-    const { t } = useI18n()
-    const settings = useSettingsStore()
+    const { t } = useI18n();
+    const settings = useSettingsStore();
 
     watch(
       () => settings.$state,
       (state) => {
-        window.localStorage.setItem('settings', JSON.stringify(state))
+        window.localStorage.setItem('settings', JSON.stringify(state));
       },
       { deep: true }
-    )
+    );
 
-    return { t, settings }
+    return { t, settings };
   },
 
   mounted() {
-    this.$bs.Modal.default.getOrCreateInstance(document.getElementById('cookieModal')).show()
+    this.$bs.Modal.default.getOrCreateInstance(document.getElementById('cookieModal')).show();
   },
 
   methods: {
     dismiss() {
-      this.settings.returning = true
+      this.settings.returning = true;
     },
     accept() {
-      this.settings.personalizedAds = true
-      this.dismiss()
+      this.settings.personalizedAds = true;
+      this.dismiss();
     }
   }
-})
+});
 </script>
 
 <i18n>

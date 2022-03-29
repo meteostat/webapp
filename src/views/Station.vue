@@ -1,13 +1,7 @@
 <template>
   <div v-if="meta?.id">
     <!-- Navbar -->
-    <Navbar
-      :id="meta.id"
-      ref="subnav"
-      type="station"
-      :name="meta.name.en"
-      :country="meta.country"
-    />
+    <Navbar :id="meta.id" ref="subnav" type="station" :name="meta.name.en" :country="meta.country" />
     <!-- Content -->
     <div class="container my-3 my-lg-4">
       <div class="row gy-4">
@@ -26,10 +20,7 @@
           <!-- Meta Data -->
           <Meta :data="meta" />
           <!-- Nearby Stations -->
-          <Nearby
-            :lat="meta.location.latitude"
-            :lon="meta.location.longitude"
-          />
+          <Nearby :lat="meta.location.latitude" :lon="meta.location.longitude" />
           <!-- Ads -->
           <AdStickyTop />
         </div>
@@ -39,21 +30,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
-import { format } from 'date-fns'
-import Navbar from '~/components/LocationNavbar.vue'
-import Meta from '~/components/panels/Meta.vue'
-import Nearby from '~/components/panels/Nearby.vue'
-import AdStickyTop from '~/components/AdStickyTop.vue'
+import { defineComponent, defineAsyncComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@vueuse/head';
+import { format } from 'date-fns';
+import Navbar from '~/components/LocationNavbar.vue';
+import Meta from '~/components/panels/Meta.vue';
+import Nearby from '~/components/panels/Nearby.vue';
+import AdStickyTop from '~/components/AdStickyTop.vue';
 
 /**
  * Async Components
  */
-const Dashboard = defineAsyncComponent(() =>
-  import('~/components/dashboard/Dashboard.vue')
-)
+const Dashboard = defineAsyncComponent(() => import('~/components/dashboard/Dashboard.vue'));
 
 export default defineComponent({
   name: 'Station',
@@ -75,7 +64,7 @@ export default defineComponent({
 
   setup(props: Record<string, any>): Record<string, any> {
     // Translations
-    const { t, locale } = useI18n()
+    const { t, locale } = useI18n();
 
     if (props.station?.id) {
       // Meta tags
@@ -88,24 +77,24 @@ export default defineComponent({
               country: props.station.country
             })
           }
-        ],
-      })
+        ]
+      });
     }
 
-    return { t, format }
+    return { t, format };
   },
 
   data(): Record<string, any> {
     return {
       meta: this.station || null,
       nearbyStations: []
-    }
+    };
   },
 
   async mounted(): Promise<void> {
     if (!this.station) {
       // Get meta data
-      await this.fetchMetaData()
+      await this.fetchMetaData();
     }
   },
 
@@ -115,15 +104,15 @@ export default defineComponent({
      */
     async fetchMetaData(): Promise<void> {
       await fetch(`${this.$api}/app/proxy/stations/meta?id=${this.$route.params.id}`)
-        .then(response => response.json())
-        .then(data => this.meta = data.data)
+        .then((response) => response.json())
+        .then((data) => (this.meta = data.data));
     },
 
     updateNavbarItems(): void {
-      (this.$refs as any).subnav.updateItems()
+      (this.$refs as any).subnav.updateItems();
     }
-  },
-})
+  }
+});
 </script>
 
 <i18n>

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-import { useSettingsStore } from '~/stores/settings'
+import { defineComponent } from 'vue';
+import { useSettingsStore } from '~/stores/settings';
 
 export default defineComponent({
   name: 'Ad',
@@ -20,29 +20,28 @@ export default defineComponent({
   },
 
   setup() {
-    const settings = useSettingsStore()
+    const settings = useSettingsStore();
 
-    return { settings }
+    return { settings };
   },
 
   mounted() {
-    window.adsbygoogle = window.adsbygoogle || []
+    window.adsbygoogle = window.adsbygoogle || [];
     if (this.settings.personalizedAds === true) {
-      window.adsbygoogle.requestNonPersonalizedAds = 0
+      window.adsbygoogle.requestNonPersonalizedAds = 0;
+    } else {
+      window.adsbygoogle.requestNonPersonalizedAds = 1;
     }
-    else {
-      window.adsbygoogle.requestNonPersonalizedAds = 1
-    }
-    window.adsbygoogle.push({})
+    window.adsbygoogle.push({});
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 ins.adsbygoogle {
   display: block;
 
-  &[data-ad-status="unfilled"] {
+  &[data-ad-status='unfilled'] {
     display: none !important;
   }
 }

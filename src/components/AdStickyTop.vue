@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import Ad from './Ad.vue'
+import { defineComponent } from 'vue';
+import Ad from './Ad.vue';
 
 export default defineComponent({
   name: 'AdStickyTop',
@@ -14,18 +14,18 @@ export default defineComponent({
   components: {
     Ad
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
-@import "~/style/variables";
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '~/style/variables';
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 @include media-breakpoint-up(lg) {
   .sticky-top {
     top: 55px;
-  } 
+  }
 }
 </style>

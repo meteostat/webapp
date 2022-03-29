@@ -17,9 +17,7 @@
           <h3 class="mb-4">
             {{ t('$features[0].title') }}
           </h3>
-          <p
-            class="text-muted"
-          >
+          <p class="text-muted">
             {{ t('$features[0].text') }}
           </p>
         </div>
@@ -27,9 +25,7 @@
           <h3 class="mb-4">
             {{ t('$features[1].title') }}
           </h3>
-          <p
-            class="text-muted"
-          >
+          <p class="text-muted">
             {{ t('$features[1].text') }}
           </p>
         </div>
@@ -37,31 +33,20 @@
           <h3 class="mb-4">
             {{ t('$features[2].title') }}
           </h3>
-          <p
-            class="text-muted"
-          >
+          <p class="text-muted">
             {{ t('$features[2].text') }}
           </p>
         </div>
       </div>
     </div>
 
-
     <div class="row align-items-md-stretch gy-3 mb-4">
       <div class="col-md-6">
         <div class="h-100 p-5 text-white bg-dark rounded-3">
           <h2>{{ t('$features[3].title') }}</h2>
           <p>{{ t('$features[3].text') }}</p>
-          <a
-            href="https://github.com/meteostat"
-            class="btn btn-outline-light"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <icon
-              :icon="['fab', 'github']"
-              class="me-2"
-            />
+          <a href="https://github.com/meteostat" class="btn btn-outline-light" target="_blank" rel="noreferrer">
+            <icon :icon="['fab', 'github']" class="me-2" />
             GitHub
           </a>
         </div>
@@ -70,15 +55,8 @@
         <div class="h-100 p-5 text-white bg-primary rounded-3">
           <h2>{{ t('$features[4].title') }}</h2>
           <p>{{ t('$features[4].text') }}</p>
-          <a
-            class="btn btn-outline-light btn-lg px-4 me-md-2"
-            href="https://dev.meteostat.net/"
-            target="_blank"
-          >
-            <icon
-              :icon="['fas', 'code']"
-              class="me-1"
-            />
+          <a class="btn btn-outline-light btn-lg px-4 me-md-2" href="https://dev.meteostat.net/" target="_blank">
+            <icon :icon="['fas', 'code']" class="me-1" />
             {{ t('documentation') }}
           </a>
         </div>
@@ -100,21 +78,11 @@
             data-bs-target="#donationSidebar"
             aria-controls="donationSidebar"
           >
-            <icon
-              :icon="['fas', 'heart']"
-              class="me-1"
-            />
+            <icon :icon="['fas', 'heart']" class="me-1" />
             {{ t('donation') }}
           </a>
-          <router-link
-            tag="button"
-            class="btn btn-outline-light border-0 btn-lg px-4 me-md-2"
-            to="/patrons"
-          >
-            <icon
-              :icon="['fas', 'user-friends']"
-              class="me-1"
-            />
+          <router-link tag="button" class="btn btn-outline-light border-0 btn-lg px-4 me-md-2" to="/patrons">
+            <icon :icon="['fas', 'user-friends']" class="me-1" />
             {{ t('patrons') }}
           </router-link>
         </div>
@@ -124,43 +92,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useHead } from '@vueuse/head'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@vueuse/head';
 
 export default defineComponent({
   name: 'About',
 
   setup(): Record<string, any> {
-    const { t } = useI18n()
+    const { t } = useI18n();
 
     useHead({
       title: `${t('$meta.title')} | Meteostat`,
       meta: [
         {
           name: 'description',
-          content: t('$meta.description') 
+          content: t('$meta.description')
         }
-      ],
-    })
+      ]
+    });
 
-    return { t }
+    return { t };
   }
-})
+});
 </script>
 
 <style lang="scss" scoped>
 @import '~/style/variables';
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 .bg-forest {
-  background:
-    linear-gradient(
-      rgba(0, 0, 0, 0.3), 
-      rgba(0, 0, 0, 0.3)
-    ),
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(https://media.meteostat.net/assets/hero-forest.jpg);
   background-size: cover;
 }

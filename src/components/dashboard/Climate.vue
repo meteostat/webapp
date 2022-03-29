@@ -1,112 +1,83 @@
 <template>
-  <div v-if="activeParameter" class="card mt-3 mt-md-4 p-3 rounded bg-light">
-    <div class="card-header card-header-main px-0 rounded-0 bg-light d-flex align-items-center">
-      <h2 class="card-header-title lead">
-        {{ t('climate') }}
-      </h2>
-      <span
-        class="badge border text-dark ms-auto mb-3"
-        v-tooltip="t('$params.tavg')"
-      >
-        {{ tavgKPI ? `${tavgKPI} ${this.settings.units.temp}` : '—'  }}
-      </span>
-      <span
-        class="badge border text-dark ms-1 mb-3"
-        v-tooltip="t('$params.prcp')"
-      >
-        {{ prcpKPI ? `${prcpKPI} ${this.settings.units.prcp}` : '—'  }}
-      </span>
-    </div>
-    <div
-      class="card-body px-0"
-    >
-      <div
-        ref="wrapper"
-        class="wrapper"
-      >
-        <div class="d-flex align-items-center">
-          <div class="dropdown">
-            <button
-              id="dropdownMenuButton"
-              class="btn btn-light bg-white dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
+  <div v-if="normals.length && activeParameter" ref="wrapper" class="wrapper">
+    <div class="d-flex align-items-center">
+      <div class="dropdown">
+        <button
+          id="dropdownMenuButton"
+          class="btn btn-light bg-white dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {{ t(`$params.${activeParameter}`) }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li v-for="chart in charts" :key="chart.id">
+            <a
+              class="dropdown-item"
+              :class="{ disabled: !anyColData(chart.params || chart), active: activeParameter === chart.id }"
+              @click="setParameter(chart.id)"
             >
-              {{ t(`$params.${activeParameter}`) }}
-            </button>
-            <ul
-              class="dropdown-menu"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <li v-for="chart in charts" :key="chart.id">
-                <a
-                  class="dropdown-item"
-                  :class="{ disabled: !anyColData(chart.params || chart), active: activeParameter === chart.id }"
-                  @click="setParameter(chart.id)"
-                >
-                  {{ t(`$params.${chart.id}`) }}
-                </a>                
-              </li>
-            </ul>
-          </div>
-          <div class="d-flex align-items-center ms-auto">
-            <!-- Reference Periods Dropdown -->
-            <div class="dropdown d-inline-block">
-              <button
-                class="btn btn-light bg-white dropdown-toggle px-4 px-md-3"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+              {{ t(`$params.${chart.id}`) }}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center ms-auto">
+        <!-- Reference Periods Dropdown -->
+        <div class="dropdown d-inline-block">
+          <button
+            class="btn btn-light bg-white dropdown-toggle px-4 px-md-3"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <template v-if="activePeriod === null">{{ t('latest') }}</template>
+            <template v-else>{{ activePeriod }} - {{ activePeriod + 29 }}</template>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a :class="{ active: activePeriod === null }" class="dropdown-item" @click="setPeriod(null)">{{
+                t('latest')
+              }}</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li v-for="period in periods" :key="period.start">
+              <a
+                :class="{ active: period.start === activePeriod }"
+                class="dropdown-item"
+                @click="setPeriod(period.start)"
+                >{{ period.start }} - {{ period.end }}</a
               >
-                <template v-if="activePeriod === null">{{ t('latest') }}</template>
-                <template v-else>{{ activePeriod }} - {{ activePeriod + 29 }}</template>
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    :class="{ active: activePeriod === null }"
-                    class="dropdown-item"
-                    @click="setPeriod(null)"
-                  >{{ t('latest') }}</a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <li
-                  v-for="period in periods"
-                  :key="period.start"
-                >
-                  <a
-                    :class="{ active: period.start === activePeriod }"
-                    class="dropdown-item"
-                    @click="setPeriod(period.start)"
-                  >{{ period.start }} - {{ period.end }}</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="mt-4">
-          <Chart
-            ref="chart"
-            :type="getChartConfig(activeParameter).type"
-            :data="getChartConfig(activeParameter).data"
-            :options="getChartConfig(activeParameter).options"
-          />
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+    <div class="mt-4">
+      <Chart
+        ref="chart"
+        :type="getChartConfig(activeParameter).type"
+        :data="getChartConfig(activeParameter).data"
+        :options="getChartConfig(activeParameter).options"
+      />
+    </div>
+  </div>
+  <div v-else role="alert">
+    <icon :icon="['fas', 'exclamation-circle']" class="me-1 text-danger" />
+    {{ t('$noClimateData') }}
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { Store } from 'pinia'
-import { useSettingsStore } from '~/stores/settings'
-import { ChartDefinitionInterface } from '~/utils/interfaces'
-import { tsTooltips } from '~/components/charts/timeseries.config'
-import Chart from '../charts/Chart.vue'
-import DataMixin from '../Data.mixin'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { Store } from 'pinia';
+import { useSettingsStore } from '~/stores/settings';
+import { ChartDefinitionInterface } from '~/utils/interfaces';
+import { tsTooltips } from '~/components/charts/timeseries.config';
+import Chart from '../charts/Chart.vue';
+import DataMixin from '../Data.mixin';
 
 export default defineComponent({
   name: 'Climate',
@@ -119,17 +90,17 @@ export default defineComponent({
 
   props: {
     normals: {
-      type: Object,
+      type: Array,
       default: null
     }
   },
 
-  setup(): Record<string, (Store|Array<string>|any)> {
+  setup(): Record<string, Store | Array<string> | any> {
     // Translations
-    const { t } = useI18n()
+    const { t } = useI18n();
 
     // Store
-    const settings = useSettingsStore()
+    const settings = useSettingsStore();
 
     const charts: Array<Record<string, string | string[]> | string> = [
       {
@@ -152,13 +123,13 @@ export default defineComponent({
         id: 'tsun',
         params: 'tsun'
       }
-    ]
+    ];
 
     return {
       t,
       settings,
       charts
-    }
+    };
   },
 
   data(): Record<string, any> {
@@ -166,25 +137,25 @@ export default defineComponent({
       meta: {},
       activePeriod: null,
       activeParameter: null
-    }
+    };
   },
 
   computed: {
     periods(): Array<Record<string, number>> {
-      const periods: Array<Record<string, number>> = []
+      const periods: Array<Record<string, number>> = [];
       this.normals?.forEach((record: any): void => {
-        if (!periods.map(period => period.start).includes(record.start)) {
+        if (!periods.map((period) => period.start).includes(record.start)) {
           periods.push({
             start: record.start,
             end: record.end
-          })
+          });
         }
-      })
-      return periods
+      });
+      return periods;
     },
 
     data(): any {
-      let data: Record<string, any> = []
+      let data: Record<string, any> = [];
       if (this.activePeriod === null) {
         this.normals?.forEach((record: any): void => {
           data[record.month - 1] = {
@@ -195,66 +166,69 @@ export default defineComponent({
             prcp: record.prcp || data[record.month - 1]?.prcp || null,
             pres: record.pres || data[record.month - 1]?.pres || null,
             tsun: record.tsun || data[record.month - 1]?.tsun || null
-          }
-        })
-      }
-      else {
+          };
+        });
+      } else {
         data = this.normals?.filter((record: any): boolean => {
-          return record.start === this.activePeriod
-        })
+          return record.start === this.activePeriod;
+        });
       }
-      return data
+      return data;
     },
 
-    tavgKPI(): string|null {
-      const tavg = this.fetchValues('tavg').filter((t: any) => t !== null)
+    tavgKPI(): string | null {
+      const tavg = this.fetchValues('tavg').filter((t: any) => t !== null);
       if (tavg.length > 0) {
-        const sum = tavg.reduce((a: any, b: any) => Number(a) + Number(b), 0)
-        const avg = (Number(sum) / tavg.length);
-        return avg.toFixed(1)
+        const sum = tavg.reduce((a: any, b: any) => Number(a) + Number(b), 0);
+        const avg = Number(sum) / tavg.length;
+        return avg.toFixed(1);
       }
-      return null
+      return null;
     },
 
-    prcpKPI(): null|string {
-      const prcp = this.fetchValues('prcp').filter((p: any) => p !== null)
+    prcpKPI(): null | string {
+      const prcp = this.fetchValues('prcp').filter((p: any) => p !== null);
       if (prcp.length > 0) {
-        const sum = prcp.reduce((a: any, b: any) => Number(a) + Number(b), 0)
-        return Number(sum).toFixed(1)
+        const sum = prcp.reduce((a: any, b: any) => Number(a) + Number(b), 0);
+        return Number(sum).toFixed(1);
       }
-      return null
+      return null;
     },
 
     /**
      * Configuration for temperature chart
-     * 
+     *
      * @returns {Object} Configuration object
      */
     tempChart(): ChartDefinitionInterface {
       return {
         type: 'line',
         data: {
-          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
-          datasets: [{
-            label: this.t('$params.tavg'),
-						type: 'line',
-						fill: false,
-						lineTension: 0.1,
-						borderColor: "rgb(85,85,85)",
-            backgroundColor: "rgb(85,85,85)",
-						pointBorderColor: "rgb(255,255,255)",
-						data: this.fetchValues('tavg')
-					}, {
-            label: this.t('$params.tmin'),
-						type: 'bar',
-						backgroundColor: "rgba(51,122,183,0.8)",
-						data: this.fetchValues('tmin')
-					}, {
-            label: this.t('$params.tmax'),
-						type: 'bar',
-						backgroundColor: "rgba(217,83,79,0.8)",
-						data: this.fetchValues('tmax')
-					}]
+          labels: [...Array(12).keys()].map((key) => this.t(`$months[${key}]`)),
+          datasets: [
+            {
+              label: this.t('$params.tavg'),
+              type: 'line',
+              fill: false,
+              lineTension: 0.1,
+              borderColor: 'rgb(85,85,85)',
+              backgroundColor: 'rgb(85,85,85)',
+              pointBorderColor: 'rgb(255,255,255)',
+              data: this.fetchValues('tavg')
+            },
+            {
+              label: this.t('$params.tmin'),
+              type: 'bar',
+              backgroundColor: 'rgba(51,122,183,0.8)',
+              data: this.fetchValues('tmin')
+            },
+            {
+              label: this.t('$params.tmax'),
+              type: 'bar',
+              backgroundColor: 'rgba(217,83,79,0.8)',
+              data: this.fetchValues('tmax')
+            }
+          ]
         },
         options: {
           scales: {
@@ -268,26 +242,28 @@ export default defineComponent({
             tooltip: tsTooltips
           }
         }
-      }
+      };
     },
 
     /**
      * Configuration for precipitation chart
-     * 
+     *
      * @returns {Object} Configuration object
      */
     prcpChart(): ChartDefinitionInterface {
       return {
         type: 'bar',
         data: {
-          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
-          datasets: [{
-            label: this.t('$params.prcp'),
-            borderWidth: 2,
-            borderColor: "rgb(91,192,222)",
-            backgroundColor: "rgb(91,192,222)",
-            data: this.fetchValues('prcp')
-          }]
+          labels: [...Array(12).keys()].map((key) => this.t(`$months[${key}]`)),
+          datasets: [
+            {
+              label: this.t('$params.prcp'),
+              borderWidth: 2,
+              borderColor: 'rgb(91,192,222)',
+              backgroundColor: 'rgb(91,192,222)',
+              data: this.fetchValues('prcp')
+            }
+          ]
         },
         options: {
           scales: {
@@ -301,29 +277,31 @@ export default defineComponent({
             tooltip: tsTooltips
           }
         }
-      }
+      };
     },
 
     /**
      * Configuration for wind speed chart
-     * 
+     *
      * @returns {Object} Configuration object
      */
     wspdChart(): ChartDefinitionInterface {
       return {
         type: 'line',
         data: {
-          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
-          datasets: [{
-            label: this.t('$params.wspd'),
-            borderWidth: 2,
-            borderColor: "rgb(51,122,183)",
-            backgroundColor: "rgb(51,122,183)",
-            fill: false,
-            pointBorderColor: "rgb(255,255,255)",
-            pointRadius: 4,
-            data: this.fetchValues('wspd')
-          }]
+          labels: [...Array(12).keys()].map((key) => this.t(`$months[${key}]`)),
+          datasets: [
+            {
+              label: this.t('$params.wspd'),
+              borderWidth: 2,
+              borderColor: 'rgb(51,122,183)',
+              backgroundColor: 'rgb(51,122,183)',
+              fill: false,
+              pointBorderColor: 'rgb(255,255,255)',
+              pointRadius: 4,
+              data: this.fetchValues('wspd')
+            }
+          ]
         },
         options: {
           scales: {
@@ -337,27 +315,29 @@ export default defineComponent({
             tooltip: tsTooltips
           }
         }
-      }
+      };
     },
 
     /**
      * Configuration for air pressure chart
-     * 
+     *
      * @returns {Object} Configuration object
      */
     presChart(): ChartDefinitionInterface {
       return {
         type: 'bar',
         data: {
-          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
-          datasets: [{
-            label: this.t('$params.pres'),
-            borderWidth: 2,
-            borderColor: "rgb(92,184,92)",
-            backgroundColor: "rgb(92,184,92)",
-            fill: false,
-            data: this.fetchValues('pres')
-          }]
+          labels: [...Array(12).keys()].map((key) => this.t(`$months[${key}]`)),
+          datasets: [
+            {
+              label: this.t('$params.pres'),
+              borderWidth: 2,
+              borderColor: 'rgb(92,184,92)',
+              backgroundColor: 'rgb(92,184,92)',
+              fill: false,
+              data: this.fetchValues('pres')
+            }
+          ]
         },
         options: {
           scales: {
@@ -372,26 +352,28 @@ export default defineComponent({
             tooltip: tsTooltips
           }
         }
-      }
+      };
     },
 
     /**
      * Configuration for sunshine duration chart
-     * 
+     *
      * @returns {Object} Configuration object
      */
     tsunChart(): ChartDefinitionInterface {
       return {
         type: 'bar',
         data: {
-          labels: [...Array(12).keys()].map(key => this.t(`$months[${key}]`)),
-          datasets: [{
-            label: this.t('$params.tsun'),
-            borderWidth: 2,
-            borderColor: "rgb(253,126,20)",
-            backgroundColor: "rgb(253,126,20)",
-            data: this.fetchValues('tsun')
-          }]
+          labels: [...Array(12).keys()].map((key) => this.t(`$months[${key}]`)),
+          datasets: [
+            {
+              label: this.t('$params.tsun'),
+              borderWidth: 2,
+              borderColor: 'rgb(253,126,20)',
+              backgroundColor: 'rgb(253,126,20)',
+              data: this.fetchValues('tsun')
+            }
+          ]
         },
         options: {
           scales: {
@@ -405,52 +387,38 @@ export default defineComponent({
             tooltip: tsTooltips
           }
         }
-      }
+      };
     }
   },
 
   methods: {
     setPeriod(period: number): void {
-      this.activePeriod = period
+      this.activePeriod = period;
     },
 
     setParameter(param: string): void {
-      this.activeParameter = param
+      this.activeParameter = param;
     },
 
     getChartConfig(name: string): any {
-      return this[`${name}Chart`]
+      return this[`${name}Chart`];
     },
 
     setInitialChart(): string | void {
       for (let i = 0; i < this.charts.length; i++) {
-        const chart = (this.charts as any)[i]
+        const chart = (this.charts as any)[i];
         if (this.anyColData(chart.params)) {
-          return this.activeParameter = chart.id
+          return (this.activeParameter = chart.id);
         }
       }
     }
   },
 
   mounted() {
-    this.setInitialChart()
+    this.setInitialChart();
   }
-})
+});
 </script>
-
-<style lang="scss" scoped>
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
-
-.card {
-  @include media-breakpoint-down(sm) {
-    margin: 0 -0.75rem;
-    border: 0;
-    border-radius: 0 !important;
-  }
-}
-</style>
 
 <i18n>
 {
@@ -470,7 +438,8 @@ export default defineComponent({
       "OCT",
       "NOV",
       "DEC"
-    ]
+    ],
+    "$noClimateData": "Climate data isn't available for this weather station. Please try again with a different one."
   },
   "de": {
     "latest": "Neueste",

@@ -1,13 +1,8 @@
 <template>
   <div class="container py-4">
-    <div
-      class="container-fluid mb-4"
-    >
+    <div class="container-fluid mb-4">
       <div class="row">
-        <template
-          v-for="post in posts"
-          :key="post.url"
-        >
+        <template v-for="post in posts" :key="post.url">
           <router-link
             v-if="post.lang === $locale"
             class="col-12 col-md-4 p-4 story position-relative bg-light border border-white rounded-3 placeholder-glow"
@@ -25,26 +20,19 @@
         </template>
       </div>
     </div>
-    <div
-      v-if="!complete"
-      ref="spinner"
-      class="d-flex justify-content-center my-4"
-    >
-      <div
-        class="spinner-grow text-primary"
-        role="status"
-      />
+    <div v-if="!complete" ref="spinner" class="d-flex justify-content-center my-4">
+      <div class="spinner-grow text-primary" role="status" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
-import { useHead } from '@vueuse/head'
-import isElementInViewport from '~/utils/spy'
-import BlogPostCard from '~/components/BlogPostCard.vue'
+import { defineComponent, ref, reactive } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
+import { useHead } from '@vueuse/head';
+import isElementInViewport from '~/utils/spy';
+import BlogPostCard from '~/components/BlogPostCard.vue';
 
 export default defineComponent({
   name: 'Blog',
@@ -66,17 +54,17 @@ export default defineComponent({
 
   setup(props): Record<string, any> {
     // Current route
-    const route = useRoute()
+    const route = useRoute();
 
     // Translations
-    const { t } = useI18n()
+    const { t } = useI18n();
 
     // Data
-    const posts = reactive(props._posts || [])
-    const isTag = ref(!!route.params.tag)
-    const tag = reactive(props._tag || {})
-    const loading = ref(false)
-    const complete = ref(props._posts && props._posts.length < 9 ? true : false)
+    const posts = reactive(props._posts || []);
+    const isTag = ref(!!route.params.tag);
+    const tag = reactive(props._tag || {});
+    const loading = ref(false);
+    const complete = ref(props._posts && props._posts.length < 9 ? true : false);
 
     // Meta
     useHead({
@@ -84,10 +72,10 @@ export default defineComponent({
       meta: [
         {
           name: 'description',
-          content: t('$meta.description') 
+          content: t('$meta.description')
         }
       ]
-    })
+    });
 
     return {
       t,
@@ -96,35 +84,34 @@ export default defineComponent({
       tag,
       loading,
       complete
-    }
+    };
   },
 
   mounted() {
     if (this.isTag && !this._tag) {
-      this.fetchTag()
-    }
-    else if (!this.isTag && !this._posts) {
+      this.fetchTag();
+    } else if (!this.isTag && !this._posts) {
       // Fetch posts
-      this.fetchPosts()
+      this.fetchPosts();
     }
-    window.addEventListener('scroll', this.viewportCheck)
+    window.addEventListener('scroll', this.viewportCheck);
   },
 
   unmounted() {
-    window.removeEventListener('scroll', this.viewportCheck)
+    window.removeEventListener('scroll', this.viewportCheck);
   },
 
   methods: {
     viewportCheck() {
       if (!this.loading && !this.complete) {
         if (isElementInViewport(this.$refs.spinner as HTMLElement)) {
-          this.loading = true
+          this.loading = true;
           if (this.isTag && (this.tag as any).count > this.posts.length) {
-            this.fetchTag(this.posts.length)
-          } else if ((this.isTag && this.tag as any).count === this.posts.length) {
-            this.complete = true
+            this.fetchTag(this.posts.length);
+          } else if ((this.isTag && (this.tag as any)).count === this.posts.length) {
+            this.complete = true;
           } else if (!this.isTag) {
-            this.fetchPosts(this.posts.length)
+            this.fetchPosts(this.posts.length);
           }
         }
       }
@@ -136,19 +123,19 @@ export default defineComponent({
     async fetchPosts(offset?: number): Promise<void> {
       let endpoint = `${this.$api}/cms/blog/latest?lang=${this.$locale}&limit=9`;
       if (offset) {
-        endpoint = `${endpoint}&offset=${offset}`
+        endpoint = `${endpoint}&offset=${offset}`;
       }
       await fetch(endpoint)
-        .then(response => response.json())
-        .then(data => {
-          this.posts = this.posts || []
-          this.posts.push(...data.data)
+        .then((response) => response.json())
+        .then((data) => {
+          this.posts = this.posts || [];
+          this.posts.push(...data.data);
           if (data.data.length < 9) {
-            this.complete = true
-            window.removeEventListener('scroll', this.viewportCheck)
+            this.complete = true;
+            window.removeEventListener('scroll', this.viewportCheck);
           }
         })
-        .finally(() => this.loading = false)
+        .finally(() => (this.loading = false));
     },
 
     /**
@@ -157,23 +144,23 @@ export default defineComponent({
     async fetchTag(offset?: number): Promise<void> {
       let endpoint = `${this.$api}/cms/blog/tag?tag=${this.$route.params.tag}&limit=9`;
       if (offset) {
-        endpoint = `${endpoint}&offset=${offset}`
+        endpoint = `${endpoint}&offset=${offset}`;
       }
       await fetch(endpoint)
-        .then(response => response.json())
-        .then(data => {
-          this.tag = data.meta.tag
-          this.posts = this.posts || []
-          this.posts.push(...data.data)
+        .then((response) => response.json())
+        .then((data) => {
+          this.tag = data.meta.tag;
+          this.posts = this.posts || [];
+          this.posts.push(...data.data);
           if (data.data.length < 9) {
-            this.complete = true
-            window.removeEventListener('scroll', this.viewportCheck)
+            this.complete = true;
+            window.removeEventListener('scroll', this.viewportCheck);
           }
         })
-        .finally(() => this.loading = false)
+        .finally(() => (this.loading = false));
     }
   }
-})
+});
 </script>
 
 <i18n>

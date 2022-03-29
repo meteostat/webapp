@@ -9,34 +9,17 @@
           {{ t('$heroText') }}
         </p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-          <button
-            type="button"
-            class="btn btn-primary btn-lg px-4 me-sm-3"
-            @click="myLocation()"
-          >
-            <icon
-              :icon="['fas', 'map-marker-alt']"
-              class="me-1"
-            />
+          <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" @click="myLocation()">
+            <icon :icon="['fas', 'map-marker-alt']" class="me-1" />
             {{ t('myLocation') }}
           </button>
-          <button
-            type="button"
-            class="btn btn-outline-dark btn-lg px-4"
-            @click="findStations()"
-          >
-            <icon
-              :icon="['fas', 'search']"
-              class="me-1"
-            />
+          <button type="button" class="btn btn-outline-dark btn-lg px-4" @click="findStations()">
+            <icon :icon="['fas', 'search']" class="me-1" />
             {{ t('findStations') }}
           </button>
         </div>
       </div>
-      <div
-        class="overflow-hidden"
-        style="max-height: 30vh;"
-      >
+      <div class="overflow-hidden" style="max-height: 30vh">
         <div class="container px-5">
           <img
             src="https://media.meteostat.net/assets/hero-map.png"
@@ -44,7 +27,7 @@
             width="698"
             height="380"
             loading="lazy"
-          >
+          />
         </div>
       </div>
     </div>
@@ -57,7 +40,7 @@
               class="d-block mx-lg-auto img-fluid"
               width="700"
               loading="lazy"
-            >
+            />
           </div>
           <div class="col-lg-6">
             <h2 class="display-5 lh-1 mb-3">
@@ -67,15 +50,8 @@
               {{ t('$sections[0].text') }}
             </p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-              <router-link
-                tag="button"
-                class="btn btn-primary btn-lg px-4 me-md-2"
-                to="/patrons"
-              >
-                <icon
-                  :icon="['fas', 'user-friends']"
-                  class="me-1"
-                />
+              <router-link tag="button" class="btn btn-primary btn-lg px-4 me-md-2" to="/patrons">
+                <icon :icon="['fas', 'user-friends']" class="me-1" />
                 {{ t('patrons') }}
               </router-link>
               <a
@@ -84,10 +60,7 @@
                 data-bs-target="#donationSidebar"
                 aria-controls="donationSidebar"
               >
-                <icon
-                  :icon="['fas', 'heart']"
-                  class="me-1"
-                />
+                <icon :icon="['fas', 'heart']" class="me-1" />
                 {{ t('donation') }}
               </a>
             </div>
@@ -103,7 +76,7 @@
             class="d-block mx-lg-auto img-fluid"
             height="500"
             loading="lazy"
-          >
+          />
         </div>
         <div class="col-lg-6">
           <h2 class="display-5 lh-1 mb-3">
@@ -113,27 +86,12 @@
             {{ t('$sections[1].text') }}
           </p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a
-              class="btn btn-primary btn-lg px-4 me-md-2"
-              href="https://dev.meteostat.net/"
-              target="_blank"
-            >
-              <icon
-                :icon="['fas', 'code']"
-                class="me-1"
-              />
+            <a class="btn btn-primary btn-lg px-4 me-md-2" href="https://dev.meteostat.net/" target="_blank">
+              <icon :icon="['fas', 'code']" class="me-1" />
               {{ t('documentation') }}
             </a>
-            <a
-              class="btn btn-dark btn-lg px-4"
-              href="https://github.com/meteostat"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <icon
-                :icon="['fab', 'github']"
-                class="me-1"
-              />
+            <a class="btn btn-dark btn-lg px-4" href="https://github.com/meteostat" target="_blank" rel="noreferrer">
+              <icon :icon="['fab', 'github']" class="me-1" />
               GitHub
             </a>
           </div>
@@ -144,50 +102,48 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { encodePlacemark } from '~/utils/placemarks'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { encodePlacemark } from '~/utils/placemarks';
 
 export default defineComponent({
   name: 'Home',
 
   setup(): Record<string, any> {
-    const { t } = useI18n()
+    const { t } = useI18n();
 
-    return { t }
+    return { t };
   },
 
   methods: {
     async myLocation() {
       if (navigator.geolocation) {
-        this.$loading('myLocation')
+        this.$loading('myLocation');
         navigator.geolocation.getCurrentPosition(async (position) => {
-          const placemark = encodePlacemark(position.coords.latitude, position.coords.longitude)
-          await fetch(
-            `${this.$api}/app/place?placemark=${placemark}`
-          )
-            .then(response => response.json())
-            .then(data => data.data)
-            .then(place => {
-              this.$loaded('myLocation')
-              this.$router.push(`/place/${place.country.toLowerCase()}/${place.id}`)
+          const placemark = encodePlacemark(position.coords.latitude, position.coords.longitude);
+          await fetch(`${this.$api}/app/place?placemark=${placemark}`)
+            .then((response) => response.json())
+            .then((data) => data.data)
+            .then((place) => {
+              this.$loaded('myLocation');
+              this.$router.push(`/place/${place.country.toLowerCase()}/${place.id}`);
             })
-            .catch(() => this.$loaded('myLocation'))
-        })
+            .catch(() => this.$loaded('myLocation'));
+        });
       }
     },
 
     findStations() {
-      document.getElementById('search')?.focus()
+      document.getElementById('search')?.focus();
     }
   }
-})
+});
 </script>
 
 <style lang="scss">
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 .hero {
   background: linear-gradient(165deg, #f7f5fb 50%, #fff 50%);

@@ -5,30 +5,15 @@
         <h5 class="modal-title">
           {{ t('export') }}
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          :aria-label="t('close')"
-        />
+        <button type="button" class="btn-close" data-bs-dismiss="modal" :aria-label="t('close')" />
       </div>
       <div class="modal-body">
         <p>{{ t('$description') }}</p>
-        <template
-          v-if="data.length > 0"
-        >
+        <template v-if="data.length > 0">
           <form class="mb-3">
             <div class="form-floating mb-3">
-              <select
-                id="formatSelect"
-                v-model="selectedFormat"
-                class="form-select"
-              >
-                <option
-                  v-for="format in formats"
-                  :key="format"
-                  :value="format.type"
-                >
+              <select id="formatSelect" v-model="selectedFormat" class="form-select">
+                <option v-for="format in formats" :key="format" :value="format.type">
                   {{ format.name }}
                 </option>
               </select>
@@ -44,10 +29,7 @@
             >
               {{ t('showColumns') }}
             </a>
-            <div
-              id="exportColumnsCollapse"
-              class="collapse mt-2"
-            >
+            <div id="exportColumnsCollapse" class="collapse mt-2">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -57,10 +39,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    v-for="(col, key) in Object.keys(data[0])"
-                    :key="col"
-                  >
+                  <tr v-for="(col, key) in Object.keys(data[0])" :key="col">
                     <th scope="row">
                       {{ key + 1 }}
                     </th>
@@ -74,18 +53,10 @@
         </template>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           {{ t('close') }}
         </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          @click="save"
-        >
+        <button type="button" class="btn btn-primary" @click="save">
           {{ t('save') }}
         </button>
       </div>
@@ -94,9 +65,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import loadScript from '~/utils/scriptLoader'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import loadScript from '~/utils/scriptLoader';
 
 export default defineComponent({
   name: 'Export',
@@ -110,9 +81,9 @@ export default defineComponent({
 
   setup() {
     // Translations
-    const { t } = useI18n()
+    const { t } = useI18n();
 
-    return { t }
+    return { t };
   },
 
   data() {
@@ -136,21 +107,21 @@ export default defineComponent({
         }
       ],
       selectedFormat: 'xlsx'
-    }
+    };
   },
 
   methods: {
     async save() {
       // Save
       loadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js').then(() => {
-        const wb = window.XLSX.utils.book_new()
-        const ws = window.XLSX.utils.json_to_sheet(this.data)
-        window.XLSX.utils.book_append_sheet(wb, ws, 'Export')
-        window.XLSX.writeFile(wb, `export.${this.selectedFormat}`)
-      })
+        const wb = window.XLSX.utils.book_new();
+        const ws = window.XLSX.utils.json_to_sheet(this.data);
+        window.XLSX.utils.book_append_sheet(wb, ws, 'Export');
+        window.XLSX.writeFile(wb, `export.${this.selectedFormat}`);
+      });
     }
   }
-})
+});
 </script>
 
 <i18n>

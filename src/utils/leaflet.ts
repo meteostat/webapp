@@ -1,5 +1,5 @@
 const useLeaflet = async () => {
-  return await import("leaflet")
-}
+  return await import('leaflet');
+};
 
-export default useLeaflet
+export default useLeaflet;

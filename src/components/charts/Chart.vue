@@ -1,8 +1,5 @@
 <template>
-  <canvas
-    ref="chart"
-    class="chart"
-  />
+  <canvas ref="chart" class="chart" />
 </template>
 
 <script lang="js">
@@ -35,22 +32,29 @@ export default defineComponent({
   data() {
     return {
       loading: false,
-      uid: (Math.random() + 1).toString().substr(2, 5)
+      instance: null
     }
   },
 
   watch: {
     async data() {
-      if (!this.loading) {
+      if (!this.loading && !import.meta.env.SSR) {
         this.createChart()
       }
     }
   },
 
-  mounted() {
-    this.createChart()
+  async mounted() {
+    this.$chart.defaults.plugins.legend.position = 'bottom'
+    this.$chart.defaults.plugins.legend.align = 'end'
+    this.$chart.defaults.plugins.legend.labels.boxWidth = 20
+    // Register plugins
+    this.$chart.register(ColorStripePlugin);
+    // Create chart
+    await this.createChart()
+    // Update on resize
     window.addEventListener('resize', () => {
-      this.debounce(this.createChart, 500, `chart-${this.uid}`)
+      this.debounce(this.createChart, 500, `chart-${this.instance?.id}`)
     });
   },
 
@@ -58,83 +62,30 @@ export default defineComponent({
     async createChart() {
       // Start loading
       this.loading = true
-
-      if (!import.meta.env.SSR) {
-        // Import Chart.js
-        const {
-          Chart,
-          LineElement,
-          PointElement,
-          LineController,
-          BarElement,
-          BarController,
-          RadarController,
-          TimeScale,
-          LinearScale,
-          RadialLinearScale,
-          CategoryScale,
-          Filler,
-          Tooltip,
-          Legend
-        } = await import('chart.js')
-
-        // Import date adapter
-        await import('chartjs-adapter-date-fns')
-
-        // Register Chart.js components
-        await Chart.register(
-          LineElement,
-          LineController,
-          TimeScale,
-          LinearScale,
-          RadialLinearScale,
-          CategoryScale,
-          BarElement,
-          PointElement,
-          BarController,
-          RadarController,
-          Filler,
-          Tooltip,
-          Legend
-        )
-
-        // Mobile device?
-        const isMobile = !import.meta.env.SSR ? window.matchMedia('(max-width: 768px)').matches : false
-
-        // Defaults
-        Chart.defaults.aspectRatio = isMobile ? 1.5 : 2
-        Chart.defaults.scale.title.display = isMobile ? false : true
-        Chart.defaults.plugins.legend.position = 'bottom'
-        Chart.defaults.plugins.legend.align = 'end'
-        Chart.defaults.plugins.legend.labels.boxWidth = 20
-
-        // Register plugins
-        Chart.register(ColorStripePlugin);
-
-        // Get canvas
-        let ctx = this.$refs.chart
-
-        // Chart options
-        const options = {
-          animation: false,
-          ...this.options,
-        }
-
-        // Destroy chart if exists
-        if (this.instance) {
-          await this.instance.destroy()
-        }
-
-        // Create chart
-        this.instance = new Chart(ctx, {
-          type: this.type,
-          data: this.data,
-          options
-        })
-
-        // Finish loading
-        this.loading = false
+      // Mobile device?
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      // Chart defaults
+      this.$chart.defaults.aspectRatio = isMobile ? 1.5 : 2
+      this.$chart.defaults.scale.title.display = isMobile ? false : true
+      // Get canvas
+      let ctx = this.$refs.chart
+      // Chart options
+      const options = {
+        animation: false,
+        ...this.options,
       }
+      // Destroy chart if exists
+      if (this.instance) {
+        await this.instance.destroy()
+      }
+      // Create chart
+      this.instance = new this.$chart(ctx, {
+        type: this.type,
+        data: this.data,
+        options
+      })
+      // Finish loading
+      this.loading = false
     }
   }
 })

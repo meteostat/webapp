@@ -1,25 +1,16 @@
 <template>
-  <div
-    class="alert alert-danger"
-    role="alert"
-  >
+  <div class="alert alert-danger" role="alert">
     <h5 class="alert-heading mb-3">
-      <icon
-        :icon="['fas', 'exclamation-circle']"
-        class="me-1 text-danger"
-      />
+      <icon :icon="['fas', 'exclamation-circle']" class="me-1 text-danger" />
       {{ t('$title') }}
     </h5>
     <p class="mb-0">
       {{ t('$description') }}
     </p>
     <template v-if="!settings.model">
-      <hr class="mt-3">
+      <hr class="mt-3" />
       <p>{{ t('$tipModel') }}</p>
-      <button
-        class="btn btn-primary"
-        @click="enableModel"
-      >
+      <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#settingsSidebar">
         {{ t('enableModel') }}
       </button>
     </template>
@@ -27,28 +18,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { Store } from 'pinia'
-import { useSettingsStore } from '../../stores/settings'
+import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { Store } from 'pinia';
+import { useSettingsStore } from '../../stores/settings';
 
 export default defineComponent({
-  name: 'NoDataAlert',
+  name: 'NoData',
 
-  setup(): Record<string, Store|any> {
-    const { t } = useI18n()
-    const settings = useSettingsStore()
+  setup(): Record<string, Store | any> {
+    const { t } = useI18n();
+    const settings = useSettingsStore();
 
-    return { t, settings }
-  },
-
-  methods: {
-    enableModel(): void {
-      this.settings.model = true
-      this.$router.go(0)
-    }
+    return { t, settings };
   }
-})
+});
 </script>
 
 <i18n>

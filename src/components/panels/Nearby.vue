@@ -10,18 +10,25 @@
         :to="`/station/${station.id}`"
         class="list-group-item list-group-item-action d-flex align-items-center"
       >
-        <span class="text-truncate">{{ station.name.en }}</span>
-        <code class="badge bg-light text-dark border ms-auto">{{ station.id }}</code>
+        <span class="text-truncate">{{ station.name }}</span>
+        <span class="ms-auto text-nowrap">
+          <span v-if="!station.active" class="badge bg-secondary me-1">{{ t('archive') }}</span>
+          <code class="badge bg-light text-dark border ms-auto">
+            {{ station.id }}
+          </code>
+        </span>
       </router-link>
     </ul>
   </div>
 </template>
 
 <script>
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n';
 
 export default {
   name: 'Nearby',
+
+  emits: ['loaded'],
 
   props: {
     lat: Number,
@@ -33,23 +40,28 @@ export default {
   },
 
   setup() {
-    const { t } = useI18n()
+    const { t } = useI18n();
 
-    return { t }
+    return { t };
   },
 
   data() {
     return {
       stations: []
-    }
+    };
   },
 
   async mounted() {
-    await fetch(`https://api.meteostat.net/app/proxy/stations/nearby?lat=${this.lat}&lon=${this.lon}&limit=${this.limit}`)
-      .then(response => response.json())
-      .then(data => this.stations = data.data) 
+    await fetch(
+      `https://api.meteostat.net/app/nearby?lat=${this.lat}&lon=${this.lon}&lang=${this.$locale}&limit=${this.limit}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        this.stations = data.data;
+        this.$emit('loaded', this.stations);
+      });
   }
-}
+};
 </script>
 
 <i18n>

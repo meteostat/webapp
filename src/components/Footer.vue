@@ -25,82 +25,51 @@
             data-toggle="modal"
             data-target="#contact"
           >
-            <icon
-              :icon="['fas', 'comment-alt']"
-              class="me-2"
-            />
+            <icon :icon="['fas', 'comment-alt']" class="me-2" />
             {{ t('support') }}
           </router-link>
         </li>
         <li class="w-100 d-md-none" />
         <li class="d-inline-block mt-3 mt-md-0 ms-md-auto fs-4">
-          <a
-            href="https://twitter.com/meteost"
-            v-tooltip="'Twitter'"
-          >
+          <a href="https://twitter.com/meteost" v-tooltip="'Twitter'">
             <icon :icon="['fab', 'twitter']" />
           </a>
         </li>
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
-          <a
-            href="https://medium.com/meteostat"
-            v-tooltip="t('blog')"
-          >
+          <a href="https://medium.com/meteostat" v-tooltip="t('blog')">
             <icon :icon="['fab', 'medium']" />
           </a>
         </li>
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
-          <a
-            href="https://github.com/meteostat"
-            v-tooltip="'GitHub'"
-          >
+          <a href="https://github.com/meteostat" v-tooltip="'GitHub'">
             <icon :icon="['fab', 'github']" />
           </a>
         </li>
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
-          <a
-            href="https://www.linkedin.com/company/meteostat/"
-            v-tooltip="'LinkedIn'"
-          >
+          <a href="https://www.linkedin.com/company/meteostat/" v-tooltip="'LinkedIn'">
             <icon :icon="['fab', 'linkedin']" />
           </a>
         </li>
         <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
-          <a
-            href="https://www.patreon.com/meteostat"
-            v-tooltip="'Patreon'"
-          >
+          <a href="https://www.patreon.com/meteostat" v-tooltip="'Patreon'">
             <icon :icon="['fab', 'patreon']" />
           </a>
         </li>
       </ul>
       <div class="mb-3">
-        <span class="me-2">
-          {{ t('language') }}:
-        </span>
+        <span class="me-2"> {{ t('language') }}: </span>
         <div class="dropdown d-inline">
-          <a
-            class="dropdown-toggle"
-            data-bs-toggle="dropdown"
-          >
+          <a class="dropdown-toggle" data-bs-toggle="dropdown">
             {{ lang.name }}
           </a>
           <div class="dropdown-menu">
-            <a
-              v-for="language in languages"
-              :key="language"
-              class="dropdown-item"
-              :href="i18nLink(language.locale)"
-            >
+            <a v-for="language in languages" :key="language" class="dropdown-item" :href="i18nLink(language.locale)">
               {{ language.name }}
             </a>
           </div>
         </div>
       </div>
-      <i18n-t
-        keypath="$legal"
-        tag="small"
-      >
+      <i18n-t keypath="$legal" tag="small">
         <template #legal>
           <a :href="t('$legalLink')">
             {{ t('legalDisclosure') }}
@@ -112,37 +81,16 @@
           </a>
         </template>
       </i18n-t>
-      <br>
-      <i18n-t
-        keypath="$sources"
-        tag="small"
-      >
+      <br />
+      <i18n-t keypath="$sources" tag="small">
         <template #noaa>
-          <a
-            href="http://www.noaa.gov/"
-            target="_blank"
-            rel="noreferrer nofollow"
-          >
-            NOAA
-          </a>
+          <a href="http://www.noaa.gov/" target="_blank" rel="noreferrer nofollow"> NOAA </a>
         </template>
         <template #dwd>
-          <a
-            href="https://www.dwd.de/"
-            target="_blank"
-            rel="noreferrer nofollow"
-          >
-            Deutscher Wetterdienst
-          </a>
+          <a href="https://www.dwd.de/" target="_blank" rel="noreferrer nofollow"> Deutscher Wetterdienst </a>
         </template>
         <template #ec>
-          <a
-            href="https://weather.gc.ca/"
-            target="_blank"
-            rel="noreferrer nofollow"
-          >
-            Environment Canada
-          </a>
+          <a href="https://weather.gc.ca/" target="_blank" rel="noreferrer nofollow"> Environment Canada </a>
         </template>
         <template #sources>
           <a href="https://dev.meteostat.net/sources.html">
@@ -155,84 +103,72 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref} from 'vue'
-import { useRouter, useRoute, RouteLocationNormalizedLoaded } from 'vue-router'
-import { useHead } from '@vueuse/head'
-import { useI18n } from 'vue-i18n'
-import { SUPPORTED_LANGUAGES } from '~/i18n/locales'
+import { defineComponent, ref, Ref } from 'vue';
+import { useRouter, useRoute, RouteLocationNormalizedLoaded } from 'vue-router';
+import { useHead } from '@vueuse/head';
+import { useI18n } from 'vue-i18n';
+import { SUPPORTED_LANGUAGES } from '~/i18n/locales';
 
 export default defineComponent({
   name: 'Footer',
 
   setup(): Record<string, any> {
-    const router = useRouter()
-    const route = useRoute()
-    const { t, locale } = useI18n()
+    const router = useRouter();
+    const route = useRoute();
+    const { t, locale } = useI18n();
 
     // Get current language
-    const languages = SUPPORTED_LANGUAGES
-    const lang = languages.filter(l => l.locale === locale.value)[0]
+    const languages = SUPPORTED_LANGUAGES;
+    const lang = languages.filter((l) => l.locale === locale.value)[0];
 
     // Translateable routes
-    const translateableRoutes = [
-      'Home',
-      'StationHistory',
-      'StationClimate',
-      'PlaceHistory',
-      'PlaceClimate',
-      'Insights',
-      'Patrons',
-      'About',
-      'Support'
-    ]
+    const translateableRoutes = ['Home', 'Station', 'Place', 'Blog', 'Patrons', 'About', 'Support'];
 
     // Current router path
-    let path: Ref<string|null> = ref(null)
+    let path: Ref<string | null> = ref(null);
 
     const updatePath = (to: RouteLocationNormalizedLoaded) => {
-      path.value = translateableRoutes.includes(
-        String(to.name)
-      ) ? String(to.path) : null
-    }
+      path.value = translateableRoutes.includes(String(to.name)) ? String(to.path) : null;
+    };
 
-    router.beforeEach(updatePath)
-    updatePath(route)
+    router.beforeEach(updatePath);
+    updatePath(route);
 
     // Get alternate i18n links
     const i18nLink = (l: string): string => {
-      return path.value ? `/${l}${path.value}` : `/${l}`
-    }
+      return path.value ? `/${l}${path.value}` : `/${l}`;
+    };
 
     // Add alternate links
-    const alternates = languages.filter(
-      l => l.locale !== locale.value
-    ).map((l): any => {
-      return {
-        rel: 'alternate',
-        hreflang: l.locale,
-        href: `https://meteostat.net${i18nLink(l.locale)}`
-      }
-    })
+    const alternates = languages
+      .filter((l) => l.locale !== locale.value)
+      .map((l): any => {
+        return {
+          rel: 'alternate',
+          hreflang: l.locale,
+          href: `https://meteostat.net${i18nLink(l.locale)}`
+        };
+      });
 
     if (path.value) {
       useHead({
         link: alternates
-      })
+      });
     }
 
-    return { t, lang, languages, i18nLink }
+    return { t, lang, languages, i18nLink };
   }
-})
+});
 </script>
 
 <style lang="scss">
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
 
 footer {
-	border-top: 1px solid #eee;
-	font-size: 85%;
+  border-top: 1px solid #eee;
+  font-size: 85%;
 }
 
 footer a {
@@ -241,16 +177,16 @@ footer a {
 }
 
 footer a:hover {
-	color: $blue;
+  color: $blue;
 }
 
 footer ul {
-	list-style: none;
-	padding-left: 0;
+  list-style: none;
+  padding-left: 0;
 }
 
 footer ul a > i {
-	font-size: 24px;
+  font-size: 24px;
 }
 </style>
 
