@@ -5,13 +5,7 @@
       <!-- Slot: toolbar-buttons -->
       <slot name="toolbarButtons" />
       <!-- Export Button -->
-      <button
-        class="btn btn-light"
-        :class="{ 'd-none d-sm-inline-block': $route.name === 'Place' }"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#exportModal"
-      >
+      <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#exportModal">
         <icon :icon="['fas', 'download']" />
         <span class="d-none d-xl-inline ms-2">{{ t('export') }}</span>
       </button>
@@ -80,7 +74,7 @@
           </h2>
         </div>
         <div class="card-body px-0">
-          <Climate :normals="normals" :key="`${station}-${normals.length}`" />
+          <Climate :normals="normals" :key="`${station}-${normals?.length}`" />
         </div>
       </div>
     </section>
@@ -338,7 +332,7 @@ export default defineComponent({
           dates: new Date()
         }
       ],
-      normals: [],
+      normals: null,
       suggestions: [
         // Today
         new Date(),
@@ -460,6 +454,10 @@ export default defineComponent({
 .station-selector-name {
   display: inline-block;
   max-width: 120px;
+
+  @media (max-width: 342px) {
+    max-width: 98px;
+  }
 
   @include media-breakpoint-up(sm) {
     max-width: 200px;

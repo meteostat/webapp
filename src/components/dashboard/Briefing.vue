@@ -42,7 +42,7 @@
             <template v-if="prcp !== null && anyColData('prcp')">
               {{ prcp }}
               <small
-                v-if="prcpAnomaly"
+                v-if="daily && prcpAnomaly"
                 class="fw-light"
                 :class="{ 'anomaly-negative': prcpAnomaly < 0, 'anomaly-positive': prcpAnomaly >= 0 }"
               >
@@ -187,14 +187,15 @@ export default defineComponent({
     },
 
     latestNormals(): any[] {
-      return this.normals.slice(this.normals.length - 12);
+      const normals = this.normals?.slice(this.normals.length - 12);
+      return normals ? normals : [];
     },
 
     temp(): null | number {
       return getAverage(this.fetchValues(this.tempCol).map(Number));
     },
 
-    tempAnomaly(): null | string {
+    tempAnomaly(): null | number | string {
       return getAnomaly(
         this.fetchValues(this.tempCol).map(Number),
         this.timeValues,
@@ -206,7 +207,7 @@ export default defineComponent({
       return getSum(this.fetchValues('prcp').map(Number), this.settings.unitPrecision.prcp);
     },
 
-    prcpAnomaly(): null | string {
+    prcpAnomaly(): null | number | string {
       return getSumAnomaly(
         this.fetchValues('prcp').map(Number),
         this.timeValues,
@@ -220,7 +221,7 @@ export default defineComponent({
       return getAverage(this.fetchValues('wspd').map(Number));
     },
 
-    wspdAnomaly(): null | string {
+    wspdAnomaly(): null | number | string {
       return getAnomaly(
         this.fetchValues('wspd').map(Number),
         this.timeValues,
@@ -232,7 +233,7 @@ export default defineComponent({
       return getAverage(this.fetchValues('pres').map(Number));
     },
 
-    presAnomaly(): null | string {
+    presAnomaly(): null | number | string {
       return getAnomaly(
         this.fetchValues('pres').map(Number),
         this.timeValues,

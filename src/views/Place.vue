@@ -22,7 +22,7 @@
               <!-- Station Selector -->
               <div class="btn-group" role="group">
                 <button
-                  class="btn btn-light dropdown-toggle d-flex align-items-center"
+                  class="btn btn-light dropdown-toggle d-flex align-items-center px-2"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"

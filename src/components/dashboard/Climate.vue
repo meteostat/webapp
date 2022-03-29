@@ -1,5 +1,5 @@
 <template>
-  <div v-if="normals.length && activeParameter" ref="wrapper" class="wrapper">
+  <div v-if="normals?.length && activeParameter" ref="wrapper" class="wrapper">
     <div class="d-flex align-items-center">
       <div class="dropdown">
         <button
@@ -63,9 +63,13 @@
       />
     </div>
   </div>
-  <div v-else role="alert">
+  <div v-else-if="normals?.length === 0" role="alert">
     <icon :icon="['fas', 'exclamation-circle']" class="me-1 text-danger" />
     {{ t('$noClimateData') }}
+  </div>
+  <div v-else role="alert">
+    <span class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></span>
+    <span class="ms-2">{{ t('loading') }}</span>
   </div>
 </template>
 
@@ -457,7 +461,8 @@ export default defineComponent({
       "OKT",
       "NOV",
       "DEZ"
-    ]
+    ],
+    "$noClimateData": "Für diese Wetterstation sind keine Klimadaten verfügbar. Bitte versuchen Sie es mit einer anderen Station."
   },
   "it": {
     "latest": "Ultimo",
@@ -475,7 +480,8 @@ export default defineComponent({
       "OCT",
       "NOV",
       "DEC"
-    ]
+    ],
+    "$noClimateData": "I dati climatici non sono disponibili per questa stazione meteorologica. Si prega di riprovare con un'altra."
   },
   "es": {
     "latest": "Más Reciente",
@@ -493,7 +499,8 @@ export default defineComponent({
       "OCT",
       "NOV",
       "DEC"
-    ]
+    ],
+    "$noClimateData": "Los datos climáticos no están disponibles para esta estación meteorológica. Por favor, inténtelo de nuevo con otra."
   },
   "nl": {
     "latest": "Laatste",
@@ -511,7 +518,8 @@ export default defineComponent({
       "OCT",
       "NOV",
       "DEC"
-    ]
+    ],
+    "$noClimateData": "Er zijn geen klimaatgegevens beschikbaar voor dit weerstation. Probeer het opnieuw met een ander station."
   },
   "fr": {
     "latest" : "Les plus récents",
@@ -529,7 +537,8 @@ export default defineComponent({
       "OCT",
       "NOV",
       "DEC"
-    ]
+    ],
+    "$noClimateData": "Les données climatiques ne sont pas disponibles pour cette station météo. Veuillez réessayer avec une autre station."
   },
   "pt": {
     "latest": "Mais Recente",
@@ -547,7 +556,8 @@ export default defineComponent({
       "OCT",
       "NOV",
       "DEC"
-    ]
+    ],
+    "$noClimateData": "Os dados climáticos não estão disponíveis para esta estação meteorológica. Por favor, tente novamente com uma diferente."
   },
   "ru": {
     "latest": "Последние",
@@ -565,7 +575,8 @@ export default defineComponent({
       "OCT",
       "NOV",
       "DEC"
-    ]
+    ],
+    "$noClimateData": "Климатические данные для этой метеостанции недоступны. Пожалуйста, повторите попытку с другой метеостанцией."
   }
 }
 </i18n>

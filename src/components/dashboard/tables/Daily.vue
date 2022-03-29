@@ -25,10 +25,14 @@
               </th>
             </tr>
             <tr>
-              <th v-for="column in columns" :key="column.key" scope="col" @click="sortBy(column.key)">
-                <abbr :title="column.name">
-                  {{ column.abbr || column.name }}
-                </abbr>
+              <th
+                v-for="column in columns"
+                :key="column.key"
+                scope="col"
+                @click="sortBy(column.key)"
+                v-tooltip="{ title: column.name, trigger: 'hover' }"
+              >
+                {{ column.abbr || column.name }}
                 <icon v-if="sort.column === column.key && sort.asc" :icon="['fas', 'arrow-up']" class="ms-2" />
                 <icon v-if="sort.column === column.key && !sort.asc" :icon="['fas', 'arrow-down']" class="ms-2" />
               </th>
