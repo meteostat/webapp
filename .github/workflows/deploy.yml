@@ -16,7 +16,7 @@ jobs:
       - name: Install
         run: npm i
       - name: Build SPA
-        run: npm run build:spa && cp './.htaccess' './dist/.htaccess' 
+        run: npm run build:spa && cp './.htaccess' './dist/.htaccess'
       - name: Deploy SPA
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
