@@ -42,7 +42,7 @@
     "leaflet-image": "^0.4.0",
     "papaparse": "^5.3.1",
     "pinia": "^2.0.0-rc.12",
-    "v-calendar": "^3.0.0-alpha.6",
+    "v-calendar": "3.0.0-alpha.8",
     "vitedge": "^0.17.0",
     "vue": "^3.2.20",
     "vue-i18n": "^9.1.9",
