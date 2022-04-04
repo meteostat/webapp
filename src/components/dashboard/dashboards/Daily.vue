@@ -10,7 +10,11 @@
 
     <div id="sections" class="mt-3">
       <!-- Temperature Chart -->
-      <Section v-if="anyColData('tavg') || anyColData('tmin') || anyColData('tmax')" id="temp" :title="t('$meteo.temp')">
+      <Section
+        v-if="anyColData('tavg') || anyColData('tmin') || anyColData('tmax')"
+        id="temp"
+        :title="t('$meteo.temp')"
+      >
         <Chart type="line" :data="tempChart.data" :options="tempChart.options" />
       </Section>
 

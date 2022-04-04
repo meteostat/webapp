@@ -10,7 +10,13 @@
         <span class="d-none d-xl-inline ms-2">{{ t('export') }}</span>
       </button>
       <!-- Details Table Button -->
-      <button class="btn btn-light me-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#details-offcanvas" aria-controls="details-offcanvas">
+      <button
+        class="btn btn-light d-none d-md-inline-block me-1"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#details-offcanvas"
+        aria-controls="details-offcanvas"
+      >
         <icon :icon="['fas', 'table']" />
         <span class="d-none d-xl-inline ms-2">{{ t('details') }}</span>
       </button>
@@ -459,6 +465,19 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+@include media-breakpoint-down(md) {
+  [data-bs-target='#exportModal'] {
+    border-top-right-radius: $border-radius !important;
+    border-bottom-right-radius: $border-radius !important;
+  }
+}
+</style>
 
 <style lang="scss">
 @import '../node_modules/bootstrap/scss/functions';

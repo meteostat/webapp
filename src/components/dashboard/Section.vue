@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Section',
@@ -21,5 +21,5 @@ export default defineComponent({
     id: String,
     title: String
   }
-})
+});
 </script>

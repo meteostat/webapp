@@ -22,7 +22,7 @@
               <!-- Station Selector -->
               <div class="btn-group" role="group">
                 <button
-                  class="btn btn-light dropdown-toggle d-flex align-items-center px-2 px-xl-3"
+                  class="btn btn-light dropdown-toggle d-flex align-items-center"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -43,7 +43,9 @@
                         :class="{ 'text-muted': !s.active && s.id !== selectedStation?.id }"
                         >{{ s?.name }}</span
                       >
-                      <span class="badge ms-auto bg-light border text-dark">{{ Math.round(s.distance / 1000) }} km</span>
+                      <span class="badge ms-auto bg-light border text-dark"
+                        >{{ Math.round(s.distance / 1000) }} km</span
+                      >
                     </a>
                   </li>
                 </ul>
@@ -165,10 +167,11 @@ export default defineComponent({
 
     setNearbyStations(stations: Array<any>) {
       this.nearbyStations = stations;
-      const stationId = this.$route.query.s
-      this.selectedStation = stationId?.length === 5 ?
-        stations.filter((station) => station.id === stationId)[0] :
-        stations.filter((station) => station.active)[0] || stations[0];
+      const stationId = this.$route.query.s;
+      this.selectedStation =
+        stationId?.length === 5
+          ? stations.filter((station) => station.id === stationId)[0]
+          : stations.filter((station) => station.active)[0] || stations[0];
     },
 
     changeStation(station: any) {

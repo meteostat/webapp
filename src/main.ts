@@ -181,7 +181,16 @@ export default vitedge(
     // Browser only
     if (!import.meta.env.SSR) {
       // Scroll to top after each navigation
-      router.afterEach((to: Record<string, string>) => {
+      router.afterEach(async (to: Record<string, any>, from: Record<string, any>) => {
+        // Exclude replace navigations
+        if (
+          to.fullPath === from.fullPath ||
+          (to.name === 'Place' && !(to.query.s || to.query.t)) ||
+          (to.name === 'Station' && !to.query.t)
+        ) {
+          return true;
+        }
+        // Track page view
         window.scrollTo(0, 0);
         window._paq?.push(['setCustomUrl', location.pathname + location.search]);
         window._paq?.push(['setDocumentTitle', to.name]);

@@ -92,7 +92,7 @@ export default defineComponent({
       const collapse = this.$bs.Collapse.default.getInstance(subnav);
       // Scroll to element & remove event listener if set
       const scrollTo = () => {
-        scrollToElement(id)
+        scrollToElement(id);
         if (collapse) {
           subnav.removeEventListener('hidden.bs.collapse', scrollTo);
         }

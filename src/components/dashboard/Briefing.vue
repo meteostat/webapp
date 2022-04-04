@@ -282,13 +282,7 @@ export default defineComponent({
     &-gaps {
       display: block;
       height: 100%;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 1px,
-        white 1px,
-        white 2px
-      );
+      background: repeating-linear-gradient(45deg, transparent, transparent 1px, white 1px, white 2px);
     }
   }
 
