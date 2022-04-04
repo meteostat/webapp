@@ -7,4 +7,15 @@ const isElementInViewport = (el: HTMLElement): boolean => {
   return true;
 };
 
-export default isElementInViewport;
+const scrollToElement = (id: string) => {
+  const el = document?.getElementById(id);
+  if (el) {
+    const top = el.getBoundingClientRect()?.top + window?.pageYOffset - 78;
+    window?.scrollTo({
+      top: top,
+      behavior: 'smooth'
+    });
+  }
+};
+
+export { isElementInViewport, scrollToElement };

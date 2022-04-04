@@ -8,75 +8,36 @@
       <Ad slot-id="3216865845" />
     </div>
 
-    <div id="sections" class="mt-4">
+    <div id="sections" class="mt-3">
       <!-- Temperature Chart -->
-      <section
-        v-if="anyColData('tavg') || anyColData('tmin') || anyColData('tmax')"
-        id="temp"
-        class="card mt-3 mt-md-4"
-      >
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('$meteo.temp') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart type="line" :data="tempChart.data" :options="tempChart.options" />
-        </div>
-      </section>
+      <Section v-if="anyColData('tavg') || anyColData('tmin') || anyColData('tmax')" id="temp" :title="t('$meteo.temp')">
+        <Chart type="line" :data="tempChart.data" :options="tempChart.options" />
+      </Section>
 
       <!-- Precipitation Chart -->
-      <section v-if="anyColData('prcp')" id="prcp" class="card mt-3 mt-md-4">
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('$meteo.prcp') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart type="bar" :data="prcpChart.data" :options="prcpChart.options" />
-        </div>
-      </section>
+      <Section v-if="anyColData('prcp')" id="prcp" :title="t('$meteo.prcp')">
+        <Chart type="bar" :data="prcpChart.data" :options="prcpChart.options" />
+      </Section>
 
       <!-- Wind Speed Chart -->
-      <section v-if="anyColData('wspd')" id="wspd" class="card mt-3 mt-md-4">
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('$params.wspd') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart type="line" :data="wspdChart.data" :options="wspdChart.options" />
-        </div>
-      </section>
+      <Section v-if="anyColData('wspd')" id="wspd" :title="t('$params.wspd')">
+        <Chart type="line" :data="wspdChart.data" :options="wspdChart.options" />
+      </Section>
 
       <!-- Wind Direction Chart -->
-      <section v-if="anyColData('wdir')" id="wdir" class="card mt-3 mt-md-4">
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('$params.wdir') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart type="radar" :data="wdirChart.data" :options="wdirChart.options" />
-        </div>
-      </section>
+      <Section v-if="anyColData('wdir')" id="wdir" :title="t('$params.wdir')">
+        <Chart type="radar" :data="wdirChart.data" :options="wdirChart.options" />
+      </Section>
 
       <!-- Air Pressure Chart -->
-      <section v-if="anyColData('pres')" id="pres" class="card mt-3 mt-md-4">
-        <div class="card-header card-header-main px-0 rounded-0 bg-white">
-          <h2 class="card-header-title lead">
-            {{ t('$params.pres') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Chart type="line" :data="presChart.data" :options="presChart.options" />
-        </div>
-      </section>
+      <Section v-if="anyColData('pres')" id="pres" :title="t('$params.pres')">
+        <Chart type="line" :data="presChart.data" :options="presChart.options" />
+      </Section>
 
       <!-- Details Table -->
-      <section id="details" class="d-none d-lg-block" :data-section-title="t('details')">
+      <div id="details-offcanvas" class="offcanvas offcanvas-start offcanvas-details" tabindex="-1">
         <Table :data="data" />
-      </section>
+      </div>
     </div>
   </template>
 
@@ -105,6 +66,7 @@ import { tempScale, prcpScale, wspdScale, presScale, ColorScale } from '~/utils/
 import { ChartDefinitionInterface } from '~/utils/interfaces';
 import DataMixin from '../../Data.mixin';
 import Briefing from '../Briefing.vue';
+import Section from '../Section.vue';
 import Chart from '../../charts/Chart.vue';
 import { tsTooltips, tsPointRadius, tsScales } from '../../charts/timeseries.config';
 import Ad from '~/components/Ad.vue';
@@ -125,6 +87,7 @@ export default defineComponent({
   components: {
     Export,
     Briefing,
+    Section,
     Chart,
     Table,
     NoData,
@@ -286,7 +249,7 @@ export default defineComponent({
           plugins: {
             tooltip: tsTooltips,
             colorStripe: {
-              scale: new ColorScale(prcpScale, 0, 30, '#eeeeee')
+              scale: new ColorScale(prcpScale, 0, 30, '#dee2e6')
             }
           }
         }
@@ -487,3 +450,10 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss">
+.offcanvas-details {
+  width: 100%;
+  max-width: 980px;
+}
+</style>

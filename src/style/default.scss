@@ -73,6 +73,10 @@ a:active {
   font-weight: 500;
   padding: 0.4rem 1rem;
 
+  &:focus {
+    box-shadow: none;
+  }
+
   &-light,
   &-light:hover,
   &-light:focus {
@@ -83,10 +87,6 @@ a:active {
 button > *,
 a > * {
   pointer-events: none;
-}
-
-.btn:focus {
-  box-shadow: none;
 }
 
 /* Alerts */
@@ -131,8 +131,6 @@ a > * {
 
 /* Navbars */
 .navbar {
-  border-bottom: 1px solid $gray-200;
-
   .navbar-toggler:focus {
     box-shadow: none;
   }
@@ -174,5 +172,12 @@ section > .card {
   a:hover,
   a:active {
     color: #333 !important;
+  }
+}
+
+/* List Group */
+.list-group {
+  .list-group-item {
+    border-color: $gray-200;
   }
 }

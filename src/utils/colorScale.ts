@@ -58,7 +58,7 @@ const prcpScale: Array<string> = [
 
 // https://gka.github.io/palettes/#/25|d|eeeeee,51aed4,5cb85c,fff055|fff055,e27a50,8c1c56,9b50ba|0|1
 const wspdScale: Array<string> = [
-  '#eeeeee',
+  '#dee2e6',
   '#cfdfe6',
   '#b5d4da',
   '#a1cbcc',

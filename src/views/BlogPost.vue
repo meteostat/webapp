@@ -1,5 +1,5 @@
 <template>
-  <div v-if="post.slug" class="container py-5">
+  <div v-if="post.slug" class="container py-4">
     <div class="row">
       <div class="col-12 col-md-9">
         <h1 class="post-title mb-4">

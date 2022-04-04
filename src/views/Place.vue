@@ -3,7 +3,7 @@
     <!-- Navbar -->
     <Navbar :id="meta.id" ref="subnav" type="place" :name="meta.name" :country="meta.country" />
     <!-- Content -->
-    <div class="container my-3 my-lg-4">
+    <div class="container my-4">
       <div class="row gy-4">
         <div class="col-12 col-lg-8">
           <!-- Dashboard -->
@@ -22,7 +22,7 @@
               <!-- Station Selector -->
               <div class="btn-group" role="group">
                 <button
-                  class="btn btn-light dropdown-toggle d-flex align-items-center px-2"
+                  class="btn btn-light dropdown-toggle d-flex align-items-center px-2 px-xl-3"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -43,8 +43,7 @@
                         :class="{ 'text-muted': !s.active && s.id !== selectedStation?.id }"
                         >{{ s?.name }}</span
                       >
-                      <small class="ms-auto me-2">{{ s?.elevation }} m</small>
-                      <span class="badge bg-light border text-dark">{{ Math.round(s.distance / 1000) }} km</span>
+                      <span class="badge ms-auto bg-light border text-dark">{{ Math.round(s.distance / 1000) }} km</span>
                     </a>
                   </li>
                 </ul>
@@ -166,11 +165,26 @@ export default defineComponent({
 
     setNearbyStations(stations: Array<any>) {
       this.nearbyStations = stations;
-      this.changeStation(stations.filter((station) => station.active)[0] || stations[0]);
+      const stationId = this.$route.query.s
+      this.selectedStation = stationId?.length === 5 ?
+        stations.filter((station) => station.id === stationId)[0] :
+        stations.filter((station) => station.active)[0] || stations[0];
     },
 
     changeStation(station: any) {
       this.selectedStation = station;
+    }
+  },
+
+  watch: {
+    '$route.query.s': {
+      handler(to) {
+        if (this.nearbyStations?.length && this.selectedStation && to && to !== this.selectedStation.id) {
+          this.changeStation(this.nearbyStations.filter((station: any) => station.id === to)[0]);
+        }
+      },
+      deep: true,
+      immediate: true
     }
   }
 });

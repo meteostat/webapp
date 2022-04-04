@@ -1,11 +1,5 @@
 <template>
-  <div class="offcanvas-header">
-    <h5 id="offcanvasExampleLabel" class="offcanvas-title">
-      {{ t('donation') }}
-    </h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" />
-  </div>
-  <div class="offcanvas-body">
+  <Offcanvas :title="t('donation')">
     <div class="mb-4">
       {{ t('donationText') }}
       <small class="d-block text-muted mt-2">
@@ -102,15 +96,20 @@
         <img src="https://media.meteostat.net/assets/qr-ethereum.png" class="img-fluid img-thumbnail" />
       </div>
     </div>
-  </div>
+  </Offcanvas>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
+import Offcanvas from './Offcanvas.vue';
 
 export default defineComponent({
   name: 'Donation',
+
+  components: {
+    Offcanvas
+  },
 
   setup(): Record<string, any> {
     const { t } = useI18n();

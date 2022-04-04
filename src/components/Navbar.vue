@@ -263,6 +263,8 @@ export default defineComponent({
 @import '../node_modules/bootstrap/scss/mixins';
 
 .navbar {
+  border-bottom: 1px solid $gray-200;
+
   .search {
     flex: 1;
     max-width: 420px;

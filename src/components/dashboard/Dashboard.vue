@@ -9,10 +9,10 @@
         <icon :icon="['fas', 'download']" />
         <span class="d-none d-xl-inline ms-2">{{ t('export') }}</span>
       </button>
-      <!-- Help Button -->
-      <button class="btn btn-light me-1" type="button" data-bs-toggle="modal" data-bs-target="#helpModal">
-        <icon :icon="['fas', 'question-circle']" />
-        <span class="d-none d-xl-inline ms-2">{{ t('help') }}</span>
+      <!-- Details Table Button -->
+      <button class="btn btn-light me-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#details-offcanvas" aria-controls="details-offcanvas">
+        <icon :icon="['fas', 'table']" />
+        <span class="d-none d-xl-inline ms-2">{{ t('details') }}</span>
       </button>
     </div>
     <div class="ms-auto">
@@ -65,20 +65,6 @@
       />
     </template>
 
-    <!-- Climate Data -->
-    <section id="climate" ref="climate">
-      <div class="card card-full-width mt-3 mt-md-4 p-3 bg-light rounded">
-        <div class="card-header card-header-main px-0 rounded-0 bg-light">
-          <h2 class="card-header-title lead">
-            {{ t('climate') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <Climate :normals="normals" :key="`${station}-${normals?.length}`" />
-        </div>
-      </div>
-    </section>
-
     <!-- Ad (Bottom) -->
     <div class="my-3">
       <Ad slot-id="3216865845" />
@@ -95,6 +81,20 @@
         <div class="card-body px-0">
           <disabled-content v-if="!mapsEnabled" @enable="mapsEnabled = true" />
           <Maps v-if="mapsEnabled" :lat="lat" :lon="lon" :range="[range.start, range.end]" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Climate Data -->
+    <section id="climate" ref="climate">
+      <div class="card card-full-width mt-3 mt-md-4 p-3 bg-light rounded">
+        <div class="card-header card-header-main px-0 rounded-0 bg-light">
+          <h2 class="card-header-title lead">
+            {{ t('climate') }}
+          </h2>
+        </div>
+        <div class="card-body px-0">
+          <Climate :normals="normals" :key="`${station}-${normals?.length}`" />
         </div>
       </div>
     </section>
@@ -204,7 +204,6 @@
 
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue';
-import { RouteLocationNormalized } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@vueuse/head';
 import {
@@ -237,7 +236,7 @@ const Maps = defineAsyncComponent(() => import('./Maps.vue'));
 const Climate = defineAsyncComponent(() => import('./Climate.vue'));
 
 export default defineComponent({
-  name: 'History',
+  name: 'Dashboard',
 
   emits: ['loaded'],
 
@@ -306,22 +305,9 @@ export default defineComponent({
   },
 
   data(): Record<string, any> {
-    const route = this.$route as RouteLocationNormalized;
-    const t = route.query.t as string;
-    let start, end;
-    if (t) {
-      start = parseISO(t.substring(0, 10));
-      end = parseISO(t.substring(11, 22));
-    } else {
-      start = subDays(new Date(), 14);
-      end = subDays(new Date(), 7);
-    }
     return {
       mapsEnabled: false,
-      range: {
-        start,
-        end
-      },
+      range: this.getRangeFromQuery(),
       pickerAttrs: [
         {
           key: 'today',
@@ -378,9 +364,7 @@ export default defineComponent({
     range(): void {
       // Set URL parameter
       this.$router.push({
-        query: {
-          t: `${format(this.range.start, 'yyyy-MM-dd')}/${format(this.range.end, 'yyyy-MM-dd')}`
-        }
+        query: this.getUpdatedQuery()
       });
       // Hide offcanvas
       const offcanvas = this.$bs.Offcanvas.default.getInstance(this.$refs.dateRange);
@@ -392,11 +376,36 @@ export default defineComponent({
       if (subnav) {
         subnav.hide();
       }
+    },
+
+    '$route.query.t': {
+      handler() {
+        const range = this.getRangeFromQuery();
+        if (
+          this.range?.start?.toDateString() !== range?.start?.toDateString() ||
+          this.range?.end?.toDateString() !== range?.end?.toDateString()
+        ) {
+          this.range = range;
+          (this.$refs as any).calendar?.focusDate(range.start);
+        }
+      },
+      deep: true,
+      immediate: true
     }
   },
 
-  async mounted() {
+  mounted() {
     this.fetchNormalsData();
+    // Set URL parameter
+    const query = {
+      ...this.getUpdatedQuery(),
+      s: this.$route.name === 'Place' ? this.station : undefined
+    };
+    if (this.$route.query.t) {
+      this.$router.push({ query });
+    } else {
+      this.$router.replace({ query });
+    }
   },
 
   methods: {
@@ -416,6 +425,26 @@ export default defineComponent({
         .then((data) => {
           this.normals = data.data;
         });
+    },
+
+    getUpdatedQuery(): any {
+      return {
+        ...this.$route.query,
+        t: `${format(this.range.start, 'yyyy-MM-dd')}/${format(this.range.end, 'yyyy-MM-dd')}`
+      };
+    },
+
+    getRangeFromQuery(): Record<string, Date> {
+      const t = this.$route.query.t as string;
+      let start, end;
+      if (t) {
+        start = parseISO(t.substring(0, 10));
+        end = parseISO(t.substring(11, 22));
+      } else {
+        start = subDays(new Date(), 14);
+        end = subDays(new Date(), 7);
+      }
+      return { start, end };
     },
 
     setRange(start: Date, end: Date): void {

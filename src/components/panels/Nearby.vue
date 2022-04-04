@@ -1,7 +1,7 @@
 <template>
   <div class="card mt-4">
-    <div class="card-header fw-bold">
-      {{ t('nearbyStations') }}
+    <div class="card-header d-flex align-items-center">
+      <h3 class="fs-6 fw-bolder mb-0">{{ t('nearbyStations') }}</h3>
     </div>
     <ul class="list-group list-group-flush">
       <router-link

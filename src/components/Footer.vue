@@ -13,9 +13,9 @@
           </a>
         </li>
         <li class="d-inline-block ms-3">
-          <a href="https://blog.meteostat.net">
+          <router-link to="/blog">
             {{ t('blog') }}
-          </a>
+          </router-link>
         </li>
         <li class="d-block mt-3 my-md-0 ms-md-4">
           <router-link

@@ -34,7 +34,7 @@ export default {
           5
         );
         if (!exists) {
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = 'rgba(0, 0, 0, 0)';
         } else {
           // Convert value to metric if necessary
           const scaleLabel = chart.options.scales.y.title.text;

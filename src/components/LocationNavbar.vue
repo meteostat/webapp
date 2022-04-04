@@ -1,5 +1,5 @@
 <template>
-  <nav id="location-navbar" class="navbar navbar-expand-lg navbar-light bg-light py-0 sticky-top">
+  <nav id="location-navbar" class="navbar navbar-expand-lg navbar-light bg-light py-1 py-lg-0 sticky-top">
     <div class="container-fluid">
       <!-- Location Name -->
       <div class="navbar-brand d-flex align-items-center overflow-hidden py-2" @click="scrollTop()">
@@ -43,6 +43,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { scrollToElement } from '~/utils/spy';
 
 export default defineComponent({
   name: 'Subnav',
@@ -91,14 +92,7 @@ export default defineComponent({
       const collapse = this.$bs.Collapse.default.getInstance(subnav);
       // Scroll to element & remove event listener if set
       const scrollTo = () => {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.getBoundingClientRect().top + window.pageYOffset - 78;
-          window.scrollTo({
-            top: top,
-            behavior: 'smooth'
-          });
-        }
+        scrollToElement(id)
         if (collapse) {
           subnav.removeEventListener('hidden.bs.collapse', scrollTo);
         }
@@ -162,6 +156,7 @@ export default defineComponent({
 
 .navbar {
   z-index: 1021;
+  box-shadow: 0 0.5rem 0.8rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 10%);
 
   .navbar-brand {
     cursor: pointer;

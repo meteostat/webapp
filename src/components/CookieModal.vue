@@ -1,28 +1,21 @@
 <template>
   <div id="cookieModal" class="modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">
-            {{ t('$title') }}
-          </h5>
-        </div>
-        <div class="modal-body">
-          {{ t('$description') }}
-        </div>
-        <div class="modal-footer">
-          <a :href="t('$privacyLink')">
-            {{ t('privacyPolicy') }}
-          </a>
-          <button type="button" class="btn btn-light ms-auto" data-bs-dismiss="modal" @click="dismiss">
-            {{ t('reject') }}
-          </button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="accept">
-            {{ t('accept') }}
-          </button>
-        </div>
-      </div>
-    </div>
+    <Modal :title="t('$title')">
+      <template v-slot:body>
+        {{ t('$description') }}
+      </template>
+      <template v-slot:footer>
+        <a :href="t('$privacyLink')">
+          {{ t('privacyPolicy') }}
+        </a>
+        <button type="button" class="btn btn-light ms-auto" data-bs-dismiss="modal" @click="dismiss">
+          {{ t('reject') }}
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="accept">
+          {{ t('accept') }}
+        </button>
+      </template>
+    </Modal>
   </div>
 </template>
 
@@ -30,9 +23,14 @@
 import { defineComponent, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useSettingsStore } from '../stores/settings';
+import Modal from './Modal.vue';
 
 export default defineComponent({
   name: 'CookieModal',
+
+  components: {
+    Modal
+  },
 
   setup() {
     const { t } = useI18n();

@@ -31,7 +31,7 @@ import { defineComponent, ref, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
-import isElementInViewport from '~/utils/spy';
+import { isElementInViewport } from '~/utils/spy';
 import BlogPostCard from '~/components/BlogPostCard.vue';
 
 export default defineComponent({
