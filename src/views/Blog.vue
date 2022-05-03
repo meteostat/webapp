@@ -1,5 +1,6 @@
 <template>
   <div class="container py-4">
+    <h1 class="sr-only">{{ t('blog') }}</h1>
     <div class="container-fluid mb-4">
       <div class="row">
         <template v-for="post in posts" :key="post.url">
@@ -89,8 +90,13 @@ export default defineComponent({
 
   mounted() {
     if (this.isTag && !this._tag) {
+      // Set loading state
+      this.$loading('blog');
+      // Fetch tag posts
       this.fetchTag();
     } else if (!this.isTag && !this._posts) {
+      // Set loading state
+      this.$loading('blog');
       // Fetch posts
       this.fetchPosts();
     }
@@ -135,7 +141,10 @@ export default defineComponent({
             window.removeEventListener('scroll', this.viewportCheck);
           }
         })
-        .finally(() => (this.loading = false));
+        .finally(() => {
+          this.$loaded('blog');
+          this.loading = false;
+        });
     },
 
     /**
@@ -157,7 +166,10 @@ export default defineComponent({
             window.removeEventListener('scroll', this.viewportCheck);
           }
         })
-        .finally(() => (this.loading = false));
+        .finally(() => {
+          this.$loaded('blog');
+          this.loading = false;
+        });
     }
   }
 });

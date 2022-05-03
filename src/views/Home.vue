@@ -50,19 +50,14 @@
               {{ t('$sections[0].text') }}
             </p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-              <router-link tag="button" class="btn btn-primary btn-lg px-4 me-md-2" to="/patrons">
+              <router-link class="btn btn-primary btn-lg px-4 me-md-2" to="/patrons">
                 <icon :icon="['fas', 'user-friends']" class="me-1" />
                 {{ t('patrons') }}
               </router-link>
-              <a
-                class="btn btn-danger btn-lg px-4"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#donationSidebar"
-                aria-controls="donationSidebar"
-              >
+              <router-link class="btn btn-danger btn-lg px-4" to="/donate">
                 <icon :icon="['fas', 'heart']" class="me-1" />
                 {{ t('donation') }}
-              </a>
+              </router-link>
             </div>
           </div>
         </div>

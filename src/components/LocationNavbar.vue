@@ -1,5 +1,5 @@
 <template>
-  <nav id="location-navbar" class="navbar navbar-expand-lg navbar-light bg-light py-1 py-lg-0 sticky-top">
+  <nav ref="navbar" class="navbar navbar-expand-lg navbar-light bg-light py-1 py-lg-0 sticky-top">
     <div class="container-fluid">
       <!-- Location Name -->
       <div class="navbar-brand d-flex align-items-center overflow-hidden py-2" @click="scrollTop()">
@@ -107,6 +107,8 @@ export default defineComponent({
     },
 
     updateItems(): void {
+      // Get navbar element
+      const navbar = (this.$refs as any)?.navbar;
       // Clear sections list
       this.items = [];
       // Populate sections list
@@ -121,11 +123,15 @@ export default defineComponent({
         }
       });
       // Scrollspy
-      this.scrollspy?.dispose();
-      this.scrollspy = new this.$bs.ScrollSpy.default(document.body, {
-        target: '#location-navbar',
-        offset: 80
-      });
+      if (this.items.length) {
+        this.$nextTick(() => {
+          this.scrollspy?.dispose();
+          this.scrollspy = new this.$bs.ScrollSpy.default(document.body, {
+            target: navbar,
+            offset: 80
+          });
+        });
+      }
     },
 
     scrollTop(): void {

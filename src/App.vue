@@ -66,6 +66,9 @@ export default defineComponent({
   },
 
   mounted() {
+    ['hidden.bs.offcanvas', 'hidden.bs.modal'].forEach((e) =>
+      document.addEventListener(e, () => (document.activeElement as HTMLElement)?.blur())
+    );
     this.$nextTick(() => {
       document.body.removeAttribute('style');
       this.$loaded();

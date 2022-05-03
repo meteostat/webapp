@@ -48,6 +48,11 @@ export default [
     component: (): Promise<any> => import('~/views/NotFound.vue')
   },
   {
+    path: '/donate',
+    name: 'Donate',
+    component: (): Promise<any> => import('~/views/Donate.vue')
+  },
+  {
     path: '/patrons',
     name: 'Patrons',
     component: (): Promise<any> => import('~/views/Patrons.vue')

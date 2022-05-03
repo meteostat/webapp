@@ -65,22 +65,17 @@
 
     <div class="p-5 text-white bg-love rounded-3">
       <div class="container-fluid py-3">
-        <h1 class="display-6 fw-bold">
+        <h2 class="display-6 fw-bold">
           {{ t('$features[5].title') }}
-        </h1>
+        </h2>
         <p class="col-md-8 fs-4">
           {{ t('$features[5].text') }}
         </p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <a
-            class="btn btn-outline-light btn-lg px-4"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#donationSidebar"
-            aria-controls="donationSidebar"
-          >
+          <router-link to="/donate" class="btn btn-outline-light btn-lg px-4">
             <icon :icon="['fas', 'heart']" class="me-1" />
             {{ t('donation') }}
-          </a>
+          </router-link>
           <router-link tag="button" class="btn btn-outline-light border-0 btn-lg px-4 me-md-2" to="/patrons">
             <icon :icon="['fas', 'user-friends']" class="me-1" />
             {{ t('patrons') }}

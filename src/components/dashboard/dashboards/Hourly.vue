@@ -441,7 +441,7 @@ export default defineComponent({
           // Finish loading state
           this.$loaded('hourly');
           // Emit event
-          this.$emit('loaded');
+          this.$emit('loaded', this.data.length);
         });
     }
   }

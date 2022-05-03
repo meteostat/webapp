@@ -34,15 +34,10 @@
               <icon :icon="['fab', 'github']" class="me-sm-1" />
               <span class="d-none d-sm-inline"> GitHub </span>
             </a>
-            <a
-              class="btn btn-danger btn-sm"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#donationSidebar"
-              aria-controls="donationSidebar"
-            >
+            <router-link class="btn btn-danger btn-sm" to="/donate">
               <icon :icon="['fas', 'heart']" class="me-1" />
               {{ t('donation') }}
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
@@ -89,9 +84,9 @@
             <a href="https://github.com/sponsors/clampr" target="_blank" rel="noreferrer">GitHub</a>
           </template>
           <template #donation>
-            <a href="" data-bs-toggle="offcanvas" data-bs-target="#donationSidebar" aria-controls="donationSidebar">{{
-              t('these')
-            }}</a>
+            <router-link to="/donate">
+              {{ t('these') }}
+            </router-link>
           </template>
         </i18n-t>
       </div>
@@ -119,9 +114,9 @@
             <a href="https://github.com/sponsors/clampr" target="_blank" rel="noreferrer">GitHub</a>
           </template>
           <template #donation>
-            <a href="" data-bs-toggle="offcanvas" data-bs-target="#donationSidebar" aria-controls="donationSidebar">{{
-              t('these')
-            }}</a>
+            <router-link to="/donate">
+              {{ t('these') }}
+            </router-link>
           </template>
         </i18n-t>
       </div>

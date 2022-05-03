@@ -28,7 +28,14 @@ import {
   faDownload,
   faCircle,
   faQuestionCircle,
-  faTable
+  faTable,
+  faHotel,
+  faPlaneDeparture,
+  faCar,
+  faSkating,
+  faCopy,
+  faCheck,
+  faGraduationCap
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faPatreon,
@@ -38,7 +45,9 @@ import {
   faLinkedinIn,
   faTwitter,
   faFacebookF,
-  faMedium
+  faMedium,
+  faAmazon,
+  faBitcoin
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -66,6 +75,12 @@ library.add(
   faCircle,
   faQuestionCircle,
   faTable,
+  faHotel,
+  faPlaneDeparture,
+  faCar,
+  faSkating,
+  faCopy,
+  faCheck,
   faPatreon,
   faPaypal,
   faGithub,
@@ -73,7 +88,10 @@ library.add(
   faLinkedinIn,
   faTwitter,
   faFacebookF,
-  faMedium
+  faMedium,
+  faAmazon,
+  faBitcoin,
+  faGraduationCap
 );
 
 const useBootstrap = async () => {
@@ -180,22 +198,6 @@ export default vitedge(
 
     // Browser only
     if (!import.meta.env.SSR) {
-      // Scroll to top after each navigation
-      router.afterEach(async (to: Record<string, any>, from: Record<string, any>) => {
-        // Exclude replace navigations
-        if (
-          to.fullPath === from.fullPath ||
-          (to.name === 'Place' && !(to.query.s || to.query.t)) ||
-          (to.name === 'Station' && !to.query.t)
-        ) {
-          return true;
-        }
-        // Track page view
-        window.scrollTo(0, 0);
-        window._paq?.push(['setCustomUrl', location.pathname + location.search]);
-        window._paq?.push(['setDocumentTitle', to.name]);
-        window._paq?.push(['trackPageView']);
-      });
       app.config.globalProperties.$loading = (uid: string): void => {
         // Add loading class to body
         document.body.classList.add('loading');
@@ -214,6 +216,30 @@ export default vitedge(
           document.body.classList.remove('loading');
         }
       };
+      // Set loading state before each route
+      router.beforeEach(() => {
+        app.config.globalProperties.$loading('router');
+      });
+      // Scroll to top after each navigation
+      router.afterEach(async (to: Record<string, any>, from: Record<string, any>) => {
+        // Remove loading state
+        app.config.globalProperties.$loaded('router');
+        // Exclude replace navigations
+        if (
+          to.fullPath === from.fullPath ||
+          (to.name === 'Place' && !(to.query.s || to.query.t)) ||
+          (to.name === 'Station' && !to.query.t)
+        ) {
+          return true;
+        }
+        // Reset page state
+        (document?.activeElement as HTMLElement)?.blur();
+        window.scrollTo(0, 0);
+        // Track page view
+        window._paq?.push(['setCustomUrl', location.pathname + location.search]);
+        window._paq?.push(['setDocumentTitle', to.name]);
+        window._paq?.push(['trackPageView']);
+      });
       // Bootstrap
       app.config.globalProperties.$bs = await useBootstrap();
       // Chart.js

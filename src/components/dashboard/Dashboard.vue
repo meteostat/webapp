@@ -5,7 +5,13 @@
       <!-- Slot: toolbar-buttons -->
       <slot name="toolbarButtons" />
       <!-- Export Button -->
-      <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#exportModal">
+      <button
+        class="btn btn-light"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exportModal"
+        :disabled="!dataCount"
+      >
         <icon :icon="['fas', 'download']" />
         <span class="d-none d-xl-inline ms-2">{{ t('export') }}</span>
       </button>
@@ -16,6 +22,7 @@
         data-bs-toggle="offcanvas"
         data-bs-target="#details-offcanvas"
         aria-controls="details-offcanvas"
+        :disabled="!dataCount"
       >
         <icon :icon="['fas', 'table']" />
         <span class="d-none d-xl-inline ms-2">{{ t('details') }}</span>
@@ -54,7 +61,7 @@
         :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
         :tz="tz"
         :normals="normals"
-        @loaded="$emit('loaded')"
+        @loaded="onLoaded"
       />
     </template>
 
@@ -67,7 +74,7 @@
         :alt="alt"
         :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
         :normals="normals"
-        @loaded="$emit('loaded')"
+        @loaded="onLoaded"
       />
     </template>
 
@@ -313,6 +320,7 @@ export default defineComponent({
   data(): Record<string, any> {
     return {
       mapsEnabled: false,
+      dataCount: 0,
       range: this.getRangeFromQuery(),
       pickerAttrs: [
         {
@@ -369,18 +377,14 @@ export default defineComponent({
   watch: {
     range(): void {
       // Set URL parameter
-      this.$router.push({
-        query: this.getUpdatedQuery()
-      });
-      // Hide offcanvas
-      const offcanvas = this.$bs.Offcanvas.default.getInstance(this.$refs.dateRange);
-      if (offcanvas) {
-        offcanvas.hide();
-      }
-      // Hide sub navbar menu
-      const subnav = this.$bs.Collapse.default.getInstance(this.$refs.subnav);
-      if (subnav) {
-        subnav.hide();
+      if (['Station', 'Place'].includes(this.$route.name as string)) {
+        this.$router.push({
+          query: this.getUpdatedQuery()
+        });
+        // Hide offcanvas
+        this.$bs.Offcanvas.default.getInstance(this.$refs.dateRange)?.hide();
+        // Hide sub navbar menu
+        this.$bs.Collapse.default.getInstance(this.$refs.subnav)?.hide();
       }
     },
 
@@ -394,19 +398,21 @@ export default defineComponent({
           this.range = range;
           (this.$refs as any).calendar?.focusDate(range.start);
         }
-      },
-      deep: true,
-      immediate: true
+      }
     }
   },
 
   mounted() {
     this.fetchNormalsData();
     // Set URL parameter
-    const query = {
+    const rawQuery = {
       ...this.getUpdatedQuery(),
       s: this.$route.name === 'Place' ? this.station : undefined
     };
+    const query = Object.keys(rawQuery)
+      .sort()
+      .reduce((res: Record<string, string>, key: string) => ((res[key] = rawQuery[key]), res), {});
+    // Update
     if (this.$route.query.t) {
       this.$router.push({ query });
     } else {
@@ -461,6 +467,11 @@ export default defineComponent({
       };
       // Change calendar month
       (this.$refs as any).calendar?.focusDate(start);
+    },
+
+    onLoaded(dataCount: number): void {
+      this.dataCount = dataCount;
+      this.$emit('loaded');
     }
   }
 });

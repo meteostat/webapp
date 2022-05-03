@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="map" class="map" />
+    <div ref="map" class="map rounded-top" />
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div v-if="meta?.id">
     <!-- Navbar -->
-    <Navbar :id="meta.id" ref="subnav" type="station" :name="meta.name.en" :country="meta.country" />
+    <Navbar :id="meta.id" ref="subnav" type="station" :name="getLocaleName" :country="meta.country" />
     <!-- Content -->
     <div class="container my-3 my-lg-4">
       <div class="row gy-4">
@@ -18,9 +18,7 @@
         </div>
         <div class="col-12 col-lg-4">
           <!-- Meta Data -->
-          <Meta :data="meta" />
-          <!-- Nearby Stations -->
-          <Nearby :lat="meta.location.latitude" :lon="meta.location.longitude" />
+          <Meta :data="{ ...meta, name: getLocaleName }" />
           <!-- Ads -->
           <AdStickyTop />
         </div>
@@ -36,7 +34,6 @@ import { useHead } from '@vueuse/head';
 import { format } from 'date-fns';
 import Navbar from '~/components/LocationNavbar.vue';
 import Meta from '~/components/panels/Meta.vue';
-import Nearby from '~/components/panels/Nearby.vue';
 import AdStickyTop from '~/components/AdStickyTop.vue';
 
 /**
@@ -50,7 +47,6 @@ export default defineComponent({
   components: {
     Navbar,
     Meta,
-    Nearby,
     Dashboard,
     AdStickyTop
   },
@@ -89,6 +85,12 @@ export default defineComponent({
       meta: this.station || null,
       nearbyStations: []
     };
+  },
+
+  computed: {
+    getLocaleName() {
+      return this.meta.name[this.$locale] || this.meta.name['en'];
+    }
   },
 
   async mounted(): Promise<void> {

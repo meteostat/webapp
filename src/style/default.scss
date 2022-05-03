@@ -73,14 +73,17 @@ a:active {
   font-weight: 500;
   padding: 0.4rem 1rem;
 
-  &:focus {
-    box-shadow: none;
-  }
-
   &-light,
   &-light:hover,
   &-light:focus {
     border-color: $gray-200;
+  }
+
+  &-secondary,
+  &-secondary:hover,
+  &-secondary:focus {
+    background-color: $gray-300 !important;
+    border-color: $gray-400;
   }
 }
 

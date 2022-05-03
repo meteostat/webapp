@@ -55,9 +55,7 @@
         </div>
         <div class="col-12 col-lg-4">
           <!-- Meta Data -->
-          <Meta :data="meta" />
-          <!-- Nearby Stations -->
-          <Nearby :lat="meta.location.latitude" :lon="meta.location.longitude" @loaded="setNearbyStations" />
+          <Meta :data="meta" @loaded="setNearbyStations" />
           <!-- Ads -->
           <AdStickyTop />
         </div>
@@ -74,7 +72,6 @@ import { useHead } from '@vueuse/head';
 import { format } from 'date-fns';
 import Navbar from '../components/LocationNavbar.vue';
 import Meta from '../components/panels/Meta.vue';
-import Nearby from '../components/panels/Nearby.vue';
 import AdStickyTop from '~/components/AdStickyTop.vue';
 
 /**
@@ -88,7 +85,6 @@ export default defineComponent({
   components: {
     Navbar,
     Meta,
-    Nearby,
     Dashboard,
     AdStickyTop
   },
@@ -127,7 +123,7 @@ export default defineComponent({
       writeResponse({ status: 404 });
     }
 
-    return { format };
+    return { t, format };
   },
 
   data(): Record<string, any> {

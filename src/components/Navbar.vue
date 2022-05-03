@@ -101,20 +101,23 @@
             </router-link>
           </ul>
           <div class="d-flex ms-auto mt-2 mt-lg-0">
-            <a
-              class="btn btn-light me-2"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#donationSidebar"
-              aria-controls="donationSidebar"
+            <router-link
+              :class="{
+                'btn-light': $route.name !== 'Donate',
+                'btn-danger': $route.name === 'Donate'
+              }"
+              class="btn me-2"
+              to="/donate"
             >
-              <icon :icon="['fas', 'heart']" class="text-danger me-1" />
+              <icon :icon="['fas', 'heart']" class="me-1" :class="{ 'text-danger': $route.name !== 'Donate' }" />
               {{ t('donation') }}
-            </a>
+            </router-link>
             <a
               class="btn btn-light"
               data-bs-toggle="offcanvas"
               data-bs-target="#settingsSidebar"
               aria-controls="settingsSidebar"
+              tabindex="0"
             >
               <icon :icon="['fas', 'cog']" class="text-secondary me-1" />
               {{ t('settings') }}
@@ -123,11 +126,6 @@
         </div>
       </div>
     </nav>
-
-    <!-- Donations -->
-    <div id="donationSidebar" class="offcanvas offcanvas-start" tabindex="-1">
-      <Donation v-if="showDonation" />
-    </div>
 
     <!-- Settings -->
     <div id="settingsSidebar" class="offcanvas offcanvas-end" tabindex="-1">
@@ -144,14 +142,12 @@ import DebounceMixin from './Debounce.mixin';
 /**
  * Async Components
  */
-const Donation = defineAsyncComponent(() => import('./Donation.vue'));
 const Settings = defineAsyncComponent(() => import('./Settings.vue'));
 
 export default defineComponent({
   name: 'Navbar',
 
   components: {
-    Donation,
     Settings
   },
 
@@ -169,7 +165,6 @@ export default defineComponent({
       loadingResults: false,
       results: {},
       activeResult: null,
-      showDonation: false,
       showSettings: false,
       settingsChanged: false
     };
