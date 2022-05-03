@@ -203,7 +203,7 @@ export default {
 
   async mounted() {
     await fetch(
-      `https://api.meteostat.net/app/nearby?lat=${this.data.location.latitude}&lon=${this.data.location.longitude}&lang=${this.$locale}&limit=7`
+      `${this.$api}/app/nearby?lat=${this.data.location.latitude}&lon=${this.data.location.longitude}&lang=${this.$locale}&limit=7`
     )
       .then((response) => response.json())
       .then((data) => {
