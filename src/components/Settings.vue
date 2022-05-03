@@ -8,15 +8,15 @@
       </div>
     </div>
     <div class="form-check form-switch mt-4">
-      <input id="imperial" v-model="settings.model" class="form-check-input" type="checkbox" />
-      <label for="imperial">{{ t('modelData') }}</label>
+      <input id="model" v-model="settings.model" class="form-check-input" type="checkbox" />
+      <label for="model">{{ t('modelData') }}</label>
       <div class="form-text">
         {{ t('modelDataText') }}
       </div>
     </div>
     <div class="form-check form-switch mt-4">
-      <input id="imperial" v-model="settings.timezone" class="form-check-input" type="checkbox" />
-      <label for="imperial">{{ t('localTimeZone') }}</label>
+      <input id="timezone" v-model="settings.timezone" class="form-check-input" type="checkbox" />
+      <label for="timezone">{{ t('localTimeZone') }}</label>
       <div class="form-text">
         {{ t('localTimeZoneText') }}
       </div>

@@ -239,11 +239,10 @@ export default defineComponent({
   "en": {
     "$meta": {
       "title": "Donate",
-      "description": "Get to know the people who support Meteostat."
+      "description": "Support Meteostat on its mission of providing open weather and climate data for everyone."
     },
     "$title": "Let's Democratize Weather Data",
     "$description": "Support Meteostat on its mission of providing open weather and climate data for everyone. Your donation also helps educational and research projects reaching their goals using Meteostat data.",
-    "donorPrivacy": "We would love to credit you as a patron. If you wish not to be mentioned, please add a note to your donation or contact us.",
     "online": "Online",
     "$onlineText": "Support Meteostat financially using one of these online services.",
     "bank": "Bank",
@@ -256,103 +255,138 @@ export default defineComponent({
     "crypto": "Crypto",
     "thankYou": "Thank You"
   },
-  "de": {
+  "de": {  
     "$meta": {
-      "title": "Donate",
-      "description": "Get to know the people who support Meteostat."
+      "title": "Spenden",
+      "description": "Unterstützen Sie Meteostat bei dem Vorhaben, Wetter- und Klimadaten für jedermann frei zugänglich zu machen."
     },
-    "donationText": "Unterstützen Sie Meteostat bei dem Vorhaben, Wetter- und Klimadaten für jedermann frei zugänglich zu machen. Ihre Spende hilft auch zahlreichen Projekten aus Bildung und Forschung, die Meteostat-Daten für ihre Arbeit verwenden.",
-    "donorPrivacy": "Wir würden Sie gerne als Unterstützer auf unserer Webseite nennen. Wenn Sie dies nicht möchten, fügen Sie bitte eine Bemerkung zu Ihrer Spende hinzu, oder nehmen Sie Kontakt mit uns auf.",
+    "$title": "Das Wetter ist ein Gemeingut",
+    "$description": "Unterstützen Sie Meteostat bei dem Vorhaben, Wetter- und Klimadaten für jedermann frei zugänglich zu machen. Ihre Spende hilft auch zahlreichen Projekten aus Bildung und Forschung, die Meteostat-Daten für ihre Arbeit verwenden.",
     "online": "Online",
-    "bankTransfer": "Überweisung",
+    "$onlineText": "Unterstützen Sie Meteostat finanziell über einen dieser Dienste.",
+    "bank": "Überweisung",
+    "$bankText": "Unterstützen Sie Meteostat mit einem Geldbetrag Ihrer Wahl.",
+    "stores": "Shops",
+    "$storesText": "Unterstützen Sie Meteostat mit Ihrem Online-Einkauf - ohne Mehrkosten für Sie!",
     "recipient": "Empfänger",
     "iban": "IBAN",
     "bic": "BIC",
-    "cryptoCurrencies": "Kryptowährungen"
+    "crypto": "Kryptowährungen",
+    "thankYou": "Vielen Dank"
   },
   "it": {
     "$meta": {
-      "title": "Donate",
-      "description": "Get to know the people who support Meteostat."
+      "titolo": "Donare",
+      "descrizione": "Sostieni Meteostat nella sua missione di fornire dati meteo e climatici aperti a tutti."
     },
-    "donationText": "Sostieni Meteostat nella sua missione di fornire dati meteo e climatici aperti a tutti. La tua donazione aiuta anche i progetti educativi e di ricerca che fanno funzionare meglio il mondo usando i dati di Meteostat.",
-    "donorPrivacy": "Ci piacerebbe accreditarti come mecenate. Se non vuoi essere menzionato, per favore aggiungi una nota alla tua donazione o contattaci.",
+    "$title": "Democratizziamo i Dati Meteo",
+    "$description": "Sostieni Meteostat nella sua missione di fornire dati meteo e climatici aperti a tutti. La tua donazione aiuta anche i progetti educativi e di ricerca che fanno funzionare meglio il mondo usando i dati di Meteostat.",
     "online": "Online",
-    "bankTransfer": "Bonifico Bancario",
+    "$onlineText": "Sostieni finanziariamente Meteostat usando uno di questi servizi online",
+    "bank": "Bonifico Bancario",
+    "$bankText": "Imposta impegni ricorrenti o fai una donazione una tantum tramite bonifico bancario",
+    "stores": "Negozi",
+    "$storesText": "Sostieni Meteostat mentre acquisti online - senza costi aggiuntivi per te!",
     "recipient": "Destinatario",
     "iban": "IBAN",
     "bic": "BIC",
-    "cryptoCurrencies": "Criptovalute"
+    "crypto": "Criptovalute",
+    "thankYou": "Grazie"
   },
   "es": {
     "$meta": {
-      "title": "Donate",
-      "description": "Get to know the people who support Meteostat."
+      "title": "Donar",
+      "description": "Apoya a Meteostat en su misión de proporcionar datos meteorológicos y climáticos abiertos para todos."
     },
-    "donationText": "Apoya a Meteostat en su misión de proporcionar datos meteorológicos y climáticos abiertos para todos. Tu donación también ayuda a los proyectos educativos y de investigación que hacen que el mundo funcione mejor utilizando los datos de Meteostat.",
-    "donorPrivacy": "Nos encantaría acreditarle como mecenas. Si desea que no se le mencione, añada una nota a su donación o póngase en contacto con nosotros.",
+    "$title": "Democraticemos los Datos Meteorológicos",
+    "$description": "Apoya a Meteostat en su misión de proporcionar datos meteorológicos y climáticos abiertos para todos. Tu donación también ayuda a los proyectos educativos y de investigación que hacen que el mundo funcione mejor utilizando los datos de Meteostat.",
     "online": "Online",
-    "bankTransfer": "Transferencia Bancaria",
+    "$onlineText": "Apoya financieramente a Meteostat utilizando uno de estos servicios online.",
+    "bank": "Bancaria",
+    "$bankText": "Establezca promesas recurrentes o haga una donación única mediante transferencia bancaria.",
+    "stores": "Tiendas",
+    "$storesText": "Apoya a Meteostat mientras compras en línea - ¡sin costes adicionales para ti!",
     "recipient": "Destinatario",
     "iban": "IBAN",
     "bic": "BIC",
-    "cryptoCurrencies": "Criptomonedas"
+    "crypto": "Criptomonedas",
+    "thankYou": "Gracias"
   },
   "nl": {
     "$meta": {
-      "title": "Donate",
-      "description": "Get to know the people who support Meteostat."
+      "title": "Doneren",
+      "description": "Steun Meteostat in haar missie om open weer- en klimaatgegevens voor iedereen beschikbaar te stellen."
     },
-    "donationText": "Steun Meteostat in haar missie om open weer- en klimaatgegevens te leveren voor iedereen. Uw donatie helpt ook educatieve en onderzoeksprojecten die de wereld beter laten draaien met behulp van Meteostat-gegevens.",
-    "donorPrivacy": "We vermelden je graag als begunstiger. Als je niet genoemd wilt worden, voeg dan een notitie toe aan je donatie of neem contact met ons op.",
+    "$title": "Laten we Weerdata Democratiseren",
+    "$description": "Steun Meteostat in haar missie om open weer- en klimaatgegevens te leveren voor iedereen. Uw donatie helpt ook educatieve en onderzoeksprojecten die de wereld beter laten draaien met behulp van Meteostat-gegevens.",
     "online": "Online",
-    "bankTransfer": "Bankoverschrijving",
+    "$onlineText": "Steun Meteostat financieel met behulp van een van deze online diensten.",
+    "bank": "Bank",
+    "$bankText": "Stel terugkerende toezeggingen in of doe een eenmalige donatie via een bankoverschrijving.",
+    "stores": "Stores",
+    "$storesText": "Steun Meteostat tijdens het online winkelen - zonder extra kosten voor jou!",
     "recipient": "Ontvanger",
     "iban": "IBAN",
     "bic": "BIC",
-    "cryptoCurrencies": "Crypto Valuta's"
+    "crypto": "Crypto Valuta's",
+    "thankYou": "Dank u wel"
   },
   "fr": {
-    "$meta": {
-      "title": "Donate",
-      "description": "Get to know the people who support Meteostat."
+    "$meta" : {
+      "title" : "Donation",
+      "description" : "Soutenez Meteostat dans sa mission de fournir des données météorologiques et climatiques ouvertes à tous."
     },
-    "donationText": "Soutenez Meteostat dans sa mission de fournir des données météorologiques et climatiques ouvertes à tous. Votre don permet également d'aider les projets éducatifs et de recherche visant à améliorer le fonctionnement du monde grâce aux données de Meteostat.",
-    "donorPrivacy": "Nous serions ravis de vous mentionner en tant que mécène. Si vous ne souhaitez pas être mentionné, veuillez ajouter une note à votre don ou nous contacter.",
+    "$title" : "Démocratisons les Données Météorologiques",
+    "$description": "Soutenez Meteostat dans sa mission de fournir des données météorologiques et climatiques ouvertes à tous. Votre don permet également d'aider les projets éducatifs et de recherche visant à améliorer le fonctionnement du monde grâce aux données de Meteostat.",
     "online": "Online",
-    "bankTransfer": "Virement Bancaire",
+    "$onlineText" : "Soutenez financièrement Meteostat en utilisant l'un de ces services en ligne.",
+    "bank": "Bancaire",
+    "$bankText" : "Configurez des promesses de dons récurrentes ou faites un don unique par virement bancaire.",
+    "stores" : "Magasins",
+    "$storesText" : "Soutenez Meteostat tout en faisant vos achats en ligne - sans frais supplémentaires pour vous!",
     "recipient": "Recipient",
     "iban": "IBAN",
     "bic": "BIC",
-    "cryptoCurrencies": "Crypto Monnaies"
+    "crypto": "Crypto Monnaies",
+    "thankYou": "Merci"
   },
   "pt": {
     "$meta": {
-      "title": "Donate",
-      "description": "Get to know the people who support Meteostat."
+      "título": "Doar",
+      "descrição": "Apoiar o Meteostat na sua missão de fornecer dados climáticos e meteorológicos abertos para todos."
     },
-    "donationText": "Apoiar o Meteostat na sua missão de fornecer dados climáticos e meteorológicos abertos para todos. A sua doação também ajuda projectos educativos e de investigação que fazem com que o mundo funcione melhor usando os dados do Meteostat.",
-    "donorPrivacy": "Gostaríamos de lhe dar crédito como mecenas. Se não desejar ser mencionado, por favor acrescente uma nota ao seu donativo ou contacte-nos.",
-    "online": "On-line",
-    "bankTransfer": "Transferência Bancária",
+    "$title": "Vamos Democratizar os Dados Meteorológicos",
+    "$description": "Apoiar o Meteostat na sua missão de fornecer dados climáticos e meteorológicos abertos para todos. A sua doação também ajuda projectos educativos e de investigação que fazem com que o mundo funcione melhor usando os dados do Meteostat.",
+    "online": "Online",
+    "$onlineText": "Apoiar financeiramente o Meteostat utilizando um destes serviços em linha.",
+    "bank": "Bancária",
+    "$bankText": "Estabelecer promessas recorrentes ou fazer uma doação única utilizando uma transferência bancária.",
+    "stores": "Lojas",
+    "$storesText": "Apoiar o Meteostat enquanto faz compras online - sem custos adicionais para si!",
     "recipient": "Destinatário",
     "iban": "IBAN",
     "bic": "BIC",
-    "cryptoCurrencies": "Moedas Criptográficas"
+    "crypto": "Moedas Criptográficas",
+    "thankYou": "Obrigado"
   },
   "ru": {
     "$meta": {
-      "title": "Donate",
-      "description": "Get to know the people who support Meteostat."
+      "title": "Пожертвовать",
+      "description": "Поддержите Meteostat в его миссии по предоставлению открытых данных о погоде и климате для всех."
     },
-    "donationText": "Поддержите Меteostat в его миссии по предоставлению открытых данных о погоде и климате для всех. Ваше пожертвование также поможет образовательным и исследовательским проектам сделать мир лучше, используя данные Meteostat.",
-    "donorPrivacy": "Мы будем рады отметить вас как мецената. Если вы не хотите, чтобы вас упоминали, пожалуйста, добавьте примечание к вашему пожертвованию или свяжитесь с нами.",
+    "$title": "Давайте демократизировать данные о погоде",
+    "$description": "Поддержите Меteostat в его миссии по предоставлению открытых данных о погоде и климате для всех. Ваше пожертвование также поможет образовательным и исследовательским проектам сделать мир лучше, используя данные Meteostat.",
     "online": "Онлайн",
-    "bankTransfer": "Банковский перевод",
+    "$onlineText": "Поддержите Метеостат финансово, используя один из этих онлайн-сервисов.",
+    "bank": "Банковский перевод",
+    "$bankText": "Установите периодические взносы или сделайте единовременное пожертвование с помощью банковского перевода.",
+    "stores": "Магазины",
+    "$storesText": "Поддержите Meteostat, делая покупки в Интернете - без дополнительных затрат для вас!",
     "recipient": "Получатель",
     "iban": "IBAN",
     "bic": "BIC",
-    "cryptoCurrencies": "Криптовалюты"   
+    "crypto": "Криптовалюты",
+    "thankYou": "Спасибо"
   }
 }
 </i18n>
