@@ -32,62 +32,63 @@
           </a>
         </span>
       </li>
-      <li class="list-group-item bg-light">
-        <i18n-t v-if="!data.identifier" keypath="$discover" tag="small" class="fw-bold">
-          <template #name>
-            {{ data?.name }}
-          </template>
-        </i18n-t>
-        <i18n-t v-else keypath="discover" tag="small" class="fw-bold" />
-      </li>
-      <a
-        :href="getHotelsLink($locale, data.name)"
-        target="_blank"
-        class="list-group-item list-group-item-action d-flex align-items-center"
-      >
-        <icon :icon="['fas', 'hotel']" class="me-3" />
-        <i18n-t keypath="$hotels" tag="span">
-          <template #name>
-            {{ data?.name }}
-          </template>
-        </i18n-t>
-      </a>
-      <a
-        :href="getFlightsLink($locale)"
-        target="_blank"
-        class="list-group-item list-group-item-action d-flex align-items-center"
-      >
-        <icon :icon="['fas', 'plane-departure']" class="me-3" />
-        <i18n-t keypath="$flights" tag="span">
-          <template #name>
-            {{ data?.name }}
-          </template>
-        </i18n-t>
-      </a>
-      <a
-        :href="getCarsLink($locale, data.name)"
-        target="_blank"
-        class="list-group-item list-group-item-action d-flex align-items-center"
-      >
-        <icon :icon="['fas', 'car']" class="me-3" />
-        <i18n-t keypath="$cars" tag="span">
-          <template #name>
-            {{ data?.name }}
-          </template>
-        </i18n-t>
-      </a>
-      <a
-        :href="getActivitiesLink($locale, data.name)"
-        target="_blank"
-        class="list-group-item list-group-item-action d-flex align-items-center"
-      >
-        <icon :icon="['fas', 'skating']" class="me-3" />
-        <i18n-t keypath="$activities" tag="span">
-          <template #name>
-            {{ data?.name }}
-          </template>
-        </i18n-t>
-      </a>
+      <template v-if="!data.identifier">
+        <li class="list-group-item bg-light">
+          <small class="fw-bold">{{ t('$tourism') }}</small>
+        </li>
+        <a
+          :href="getHotelsLink($locale, data.name, data.location.latitude, data.location.longitude)"
+          target="_blank"
+          rel="sponsored"
+          class="list-group-item list-group-item-action d-flex align-items-center"
+        >
+          <icon :icon="['fas', 'hotel']" class="me-3" />
+          <i18n-t keypath="$hotels" tag="span">
+            <template #name>
+              {{ data?.name }}
+            </template>
+          </i18n-t>
+        </a>
+        <a
+          :href="getFlightsLink($locale)"
+          target="_blank"
+          rel="sponsored"
+          class="list-group-item list-group-item-action d-flex align-items-center"
+        >
+          <icon :icon="['fas', 'plane-departure']" class="me-3" />
+          <i18n-t keypath="$flights" tag="span">
+            <template #name>
+              {{ data?.name }}
+            </template>
+          </i18n-t>
+        </a>
+        <a
+          :href="getCarsLink($locale)"
+          target="_blank"
+          rel="sponsored"
+          class="list-group-item list-group-item-action d-flex align-items-center"
+        >
+          <icon :icon="['fas', 'car']" class="me-3" />
+          <i18n-t keypath="$cars" tag="span">
+            <template #name>
+              {{ data?.name }}
+            </template>
+          </i18n-t>
+        </a>
+        <a
+          :href="getActivitiesLink($locale)"
+          target="_blank"
+          rel="sponsored"
+          class="list-group-item list-group-item-action d-flex align-items-center"
+        >
+          <icon :icon="['fas', 'skating']" class="me-3" />
+          <i18n-t keypath="$activities" tag="span">
+            <template #name>
+              {{ data?.name }}
+            </template>
+          </i18n-t>
+        </a>
+      </template>
       <li v-if="data.identifier" class="list-group-item bg-light">
         <small class="fw-bold">{{ t('stationIdentifiers') }}</small>
       </li>
@@ -222,8 +223,7 @@ export default {
     "elevation": "Elevation",
     "timezone": "Timezone",
     "coordinates": "Coordinates",
-    "discover": "Discover",
-    "$discover": "Discover {name}",
+    "$tourism": "Tourism & Activities",
     "$hotels": "Find a hotel",
     "$flights": "Book a flight",
     "$cars": "Rent a car",
@@ -241,8 +241,7 @@ export default {
     "elevation": "Höhe",
     "timezone": "Zeitzone",
     "coordinates": "Koordinaten",
-    "discover": "Entdecken",
-    "$discover": "{name} entdecken",
+    "$tourism": "Tourismus & Aktivitäten",
     "$hotels": "Hotel finden",
     "$flights": "Flug buchen",
     "$cars": "Auto mieten",
@@ -260,8 +259,7 @@ export default {
     "elevation": "Elevazione",
     "timezone": "Fuso orario",
     "coordinates": "Coordinate",
-    "discover": "Scoprire",
-    "$discover": "Scoprire {name}",
+    "$tourism": "Turismo e Attività",
     "$hotels": "Trova Hotel",
     "$flights": "Prenotare il Volo",
     "$cars": "Noleggio Auto",
@@ -279,8 +277,7 @@ export default {
     "elevation": "Elevación",
     "timezone": "Zona Horaria",
     "coordinates": "Coordenadas",
-    "discover": "Descubrir",
-    "$discover": "{name} descubrir",
+    "$tourism": "Turismo y Actividades",
     "$hotels": "Encontrar Hotel",
     "$flights": "Reservar un Vuelo",
     "$cars": "Alquilar un Coche",
@@ -298,8 +295,7 @@ export default {
     "elevation": "Verhoging",
     "timezone": "Tijdzone",
     "coordinates": "Coördinaten",
-    "Discover": "Ontdek",
-    "$discover": "{name} ontdek",
+    "$tourism": "Toerisme & Activiteiten",
     "$hotels": "Vind Hotel",
     "$flights": "Boek Vlucht",
     "$cars": "Huur een Auto",
@@ -317,8 +313,7 @@ export default {
     "elevation": "Élévation",
     "timezone": "Fuseau Horaire",
     "coordinates": "Coordonnées",
-    "discover" : "Découvrir",
-    "$discover" : "Découvrir {name}",
+    "$tourism" : "Tourisme et Activités",
     "$hotels" : "Trouver un Hôtel",
     "$flights" : "Réserver un Vol",
     "$cars" : "Louer une Voiture",
@@ -336,8 +331,7 @@ export default {
     "elevation": "Elevação",
     "timezone": "Fuso Horário",
     "coordinates": "Coordenadas",
-    "discover": "Descobrir",
-    "$discover": "{name} descobrir",
+    "$tourism": "Turismo e Actividades",
     "$hotels": "Encontrar Hotel",
     "$flights": "Voo de reserva",
     "$cars": "Alugar um Carro",
@@ -355,8 +349,7 @@ export default {
     "elevation": "Высота",
     "timezone": "Часовой пояс",
     "coordinates": "Координаты",
-    "discover": "открытие",
-    "$discover": "Узнайте {name}",
+    "$tourism": "Туризм и деятельность",
     "$hotels": "найти отель",
     "$flights": "забронировать рейс",
     "$cars": "Аренда автомобиля",

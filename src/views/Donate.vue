@@ -98,19 +98,26 @@
             {{ t('stores') }}
           </h3>
           <p class="text-muted mb-4">{{ t('$storesText') }}</p>
-          <a
-            v-for="store in stores"
-            :key="store.name"
-            :href="store.link"
-            class="icon-link mb-2"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span class="box fs-5">
-              <icon :icon="store.icon" />
-            </span>
-            <span class="link fs-5 ms-2">{{ store.name }}</span>
-          </a>
+          <div class="container-fluid overflow-hidde p-0">
+            <div class="row row-cols-2">
+              <a
+                v-for="store in stores"
+                :key="store.name"
+                :href="store.link"
+                class="logo-tile col d-flex align-items-center justify-content-center border border-light rounded p-3"
+                target="_blank"
+                rel="sponsored"
+              >
+                <img
+                  :src="`/assets/partners/${store.logo}`"
+                  :title="store.name"
+                  :alt="store.name"
+                  class="img-fluid"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -169,17 +176,34 @@ export default defineComponent({
         amazon: {
           link: getAmazonLink(locale.value),
           name: 'Amazon',
-          icon: ['fab', 'amazon']
+          logo: 'amazon.svg'
         },
         expedia: {
           link: getExpediaLink(locale.value),
           name: 'Expedia',
-          icon: ['fas', 'plane-departure']
+          logo: 'expedia.svg'
         },
         udemy: {
           link: getUdemyLink(locale.value),
           name: 'Udemy',
-          icon: ['fas', 'graduation-cap']
+          logo: 'udemy.svg'
+        }
+      },
+      de: {
+        dertour: {
+          link: 'https://www.awin1.com/cread.php?awinmid=9140&awinaffid=1057219&ued=https%3A%2F%2Fwww.dertour.de%2F',
+          name: 'DERTOUR',
+          logo: 'dertour.svg'
+        },
+        lidl: {
+          link: 'https://www.awin1.com/cread.php?awinmid=13936&awinaffid=1057219&ued=https%3A%2F%2Fwww.lidl.de%2F',
+          name: 'Lidl',
+          logo: 'lidl.svg'
+        },
+        adh: {
+          link: 'https://www.awin1.com/awclick.php?gid=356000&mid=13947&awinaffid=1057219&linkid=3050755&clickref=',
+          name: 'Aktion Deutschland Hilft',
+          logo: 'adh.svg'
         }
       }
     };
@@ -230,6 +254,13 @@ export default defineComponent({
     .link {
       color: $primary;
     }
+  }
+}
+
+.logo-tile {
+  background: white;
+  &:hover {
+    background: $gray-200;
   }
 }
 </style>

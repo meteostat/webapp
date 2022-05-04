@@ -49,11 +49,11 @@ const getExpediaLocale = (
 
 export const getExpediaLink = (lang: string): string => getPartnerizeBase(getExpediaLocale(lang).camref);
 
-export const getHotelsLink = (lang: string, place: string) => {
+export const getHotelsLink = (lang: string, place: string, lat: number, lon: number) => {
   const locale = getExpediaLocale(lang);
   return `${getPartnerizeBase(locale.camref)}/destination:https%3A%2F%2F${
     locale.domain
-  }%2FHotel-Search%3Fdestination%3D${encodeURIComponent(place)}`;
+  }%2FHotel-Search%3Fdestination%3D${encodeURIComponent(place)}&latLong=${lat}%2C${lon}`;
 };
 
 export const getFlightsLink = (lang: string) => {
@@ -61,18 +61,14 @@ export const getFlightsLink = (lang: string) => {
   return `${getPartnerizeBase(locale.camref)}/destination:https%3A%2F%2F${locale.domain}%2FFlights`;
 };
 
-export const getCarsLink = (lang: string, place: string) => {
+export const getCarsLink = (lang: string) => {
   const locale = getExpediaLocale(lang);
-  return `${getPartnerizeBase(locale.camref)}/destination:https%3A%2F%2F${
-    locale.domain
-  }%2Fcarsearch%3Flocn%3D${encodeURIComponent(place)}`;
+  return `${getPartnerizeBase(locale.camref)}/destination:https%3A%2F%2F${locale.domain}%2FCars`;
 };
 
-export const getActivitiesLink = (lang: string, place: string) => {
+export const getActivitiesLink = (lang: string) => {
   const locale = getExpediaLocale(lang);
-  return `${getPartnerizeBase(locale.camref)}/destination:https%3A%2F%2F${
-    locale.domain
-  }%2Fthings-to-do%2Fsearch%3Flocation%3D${encodeURIComponent(place)}`;
+  return `${getPartnerizeBase(locale.camref)}/destination:https%3A%2F%2F${locale.domain}%2Fthings-to-do`;
 };
 
 /**
