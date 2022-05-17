@@ -22,8 +22,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          workingDirectory: './dist/'
-          command: pages publish --project-name=webapp
+          command: pages publish ./dist --project-name=webapp
       - name: Deploy SPA
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
