@@ -1,6 +1,6 @@
 <template>
   <div class="container py-4">
-    <div class="p-5 mb-4 text-white bg-primary rounded-3">
+    <div class="p-5 mb-4 text-white bg-donate rounded-3">
       <div class="container-fluid">
         <h1 class="display-5 fw-bold">
           {{ t('$title') }}
@@ -223,6 +223,12 @@ export default defineComponent({
 @import '../node_modules/bootstrap/scss/functions';
 @import '../node_modules/bootstrap/scss/variables';
 @import '../node_modules/bootstrap/scss/mixins';
+
+.bg-donate {
+  background-color: $primary;
+  background: url('/assets/pattern-1.svg') center center;
+  background-size: cover;
+}
 
 .bg-love {
   background: linear-gradient(to right, #cc2b5e, #753a88);

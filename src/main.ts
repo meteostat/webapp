@@ -34,8 +34,7 @@ import {
   faCar,
   faSkating,
   faCopy,
-  faCheck,
-  faGraduationCap
+  faCheck
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faPatreon,
@@ -46,7 +45,6 @@ import {
   faTwitter,
   faFacebookF,
   faMedium,
-  faAmazon,
   faBitcoin
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -89,9 +87,7 @@ library.add(
   faTwitter,
   faFacebookF,
   faMedium,
-  faAmazon,
-  faBitcoin,
-  faGraduationCap
+  faBitcoin
 );
 
 const useBootstrap = async () => {
@@ -218,7 +214,11 @@ export default vitedge(
       };
       // Set loading state before each route
       router.beforeEach(() => {
+        // Set loading state
         app.config.globalProperties.$loading('router');
+        // Reset page state
+        (document?.activeElement as HTMLElement)?.blur();
+        window.scrollTo(0, 0);
       });
       // Scroll to top after each navigation
       router.afterEach(async (to: Record<string, any>, from: Record<string, any>) => {
@@ -232,9 +232,6 @@ export default vitedge(
         ) {
           return true;
         }
-        // Reset page state
-        (document?.activeElement as HTMLElement)?.blur();
-        window.scrollTo(0, 0);
         // Track page view
         window._paq?.push(['setCustomUrl', location.pathname + location.search]);
         window._paq?.push(['setDocumentTitle', to.name]);

@@ -122,7 +122,7 @@ export default defineComponent({
     const lang = languages.filter((l) => l.locale === locale.value)[0];
 
     // Translateable routes
-    const translateableRoutes = ['Home', 'Station', 'Place', 'Blog', 'Patrons', 'About', 'Support'];
+    const translateableRoutes = ['Home', 'Station', 'Place', 'Blog', 'Patrons', 'Donate', 'About', 'Support'];
 
     // Current router path
     let path: Ref<string | null> = ref(null);

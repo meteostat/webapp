@@ -75,15 +75,9 @@ a:active {
 
   &-light,
   &-light:hover,
-  &-light:focus {
+  &-light:focus,
+  &-light:disabled {
     border-color: $gray-200;
-  }
-
-  &-secondary,
-  &-secondary:hover,
-  &-secondary:focus {
-    background-color: $gray-300 !important;
-    border-color: $gray-400;
   }
 }
 

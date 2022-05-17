@@ -17,6 +17,13 @@ jobs:
         run: npm i
       - name: Build SPA
         run: npm run build:spa && cp './.htaccess' './dist/.htaccess'
+      - name: Deploy Cloudflare Pages
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          workingDirectory: './dist/'
+          command: pages publish --project-name=webapp
       - name: Deploy SPA
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
@@ -34,7 +41,7 @@ jobs:
           file: './worker-site/wrangler.toml'
           key: 'account_id'
           value: ${{ secrets.CF_ACCOUNT_ID }}
-      - uses: cloudflare/wrangler-action@1.3.0
+      - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           workingDirectory: 'worker-site'

@@ -1,129 +1,126 @@
 <template>
-  <Offcanvas :title="t('details')">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover align-middle">
-        <thead class="table-light">
-          <tr>
-            <th colspan="2">
-              {{ t('$params.time') }}
-            </th>
-            <th colspan="3">
-              {{ t('$meteo.weather') }}
-            </th>
-            <th colspan="2">
-              {{ t('$meteo.prcp') }}
-            </th>
-            <th colspan="3">
-              {{ t('$meteo.wind') }}
-            </th>
-            <th colspan="2">
-              {{ t('$meteo.air') }}
-            </th>
-          </tr>
-          <tr>
-            <th
-              v-for="column in columns"
-              :key="column.key"
-              scope="col"
-              @click="sortBy(column.key)"
-              v-tooltip="{ title: column.name, trigger: 'hover' }"
-            >
-              {{ column.abbr || column.name }}
-              <icon v-if="sort.column === column.key && sort.asc" :icon="['fas', 'arrow-up']" class="ms-2" />
-              <icon v-if="sort.column === column.key && !sort.asc" :icon="['fas', 'arrow-down']" class="ms-2" />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row, index) in rows" :key="index">
-            <th scope="row">
-              {{ format(parseISO(row.time), 'yyyy-MM-dd') }}
-            </th>
-            <th scope="row">
-              {{ format(parseISO(row.time), 'HH') }}
-            </th>
-            <td>
-              <template v-if="row.coco">
-                <i :class="`wi wi-${getWeatherIcon(row.coco)}`" />
-              </template>
-              <span v-else class="text-muted">
-                <i class="wi wi-na" />
-              </span>
-            </td>
-            <td>
-              <template v-if="row.temp !== null">
-                {{ row.temp }}
-                <span class="text-muted">{{ settings.units.temp }}</span>
-              </template>
-              <span v-else class="text-muted">—</span>
-            </td>
-            <td>
-              <template v-if="row.tsun !== null">
-                {{ row.tsun }}
-                <span class="text-muted">m</span>
-              </template>
-              <span v-else class="text-muted">—</span>
-            </td>
-            <td>
-              <template v-if="row.prcp !== null">
-                {{ row.prcp }}
-                <span class="text-muted">{{ settings.units.prcp }}</span>
-              </template>
-              <span v-else class="text-muted">—</span>
-            </td>
-            <td>
-              <template v-if="row.snow !== null">
-                {{ row.snow }}
-                <span class="text-muted">{{ settings.units.prcp }}</span>
-              </template>
-              <span v-else class="text-muted">—</span>
-            </td>
-            <td>
-              <template v-if="row.wdir !== null">
-                <i :class="`wi wi-wind from-${row.wdir}-deg`" />
-              </template>
-              <span v-else class="text-muted">
-                <i class="wi wi-na" />
-              </span>
-            </td>
-            <td>
-              <template v-if="row.wspd !== null">
-                {{ row.wspd }}
-                <span class="text-muted">{{ settings.units.wspd }}</span>
-              </template>
-              <span v-else class="text-muted">—</span>
-            </td>
-            <td>
-              <template v-if="row.wpgt !== null">
-                {{ row.wpgt }}
-                <span class="text-muted">{{ settings.units.wspd }}</span>
-              </template>
-              <span v-else class="text-muted">—</span>
-            </td>
-            <td>
-              <template v-if="row.pres !== null">
-                {{ row.pres }}
-                <span class="text-muted">hPa</span>
-              </template>
-              <span v-else class="text-muted">—</span>
-            </td>
-            <td>
-              <template v-if="row.rhum !== null">
-                {{ row.rhum }}
-                <span class="text-muted">%</span>
-              </template>
-              <span v-else class="text-muted">—</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ t('details') }}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    <div class="d-grid">
-      <button class="btn btn-light" type="button" :disabled="count >= data.length" @click="showMore">
-        {{ t('$phrases.showMore') }}
-      </button>
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th
+                v-for="column in columns"
+                :key="column.key"
+                :class="{ 'font-monospace': !column.abbr }"
+                scope="col"
+                @click="sortBy(column.key)"
+                v-tooltip="{ title: column.name || t(`$params.${column.key}`), trigger: 'hover' }"
+              >
+                {{ column.abbr || column.key.toUpperCase() }}
+                <icon v-if="sort.column === column.key && sort.asc" :icon="['fas', 'arrow-up']" class="ms-1" />
+                <icon v-if="sort.column === column.key && !sort.asc" :icon="['fas', 'arrow-down']" class="ms-1" />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row, index) in rows" :key="index">
+              <th scope="row">
+                {{ format(parseISO(row.time), 'yyyy-MM-dd') }}
+              </th>
+              <th scope="row">
+                {{ format(parseISO(row.time), 'HH') }}
+              </th>
+              <td>
+                <template v-if="row.coco">
+                  <i :class="`wi wi-${getWeatherIcon(row.coco)}`" />
+                </template>
+                <span v-else class="text-muted">
+                  <i class="wi wi-na" />
+                </span>
+              </td>
+              <td>
+                <template v-if="row.temp !== null">
+                  {{ row.temp }}
+                  <span class="text-muted">{{ settings.units.temp }}</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+              <td>
+                <template v-if="row.dwpt !== null">
+                  {{ row.dwpt }}
+                  <span class="text-muted">{{ settings.units.temp }}</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+              <td>
+                <template v-if="row.tsun !== null">
+                  {{ row.tsun }}
+                  <span class="text-muted">m</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+              <td>
+                <template v-if="row.prcp !== null">
+                  {{ row.prcp }}
+                  <span class="text-muted">{{ settings.units.prcp }}</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+              <td>
+                <template v-if="row.snow !== null">
+                  {{ row.snow }}
+                  <span class="text-muted">{{ settings.units.prcp }}</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+              <td>
+                <template v-if="row.wdir !== null">
+                  <i :class="`wi wi-wind from-${row.wdir}-deg`" />
+                </template>
+                <span v-else class="text-muted">
+                  <i class="wi wi-na" />
+                </span>
+              </td>
+              <td>
+                <template v-if="row.wspd !== null">
+                  {{ row.wspd }}
+                  <span class="text-muted">{{ settings.units.wspd }}</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+              <td>
+                <template v-if="row.wpgt !== null">
+                  {{ row.wpgt }}
+                  <span class="text-muted">{{ settings.units.wspd }}</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+              <td>
+                <template v-if="row.pres !== null">
+                  {{ row.pres }}
+                  <span class="text-muted">hPa</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+              <td>
+                <template v-if="row.rhum !== null">
+                  {{ row.rhum }}
+                  <span class="text-muted">%</span>
+                </template>
+                <span v-else class="text-muted">—</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-grid mt-3">
+        <button class="btn btn-light" type="button" :disabled="count >= data.length" @click="showMore">
+          {{ t('$phrases.showMore') }}
+        </button>
+      </div>
     </div>
-  </Offcanvas>
+  </div>
 </template>
 
 <script lang="ts">
@@ -131,14 +128,9 @@ import { useI18n } from 'vue-i18n';
 import { parseISO, format } from 'date-fns';
 import { Store } from 'pinia';
 import { useSettingsStore } from '~/stores/settings';
-import Offcanvas from '../../Offcanvas.vue';
 
 export default {
   name: 'HourlyTable',
-
-  components: {
-    Offcanvas
-  },
 
   props: {
     data: {
@@ -147,7 +139,7 @@ export default {
     },
     display: {
       type: Number,
-      default: 15
+      default: 12
     }
   },
 
@@ -163,61 +155,46 @@ export default {
       columns: [
         {
           name: this.t('$params.date'),
-          abbr: null,
+          abbr: this.t('$params.date'),
           key: 'time'
         },
         {
-          name: this.t('hour'),
+          name: this.t('$params.time'),
           abbr: 'H',
           key: 'time'
         },
         {
-          name: null,
-          abbr: null,
           key: 'coco'
         },
         {
-          name: this.t('$params.temp'),
-          abbr: `${this.t('$params.temp').substr(0, 4)}.`,
           key: 'temp'
         },
         {
-          name: this.t('$params.tsun'),
-          abbr: `${this.t('$meteo.sunshine').substr(0, 3)}.`,
+          key: 'dwpt'
+        },
+        {
           key: 'tsun'
         },
         {
           name: `${this.t('$params.prcp')} (1H)`,
-          abbr: '1H',
           key: 'prcp'
         },
         {
-          name: this.t('$params.snow'),
-          abbr: this.t('$meteo.snow'),
           key: 'snow'
         },
         {
-          name: null,
           key: 'wdir'
         },
         {
-          name: this.t('$params.wspd'),
-          abbr: this.t('avg'),
           key: 'wspd'
         },
         {
-          name: this.t('$params.wpgt'),
-          abbr: this.t('$meteo.gust'),
           key: 'wpgt'
         },
         {
-          name: this.t('$params.pres'),
-          abbr: `${this.t('$meteo.pres').substr(0, 4)}.`,
           key: 'pres'
         },
         {
-          name: this.t('$params.rhum'),
-          abbr: `${this.t('$meteo.humidity').substr(0, 3)}.`,
           key: 'rhum'
         }
       ],
@@ -235,11 +212,15 @@ export default {
       let data: Array<Record<string, number>> = JSON.parse(JSON.stringify(this.data));
       // Sort
       if (this.sort.column !== null) {
-        data = data.sort((a, b) => {
+        data = data.sort((a: any, b: any) => {
           if (this.sort.asc === true) {
-            return a[this.sort.column] - b[this.sort.column];
+            return this.sort.column === 'time'
+              ? a.time.localeCompare(b.time)
+              : a[this.sort.column] - b[this.sort.column];
           } else {
-            return b[this.sort.column] - a[this.sort.column];
+            return this.sort.column === 'time'
+              ? b.time.localeCompare(a.time)
+              : b[this.sort.column] - a[this.sort.column];
           }
         });
       }

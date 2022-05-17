@@ -22,12 +22,13 @@
               <!-- Station Selector -->
               <div class="btn-group" role="group">
                 <button
-                  class="btn btn-light dropdown-toggle d-flex align-items-center"
+                  class="btn btn-light d-flex align-items-center"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <span class="station-selector-name text-truncate">
+                  <icon :icon="['fas', 'map-marker-alt']" />
+                  <span class="station-selector-name d-none d-md-inline text-truncate ms-2">
                     {{ selectedStation?.name }}
                   </span>
                 </button>

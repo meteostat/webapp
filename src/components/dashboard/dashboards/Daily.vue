@@ -37,11 +37,6 @@
       <Section v-if="anyColData('pres')" id="pres" :title="t('$params.pres')">
         <Chart type="line" :data="presChart.data" :options="presChart.options" />
       </Section>
-
-      <!-- Details Table -->
-      <div id="details-offcanvas" class="offcanvas offcanvas-start offcanvas-details" tabindex="-1">
-        <Table :data="data" />
-      </div>
     </div>
   </template>
 
@@ -55,9 +50,18 @@
     {{ t('updated') }}: {{ format(parseISO(meta.generated), t('dateTimeFormat')) }} UTC
   </div>
 
+  <!-- Details Table -->
+  <div id="details-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-details">
+      <Table v-if="loadDetails" :data="data" />
+    </div>
+  </div>
+
   <!-- Export Modal -->
-  <div id="exportModal" class="modal fade" tabindex="-1" aria-hidden="true">
-    <Export :data="data" />
+  <div id="export-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <Export v-if="loadExport" :data="data" />
+    </div>
   </div>
 </template>
 
@@ -124,6 +128,14 @@ export default defineComponent({
     normals: {
       type: Array,
       default: (): Array<undefined> => []
+    },
+    loadExport: {
+      type: Boolean,
+      default: false
+    },
+    loadDetails: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -455,9 +467,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-.offcanvas-details {
-  width: 100%;
-  max-width: 980px;
+<style lang="scss" scoped>
+.modal-dialog-details {
+  max-width: 960px;
 }
 </style>

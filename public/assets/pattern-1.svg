@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="168.14mm" height="101.08mm" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1.0" viewBox="0 0 18644 11208">
+ <defs>
+  <style type="text/css">
+    .fil1 {fill:none}
+    .fil23 {fill:url(#a)}
+    .fil21 {fill:url(#aa)}
+    .fil26 {fill:url(#al)}
+    .fil3 {fill:url(#as)}
+    .fil17 {fill:url(#at)}
+    .fil18 {fill:url(#au)}
+    .fil9 {fill:url(#av)}
+    .fil8 {fill:url(#aw)}
+    .fil12 {fill:url(#ax)}
+    .fil0 {fill:url(#ay)}
+    .fil25 {fill:url(#ab)}
+    .fil6 {fill:url(#ac)}
+    .fil10 {fill:url(#ad)}
+    .fil15 {fill:url(#ae)}
+    .fil24 {fill:url(#af)}
+    .fil19 {fill:url(#ag)}
+    .fil7 {fill:url(#ah)}
+    .fil4 {fill:url(#ai)}
+    .fil22 {fill:url(#aj)}
+    .fil2 {fill:url(#ak)}
+    .fil16 {fill:url(#am)}
+    .fil13 {fill:url(#an)}
+    .fil5 {fill:url(#ao)}
+    .fil11 {fill:url(#ap)}
+    .fil14 {fill:url(#aq)}
+    .fil20 {fill:url(#ar)}
+  </style>
+  <linearGradient id="a" x1="16231" x2="18992" y1="10096" y2="8533.6" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#00A0E3" offset="0"/>
+   <stop stop-color="#002D3B" offset="1"/>
+  </linearGradient>
+  <linearGradient id="aa" x1="14947" x2="15107" y1="11298" y2="-89.822" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="al" x1="17035" x2="17116" y1="11247" y2="5534.3" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="as" x1="1382.6" x2="1433.9" y1="3615.8" y2="-35.082" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="at" x1="10193" x2="10353" y1="11312" y2="-103.79" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="au" x1="11394" x2="11555" y1="11311" y2="-102.87" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="av" x1="3637.8" x2="3783.1" y1="10249" y2="-92.306" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="aw" x1="3075.8" x2="3196.4" y1="8502" y2="-78.014" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ax" x1="6420.9" x2="6581.4" y1="11318" y2="-110.37" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ay" x1="-230.97" x2="4138" y1="3904" y2="1148.2" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ab" x1="16385" x2="18889" y1="8741.3" y2="9977" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ac" x1="-410.96" x2="7579.5" y1="7262.5" y2="2508.3" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ad" x1="62.768" x2="11508" y1="9140.5" y2="2067.4" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ae" x1="3395.8" x2="14705" y1="8893.8" y2="2314.1" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="af" x1="12223" x2="19007" y1="7983.4" y2="4127.5" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ag" x1="8632.1" x2="18546" y1="8602.9" y2="2605" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ah" x1="4.7678" x2="9546.9" y1="3490" y2="7717.9" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ai" x1="-116.6" x2="6562.6" y1="3693.3" y2="5962.8" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="aj" x1="13045" x2="18812" y1="5417.9" y2="7652.3" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ak" x1="42.322" x2="5422.2" y1="5254.5" y2="1989.2" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="am" x1="7468.4" x2="16780" y1="3425.3" y2="7782.6" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="an" x1="4359.6" x2="13577" y1="3929.4" y2="7278.5" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ao" x1="170.77" x2="8322.8" y1="8019.3" y2="3188.6" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ap" x1="4315.4" x2="12620" y1="8070.3" y2="3137.6" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="aq" x1="8052.6" x2="15722" y1="7825.8" y2="3382.1" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+  <linearGradient id="ar" x1="12800" x2="18620" y1="7889.4" y2="4509.3" gradientUnits="userSpaceOnUse" xlink:href="#a">
+  </linearGradient>
+ </defs>
+   <path class="fil0" d="m3907 0l-3907 5052v-5052h3907z"/>
+   <path class="fil1" d="m3907 0l-3907 5052v-5052h3907z"/>
+   <path class="fil2" d="m0 5052l3907-5052h1558l-5465 7244v-2192z"/>
+   <path class="fil1" d="m0 5052l3907-5052h1558l-5465 7244v-2192z"/>
+   <path class="fil3" d="m0 2267l1811-2267h1006l-2817 3581v-1314z"/>
+   <path class="fil1" d="m0 2267l1811-2267h1006l-2817 3581v-1314z"/>
+   <path class="fil4" d="m0 4818l3736-4818h2710l-169 1111-6277 8545v-4838z"/>
+   <path class="fil1" d="m0 4818l3736-4818h2710l-169 1111-6277 8545v-4838z"/>
+   <path class="fil5" d="m0 9771l7169-9771h1325l-8043 11208h-451v-1437z"/>
+   <path class="fil1" d="m0 9771l7169-9771h1325l-8043 11208h-451v-1437z"/>
+   <path class="fil6" d="m0 3581l2817-3581h4352l-7169 9771v-6190z"/>
+   <path class="fil1" d="m0 3581l2817-3581h4352l-7169 9771v-6190z"/>
+   <path class="fil7" d="m0 8424l6272-8424h3280l-228 1176-6997 10032h-2327v-2784z"/>
+   <path class="fil1" d="m0 8424l6272-8424h3280l-228 1176-6997 10032h-2327v-2784z"/>
+   <path class="fil8" d="m0 7025l5313-7025h959l-6272 8424v-1399z"/>
+   <path class="fil1" d="m0 7025l5313-7025h959l-6272 8424v-1399z"/>
+   <path class="fil9" d="m0 8593l6386-8593h1035l-7421 10157v-1564z"/>
+   <path class="fil1" d="m0 8593l6386-8593h1035l-7421 10157v-1564z"/>
+   <path class="fil10" d="m0 10157l7421-10157h4150l-7623 11208h-3948v-1051z"/>
+   <path class="fil1" d="m0 10157l7421-10157h4150l-7623 11208h-3948v-1051z"/>
+   <path class="fil11" d="m3948 11208l7623-11208h1417l-7431 11208h-1609z"/>
+   <path class="fil1" d="m3948 11208l7623-11208h1417l-7431 11208h-1609z"/>
+   <path class="fil12" d="m2067 11208l7848-11208h1021l-7710 11208h-1159z"/>
+   <path class="fil1" d="m2067 11208l7848-11208h1021l-7710 11208h-1159z"/>
+   <path class="fil13" d="m4065 11208l7609-11208h2198l-203 1269-6408 9939h-3196z"/>
+   <path class="fil1" d="m4065 11208l7609-11208h2198l-203 1269-6408 9939h-3196z"/>
+   <path class="fil14" d="m7702 11208l7173-11208h1198l-7009 11208h-1362z"/>
+   <path class="fil1" d="m7702 11208l7173-11208h1198l-7009 11208h-1362z"/>
+   <path class="fil15" d="m3226 11208l7710-11208h3939l-7173 11208h-4476z"/>
+   <path class="fil1" d="m3226 11208l7710-11208h3939l-7173 11208h-4476z"/>
+   <path class="fil16" d="m7210 11208l7232-11208h2596l-270 1335-5994 9873h-3564z"/>
+   <path class="fil1" d="m7210 11208l7232-11208h2596l-270 1335-5994 9873h-3564z"/>
+   <path class="fil17" d="m6104 11208l7365-11208h973l-7232 11208h-1106z"/>
+   <path class="fil1" d="m6104 11208l7365-11208h973l-7232 11208h-1106z"/>
+   <path class="fil18" d="m7342 11208l7216-11208h1050l-7074 11208h-1192z"/>
+   <path class="fil1" d="m7342 11208l7216-11208h1050l-7074 11208h-1192z"/>
+   <path class="fil19" d="m8534 11208l7074-11208h3036v1191l-5868 10017h-4242z"/>
+   <path class="fil1" d="m8534 11208l7074-11208h3036v1191l-5868 10017h-4242z"/>
+   <path class="fil20" d="m12776 11208l5868-10017v2263l-4422 7754h-1446z"/>
+   <path class="fil1" d="m12776 11208l5868-10017v2263l-4422 7754h-1446z"/>
+   <path class="fil21" d="m11411 11208l6728-11208h505v903l-6057 10305h-1176z"/>
+   <path class="fil1" d="m11411 11208l6728-11208h505v903l-6057 10305h-1176z"/>
+   <path class="fil22" d="m13213 11208l5431-9346v4164l-2869 5182h-2562z"/>
+   <path class="fil1" d="m13213 11208l5431-9346v4164l-2869 5182h-2562z"/>
+   <path class="fil23" d="m16580 11208l2064-3787v2190l-850 1597h-1214z"/>
+   <path class="fil1" d="m16580 11208l2064-3787v2190l-850 1597h-1214z"/>
+   <path class="fil24" d="m12587 11208l6057-10305v6518l-2064 3787h-3993z"/>
+   <path class="fil1" d="m12587 11208l6057-10305v6518l-2064 3787h-3993z"/>
+   <path class="fil25" d="m16630 11208l2014-3698v3698h-2014z"/>
+   <path class="fil1" d="m16630 11208l2014-3698v3698h-2014z"/>
+   <path class="fil26" d="m15508 11208l3136-5635v1937l-2014 3698h-1122z"/>
+   <path class="fil1" d="m15508 11208l3136-5635v1937l-2014 3698h-1122z"/>
+</svg>

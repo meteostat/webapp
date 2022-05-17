@@ -9,20 +9,22 @@
         class="btn btn-light"
         type="button"
         data-bs-toggle="modal"
-        data-bs-target="#exportModal"
+        data-bs-target="#export-modal"
         :disabled="!dataCount"
+        @click="loadExport = true"
       >
         <icon :icon="['fas', 'download']" />
         <span class="d-none d-xl-inline ms-2">{{ t('export') }}</span>
       </button>
       <!-- Details Table Button -->
       <button
-        class="btn btn-light d-none d-md-inline-block me-1"
+        class="btn btn-light me-1"
         type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#details-offcanvas"
-        aria-controls="details-offcanvas"
+        data-bs-toggle="modal"
+        data-bs-target="#details-modal"
+        aria-controls="details-modal"
         :disabled="!dataCount"
+        @click="loadDetails = true"
       >
         <icon :icon="['fas', 'table']" />
         <span class="d-none d-xl-inline ms-2">{{ t('details') }}</span>
@@ -61,6 +63,8 @@
         :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
         :tz="tz"
         :normals="normals"
+        :load-export="loadExport"
+        :load-details="loadDetails"
         @loaded="onLoaded"
       />
     </template>
@@ -74,6 +78,8 @@
         :alt="alt"
         :range="[format(range.start, 'yyyy-MM-dd'), format(range.end, 'yyyy-MM-dd')]"
         :normals="normals"
+        :load-export="loadExport"
+        :load-details="loadDetails"
         @loaded="onLoaded"
       />
     </template>
@@ -320,6 +326,8 @@ export default defineComponent({
   data(): Record<string, any> {
     return {
       mapsEnabled: false,
+      loadExport: false,
+      loadDetails: false,
       dataCount: 0,
       range: this.getRangeFromQuery(),
       pickerAttrs: [

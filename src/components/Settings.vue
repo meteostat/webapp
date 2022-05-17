@@ -1,5 +1,11 @@
 <template>
-  <Offcanvas :title="t('settings')">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">
+      {{ t('settings') }}
+    </h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" :aria-label="t('close')" />
+  </div>
+  <div class="offcanvas-body">
     <div class="form-check form-switch">
       <input id="imperial" v-model="settings.imperial" class="form-check-input" type="checkbox" />
       <label for="imperial">{{ t('imperialUnits') }}</label>
@@ -36,25 +42,20 @@
         {{ t('reset') }}
       </button>
     </div>
-  </Offcanvas>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useSettingsStore } from '../stores/settings';
-import Offcanvas from './Offcanvas.vue';
 
 export default defineComponent({
   name: 'Settings',
 
   emits: ['change'],
 
-  components: {
-    Offcanvas
-  },
-
-  setup(props, { emit }): Record<string, any> {
+  setup(_, { emit }): Record<string, any> {
     const { t } = useI18n();
     const settings = useSettingsStore();
 

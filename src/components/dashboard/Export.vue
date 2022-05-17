@@ -43,7 +43,7 @@
                     <th scope="row">
                       {{ key + 1 }}
                     </th>
-                    <td>{{ col }}</td>
+                    <td class="font-monospace">{{ col }}</td>
                     <td>{{ t(`$params.${col}`) }}</td>
                   </tr>
                 </tbody>
@@ -53,9 +53,6 @@
         </template>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          {{ t('close') }}
-        </button>
         <button type="button" class="btn btn-primary" @click="save">
           {{ t('save') }}
         </button>
