@@ -22,7 +22,7 @@
         <span class="navbar-toggler-icon" />
       </button>
       <!-- Menu -->
-      <div id="subnav" ref="subnav" class="collapse navbar-collapse ms-1 mt-2 mt-sm-0">
+      <div id="subnav" ref="navbar-collapse" class="collapse navbar-collapse ms-1 mt-2 mt-sm-0">
         <ul class="navbar-nav w-100">
           <li
             v-for="item in items"
@@ -88,19 +88,19 @@ export default defineComponent({
         event.stopPropagation();
       }
       // Get element & collapse instance
-      const subnav = this.$refs.subnav as HTMLElement;
-      const collapse = this.$bs.Collapse.default.getInstance(subnav);
+      const menu = this.$refs['navbar-collapse'] as HTMLElement;
+      const collapse = this.$bs.Collapse.default.getInstance(menu);
       // Scroll to element & remove event listener if set
       const scrollTo = () => {
         scrollToElement(id);
         if (collapse) {
-          subnav.removeEventListener('hidden.bs.collapse', scrollTo);
+          menu.removeEventListener('hidden.bs.collapse', scrollTo);
         }
       };
       // Hide location navbar menu
       if (collapse) {
         collapse.hide();
-        subnav.addEventListener('hidden.bs.collapse', scrollTo);
+        menu.addEventListener('hidden.bs.collapse', scrollTo);
       } else {
         scrollTo();
       }

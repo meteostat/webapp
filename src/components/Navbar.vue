@@ -88,7 +88,7 @@
         >
           <span class="navbar-toggler-icon" />
         </button>
-        <div id="navbarNav" class="collapse navbar-collapse ms-3 mt-2 mt-lg-0">
+        <div id="navbarNav" ref="navbar-collapse" class="collapse navbar-collapse ms-3 mt-2 mt-lg-0">
           <ul class="navbar-nav">
             <router-link class="nav-item" to="/">
               <span class="nav-link">{{ t('home') }}</span>
@@ -177,9 +177,11 @@ export default defineComponent({
   },
 
   mounted(this: any): void {
-    // Show donation sidebar
-    document.getElementById('donationSidebar')?.addEventListener('show.bs.offcanvas', () => {
-      this.showDonation = true;
+    // Close navbar on router navigation
+    this.$router.beforeEach(() => {
+      const navbar = this.$refs['navbar-collapse'] as HTMLElement;
+      const collapse = this.$bs.Collapse.default.getInstance(navbar);
+      collapse?.hide();
     });
     // Show settings sidebar
     document.getElementById('settingsSidebar')?.addEventListener('show.bs.offcanvas', () => {
@@ -199,7 +201,9 @@ export default defineComponent({
       }
     });
     // Clear search on click
-    document.addEventListener('click', this.clearSearch);
+    document.addEventListener('click', (event) =>
+      (event?.target as HTMLElement).id === 'search' ? null : this.clearSearch()
+    );
     // Handle search results focus
     document.addEventListener('keydown', (e) => {
       if (

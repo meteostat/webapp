@@ -22,13 +22,13 @@
               <!-- Station Selector -->
               <div class="btn-group" role="group">
                 <button
-                  class="btn btn-light d-flex align-items-center"
+                  class="btn btn-light d-flex align-items-center station-selector-btn"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <icon :icon="['fas', 'map-marker-alt']" />
-                  <span class="station-selector-name d-none d-md-inline text-truncate ms-2">
+                  <icon :icon="['fas', 'map-marker-alt']" class="d-md-none" />
+                  <span class="station-selector-name d-none d-md-inline text-truncate">
                     {{ selectedStation?.name }}
                   </span>
                 </button>
@@ -189,6 +189,38 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+.station-selector-list {
+  width: auto;
+  max-width: min(300px, 90vw);
+}
+
+.station-selector-name {
+  display: inline-block;
+  max-width: 120px;
+
+  @media (max-width: 342px) {
+    max-width: 98px;
+  }
+
+  @include media-breakpoint-up(sm) {
+    max-width: 200px;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .station-selector-btn {
+    white-space: nowrap;
+    // Generate the caret automatically
+    @include caret();
+  }
+}
+</style>
 
 <i18n>
 {

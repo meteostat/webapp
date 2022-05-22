@@ -34,7 +34,6 @@ export default defineComponent({
       this.justCopied = true;
       setTimeout(() => {
         this.justCopied = false;
-        (document?.activeElement as HTMLElement)?.blur();
       }, 3000);
     }
   }

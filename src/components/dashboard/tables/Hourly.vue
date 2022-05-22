@@ -114,9 +114,19 @@
           </tbody>
         </table>
       </div>
-      <div class="d-grid mt-3">
-        <button class="btn btn-light" type="button" :disabled="count >= data.length" @click="showMore">
-          {{ t('$phrases.showMore') }}
+      <div class="d-flex align-items-center mt-2">
+        <a
+          class="btn btn-light"
+          role="button"
+          target="_blank"
+          href="https://dev.meteostat.net/formats.html#meteorological-parameters"
+        >
+          <icon :icon="['fas', 'question-circle']" />
+          <span class="d-none d-md-inline-block ms-2">{{ t('documentation') }}</span>
+        </a>
+        <button class="btn btn-primary ms-auto" type="button" :disabled="count >= data.length" @click="showMore">
+          <icon :icon="['fas', 'plus']" />
+          <span class="ms-2">{{ t('$phrases.showMore') }}</span>
         </button>
       </div>
     </div>
@@ -139,7 +149,7 @@ export default {
     },
     display: {
       type: Number,
-      default: 12
+      default: 10
     }
   },
 

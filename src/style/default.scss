@@ -79,6 +79,11 @@ a:active {
   &-light:disabled {
     border-color: $gray-200;
   }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
 }
 
 button > *,
@@ -154,7 +159,8 @@ section > .card {
 
   .card-header-main {
     background-color: $white;
-    padding: 0;
+    margin: 0 -1rem;
+    padding: 0 1rem !important;
 
     .card-header-title {
       @extend .heading-main;

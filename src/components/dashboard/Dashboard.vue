@@ -14,7 +14,7 @@
         @click="loadExport = true"
       >
         <icon :icon="['fas', 'download']" />
-        <span class="d-none d-xl-inline ms-2">{{ t('export') }}</span>
+        <span class="d-none d-xxl-inline ms-2">{{ t('export') }}</span>
       </button>
       <!-- Details Table Button -->
       <button
@@ -27,7 +27,7 @@
         @click="loadDetails = true"
       >
         <icon :icon="['fas', 'table']" />
-        <span class="d-none d-xl-inline ms-2">{{ t('details') }}</span>
+        <span class="d-none d-xxl-inline ms-2">{{ t('details') }}</span>
       </button>
     </div>
     <div class="ms-auto">
@@ -92,7 +92,7 @@
     <!-- Meteo Maps -->
     <section v-if="differenceInCalendarDays(new Date(), range.start) > 0" id="maps" ref="maps">
       <div class="card card-full-width mt-3 mt-md-4 p-3 bg-light rounded">
-        <div class="card-header card-header-main px-0 rounded-0 bg-light">
+        <div class="card-header card-header-main px-0 rounded-0 bg-transparent">
           <h2 class="card-header-title lead">
             {{ t('maps') }}
           </h2>
@@ -107,7 +107,7 @@
     <!-- Climate Data -->
     <section id="climate" ref="climate">
       <div class="card card-full-width mt-3 mt-md-4 p-3 bg-light rounded">
-        <div class="card-header card-header-main px-0 rounded-0 bg-light">
+        <div class="card-header card-header-main px-0 rounded-0 bg-transparent">
           <h2 class="card-header-title lead">
             {{ t('climate') }}
           </h2>
@@ -485,19 +485,6 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
-
-@include media-breakpoint-down(md) {
-  [data-bs-target='#exportModal'] {
-    border-top-right-radius: $border-radius !important;
-    border-bottom-right-radius: $border-radius !important;
-  }
-}
-</style>
-
 <style lang="scss">
 @import '../node_modules/bootstrap/scss/functions';
 @import '../node_modules/bootstrap/scss/variables';
@@ -510,24 +497,6 @@ export default defineComponent({
     margin: 0 -0.75rem;
     border: 0;
     border-radius: 0 !important;
-  }
-}
-
-.station-selector-list {
-  width: auto;
-  max-width: 100vw;
-}
-
-.station-selector-name {
-  display: inline-block;
-  max-width: 120px;
-
-  @media (max-width: 342px) {
-    max-width: 98px;
-  }
-
-  @include media-breakpoint-up(sm) {
-    max-width: 200px;
   }
 }
 </style>

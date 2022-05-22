@@ -34,7 +34,8 @@ import {
   faCar,
   faSkating,
   faCopy,
-  faCheck
+  faCheck,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faPatreon,
@@ -79,6 +80,7 @@ library.add(
   faSkating,
   faCopy,
   faCheck,
+  faPlus,
   faPatreon,
   faPaypal,
   faGithub,
@@ -249,6 +251,7 @@ export default vitedge(
     app.directive('tooltip', (el: HTMLElement, binding: any) => {
       if (
         !import.meta.env.SSR &&
+        !window.matchMedia('(hover: none)').matches &&
         binding?.value &&
         (typeof binding?.value === 'string' || typeof binding?.value?.title === 'string')
       ) {
