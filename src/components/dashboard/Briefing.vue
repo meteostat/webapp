@@ -4,16 +4,16 @@
     <div class="col-6 col-md-3">
       <div class="card card-kpi" @click="scrollToElement('temp')">
         <div class="card-body py-1">
-          <h5 class="card-title mb-1">
+          <h5 class="card-title d-flex align-items-center mb-1">
             <template v-if="temp !== null && anyColData(tempCol)">
-              {{ temp }}
-              <small
+              <icon
                 v-if="tempAnomaly"
-                class="fw-light"
-                :class="{ 'anomaly-negative': tempAnomaly < 0, 'anomaly-positive': tempAnomaly >= 0 }"
-              >
-                {{ tempAnomaly }}
-              </small>
+                v-tooltip="`${tempAnomaly} ${settings.units.temp}`"
+                :icon="['fas', tempAnomaly < 0 ? 'arrow-down' : 'arrow-up']"
+                class="me-2 fs-6"
+                :class="{ 'anomaly-negative': tempAnomaly < 0, 'anomaly-positive': tempAnomaly > 0 }"
+              />
+              {{ temp }}
               <small class="text-muted fw-light ms-1">
                 {{ settings.units.temp }}
               </small>
@@ -35,16 +35,16 @@
     <div class="col-6 col-md-3">
       <div class="card card-kpi" @click="scrollToElement('prcp')">
         <div class="card-body py-1">
-          <h5 class="card-title mb-1">
+          <h5 class="card-title d-flex align-items-center mb-1">
             <template v-if="prcp !== null && anyColData('prcp')">
-              {{ prcp }}
-              <small
+              <icon
                 v-if="daily && prcpAnomaly"
-                class="fw-light"
-                :class="{ 'anomaly-negative': prcpAnomaly < 0, 'anomaly-positive': prcpAnomaly >= 0 }"
-              >
-                {{ prcpAnomaly }}
-              </small>
+                v-tooltip="`${prcpAnomaly} ${settings.units.prcp}`"
+                :icon="['fas', prcpAnomaly < 0 ? 'arrow-down' : 'arrow-up']"
+                class="me-2 fs-6"
+                :class="{ 'anomaly-negative': prcpAnomaly < 0, 'anomaly-positive': prcpAnomaly > 0 }"
+              />
+              {{ prcp }}
               <small class="text-muted fw-light ms-1">
                 {{ settings.units.prcp }}
               </small>
@@ -66,16 +66,16 @@
     <div class="col-6 col-md-3">
       <div class="card card-kpi" @click="scrollToElement('wspd')">
         <div class="card-body py-1">
-          <h5 class="card-title mb-1">
+          <h5 class="card-title d-flex align-items-center mb-1">
             <template v-if="wspd !== null && anyColData('wspd')">
-              {{ wspd }}
-              <small
+              <icon
                 v-if="wspdAnomaly"
-                class="fw-light"
-                :class="{ 'anomaly-negative': wspdAnomaly < 0, 'anomaly-positive': wspdAnomaly >= 0 }"
-              >
-                {{ wspdAnomaly }}
-              </small>
+                v-tooltip="`${wspdAnomaly} ${settings.units.wspd}`"
+                :icon="['fas', wspdAnomaly < 0 ? 'arrow-down' : 'arrow-up']"
+                class="me-2 fs-6"
+                :class="{ 'anomaly-negative': wspdAnomaly < 0, 'anomaly-positive': wspdAnomaly > 0 }"
+              />
+              {{ wspd }}
               <small class="text-muted fw-light ms-1">
                 {{ settings.units.wspd }}
               </small>
@@ -97,17 +97,17 @@
     <div class="col-6 col-md-3">
       <div class="card card-kpi" @click="scrollToElement('pres')">
         <div class="card-body py-1">
-          <h5 class="card-title mb-1">
+          <h5 class="card-title d-flex align-items-center mb-1">
             <template v-if="pres !== null && anyColData('pres')">
-              {{ pres }}
-              <small
+              <icon
                 v-if="presAnomaly"
-                class="fw-light"
+                v-tooltip="`${presAnomaly} hPa`"
+                :icon="['fas', presAnomaly < 0 ? 'arrow-down' : 'arrow-up']"
+                class="me-2 fs-6"
                 :class="{ 'anomaly-negative': presAnomaly < 0, 'anomaly-positive': presAnomaly >= 0 }"
-              >
-                {{ presAnomaly }}
-              </small>
-              <small class="text-muted fw-light ms-1"> hPa </small>
+              />
+              {{ pres }}
+              <small class="text-muted fw-light ms-1">hPa</small>
             </template>
             <template v-else>
               <span class="text-muted">{{ t('$phrases.noData') }}</span>
@@ -287,7 +287,7 @@ export default defineComponent({
   }
 
   .anomaly-negative {
-    color: $cyan-700;
+    color: $blue-700;
   }
   .anomaly-positive {
     color: $red-700;
