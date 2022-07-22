@@ -30,7 +30,7 @@
       </Section>
 
       <!-- Air Pressure Chart -->
-      <Section v-if="anyColData('pres')" id="pres" :title="t('$params.pres')">
+      <Section v-if="anyColData('pres')" id="pres" :title="t('$meteo.pres')">
         <Chart type="line" :data="presChart.data" :options="presChart.options" />
       </Section>
     </div>
