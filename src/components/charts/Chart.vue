@@ -39,7 +39,7 @@ export default defineComponent({
   watch: {
     async data() {
       if (!this.loading && !import.meta.env.SSR) {
-        this.createChart()
+        await this.createChart()
       }
     }
   },
@@ -53,9 +53,11 @@ export default defineComponent({
     // Create chart
     await this.createChart()
     // Update on resize
-    window.addEventListener('resize', () => {
-      this.debounce(this.createChart, 500, `chart-${this.instance?.id}`)
-    });
+    window.addEventListener('resize', this.onResize);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener('resize', this.onResize);
   },
 
   methods: {
@@ -86,6 +88,9 @@ export default defineComponent({
       })
       // Finish loading
       this.loading = false
+    },
+    onResize() {
+      this.debounce(this.createChart, 500, `chart-${this.instance?.id}`)
     }
   }
 })
