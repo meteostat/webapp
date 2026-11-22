@@ -31,11 +31,6 @@
         </li>
         <li class="w-100 d-md-none" />
         <li class="d-inline-block mt-3 mt-md-0 ms-md-auto fs-4">
-          <a href="https://twitter.com/meteost" v-tooltip="'Twitter'">
-            <icon :icon="['fab', 'twitter']" />
-          </a>
-        </li>
-        <li class="d-inline-block mt-3 mt-md-0 ms-3 fs-4">
           <a href="https://medium.com/meteostat" v-tooltip="t('blog')">
             <icon :icon="['fab', 'medium']" />
           </a>
