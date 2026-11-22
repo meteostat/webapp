@@ -15,6 +15,7 @@ import {
   faCalendarAlt,
   faArrowUp,
   faArrowDown,
+  faArrowRight,
   faExclamationCircle,
   faPlay,
   faBackward,
@@ -48,8 +49,7 @@ import {
   faLinkedinIn,
   faTwitter,
   faFacebookF,
-  faMedium,
-  faBitcoin
+  faMedium
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -92,7 +92,7 @@ library.add(
   faTwitter,
   faFacebookF,
   faMedium,
-  faBitcoin
+  faArrowRight
 );
 
 const useBootstrap = async () => {

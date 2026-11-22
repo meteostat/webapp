@@ -5,7 +5,7 @@
         <div class="col-10 col-sm-8 col-lg-6 align-items-center">
           <img
             src="https://media.meteostat.net/assets/cla.jpg"
-            class="d-block mx-lg-auto img-fluid rounded"
+            class="d-block mx-lg-auto img-fluid rounded shadow"
             alt="Christian Lamprecht"
             width="400"
             height="400"
@@ -43,104 +43,105 @@
       </div>
     </div>
   </section>
+
   <div class="bar" />
-  <section id="sponsors" class="my-5">
-    <h2 class="display-5 text-center mb-4">
-      {{ t('sponsorsAndPartners') }}
-    </h2>
-    <div class="container overflow-hidden">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 justify-content-center gx-3 gy-3">
-        <div v-for="sponsor in sponsors" :key="sponsor.name" class="col">
-          <a :href="sponsor.link" class="d-block text-center p-3" target="_blank" rel="noreferrer nofollow">
-            <img :src="sponsor.logo" :alt="sponsor.name" :title="sponsor.name" class="partner-logo img-fluid" />
-          </a>
+
+  <!-- Backers -->
+  <section id="backers" class="container py-5">
+    <div class="text-center mb-5">
+      <h2 class="display-6 fw-bold">
+        {{ t('supporters') }}
+      </h2>
+      <p class="lead text-muted col-lg-8 mx-auto mb-0">
+        {{ t('$supportersText') }}
+      </p>
+    </div>
+    <div class="row g-4">
+      <div v-for="platform in platforms" :key="platform.name" class="col-md-6">
+        <div class="card h-100 border-0 shadow-sm platform-card">
+          <div class="card-body p-4 p-lg-5 d-flex flex-column">
+            <div class="d-flex align-items-center mb-3">
+              <span :class="`platform-icon platform-icon--${platform.id}`">
+                <icon :icon="platform.icon" />
+              </span>
+              <h3 class="h4 mb-0 ms-3">
+                {{ platform.name }}
+              </h3>
+            </div>
+            <p class="text-muted">
+              {{ t('$backersText', { service: platform.name }) }}
+            </p>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <a
+                v-for="backer in platform.backers"
+                :key="backer.name"
+                :href="backer.link"
+                class="backer-chip"
+                target="_blank"
+                rel="noreferrer nofollow"
+              >
+                <icon :icon="['fas', 'heart']" class="me-1 text-danger" />
+                {{ backer.name }}
+              </a>
+            </div>
+            <a
+              :href="platform.link"
+              :class="`btn btn-lg mt-auto align-self-start btn-${platform.id}`"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <icon :icon="platform.icon" class="me-2" />
+              {{ t(platform.cta) }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
+    <p class="text-center text-muted mt-4 mb-0">
+      <i18n-t keypath="$otherOptions" tag="span">
+        <template #donation>
+          <router-link to="/donate">{{ t('donationOptions') }}</router-link>
+        </template>
+      </i18n-t>
+    </p>
   </section>
-  <section id="backers" class="container-fluid">
-    <div class="row border border-white features">
-      <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
-        <h3 class="mb-4">
-          <icon :icon="['fas', 'heart']" class="me-2 text-danger" />
-          GitHub
-        </h3>
-        <i18n-t keypath="$backersText" tag="p" class="text-muted">
-          <template #service>GitHub Sponsors</template>
-        </i18n-t>
-        <ul>
-          <li v-for="backer in ghBackers" :key="backer">
-            <a :href="backer.link" target="_blank" rel="noreferrer nofollow">
-              {{ backer.name }}
-            </a>
-          </li>
-        </ul>
-        <hr />
-        <i18n-t keypath="$backersAction" tag="p">
-          <template #patreon>
-            <a href="https://www.patreon.com/meteostat" target="_blank" rel="noreferrer">Patreon</a>
-          </template>
-          <template #github>
-            <a href="https://github.com/sponsors/clampr" target="_blank" rel="noreferrer">GitHub</a>
-          </template>
-          <template #donation>
-            <router-link to="/donate">
-              {{ t('these') }}
-            </router-link>
-          </template>
-        </i18n-t>
-      </div>
-      <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
-        <h3 class="mb-4">
-          <icon :icon="['fab', 'patreon']" class="me-2" />
-          Patreon
-        </h3>
-        <i18n-t keypath="$backersText" tag="p" class="text-muted">
-          <template #service>Patreon</template>
-        </i18n-t>
-        <ul>
-          <li v-for="patron in patrons" :key="patron.name">
-            <a :href="patron.link" target="_blank" rel="noreferrer nofollow">
-              {{ patron.name }}
-            </a>
-          </li>
-        </ul>
-        <hr />
-        <i18n-t keypath="$backersAction" tag="p">
-          <template #patreon>
-            <a href="https://www.patreon.com/meteostat" target="_blank" rel="noreferrer">Patreon</a>
-          </template>
-          <template #github>
-            <a href="https://github.com/sponsors/clampr" target="_blank" rel="noreferrer">GitHub</a>
-          </template>
-          <template #donation>
-            <router-link to="/donate">
-              {{ t('these') }}
-            </router-link>
-          </template>
-        </i18n-t>
-      </div>
-      <div class="col-12 col-md-4 p-4 p-md-5 bg-light border border-white">
-        <h3 class="mb-4">
-          <icon :icon="['fab', 'github']" class="me-2" />
+
+  <!-- Contributors -->
+  <section id="contributors" class="bg-light py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-6 fw-bold">
           {{ t('contributors') }}
-        </h3>
-        <p class="text-muted">
+        </h2>
+        <p class="lead text-muted col-lg-8 mx-auto mb-0">
           {{ t('$contributorsText') }}
         </p>
-        <ul>
-          <li v-for="contributor in contributors.sort()" :key="contributor">
-            <a :href="`https://github.com/${contributor}`" target="_blank" rel="noreferrer nofollow"
-              >@{{ contributor }}</a
-            >
-          </li>
-        </ul>
-        <hr />
-        <i18n-t keypath="$contributorsAction" tag="p">
-          <template #github>
-            <a href="https://github.com/meteostat" target="_blank" rel="noreferrer"> GitHub </a>
-          </template>
-        </i18n-t>
+      </div>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-4 justify-content-center">
+        <div v-for="login in contributors" :key="login" class="col">
+          <a
+            :href="`https://github.com/${login}`"
+            class="contributor d-block text-center text-decoration-none"
+            target="_blank"
+            rel="noreferrer nofollow"
+          >
+            <img
+              :src="`https://github.com/${login}.png?size=192`"
+              :alt="login"
+              class="contributor-avatar rounded-circle mb-3"
+              width="96"
+              height="96"
+              loading="lazy"
+            />
+            <span class="d-block fw-semibold text-dark text-truncate">@{{ login }}</span>
+          </a>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a class="btn btn-dark btn-lg" href="https://github.com/meteostat" target="_blank" rel="noreferrer">
+          <icon :icon="['fab', 'github']" class="me-2" />
+          {{ t('contributeOnGithub') }}
+        </a>
       </div>
     </div>
   </section>
@@ -151,10 +152,24 @@ import { defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useHead } from '@unhead/vue';
 
+interface Backer {
+  name: string;
+  link: string;
+}
+
+interface Platform {
+  id: string;
+  name: string;
+  icon: [string, string];
+  link: string;
+  cta: string;
+  backers: Backer[];
+}
+
 export default defineComponent({
   name: 'Contributors',
 
-  setup(): Record<string, any> {
+  setup() {
     const { t } = useI18n();
 
     useHead({
@@ -167,36 +182,43 @@ export default defineComponent({
       ]
     });
 
-    return { t };
-  },
+    const platforms: Platform[] = [
+      {
+        id: 'github',
+        name: 'GitHub Sponsors',
+        icon: ['fab', 'github'],
+        link: 'https://github.com/sponsors/meteostat',
+        cta: 'sponsorOnGithub',
+        backers: [
+          { name: 'Joe Shull', link: 'https://github.com/joeshull' },
+          { name: 'Benjamin Gutzmann', link: 'https://github.com/gutzbenj' }
+        ]
+      },
+      {
+        id: 'patreon',
+        name: 'Patreon',
+        icon: ['fab', 'patreon'],
+        link: 'https://www.patreon.com/meteostat',
+        cta: 'joinPatreon',
+        backers: [{ name: 'Tyler Kontra', link: 'https://www.patreon.com/user?u=18076117' }]
+      }
+    ];
 
-  data(): Record<string, Array<string | Record<string, string>>> {
-    return {
-      sponsors: [
-        {
-          name: 'API3',
-          logo: 'https://media.meteostat.net/assets/partners/api3.png',
-          link: 'https://api3.org/'
-        }
-      ],
-      ghBackers: [
-        {
-          name: 'Joe Shull',
-          link: 'https://github.com/joeshull'
-        },
-        {
-          name: 'Benjamin Gutzmann',
-          link: 'https://github.com/gutzbenj'
-        }
-      ],
-      patrons: [
-        {
-          name: 'Tyler Kontra',
-          link: 'https://www.patreon.com/user?u=18076117'
-        }
-      ],
-      contributors: ['weyaaron', 'mrsjuli', 'amotl', 'meteoDaniel', 'rfoel', 'Kkoile', 'clampr']
-    };
+    // Top 10 human contributors across all non-fork repos of github.com/meteostat (by commit count, ties alphabetical)
+    const contributors = [
+      'clampr',
+      'mrsjuli',
+      'rfoel',
+      'twilightDD',
+      'Kkoile',
+      'amotl',
+      'ghostrider',
+      'GrahamHallEvergreen',
+      'ida',
+      'Kugeleis'
+    ];
+
+    return { t, platforms, contributors };
   }
 });
 </script>
@@ -207,13 +229,82 @@ export default defineComponent({
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
 
+$github: #24292f;
+$patreon: #ff424d;
+
 .bar {
   height: 10px;
   background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
 }
 
-.partner-logo {
-  height: 100px;
+.platform-card {
+  border-radius: 1rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $box-shadow !important;
+  }
+}
+
+.platform-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  color: $white;
+  border-radius: 0.75rem;
+
+  &--github {
+    background: $github;
+  }
+
+  &--patreon {
+    background: $patreon;
+  }
+}
+
+.backer-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  font-weight: 500;
+  color: $dark;
+  text-decoration: none;
+  background: $gray-100;
+  border-radius: 50rem;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: $gray-200;
+  }
+}
+
+.btn-github {
+  @include button-variant($github, $github);
+}
+
+.btn-patreon {
+  @include button-variant($patreon, $patreon, $white);
+}
+
+.contributor {
+  .contributor-avatar {
+    background: $white;
+    box-shadow: 0 0 0 4px $white, $box-shadow-sm;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  &:hover .contributor-avatar {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 4px $primary, $box-shadow;
+  }
 }
 </style>
 
@@ -225,111 +316,132 @@ export default defineComponent({
       "description": "Get to know the people who support Meteostat."
     },
     "meetChristian": "Meet Christian.",
-    "$quote": "Running an open source project can be challenging. You are always low on all kinds of resources - especially time and money. It is our passion for weather and climate which keeps us going. Meteostat is only possible because we have dozens of generous backers and contributors who keep supporting the project. Thanks to all of you!",
+    "$quote": "Running an open source project can be challenging. You are always short on resources of all kinds – especially time and money. It is our passion for weather and climate that keeps us going. Meteostat is only possible thanks to dozens of generous backers and contributors who keep supporting the project. Thank you all!",
     "$cTitle": "Founder & Maintainer",
-    "sponsorsAndPartners": "Sponsors & Partners",
-    "these": "these",
-    "$backersText": "Our incredible patrons on {service}.",
-    "$backersAction": "Become a backer on {patreon} or {github}. Alternatively, you can also set up recurring pledges or a one-time donation using {donation} options.",
+    "supporters": "Backers",
+    "$supportersText": "Meteostat is funded by people who believe in open weather data. Thank you for keeping the project running!",
+    "$backersText": "Our incredible backers on {service}.",
+    "sponsorOnGithub": "Sponsor on GitHub",
+    "joinPatreon": "Become a Patron",
+    "$otherOptions": "Prefer PayPal or a bank transfer? Check out our {donation}.",
+    "donationOptions": "donation options",
     "contributors": "Contributors",
-    "$contributorsText": "The taltented developers and contributors who are building Meteostat and its interfaces.",
-    "$contributorsAction": "If you are familiar with coding, head over to {github} and help us building Meteostat."
+    "$contributorsText": "The talented developers who are building Meteostat and its interfaces.",
+    "contributeOnGithub": "Contribute on GitHub"
   },
   "de": {
     "$meta": {
       "title": "Förderer",
       "description": "Lernen Sie die Menschen kennen, die Meteostat unterstützen und fördern."
     },
-    "meetChristian": "Liebe Nutzer,",
-    "$quote": "Die Organisation eines Open-Source-Projekts kann eine Herausforderung sein. Man ist immer knapp an allen möglichen Ressourcen - vor allem Zeit und Geld. Es ist unsere Leidenschaft für Wetter und Klima, die uns am Laufen hält. Meteostat ist nur möglich, weil wir Dutzende von großzügigen Förderern und Mitwirkenden haben, die das Projekt unterstützen. Vielen Dank an Sie alle!",
+    "meetChristian": "Das ist Christian.",
+    "$quote": "Ein Open-Source-Projekt zu betreiben, kann eine Herausforderung sein. Es mangelt immer an Ressourcen aller Art – vor allem an Zeit und Geld. Unsere Leidenschaft für Wetter und Klima hält uns am Laufen. Meteostat ist nur dank Dutzender großzügiger Förderer und Mitwirkender möglich, die das Projekt unterstützen. Vielen Dank an Sie alle!",
     "$cTitle": "Gründer & Geschäftsführer",
-    "sponsorsAndPartners": "Förderer & Partner",
-    "these": "diesen",
+    "supporters": "Unterstützer",
+    "$supportersText": "Meteostat wird von Menschen finanziert, die an frei zugängliche Wetterdaten glauben. Danke, dass Sie das Projekt am Laufen halten!",
     "$backersText": "Unsere großartigen Unterstützer auf {service}.",
-    "$backersAction": "Werden Sie Unterstützer auf {patreon} oder {github}. Alternativ können Sie auch mit {donation} Optionen regelmäßige Förderbeiträge einrichten oder eine einmalige Spende tätigen.",
+    "sponsorOnGithub": "Auf GitHub sponsern",
+    "joinPatreon": "Auf Patreon unterstützen",
+    "$otherOptions": "Lieber per PayPal oder Überweisung? Hier geht's zu den {donation}.",
+    "donationOptions": "Spendenmöglichkeiten",
     "contributors": "Mitwirkende",
-    "$contributorsText": "Die engagierten Entwickler und Mitwirkenden, die Meteostat und seine Schnittstellen programmieren und unterhalten.",
-    "$contributorsAction": "Sie haben selbst Spaß am Programmieren? Schauen Sie sich unsere Projekte bei {github} an und helfen Sie uns bei der Weiterentwicklung von Meteostat."
+    "$contributorsText": "Die engagierten Entwickler, die Meteostat und seine Schnittstellen programmieren und unterhalten.",
+    "contributeOnGithub": "Auf GitHub mitwirken"
   },
   "it": {
     "$meta": {
-      "title": "Patroni",
+      "title": "Sostenitori",
       "description": "Conosci le persone che supportano Meteostat."
     },
     "meetChristian": "Incontra Christian.",
-    "$quote": "Gestire un progetto open source può essere impegnativo. Sei sempre a corto di tutti i tipi di risorse - specialmente tempo e denaro. È la nostra passione per il tempo e il clima che ci fa andare avanti. Meteostat è possibile solo perché abbiamo decine di generosi finanziatori e collaboratori che continuano a sostenere il progetto. Grazie a tutti voi!",
-    "$cTitle": "Fondatore e Manutentore",
-    "sponsorsAndPartners": "Sponsor e Partner",
-    "these": "questi",
-    "$backersText": "I nostri incredibili clienti su {service}.",
-    "$backersAction": "Diventa un sostenitore su {patreon} o {github}. In alternativa, puoi anche impostare impegni ricorrenti usando le opzioni di {donation}.",
+    "$quote": "Gestire un progetto open source può essere impegnativo. Si è sempre a corto di risorse di ogni tipo, soprattutto tempo e denaro. È la nostra passione per il meteo e il clima a farci andare avanti. Meteostat esiste solo grazie a decine di generosi sostenitori e collaboratori che continuano a supportare il progetto. Grazie a tutti!",
+    "$cTitle": "Fondatore e sviluppatore",
+    "supporters": "Sostenitori",
+    "$supportersText": "Meteostat è finanziato da persone che credono nei dati meteo aperti. Grazie per mantenere vivo il progetto!",
+    "$backersText": "I nostri incredibili sostenitori su {service}.",
+    "sponsorOnGithub": "Sponsorizza su GitHub",
+    "joinPatreon": "Sostienici su Patreon",
+    "$otherOptions": "Preferisci PayPal o un bonifico bancario? Scopri le nostre {donation}.",
+    "donationOptions": "opzioni di donazione",
     "contributors": "Contributori",
-    "$contributorsText": "I talentuosi sviluppatori e collaboratori che stanno costruendo Meteostat e le sue interfacce.",
-    "$contributorsAction": "Se hai familiarità con la codifica, vai su {github} e aiutaci a costruire Meteostat."
+    "$contributorsText": "I talentuosi sviluppatori che stanno costruendo Meteostat e le sue interfacce.",
+    "contributeOnGithub": "Contribuisci su GitHub"
   },
   "es": {
     "$meta": {
-      "title": "Patrones",
+      "title": "Mecenas",
       "description": "Conoce a las personas que apoyan a Meteostat."
     },
     "meetChristian": "Conoce a Christian.",
-    "$quote": "Dirigir un proyecto de código abierto puede ser un reto. Siempre hay pocos recursos, especialmente tiempo y dinero. Es nuestra pasión por el tiempo y el clima lo que nos hace seguir adelante. Meteostat sólo es posible porque contamos con decenas de generosos patrocinadores y colaboradores que siguen apoyando el proyecto. Gracias a todos vosotros!",
-    "$cTitle": "Fundador y Mantenedor",
-    "sponsorsAndPartners": "Patrocinadores y Socios",
-    "these": "estos",
-    "$backersText": "Nuestros increíbles clientes en {service}.",
-    "$backersAction": "Hazte mecenas en {patreon} o {github}. Alternativamente, también puedes establecer promesas recurrentes utilizando las opciones de {donation}.",
+    "$quote": "Llevar un proyecto de código abierto puede ser todo un reto. Siempre faltan recursos de todo tipo, sobre todo tiempo y dinero. Lo que nos impulsa es nuestra pasión por el tiempo y el clima. Meteostat solo es posible gracias a decenas de generosos mecenas y colaboradores que siguen apoyando el proyecto. ¡Gracias a todos!",
+    "$cTitle": "Fundador y desarrollador",
+    "supporters": "Mecenas",
+    "$supportersText": "Meteostat está financiado por personas que creen en los datos meteorológicos abiertos. ¡Gracias por mantener vivo el proyecto!",
+    "$backersText": "Nuestros increíbles mecenas en {service}.",
+    "sponsorOnGithub": "Patrocinar en GitHub",
+    "joinPatreon": "Apóyanos en Patreon",
+    "$otherOptions": "¿Prefieres PayPal o una transferencia bancaria? Consulta nuestras {donation}.",
+    "donationOptions": "opciones de donación",
     "contributors": "Colaboradores",
-    "$contributorsText": "Los talentosos desarrolladores y colaboradores que están construyendo Meteostat y sus interfaces",
-    "$contributorsAction": "Si estás familiarizado con la codificación, dirígete a {github} y ayúdanos a construir Meteostat."
+    "$contributorsText": "Los talentosos desarrolladores que están construyendo Meteostat y sus interfaces.",
+    "contributeOnGithub": "Contribuir en GitHub"
   },
   "nl": {
     "$meta": {
-      "title": "Patroons",
-      "description": "Leer de mensen kennen die Meteostat ondersteunen."
+      "title": "Supporters",
+      "description": "Maak kennis met de mensen die Meteostat steunen."
     },
     "meetChristian": "Ontmoet Christian.",
-    "$quote": "Het runnen van een open source project kan een uitdaging zijn. Je hebt altijd een tekort aan allerlei middelen - vooral tijd en geld. Het is onze passie voor weer en klimaat die ons op de been houdt. Meteostat is alleen mogelijk omdat we tientallen gulle gevers en bijdragers hebben die het project blijven steunen. Dank aan jullie allemaal!",
-    "$cTitle": "Oprichter & Onderhouder",
-    "sponsorsAndPartners": "Sponsors en Partners",
-    "these": "deze",
-    "$backersText": "Onze ongelooflijke beschermheren op {service}.",
-    "$backersAction": "Word een backer op {patreon} of {github}. Als alternatief kunt u ook terugkerende toezeggingen instellen met behulp van {donation} opties.",
-    "contributors": "Contributors",
-    "$contributorsText": "De getalenteerde ontwikkelaars en bijdragers die Meteostat en zijn interfaces bouwen.",
-    "$contributorsAction": "Als je bekend bent met coderen, ga dan naar {github} en help ons met het bouwen van Meteostat."
+    "$quote": "Een opensourceproject runnen kan een uitdaging zijn. Je komt altijd middelen tekort – vooral tijd en geld. Onze passie voor weer en klimaat houdt ons gaande. Meteostat is alleen mogelijk dankzij tientallen gulle supporters en bijdragers die het project blijven steunen. Bedankt allemaal!",
+    "$cTitle": "Oprichter & ontwikkelaar",
+    "supporters": "Supporters",
+    "$supportersText": "Meteostat wordt gefinancierd door mensen die geloven in open weerdata. Bedankt dat jullie het project draaiende houden!",
+    "$backersText": "Onze ongelooflijke supporters op {service}.",
+    "sponsorOnGithub": "Sponsor op GitHub",
+    "joinPatreon": "Steun ons op Patreon",
+    "$otherOptions": "Liever PayPal of een bankoverschrijving? Bekijk onze {donation}.",
+    "donationOptions": "donatiemogelijkheden",
+    "contributors": "Bijdragers",
+    "$contributorsText": "De getalenteerde ontwikkelaars die Meteostat en zijn interfaces bouwen.",
+    "contributeOnGithub": "Bijdragen op GitHub"
   },
   "fr": {
-    "$meta" : {
-      "title" : "Patrons",
-      "description" : "Apprenez à connaître les personnes qui soutiennent Meteostat."
+    "$meta": {
+      "title": "Mécènes",
+      "description": "Découvrez les personnes qui soutiennent Meteostat."
     },
-    "meetChristian" : "Rencontrez Christian.",
-    "$quote" : "Gérer un projet open source peut être un défi. Vous êtes toujours à court de ressources de toutes sortes, en particulier de temps et d'argent. C'est notre passion pour le temps et le climat qui nous pousse à continuer. Meteostat n'est possible que grâce à des dizaines de généreux donateurs et contributeurs qui continuent à soutenir le projet. Merci à vous tous!",
-    "$cTitle" : "Fondateur et Mainteneur",
-    "sponsorsAndPartners" : "Sponsors et Partenaires",
-    "these" : "ces",
-    "$backersText" : "Nos incroyables clients sur {service}.",
-    "$backersAction" : "Devenez un mécène sur {patreon} ou {github}. Alternativement, vous pouvez également mettre en place des promesses de dons récurrents en utilisant les options {donation}.",
-    "contributors" : "Contributeurs",
-    "$contributorsText" : "Les développeurs et contributeurs talentueux qui construisent Meteostat et ses interfaces.",
-    "$contributorsAction" : "Si vous êtes familier avec le codage, rendez-vous sur {github} et aidez-nous à construire Meteostat."
+    "meetChristian": "Rencontrez Christian.",
+    "$quote": "Gérer un projet open source peut être un défi. On manque toujours de ressources de toutes sortes, surtout de temps et d'argent. C'est notre passion pour la météo et le climat qui nous fait avancer. Meteostat n'existe que grâce à des dizaines de généreux mécènes et contributeurs qui continuent de soutenir le projet. Merci à vous tous !",
+    "$cTitle": "Fondateur et Mainteneur",
+    "supporters": "Soutiens",
+    "$supportersText": "Meteostat est financé par des personnes qui croient aux données météorologiques ouvertes. Merci de faire vivre le projet !",
+    "$backersText": "Nos incroyables soutiens sur {service}.",
+    "sponsorOnGithub": "Sponsoriser sur GitHub",
+    "joinPatreon": "Soutenez-nous sur Patreon",
+    "$otherOptions": "Vous préférez PayPal ou un virement bancaire ? Découvrez nos {donation}.",
+    "donationOptions": "options de don",
+    "contributors": "Contributeurs",
+    "$contributorsText": "Les développeurs talentueux qui construisent Meteostat et ses interfaces.",
+    "contributeOnGithub": "Contribuer sur GitHub"
   },
   "pt": {
     "$meta": {
-      "title": "Patronos",
+      "title": "Apoiantes",
       "description": "Conheça as pessoas que apoiam o Meteostat."
     },
     "meetChristian": "Conheça o Christian.",
-    "$quote": "Executar um projecto de código aberto pode ser um desafio. Tem sempre poucos recursos - especialmente tempo e dinheiro. É a nossa paixão pelo tempo e pelo clima que nos mantém em movimento. O Meteostat só é possível porque temos dezenas de apoiantes e contribuintes generosos que continuam a apoiar o projecto. Obrigado a todos vós!",
-    "$cTitle": "Fundador & Mantenedor",
-    "sponsorsAndPartners": "Patrocinadores e Parceiros",
-    "these": "estes",
-    "$backersText": "Os nossos incríveis patronos no {service}.",
-    "$backersAction": "Torne-se um backer no {patreon} ou {github}. Alternativamente, pode também estabelecer promessas recorrentes usando opções {donation}.",
-    "contributors": "Contribuintes",
-    "$contributorsText": "Os talentosos criadores e contribuintes que estão a construir o Meteostat e as suas interfaces.",
-    "$contributorsAction": "Se está familiarizado com a codificação, dirija-se a {github} e ajude-nos a construir o Meteostat."
+    "$quote": "Gerir um projeto de código aberto pode ser um desafio. Faltam sempre recursos de todo o tipo, sobretudo tempo e dinheiro. É a nossa paixão pelo tempo e pelo clima que nos faz continuar. O Meteostat só é possível graças a dezenas de apoiantes e contribuidores generosos que continuam a apoiar o projeto. Obrigado a todos!",
+    "$cTitle": "Fundador e programador",
+    "supporters": "Apoiantes",
+    "$supportersText": "O Meteostat é financiado por pessoas que acreditam em dados meteorológicos abertos. Obrigado por manterem o projeto vivo!",
+    "$backersText": "Os nossos incríveis apoiantes no {service}.",
+    "sponsorOnGithub": "Patrocinar no GitHub",
+    "joinPatreon": "Apoie-nos no Patreon",
+    "$otherOptions": "Prefere PayPal ou transferência bancária? Veja as nossas {donation}.",
+    "donationOptions": "opções de doação",
+    "contributors": "Contribuidores",
+    "$contributorsText": "Os talentosos programadores que estão a construir o Meteostat e as suas interfaces.",
+    "contributeOnGithub": "Contribuir no GitHub"
   },
   "ru": {
     "$meta": {
@@ -337,15 +449,18 @@ export default defineComponent({
       "description": "Познакомьтесь с людьми, которые поддерживают Meteostat."
     },
     "meetChristian": "Познакомьтесь с Кристианом.",
-    "$quote": "Вести проект с открытым исходным кодом может быть непросто. У вас всегда мало ресурсов - особенно времени и денег. Именно наша страсть к погоде и климату помогает нам продолжать работу. Meteostat возможен только потому, что у нас есть десятки щедрых спонсоров и жертвователей, которые продолжают поддерживать проект. Спасибо всем вам!",
+    "$quote": "Вести проект с открытым исходным кодом непросто. Всегда не хватает ресурсов — особенно времени и денег. Нас движет страсть к погоде и климату. Meteostat существует только благодаря десяткам щедрых спонсоров и участников, которые продолжают поддерживать проект. Спасибо всем вам!",
     "$cTitle": "Основатель и разработчик",
-    "sponsorsAndPartners": "Спонсоры и партнеры",
-    "these": "эти",
-    "$backersText": "Наши невероятные покровители на {service}.",
-    "$backersAction": "Станьте беккером на {patreon} или {github}. Кроме того, вы можете установить периодические взносы, используя опции {donation}.",
-    "contributors": "Вкладчики",
-    "$contributorsText": "Талантливые разработчики и соавторы, которые создают Meteostat и его интерфейсы",
-    "$contributorsAction": "Если вы знакомы с кодированием, зайдите на {github} и помогите нам создать Meteostat."
+    "supporters": "Спонсоры",
+    "$supportersText": "Meteostat финансируется людьми, которые верят в открытые данные о погоде. Спасибо, что поддерживаете проект!",
+    "$backersText": "Наши замечательные спонсоры на {service}.",
+    "sponsorOnGithub": "Стать спонсором на GitHub",
+    "joinPatreon": "Поддержать на Patreon",
+    "$otherOptions": "Предпочитаете PayPal или банковский перевод? Посмотрите другие {donation}.",
+    "donationOptions": "способы пожертвования",
+    "contributors": "Участники",
+    "$contributorsText": "Талантливые разработчики, которые создают Meteostat и его интерфейсы.",
+    "contributeOnGithub": "Участвовать на GitHub"
   }
 }
 </i18n>
