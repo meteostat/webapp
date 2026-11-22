@@ -89,21 +89,6 @@
       <Ad slot-id="3216865845" />
     </div>
 
-    <!-- Meteo Maps -->
-    <section v-if="differenceInCalendarDays(new Date(), range.start) > 0" id="maps" ref="maps">
-      <div class="card card-full-width mt-3 mt-md-4 p-3 bg-light rounded">
-        <div class="card-header card-header-main px-0 rounded-0 bg-transparent">
-          <h2 class="card-header-title lead">
-            {{ t('maps') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <disabled-content v-if="!mapsEnabled" @enable="mapsEnabled = true" />
-          <Maps v-if="mapsEnabled" :lat="lat" :lon="lon" :range="[range.start, range.end]" />
-        </div>
-      </div>
-    </section>
-
     <!-- Climate Data -->
     <section id="climate" ref="climate">
       <div class="card card-full-width mt-3 mt-md-4 p-3 bg-light rounded">
@@ -237,20 +222,17 @@ import {
   startOfMonth,
   endOfMonth,
   startOfYear,
-  endOfYear,
-  differenceInCalendarDays
+  endOfYear
 } from 'date-fns';
 import { useSettingsStore } from '~/stores/settings';
 import Help from '~/components/Help.vue';
 import Ad from '~/components/Ad.vue';
-import DisabledContent from '~/components/alerts/DisabledContent.vue';
 
 /**
  * Async Components
  */
 const Hourly = defineAsyncComponent(() => import('./dashboards/Hourly.vue'));
 const Daily = defineAsyncComponent(() => import('./dashboards/Daily.vue'));
-const Maps = defineAsyncComponent(() => import('./Maps.vue'));
 const Climate = defineAsyncComponent(() => import('./Climate.vue'));
 
 export default defineComponent({
@@ -262,8 +244,6 @@ export default defineComponent({
     Help,
     Hourly,
     Daily,
-    DisabledContent,
-    Maps,
     Climate,
     Ad
   },
@@ -317,14 +297,12 @@ export default defineComponent({
       startOfMonth,
       endOfMonth,
       startOfYear,
-      endOfYear,
-      differenceInCalendarDays
+      endOfYear
     };
   },
 
   data(): Record<string, any> {
     return {
-      mapsEnabled: false,
       loadExport: false,
       loadDetails: false,
       dataCount: 0,
