@@ -88,7 +88,7 @@
           <a href="https://weather.gc.ca/" target="_blank" rel="noreferrer nofollow">Environment Canada</a>
         </template>
         <template #sources>
-          <a href="https://dev.meteostat.net/sources.html">
+          <a href="https://dev.meteostat.net/providers">
             {{ t('sources') }}
           </a>
         </template>
