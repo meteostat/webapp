@@ -5,6 +5,7 @@ import routes from './router';
 import { installI18n, extractLocaleFromPath, SUPPORTED_LOCALES } from './i18n';
 import { createPinia } from 'pinia';
 import App from './App.vue';
+import 'v-calendar/style.css';
 import './style/default.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
