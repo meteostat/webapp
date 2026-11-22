@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from 'vue';
+import { defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useSettingsStore } from '../stores/settings';
 import Modal from './Modal.vue';
@@ -35,14 +35,6 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
     const settings = useSettingsStore();
-
-    watch(
-      () => settings.$state,
-      (state) => {
-        window.localStorage.setItem('settings', JSON.stringify(state));
-      },
-      { deep: true }
-    );
 
     return { t, settings };
   },

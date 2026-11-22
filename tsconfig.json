@@ -1,23 +1,21 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es2016",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
-    "incremental": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
     "noUnusedLocals": true,
-    "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["esnext", "dom"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["vite/client"],
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
   "exclude": ["dist", "node_modules"]
 }

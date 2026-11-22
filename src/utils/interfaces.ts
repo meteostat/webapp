@@ -34,4 +34,4 @@ interface ChartDefinitionInterface {
   options?: ChartOptions | any;
 }
 
-export { HourlyRecordInterface, NormalsRecordInterface, ChartDefinitionInterface };
+export type { HourlyRecordInterface, NormalsRecordInterface, ChartDefinitionInterface };

@@ -103,11 +103,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref } from 'vue';
+import { defineComponent, ref, computed, Ref } from 'vue';
 import { useRouter, useRoute, RouteLocationNormalizedLoaded } from 'vue-router';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 import { useI18n } from 'vue-i18n';
 import { SUPPORTED_LANGUAGES } from '~/i18n/locales';
+import { alternateLinks } from '~/seo/meta';
 
 export default defineComponent({
   name: 'Footer',
@@ -139,22 +140,10 @@ export default defineComponent({
       return path.value ? `/${l}${path.value}` : `/${l}`;
     };
 
-    // Add alternate links
-    const alternates = languages
-      .filter((l) => l.locale !== locale.value)
-      .map((l): any => {
-        return {
-          rel: 'alternate',
-          hreflang: l.locale,
-          href: `https://meteostat.net${i18nLink(l.locale)}`
-        };
-      });
-
-    if (path.value) {
-      useHead({
-        link: alternates
-      });
-    }
+    // hreflang alternates (all languages + x-default), updated on navigation
+    useHead({
+      link: computed(() => (path.value !== null ? alternateLinks(path.value === '/' ? '' : path.value) : []))
+    });
 
     return { t, lang, languages, i18nLink };
   }
@@ -162,9 +151,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
 footer {
   border-top: 1px solid #eee;

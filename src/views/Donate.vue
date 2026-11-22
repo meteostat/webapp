@@ -136,7 +136,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 import { getExpediaLink, getAmazonLink, getUdemyLink } from '~/utils/affiliate';
 import CopyInput from '~/components/CopyInput.vue';
 
@@ -220,9 +220,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '~/style/variables';
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
 .bg-donate {
   background-color: $primary;

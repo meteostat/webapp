@@ -16,19 +16,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useContext } from 'vitedge';
 import { useI18n } from 'vue-i18n';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 
 export default defineComponent({
   name: 'NotFound',
 
   setup(): Record<string, any> {
-    if (import.meta.env.SSR) {
-      const { writeResponse } = useContext();
-      writeResponse({ status: 404 });
-    }
-
     const { t } = useI18n();
 
     useHead({
@@ -37,6 +31,11 @@ export default defineComponent({
         {
           name: 'description',
           content: t('$meta.description')
+        },
+        {
+          // SPA cannot send a 404 status, so keep error pages out of the index
+          name: 'robots',
+          content: 'noindex'
         }
       ]
     });
