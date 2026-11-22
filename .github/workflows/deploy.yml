@@ -20,6 +20,8 @@ jobs:
         run: npm run typecheck:worker
       - name: Build SPA
         run: npm run build
+        env:
+          VITE_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
       # Fallback origin (Apache, uses .htaccess for SPA routing)
       - name: Deploy SPA to origin
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
