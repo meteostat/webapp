@@ -179,12 +179,12 @@ export default defineComponent({
 {
   "en": {
     "$meta": {
-      "description": "Meteostat's blog for the latest on weather, climate and meteorological data science."
+      "description": "Meteostat's blog with the latest on weather, climate and meteorological data science."
     }
   },
   "de": {
     "$meta": {
-      "description": "Das Neuste von Meteostat aus den Bereichen Wetter, Klima und meteorlogische Daten."
+      "description": "Das Neueste von Meteostat rund um Wetter, Klima und meteorologische Daten."
     }
   },
   "it": {
@@ -203,19 +203,19 @@ export default defineComponent({
     }
   },
   "fr": {
-    "$meta" : {
-      "description" : "Le blog de Meteostat pour les dernières nouvelles sur le temps, le climat et la science des données météorologiques."
+    "$meta": {
+      "description": "Le blog de Meteostat pour les dernières nouvelles sur le temps, le climat et la science des données météorologiques."
     }
   },
   "pt": {
     "$meta": {
-      "description": "Blog do Meteostat para as últimas novidades sobre o tempo, clima e ciência de dados meteorológicos."
+      "description": "O blog do Meteostat com as últimas novidades sobre tempo, clima e ciência de dados meteorológicos."
     }
   },
   "ru": {
     "$meta": {
-      "description": "Блог Meteostat о последних новостях в области погоды, климата и науки о метеорологических данных."
-    }    
+      "description": "Блог Meteostat: последние новости о погоде, климате и науке о метеорологических данных."
+    }
   }
 }
 </i18n>

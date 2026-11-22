@@ -2,13 +2,12 @@
   "locale": "nl",
   "dateFormat": "dd-MM-yyyy",
   "dateTimeFormat": "dd-MM-yyyy HH:mm:ss",
-
   "home": "Home",
   "blog": "Blog",
-  "patrons": "Patrons",
-  "donation": "Donatie",
+  "patrons": "Supporters",
+  "donation": "Doneren",
   "settings": "Instellingen",
-  "history": "Geschiedenis",
+  "history": "Historie",
   "climate": "Klimaat",
   "maps": "Kaarten",
   "export": "Exporteren",
@@ -16,52 +15,48 @@
   "close": "Sluiten",
   "details": "Details",
   "updated": "Bijgewerkt",
-  "support": "Ondersteuning",
+  "support": "Support",
   "documentation": "Documentatie",
   "help": "Help",
-  "archive": "Archive",
+  "archive": "Archief",
   "loading": "Laden",
-
-  "avg": "Avg.",
-  "min.": "Min.",
+  "avg": "Gem.",
   "max": "Max.",
   "total": "Totaal",
-
   "$phrases": {
-    "noData": "Geen Gegevens",
-    "someDataMissing": "Sommige gegevens ontbreken",
-    "showMore": "Meer Tonen"
+    "noData": "Geen gegevens",
+    "someDataMissing": "Er ontbreken gegevens",
+    "showMore": "Meer tonen"
   },
-
   "$meteo": {
     "weather": "Weer",
-    "air": "Air",
+    "air": "Lucht",
     "pres": "Druk",
     "temp": "Temperatuur",
-    "humidity": "Vochtigheid",
+    "humidity": "Luchtvochtigheid",
     "prcp": "Neerslag",
     "sunshine": "Zonneschijn",
     "snow": "Sneeuw",
     "wind": "Wind",
-    "gust": "Windvlaag"
+    "gust": "Windstoot"
   },
-
   "$params": {
-    "time": "Time",
-    "date": "Date",
-    "temp": "Temperature",
-    "tavg": "Avg. Temperatuur",
-    "tmin": "Min. Temperatuur",
-    "tmax": "Max. Temperatuur",
+    "time": "Tijd",
+    "date": "Datum",
+    "temp": "Temperatuur",
+    "tavg": "Gem. temperatuur",
+    "tmin": "Min. temperatuur",
+    "tmax": "Max. temperatuur",
     "dwpt": "Dauwpunt",
-    "rhum": "Relatieve Vochtigheid",
-    "prcp": "Totale Neerslag",
+    "rhum": "Relatieve luchtvochtigheid",
+    "prcp": "Totale neerslag",
     "snow": "Sneeuwhoogte",
     "wdir": "Windrichting",
     "wspd": "Windsnelheid",
-    "wpgt": "Piekvlaag",
+    "wpgt": "Maximale windstoot",
     "pres": "Luchtdruk",
-    "tsun": "Sunshine Duration",
-    "coco": "Weather Condition Code"
-  }
+    "tsun": "Zonneschijnduur",
+    "coco": "Weercode"
+  },
+  "min": "Min."
 }

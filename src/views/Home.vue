@@ -156,17 +156,17 @@ export default defineComponent({
 {
   "en": {
     "$slogan": "The Weather's Record Keeper",
-    "$heroText": "Weather and climate database providing detailed weather data for thousands of weather stations and places worldwide. Take a look at yesterday's temperatures or discover the weather hundreds of years ago.",
+    "$heroText": "Weather and climate database providing detailed weather data for thousands of weather stations and places worldwide. Check yesterday's temperatures or discover the weather of centuries ago.",
     "myLocation": "My Location",
     "findStations": "Find Stations",
     "$sections": [
       {
-        "title": "Powered By You.",
-        "text": "Meteostat provides open weather and climate data for everyone. Become a patron and support Meteostat on its mission of democratizing meteorological data. Your donation also helps dozens of educational and research projects making the world run better."
+        "title": "Powered by You.",
+        "text": "Meteostat provides open weather and climate data for everyone. Become a patron and support Meteostat on its mission of democratizing meteorological data. Your donation also supports dozens of educational and research projects that rely on Meteostat data."
       },
       {
-        "title": "Made For Developers.",
-        "text": "Meteostat is one of the largest vendors of open weather and climate data. Access long-term time series of thousands of weather stations and integrate Meteostat data into your products, applications and workflows. Thanks to our open data policy, Meteostat is an ideal data source for research and educational projects."
+        "title": "Made for Developers.",
+        "text": "Meteostat is one of the largest providers of open weather and climate data. Access long-term time series of thousands of weather stations and integrate Meteostat data into your products, applications and workflows. Thanks to our open data policy, Meteostat is an ideal data source for research and educational projects."
       }
     ]
   },
@@ -174,113 +174,113 @@ export default defineComponent({
     "$slogan": "Wetterrückblick und Klimadaten",
     "$heroText": "Wetter- und Klimadatenbank mit detaillierten Wetteraufzeichnungen und Klimastatistiken für tausende Wetterstationen und Orte weltweit. Werfen Sie einen Blick auf die gestrigen Temperaturen oder auf das Wetter vor 100 Jahren.",
     "myLocation": "Mein Standort",
-    "findStations": "Station Finden",
+    "findStations": "Stationen finden",
     "$sections": [
       {
         "title": "Freie Daten.",
-        "text": "Meteostat bietet offene Wetter- und Klimadaten für jedermann. Werden Sie Förderer und unterstützen Sie Meteostat bei der Mission, meteorologische Daten zu demokratisieren. Ihre Spende hilft auch Dutzenden von Bildungs- und Forschungsprojekten, die mit ihrer Arbeit Großes leisten."
+        "text": "Meteostat bietet offene Wetter- und Klimadaten für alle. Werden Sie Förderer und unterstützen Sie Meteostat bei der Mission, meteorologische Daten zu demokratisieren. Ihre Spende unterstützt auch Dutzende Bildungs- und Forschungsprojekte, die auf Meteostat-Daten angewiesen sind."
       },
       {
         "title": "Für Entwickler.",
-        "text": "Meteostat ist einer der größten Anbieter von offenen Wetter- und Klimadaten. Greifen Sie auf langfristige Zeitreihen von Tausenden von Wetterstationen zu und integrieren Sie Meteostat-Daten in Ihre Produkte, Anwendungen und Arbeitsabläufe. Dank unserer offenen Datenpolitik ist Meteostat eine ideale Datenquelle für Forschungs- und Bildungsprojekte."
+        "text": "Meteostat ist einer der größten Anbieter offener Wetter- und Klimadaten. Greifen Sie auf langjährige Zeitreihen tausender Wetterstationen zu und integrieren Sie Meteostat-Daten in Ihre Produkte, Anwendungen und Arbeitsabläufe. Dank unserer offenen Datenpolitik ist Meteostat eine ideale Datenquelle für Forschungs- und Bildungsprojekte."
       }
     ]
   },
   "it": {
-    "$slogan": "Il Guardiano del Tempo",
-    "$heroText": "Database meteo e climatico che fornisce dati meteo dettagliati per migliaia di stazioni meteo e luoghi in tutto il mondo. Dai un'occhiata alle temperature di ieri o scopri il tempo di centinaia di anni fa.",
-    "myLocation": "Mia Posizione",
-    "findStations": "Trova Stazioni",
+    "$slogan": "L'archivio del meteo",
+    "$heroText": "Database meteo e climatico con dati dettagliati per migliaia di stazioni meteo e luoghi in tutto il mondo. Controlla le temperature di ieri o scopri che tempo faceva secoli fa.",
+    "myLocation": "La mia posizione",
+    "findStations": "Trova stazioni",
     "$sections": [
       {
-        "title": "Alimentato da Te.",
-        "text": "Meteostat fornisce dati meteorologici e climatici aperti a tutti. Diventa un mecenate e sostieni Meteostat nella sua missione di democratizzazione dei dati meteorologici. La tua donazione aiuta anche decine di progetti educativi e di ricerca che fanno funzionare meglio il mondo."
+        "title": "Sostenuto da te.",
+        "text": "Meteostat offre dati meteo e climatici aperti a tutti. Diventa un sostenitore e aiuta Meteostat nella sua missione di democratizzare i dati meteorologici. La tua donazione sostiene anche decine di progetti didattici e di ricerca che si basano sui dati di Meteostat."
       },
       {
-        "title": "Fatto per gli Sviluppatori.",
-        "text": "Meteostat è uno dei maggiori fornitori di dati meteo e climatici aperti. Accedi alle serie temporali a lungo termine di migliaia di stazioni meteorologiche e integra i dati Meteostat nei tuoi prodotti, applicazioni e flussi di lavoro. Grazie alla nostra politica di dati aperti, Meteostat è una fonte di dati ideale per la ricerca e i progetti educativi."
+        "title": "Pensato per gli sviluppatori.",
+        "text": "Meteostat è uno dei maggiori fornitori di dati meteo e climatici aperti. Accedi a serie temporali pluriennali di migliaia di stazioni meteo e integra i dati di Meteostat nei tuoi prodotti, applicazioni e flussi di lavoro. Grazie alla nostra politica di dati aperti, Meteostat è una fonte ideale per progetti di ricerca e didattici."
       }
     ]
   },
   "es": {
-    "$slogan": "El Guardián del Tiempo",
-    "$heroText": "Base de datos meteorológicos y climáticos que proporciona datos meteorológicos detallados de miles de estaciones meteorológicas y lugares de todo el mundo. Echa un vistazo a las temperaturas de ayer o descubre el tiempo de hace cientos de años.",
-    "myLocation": "Mi Localización",
-    "findStations": "Encontrar Estaciones",
+    "$slogan": "El archivo del tiempo",
+    "$heroText": "Base de datos meteorológica y climática con datos detallados de miles de estaciones meteorológicas y lugares de todo el mundo. Consulta las temperaturas de ayer o descubre el tiempo de hace siglos.",
+    "myLocation": "Mi ubicación",
+    "findStations": "Buscar estaciones",
     "$sections": [
       {
-        "title": "Desarrollado por Usted.",
-        "text": "Meteostat proporciona datos meteorológicos y climáticos abiertos para todos. Hazte mecenas y apoya a Meteostat en su misión de democratizar los datos meteorológicos. Tu donación también ayuda a docenas de proyectos educativos y de investigación que hacen que el mundo funcione mejor."
+        "title": "Impulsado por ti.",
+        "text": "Meteostat ofrece datos meteorológicos y climáticos abiertos para todos. Hazte mecenas y apoya a Meteostat en su misión de democratizar los datos meteorológicos. Tu donación también apoya a decenas de proyectos educativos y de investigación que dependen de los datos de Meteostat."
       },
       {
-        "title": "Hecho Para Desarrolladores.",
-        "text": "Meteostat es uno de los mayores proveedores de datos meteorológicos y climáticos abiertos. Acceda a series temporales a largo plazo de miles de estaciones meteorológicas e integre los datos de Meteostat en sus productos, aplicaciones y flujos de trabajo. Gracias a nuestra política de datos abiertos, Meteostat es una fuente de datos ideal para proyectos de investigación y educativos."
+        "title": "Hecho para desarrolladores.",
+        "text": "Meteostat es uno de los mayores proveedores de datos meteorológicos y climáticos abiertos. Accede a series temporales de largo plazo de miles de estaciones meteorológicas e integra los datos de Meteostat en tus productos, aplicaciones y flujos de trabajo. Gracias a nuestra política de datos abiertos, Meteostat es una fuente de datos ideal para proyectos de investigación y educativos."
       }
     ]
   },
   "nl": {
-    "$slogan": "The Weather's Record Keeper",
-    "$heroText": "Weer- en klimaatdatabase met gedetailleerde weergegevens van duizenden weerstations en plaatsen wereldwijd. Neem een kijkje naar de temperaturen van gisteren of ontdek het weer van honderden jaren geleden.",
-    "myLocation": "Mijn Locatie",
-    "findStations": "Zoek Stations",
+    "$slogan": "Het geheugen van het weer",
+    "$heroText": "Weer- en klimaatdatabase met gedetailleerde weergegevens van duizenden weerstations en plaatsen wereldwijd. Bekijk de temperaturen van gisteren of ontdek het weer van eeuwen geleden.",
+    "myLocation": "Mijn locatie",
+    "findStations": "Stations zoeken",
     "$sections": [
       {
-        "title": "Aangedreven door Jou.",
-        "text": "Meteostat biedt open weer- en klimaatgegevens voor iedereen. Word mecenas en steun Meteostat in haar missie om meteorologische gegevens te democratiseren. Jouw donatie helpt ook tientallen educatieve en onderzoeksprojecten die de wereld beter laten draaien."
+        "title": "Mogelijk gemaakt door jou.",
+        "text": "Meteostat biedt open weer- en klimaatgegevens voor iedereen. Word supporter en steun Meteostat in zijn missie om meteorologische gegevens te democratiseren. Jouw donatie steunt ook tientallen onderwijs- en onderzoeksprojecten die afhankelijk zijn van Meteostat-gegevens."
       },
       {
-        "title": "Gemaakt voor Ontwikkelaars.",
-        "text": "Meteostat is een van de grootste leveranciers van open weer- en klimaatgegevens. Krijg toegang tot langetermijntijdreeksen van duizenden weerstations en integreer Meteostat-gegevens in uw producten, toepassingen en workflows. Dankzij ons open gegevensbeleid is Meteostat een ideale gegevensbron voor onderzoeks- en onderwijsprojecten."
+        "title": "Gemaakt voor ontwikkelaars.",
+        "text": "Meteostat is een van de grootste aanbieders van open weer- en klimaatgegevens. Krijg toegang tot langjarige tijdreeksen van duizenden weerstations en integreer Meteostat-gegevens in je producten, applicaties en workflows. Dankzij ons opendatabeleid is Meteostat een ideale gegevensbron voor onderzoeks- en onderwijsprojecten."
       }
     ]
   },
   "fr": {
-    "$slogan": "Le Gardien du Temps",
-    "$heroText": "Base de données météorologiques et climatiques fournissant des données météorologiques détaillées pour des milliers de stations météorologiques et de lieux dans le monde entier. Jetez un coup d'œil aux températures d'hier ou découvrez le temps qu'il faisait il y a des centaines d'années.",
+    "$slogan": "La mémoire de la météo",
+    "$heroText": "Base de données météorologiques et climatiques offrant des données détaillées pour des milliers de stations météo et de lieux dans le monde entier. Consultez les températures d'hier ou découvrez le temps qu'il faisait il y a des siècles.",
     "myLocation": "Ma Position",
-    "findStations": "Trouver des Stations",
+    "findStations": "Trouver des stations",
     "$sections": [
       {
-        "title": "Propulsé par Vous.",
-        "text": "Meteostat fournit des données météorologiques et climatiques ouvertes pour tout le monde. Devenez un mécène et soutenez Meteostat dans sa mission de démocratisation des données météorologiques. Votre don aide également des dizaines de projets éducatifs et de recherche qui permettent au monde de mieux fonctionner."
+        "title": "Propulsé par vous.",
+        "text": "Meteostat fournit des données météorologiques et climatiques ouvertes à tous. Devenez mécène et soutenez Meteostat dans sa mission de démocratisation des données météorologiques. Votre don soutient également des dizaines de projets éducatifs et de recherche qui s'appuient sur les données de Meteostat."
       },
       {
-        "title": "Pour les Développeurs.",
-        "text": " Meteostat est l'un des plus grands vendeurs de données météorologiques et climatiques ouvertes. Accédez aux séries temporelles à long terme de milliers de stations météorologiques et intégrez les données de Meteostat dans vos produits, applications et flux de travail. Grâce à notre politique de données ouvertes, Meteostat est une source de données idéale pour les projets de recherche et d'éducation."
+        "title": "Conçu pour les développeurs.",
+        "text": "Meteostat est l'un des plus grands fournisseurs de données météorologiques et climatiques ouvertes. Accédez à des séries temporelles longues de milliers de stations météo et intégrez les données de Meteostat dans vos produits, applications et flux de travail. Grâce à notre politique de données ouvertes, Meteostat est une source de données idéale pour les projets de recherche et d'enseignement."
       }
     ]
   },
   "pt": {
-    "$slogan": "O Recordista Meteorológico",
-    "$heroText": "Base de dados meteorológicos e climáticos fornecendo dados meteorológicos detalhados para milhares de estações meteorológicas e locais em todo o mundo. Veja as temperaturas de ontem ou descubra o tempo há centenas de anos",
-    "myLocation": "Minha Localização",
-    "findStations": "Encontrar Estações",
+    "$slogan": "O arquivo do tempo",
+    "$heroText": "Base de dados meteorológicos e climáticos com dados detalhados de milhares de estações meteorológicas e locais em todo o mundo. Consulte as temperaturas de ontem ou descubra o tempo de há séculos.",
+    "myLocation": "A minha localização",
+    "findStations": "Encontrar estações",
     "$sections": [
       {
-        "title": "Desenvolvido por Você.",
-        "text": "Meteostat fornece dados climáticos e meteorológicos abertos para todos. Torne-se um patrono e apoie o Meteostat na sua missão de democratizar os dados meteorológicos. A sua doação também ajuda dezenas de projectos educativos e de investigação a melhorar o funcionamento do mundo."
+        "title": "Graças a si.",
+        "text": "O Meteostat disponibiliza dados meteorológicos e climáticos abertos para todos. Torne-se apoiante e ajude o Meteostat na sua missão de democratizar os dados meteorológicos. O seu donativo apoia também dezenas de projetos educativos e de investigação que dependem dos dados do Meteostat."
       },
       {
-        "title": "Feito Para Desenvolvedores.",
-        "text": "O Meteostat é um dos maiores fornecedores de dados climáticos e meteorológicos abertos. Aceda a séries temporais a longo prazo de milhares de estações meteorológicas e integre os dados do Meteostat nos seus produtos, aplicações e fluxos de trabalho. Graças à nossa política de dados abertos, o Meteostat é uma fonte de dados ideal para projectos de investigação e educação."
+        "title": "Feito para programadores.",
+        "text": "O Meteostat é um dos maiores fornecedores de dados meteorológicos e climáticos abertos. Aceda a séries temporais longas de milhares de estações meteorológicas e integre os dados do Meteostat nos seus produtos, aplicações e fluxos de trabalho. Graças à nossa política de dados abertos, o Meteostat é uma fonte de dados ideal para projetos de investigação e educação."
       }
     ]
   },
   "ru": {
-    "$slogan": "Хранитель рекордов погоды",
-    "$heroText": "База данных о погоде и климате, предоставляющая подробные данные о погоде для тысяч метеостанций и мест по всему миру. Посмотрите на вчерашние температуры или узнайте погоду сотни лет назад.",
+    "$slogan": "Летопись погоды",
+    "$heroText": "База данных о погоде и климате с подробными данными тысяч метеостанций и мест по всему миру. Узнайте, какой была температура вчера или какая погода была столетия назад.",
     "myLocation": "Мое местоположение",
     "findStations": "Найти станции",
     "$sections": [
       {
-        "title": "Работает на вас.",
-        "text": "Meteostat предоставляет открытые данные о погоде и климате для всех. Станьте меценатом и поддержите Meteostat в его миссии демократизации метеорологических данных. Ваше пожертвование также поможет десяткам образовательных и исследовательских проектов, делающих мир лучше."
+        "title": "Благодаря вам.",
+        "text": "Meteostat предоставляет открытые данные о погоде и климате для всех. Станьте меценатом и поддержите Meteostat в его миссии сделать метеорологические данные общедоступными. Ваше пожертвование также поддерживает десятки образовательных и исследовательских проектов, которые используют данные Meteostat."
       },
       {
-        "title": "Сделано для разработчиков.",
-        "text": "Meteostat является одним из крупнейших поставщиков открытых данных о погоде и климате. Получите доступ к долгосрочным временным рядам тысяч метеостанций и интегрируйте данные Meteostat в свои продукты, приложения и рабочие процессы. Благодаря нашей политике открытых данных, Meteostat является идеальным источником данных для исследовательских и образовательных проектов."
+        "title": "Создано для разработчиков.",
+        "text": "Meteostat — один из крупнейших поставщиков открытых данных о погоде и климате. Получите доступ к многолетним временным рядам тысяч метеостанций и интегрируйте данные Meteostat в свои продукты, приложения и рабочие процессы. Благодаря нашей политике открытых данных Meteostat — идеальный источник данных для исследовательских и образовательных проектов."
       }
-    ]   
+    ]
   }
 }
 </i18n>

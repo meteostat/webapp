@@ -39,51 +39,51 @@ export default defineComponent({
 {
   "en": {
     "$title": "No Data",
-    "$description": "Unfortunately, no data was found for the selected period. Perhaps you would like to try a different time period or a nearby location? Please note that for technical reasons observation data and statistics are always provided with a time delay. So it is quite possible that missing data will be available in a few hours or days.",
-    "$tipModel": "You are currently using Meteostat without model data. You might want to try enabling model data to fill gaps in Meteostat's time series data.",
-    "enableModel": "Enable Model"
+    "$description": "Unfortunately, no data was found for the selected period. Try a different period or a nearby location. Please note that, for technical reasons, observations and statistics are always published with a delay, so missing data may become available within a few hours or days.",
+    "$tipModel": "You're currently using Meteostat without model data. Enabling model data can fill gaps in the time series.",
+    "enableModel": "Enable Model Data"
   },
   "de": {
     "$title": "Keine Daten",
-    "$description": "Für den ausgewählten Zeitraum wurden leider keine Daten gefunden. Vielleicht möchten Sie es mit einem anderen Zeitraum oder einem nahegelegenen Standort versuchen? Bitte beachten Sie, dass aus technischen Gründen Observationsdaten und Statistiken stets mit einem zeitlichen Verzug bereitgestellt werden. Es kann also durchaus sein, dass fehlende Daten bereits in einigen Stunden oder Tagen verfügbar sind.",
-    "$tipModel": "Sie verwenden Meteostat derzeit ohne Modelldaten. Vielleicht möchten Sie versuchen, Modelldaten zu aktivieren, um Lücken in den Zeitreihen von Meteostat zu füllen.",
-    "enableModel": "Modelldaten Aktivieren"
+    "$description": "Für den ausgewählten Zeitraum wurden leider keine Daten gefunden. Versuchen Sie es mit einem anderen Zeitraum oder einem Ort in der Nähe. Bitte beachten Sie, dass Beobachtungsdaten und Statistiken aus technischen Gründen immer mit Verzögerung bereitgestellt werden. Fehlende Daten können also schon in wenigen Stunden oder Tagen verfügbar sein.",
+    "$tipModel": "Sie verwenden Meteostat derzeit ohne Modelldaten. Wenn Sie Modelldaten aktivieren, können Lücken in den Zeitreihen gefüllt werden.",
+    "enableModel": "Modelldaten aktivieren"
   },
   "it": {
-    "$title": "Nessun Dato",
-    "$description": "Purtroppo non sono stati trovati dati per il periodo selezionato. Forse vorresti provare un periodo diverso o una località vicina? Si prega di notare che per ragioni tecniche i dati di osservazione e le statistiche sono sempre forniti con un ritardo temporale. Quindi è molto probabile che i dati mancanti siano disponibili tra qualche ora o qualche giorno.",
-    "$tipModel": "Attualmente stai usando Meteostat senza i dati del modello. Potresti provare ad abilitare i dati del modello per riempire le lacune nei dati delle serie temporali di Meteostat.",
-    "enableModel": "Abilita Modello"
+    "$title": "Nessun dato",
+    "$description": "Purtroppo non sono stati trovati dati per il periodo selezionato. Prova un periodo diverso o una località vicina. Tieni presente che, per motivi tecnici, osservazioni e statistiche vengono sempre pubblicate con un certo ritardo: i dati mancanti potrebbero quindi essere disponibili entro poche ore o giorni.",
+    "$tipModel": "Stai usando Meteostat senza dati del modello. Attivandoli puoi riempire le lacune nelle serie temporali.",
+    "enableModel": "Attiva dati del modello"
   },
   "es": {
-    "$title": "No Hay Datos",
-    "$description": "Lamentablemente, no se han encontrado datos para el periodo seleccionado. ¿Quizás le gustaría probar con otro periodo de tiempo o con una localización cercana? Tenga en cuenta que, por razones técnicas, los datos de observación y las estadísticas se proporcionan siempre con un retraso. Así que es muy posible que los datos que faltan estén disponibles en unas horas o días",
-    "$tipModel": "Actualmente está utilizando Meteostat sin datos del modelo. Es posible que desee intentar habilitar los datos del modelo para rellenar las lagunas en los datos de las series temporales de Meteostat.",
-    "enableModel": "Activar el Modelo"
+    "$title": "No hay datos",
+    "$description": "Lamentablemente, no se han encontrado datos para el periodo seleccionado. Prueba con otro periodo o con un lugar cercano. Ten en cuenta que, por motivos técnicos, las observaciones y estadísticas siempre se publican con cierto retraso, por lo que es posible que los datos que faltan estén disponibles en unas horas o días.",
+    "$tipModel": "Estás usando Meteostat sin datos del modelo. Si los activas, se pueden rellenar los huecos en las series temporales.",
+    "enableModel": "Activar datos del modelo"
   },
   "nl": {
-    "$title": "Geen Gegevens",
-    "$description": "Helaas zijn er geen gegevens gevonden voor de geselecteerde periode. Misschien wilt u een andere periode of een nabijgelegen locatie proberen? Merk op dat om technische redenen observatiegegevens en statistieken altijd met een vertraging worden geleverd. Het is dus goed mogelijk dat ontbrekende gegevens pas over enkele uren of dagen beschikbaar zijn.",
-    "$tipModel": "U gebruikt momenteel Meteostat zonder modelgegevens. Je zou kunnen proberen modelgegevens in te schakelen om gaten in de tijdreeksgegevens van Meteostat op te vullen.",
-    "enableModel": "Schakel Model In"
+    "$title": "Geen gegevens",
+    "$description": "Helaas zijn er geen gegevens gevonden voor de geselecteerde periode. Probeer een andere periode of een locatie in de buurt. Houd er rekening mee dat waarnemingen en statistieken om technische redenen altijd met vertraging worden gepubliceerd. Ontbrekende gegevens kunnen dus binnen enkele uren of dagen beschikbaar komen.",
+    "$tipModel": "Je gebruikt Meteostat momenteel zonder modelgegevens. Door modelgegevens in te schakelen kunnen gaten in de tijdreeksen worden opgevuld.",
+    "enableModel": "Modelgegevens inschakelen"
   },
   "fr": {
-    "$title" : "Pas de Données",
-    "$description" : "Malheureusement, aucune donnée n'a été trouvée pour la période sélectionnée. Peut-être souhaitez-vous essayer une autre période ou un lieu proche ? Veuillez noter que pour des raisons techniques, les données d'observation et les statistiques sont toujours fournies avec un décalage dans le temps. Il est donc tout à fait possible que les données manquantes soient disponibles dans quelques heures ou quelques jours.",
-    "$tipModel" : "Vous utilisez actuellement Meteostat sans données de modèle. Vous pouvez essayer d'activer les données du modèle pour combler les lacunes dans les données des séries chronologiques de Meteostat.",
-    "enableModel" : "Activer le Modèle"
+    "$title": "Aucune donnée",
+    "$description": "Malheureusement, aucune donnée n'a été trouvée pour la période sélectionnée. Essayez une autre période ou un lieu à proximité. Veuillez noter que, pour des raisons techniques, les observations et statistiques sont toujours publiées avec un certain délai : les données manquantes pourraient donc être disponibles d'ici quelques heures ou quelques jours.",
+    "$tipModel": "Vous utilisez actuellement Meteostat sans données de modèle. En les activant, vous pouvez combler les lacunes des séries temporelles.",
+    "enableModel": "Activer les données de modèle"
   },
   "pt": {
-    "$title": "Sem Dados",
-    "$descrição": "Infelizmente, não foram encontrados dados para o período seleccionado. Talvez queira tentar um período de tempo diferente ou um local próximo? Note que, por razões técnicas, os dados de observação e as estatísticas são sempre fornecidos com um atraso de tempo. Portanto, é bem possível que os dados em falta estejam disponíveis dentro de algumas horas ou dias.",
-    "Modelo $tipModel": "Está actualmente a utilizar o Meteostat sem dados de modelo. Poderá querer tentar permitir que os dados do modelo preencham lacunas nos dados das séries cronológicas do Meteostat.",
-    "enableModel": "Activar Modelo"
+    "$title": "Sem dados",
+    "enableModel": "Ativar dados de modelo",
+    "$description": "Infelizmente, não foram encontrados dados para o período selecionado. Experimente outro período ou um local próximo. Tenha em atenção que, por razões técnicas, as observações e estatísticas são sempre publicadas com algum atraso, pelo que os dados em falta poderão ficar disponíveis dentro de algumas horas ou dias.",
+    "$tipModel": "Está atualmente a utilizar o Meteostat sem dados de modelo. Ao ativá-los, é possível preencher lacunas nas séries temporais."
   },
   "ru": {
     "$title": "Нет данных",
-    "$description": "К сожалению, для выбранного периода данных не найдено. Возможно, вы хотите попробовать другой период времени или соседнее место? Обратите внимание, что по техническим причинам данные наблюдений и статистика всегда предоставляются с временной задержкой. Поэтому вполне возможно, что недостающие данные будут доступны через несколько часов или дней.",
-    "$tipModel": "В настоящее время вы используете Meteostat без модельных данных. Возможно, вы захотите попробовать включить модельные данные, чтобы заполнить пробелы в данных временных рядов Меteostat.",
-    "enableModel": "Включить модель"    
+    "$description": "К сожалению, за выбранный период данные не найдены. Попробуйте выбрать другой период или ближайшее место. Обратите внимание, что по техническим причинам наблюдения и статистика всегда публикуются с задержкой, поэтому недостающие данные могут появиться в течение нескольких часов или дней.",
+    "$tipModel": "Сейчас вы используете Meteostat без модельных данных. Включив их, можно заполнить пробелы во временных рядах.",
+    "enableModel": "Включить модельные данные"
   }
 }
 </i18n>

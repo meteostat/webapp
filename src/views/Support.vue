@@ -168,29 +168,29 @@ export default defineComponent({
   "en": {
     "$meta": {
       "title": "Support",
-      "description": "Stuck with a problem? Get support with everything Meteostat."
+      "description": "Stuck with a problem? Get help with all things Meteostat."
     },
-    "intro": "Do you have questions, feedback or another concern regarding Meteostat? We are here to help.",
-    "alertFailed": "Failed to send message. Please check if everything is correct.",
+    "intro": "Do you have questions, feedback or any other request regarding Meteostat? We are here to help.",
+    "alertFailed": "Your message could not be sent. Please check your input.",
     "alertSuccess": "We received your message and will get back to you soon.",
     "subject": "Subject",
-    "email": "E-Mail",
+    "email": "Email",
     "message": "Message",
-    "alertPrivacy": "By contacting Meteostat you agree with our privacy terms.",
+    "alertPrivacy": "By contacting Meteostat, you agree to our privacy policy.",
     "completeForm": "Please fill in all fields.",
     "send": "Send",
     "faq": [
       {
-        "question": "How was the weather at a certain day in the past?",
-        "answer": "Please forebear from contacting Meteostat regarding general (historical) weather information. All data is made available for free on this website. If you need Meteostat data in a specific format, aggregation or visualization, please get in touch for a non-binding offer."
+        "question": "How was the weather on a certain day in the past?",
+        "answer": "Please refrain from contacting Meteostat about general (historical) weather information. All data is available for free on this website. If you need Meteostat data in a specific format, aggregation or visualization, please get in touch for a non-binding quote."
       },
       {
         "question": "Why do some time series contain future data?",
-        "answer": "Meteostat substitutes missing observations with model data, by default. Model data also includes weather forecasts to improve the user experience when working with real-time data. You can always opt-out of model data."
+        "answer": "By default, Meteostat replaces missing observations with model data. Model data also includes weather forecasts to improve the experience when working with real-time data. You can always opt out of model data."
       },
       {
-        "question": "Why do hourly and daily data not always match?",
-        "answer": "As daily data is not neccessarily aggregated from Meteostat's hourly data, you might experience some inconsistency (e.g. due to different aggregation methods) between the different frequencies. This is expected behaviour."
+        "question": "Why don't hourly and daily data always match?",
+        "answer": "As daily data is not necessarily aggregated from Meteostat's hourly data, the two frequencies may differ (e.g. due to different aggregation methods). This is expected behavior."
       },
       {
         "question": "Under which license is Meteostat data distributed?",
@@ -198,7 +198,7 @@ export default defineComponent({
       },
       {
         "question": "Is Meteostat a public or governmental service?",
-        "answer": "Meteostat is not a public or governmental service. Furthermore, we are not associated with Meteosat. We collect data from national weather service like NOAA and DWD. However, Meteostat is an independent initiative which relies on donations, sponsoring and other sources of income."
+        "answer": "No, Meteostat is not a public or governmental service, and we are not affiliated with Meteosat. We collect data from national weather services such as NOAA and DWD. Meteostat is an independent initiative that relies on donations, sponsorships and other sources of income."
       }
     ]
   },
@@ -208,100 +208,100 @@ export default defineComponent({
       "description": "Erhalten Sie Hilfe bei allen Themen rund um Meteostat."
     },
     "intro": "Haben Sie Fragen, Feedback oder ein anderes Anliegen zu Meteostat? Wir sind für Sie da.",
-    "alertFailed": "Nachricht konnte nicht gesendet werden. Bitte prüfen Sie, ob alles korrekt ist.",
+    "alertFailed": "Die Nachricht konnte nicht gesendet werden. Bitte überprüfen Sie Ihre Eingaben.",
     "alertSuccess": "Wir haben Ihre Nachricht erhalten und werden uns bald bei Ihnen melden.",
     "subject": "Betreff",
     "email": "E-Mail",
     "message": "Nachricht",
-    "alertPrivacy": "Durch die Kontaktaufnahme mit Meteostat erklären Sie sich mit unseren Datenschutzbestimmungen einverstanden.",
+    "alertPrivacy": "Mit der Kontaktaufnahme erklären Sie sich mit unserer Datenschutzerklärung einverstanden.",
     "completeForm": "Bitte füllen Sie alle Felder aus.",
     "send": "Senden",
     "faq": [
       {
         "question": "Wie war das Wetter an einem bestimmten Tag in der Vergangenheit?",
-        "answer": "Bitte sehen Sie davon ab, Meteostat bezüglich allgemeiner (historischer) Wetterinformationen zu kontaktieren. Alle Daten werden auf dieser Website kostenlos zur Verfügung gestellt. Wenn Sie Meteostat-Daten in einem bestimmten Format, einer bestimmten Aggregation oder Visualisierung benötigen, kontaktieren Sie uns bitte für ein unverbindliches Angebot."
+        "answer": "Bitte sehen Sie davon ab, Meteostat wegen allgemeiner (historischer) Wetterinformationen zu kontaktieren. Alle Daten stehen auf dieser Website kostenlos zur Verfügung. Wenn Sie Meteostat-Daten in einem bestimmten Format, einer bestimmten Aggregation oder Visualisierung benötigen, kontaktieren Sie uns gerne für ein unverbindliches Angebot."
       },
       {
-        "question": "Warum enthalten manche Zeitreihen Zukunftsdaten?",
-        "answer": "Meteostat ersetzt fehlende Beobachtungen standardmäßig durch Modelldaten. Die Modelldaten enthalten auch Wettervorhersagen, um die Benutzerfreundlichkeit bei der Arbeit mit Echtzeitdaten zu verbessern. Sie können Modelldaten jederzeit deaktivieren."
+        "question": "Warum enthalten manche Zeitreihen Daten aus der Zukunft?",
+        "answer": "Meteostat ersetzt fehlende Beobachtungen standardmäßig durch Modelldaten. Diese enthalten auch Wettervorhersagen, um die Arbeit mit Echtzeitdaten zu erleichtern. Sie können Modelldaten jederzeit deaktivieren."
       },
       {
-        "question": "Warum stimmen die stündlichen und täglichen Daten nicht immer überein?",
-        "answer": "Da die täglichen Daten nicht notwendigerweise aus den stündlichen Daten von Meteostat aggregiert werden, kann es zu Inkonsistenzen (z. B. aufgrund unterschiedlicher Aggregationsmethoden) zwischen den verschiedenen Frequenzen kommen."
+        "question": "Warum stimmen stündliche und tägliche Daten nicht immer überein?",
+        "answer": "Da die Tageswerte nicht zwingend aus den stündlichen Daten von Meteostat berechnet werden, kann es zwischen den beiden Auflösungen zu Abweichungen kommen (z. B. durch unterschiedliche Aggregationsmethoden). Das ist so beabsichtigt."
       },
       {
         "question": "Unter welcher Lizenz werden die Meteostat-Daten bereitgestellt?",
-        "answer": "Die Meteostat-Daten werden unter den Bedingungen der CC BY-NC 4.0-Lizenz bereitgestellt."
+        "answer": "Die Meteostat-Daten werden unter den Bedingungen der Lizenz CC BY-NC 4.0 bereitgestellt."
       },
       {
-        "question": "Ist Meteostat ein öffentlicher oder staatlicher Service?",
-        "answer": "Meteostat ist kein öffentlicher oder staatlicher Service. Außerdem sind wir nicht mit Meteosat verbunden. Wir sammeln Daten von nationalen Wetterdiensten wie NOAA und DWD. Meteostat ist jedoch eine unabhängige Initiative, die auf Spenden, Sponsoring und andere Einnahmequellen angewiesen ist."
+        "question": "Ist Meteostat ein öffentlicher oder staatlicher Dienst?",
+        "answer": "Nein, Meteostat ist kein öffentlicher oder staatlicher Dienst und steht in keiner Verbindung zu Meteosat. Wir beziehen Daten von nationalen Wetterdiensten wie NOAA und DWD. Meteostat ist eine unabhängige Initiative, die auf Spenden, Sponsoring und andere Einnahmequellen angewiesen ist."
       }
     ]
   },
   "it": {
     "$meta": {
       "title": "Supporto",
-      "description": "Bloccato con un problema? Ottieni supporto per tutto ciò che riguarda Meteostat."
+      "description": "Hai un problema? Ricevi assistenza su tutto ciò che riguarda Meteostat."
     },
-    "intro": "Hai domande, feedback o un'altra preoccupazione riguardo a Meteostat? Siamo qui per aiutarti.",
-    "alertFailed": "Impossibile inviare il messaggio. Si prega di controllare se tutto è corretto.",
-    "alertSuccess": "Abbiamo ricevuto il suo messaggio e la contatteremo presto.",
+    "intro": "Hai domande, feedback o un'altra richiesta su Meteostat? Siamo qui per aiutarti.",
+    "alertFailed": "Non è stato possibile inviare il messaggio. Controlla i dati inseriti.",
+    "alertSuccess": "Abbiamo ricevuto il tuo messaggio e ti risponderemo al più presto.",
     "subject": "Oggetto",
-    "email": "E-Mail",
+    "email": "E-mail",
     "message": "Messaggio",
-    "alertPrivacy": "Contattando Meteostat accetti le nostre condizioni sulla privacy.",
-    "completeForm": "Si prega di compilare tutti i campi.",
+    "alertPrivacy": "Contattando Meteostat accetti la nostra informativa sulla privacy.",
+    "completeForm": "Compila tutti i campi.",
     "send": "Invia",
     "faq": [
       {
-        "question": "Com'era il tempo in un certo giorno del passato?",
-        "answer": "Si prega di evitare di contattare Meteostat per informazioni meteorologiche generali (storiche). Tutti i dati sono disponibili gratuitamente su questo sito. Se hai bisogno di dati Meteostat in un formato specifico, aggregazione o visualizzazione, contattaci per un'offerta non vincolante."
+        "question": "Com'era il tempo in un determinato giorno del passato?",
+        "answer": "Ti preghiamo di non contattare Meteostat per informazioni meteo generali (storiche). Tutti i dati sono disponibili gratuitamente su questo sito. Se hai bisogno dei dati di Meteostat in un formato, un'aggregazione o una visualizzazione specifici, contattaci per un'offerta non vincolante."
       },
       {
         "question": "Perché alcune serie temporali contengono dati futuri?",
-        "answer": "Meteostat sostituisce le osservazioni mancanti con i dati del modello, per impostazione predefinita. I dati del modello includono anche le previsioni del tempo per migliorare l'esperienza dell'utente quando lavora con i dati in tempo reale. È sempre possibile rinunciare ai dati del modello."
+        "answer": "Per impostazione predefinita, Meteostat sostituisce le osservazioni mancanti con dati del modello. Questi includono anche previsioni meteo, per facilitare il lavoro con i dati in tempo reale. Puoi sempre disattivare i dati del modello."
       },
       {
-        "question": "Perché i dati orari e giornalieri non sempre corrispondono?",
-        "answer": "Poiché i dati giornalieri non sono necessariamente aggregati dai dati orari di Meteostat, si potrebbe verificare qualche incoerenza (ad esempio a causa di diversi metodi di aggregazione) tra le diverse frequenze. Questo è un comportamento atteso."
+        "question": "Perché i dati orari e giornalieri non sempre coincidono?",
+        "answer": "Poiché i dati giornalieri non sono necessariamente calcolati a partire dai dati orari di Meteostat, possono esserci differenze tra le due frequenze (ad esempio per via di metodi di aggregazione diversi). Questo comportamento è previsto."
       },
       {
-        "question": "Sotto quale licenza vengono distribuiti i dati Meteostat?",
-        "answer": "I dati Meteostat sono distribuiti secondo i termini della licenza CC BY-NC 4.0."
+        "question": "Con quale licenza vengono distribuiti i dati di Meteostat?",
+        "answer": "I dati di Meteostat sono distribuiti secondo i termini della licenza CC BY-NC 4.0."
       },
       {
         "question": "Meteostat è un servizio pubblico o governativo?",
-        "answer": "Meteostat non è un servizio pubblico o governativo. Inoltre, non siamo associati a Meteosat. Raccogliamo dati dal servizio meteorologico nazionale come NOAA e DWD. Tuttavia, Meteostat è un'iniziativa indipendente che si basa su donazioni, sponsorizzazioni e altre fonti di reddito."
+        "answer": "No, Meteostat non è un servizio pubblico o governativo e non è affiliato a Meteosat. Raccogliamo dati dai servizi meteorologici nazionali come NOAA e DWD. Meteostat è un'iniziativa indipendente che si sostiene grazie a donazioni, sponsorizzazioni e altre fonti di entrate."
       }
     ]
   },
   "es": {
     "$meta": {
       "title": "Soporte",
-      "description": "¿Atascado con un problema? Obtenga ayuda con todo lo que se refiere a Meteostat."
+      "description": "¿Tienes un problema? Obtén ayuda con todo lo relacionado con Meteostat."
     },
-    "intro": "¿Tiene preguntas, comentarios o alguna otra inquietud sobre Meteostat? Estamos aquí para ayudarle.",
-    "alertFailed": "No se ha podido enviar el mensaje. Por favor, compruebe si todo es correcto.",
-    "alertSuccess": "Hemos recibido su mensaje y nos pondremos en contacto con usted en breve.",
+    "intro": "¿Tienes preguntas, comentarios o cualquier otra consulta sobre Meteostat? Estamos aquí para ayudarte.",
+    "alertFailed": "No se ha podido enviar el mensaje. Comprueba los datos introducidos.",
+    "alertSuccess": "Hemos recibido tu mensaje y te responderemos lo antes posible.",
     "subject": "Asunto",
-    "email": "E-Mail",
+    "email": "Correo electrónico",
     "message": "Mensaje",
-    "alertPrivacy": "Al ponerse en contacto con Meteostat, acepta nuestras condiciones de privacidad.",
-    "completeForm": "Por favor, rellene todos los campos.",
+    "alertPrivacy": "Al contactar con Meteostat, aceptas nuestra política de privacidad.",
+    "completeForm": "Rellena todos los campos.",
     "send": "Enviar",
     "faq": [
       {
-        "question": "¿Cómo era el tiempo en un día determinado en el pasado?",
-        "answer": "Le rogamos que no se ponga en contacto con Meteostat para obtener información meteorológica general (histórica). Todos los datos están disponibles de forma gratuita en este sitio web. Si necesita datos de Meteostat en un formato específico, agregación o visualización, póngase en contacto con nosotros para una oferta no vinculante."
+        "question": "¿Qué tiempo hizo un día concreto en el pasado?",
+        "answer": "Te rogamos que no contactes con Meteostat para consultas generales sobre el tiempo (histórico). Todos los datos están disponibles de forma gratuita en este sitio web. Si necesitas datos de Meteostat en un formato, agregación o visualización específicos, ponte en contacto con nosotros para recibir una oferta sin compromiso."
       },
       {
         "question": "¿Por qué algunas series temporales contienen datos futuros?",
-        "answer": "Meteostat sustituye por defecto las observaciones que faltan por los datos del modelo. Los datos del modelo también incluyen previsiones meteorológicas para mejorar la experiencia del usuario cuando trabaja con datos en tiempo real. Siempre se puede optar por no utilizar los datos del modelo."
+        "answer": "Por defecto, Meteostat sustituye las observaciones que faltan por datos del modelo. Estos también incluyen previsiones meteorológicas para facilitar el trabajo con datos en tiempo real. Siempre puedes desactivar los datos del modelo."
       },
       {
         "question": "¿Por qué los datos horarios y diarios no siempre coinciden?",
-        "answer": "Dado que los datos diarios no se agregan necesariamente a partir de los datos horarios de Meteostat, es posible que se produzcan algunas incoherencias (por ejemplo, debido a los diferentes métodos de agregación) entre las distintas frecuencias. Este es un comportamiento esperado."
+        "answer": "Como los datos diarios no se calculan necesariamente a partir de los datos horarios de Meteostat, puede haber diferencias entre ambas frecuencias (por ejemplo, por distintos métodos de agregación). Es un comportamiento esperado."
       },
       {
         "question": "¿Bajo qué licencia se distribuyen los datos de Meteostat?",
@@ -309,155 +309,155 @@ export default defineComponent({
       },
       {
         "question": "¿Es Meteostat un servicio público o gubernamental?",
-        "answer": "Meteostat no es un servicio público o gubernamental. Además, no estamos asociados a Meteosat. Recogemos datos de servicios meteorológicos nacionales como la NOAA y el DWD. Sin embargo, Meteostat es una iniciativa independiente que depende de donaciones, patrocinios y otras fuentes de ingresos."
+        "answer": "No, Meteostat no es un servicio público ni gubernamental, y no tiene relación con Meteosat. Recopilamos datos de servicios meteorológicos nacionales como la NOAA y el DWD. Meteostat es una iniciativa independiente que depende de donaciones, patrocinios y otras fuentes de ingresos."
       }
     ]
   },
   "nl": {
     "$meta": {
-      "title": "Steun",
-      "description": "Zit je vast met een probleem? Krijg ondersteuning bij alles wat Meteostat doet."
+      "title": "Support",
+      "description": "Loop je ergens tegenaan? Krijg hulp bij alles rondom Meteostat."
     },
-    "intro": "Heeft u vragen, feedback of een andere zorg met betrekking tot Meteostat? Wij zijn er om u te helpen.",
-    "alertFailed": "Mislukt om bericht te verzenden. Controleer of alles correct is.",
-    "alertSuccess": "We hebben uw bericht ontvangen en zullen spoedig contact met u opnemen.",
-    "subject": "Betreft",
-    "email": "E-Mail",
+    "intro": "Heb je vragen, feedback of een ander verzoek over Meteostat? We helpen je graag.",
+    "alertFailed": "Je bericht kon niet worden verzonden. Controleer je invoer.",
+    "alertSuccess": "We hebben je bericht ontvangen en nemen zo snel mogelijk contact met je op.",
+    "subject": "Onderwerp",
+    "email": "E-mail",
     "message": "Bericht",
-    "alertPrivacy": "Door contact op te nemen met Meteostat gaat u akkoord met onze privacy voorwaarden.",
-    "completeForm": "Gelieve alle velden in te vullen.",
-    "send": "Stuur",
+    "alertPrivacy": "Door contact op te nemen met Meteostat ga je akkoord met ons privacybeleid.",
+    "completeForm": "Vul alle velden in.",
+    "send": "Versturen",
     "faq": [
       {
         "question": "Hoe was het weer op een bepaalde dag in het verleden?",
-        "answer": "Gelieve Meteostat niet te contacteren in verband met algemene (historische) weerinformatie. Alle gegevens worden gratis ter beschikking gesteld op deze website. Als u Meteostat-gegevens in een specifiek formaat, aggregatie of visualisatie nodig hebt, neem dan contact op voor een vrijblijvende offerte."
+        "answer": "Neem alsjeblieft geen contact op met Meteostat voor algemene (historische) weerinformatie. Alle gegevens zijn gratis beschikbaar op deze website. Heb je Meteostat-gegevens nodig in een specifiek formaat, een specifieke aggregatie of visualisatie? Neem dan contact op voor een vrijblijvende offerte."
       },
       {
-        "question": "Waarom bevatten sommige tijdreeksen toekomstige gegevens?",
-        "answer": "Meteostat vervangt standaard ontbrekende waarnemingen door modelgegevens. Modelgegevens bevatten ook weersvoorspellingen om de gebruikerservaring te verbeteren bij het werken met real-time gegevens. U kunt zich altijd afmelden voor modelgegevens."
+        "question": "Waarom bevatten sommige tijdreeksen gegevens uit de toekomst?",
+        "answer": "Meteostat vervangt ontbrekende waarnemingen standaard door modelgegevens. Die bevatten ook weersverwachtingen, zodat je makkelijker met realtimegegevens kunt werken. Je kunt modelgegevens altijd uitschakelen."
       },
       {
-        "question": "Waarom komen uurlijkse en dagelijkse gegevens niet altijd overeen?",
-        "answer": "Aangezien de dagelijkse gegevens niet noodzakelijk worden geaggregeerd uit de uurlijkse gegevens van Meteostat, kunt u enige inconsistentie ondervinden (bv. als gevolg van verschillende aggregatiemethoden) tussen de verschillende frequenties. Dit is verwacht gedrag."
+        "question": "Waarom komen uur- en daggegevens niet altijd overeen?",
+        "answer": "Omdat daggegevens niet per se worden berekend uit de uurgegevens van Meteostat, kunnen beide van elkaar afwijken (bijvoorbeeld door verschillende aggregatiemethoden). Dit is verwacht gedrag."
       },
       {
         "question": "Onder welke licentie worden Meteostat-gegevens verspreid?",
-        "answer": "Meteostat-gegevens worden verspreid onder de voorwaarden van de CC BY-NC 4.0 licentie."
+        "answer": "Meteostat-gegevens worden verspreid onder de voorwaarden van de licentie CC BY-NC 4.0."
       },
       {
         "question": "Is Meteostat een openbare of overheidsdienst?",
-        "answer": "Meteostat is geen openbare of gouvernementele dienst. Bovendien zijn wij niet verbonden met Meteosat. Wij verzamelen gegevens van nationale weerdiensten zoals NOAA en DWD. Meteostat is echter een onafhankelijk initiatief dat afhankelijk is van donaties, sponsoring en andere bronnen van inkomsten."
+        "answer": "Nee, Meteostat is geen openbare of overheidsdienst en is niet verbonden aan Meteosat. We verzamelen gegevens van nationale weerdiensten zoals NOAA en DWD. Meteostat is een onafhankelijk initiatief dat afhankelijk is van donaties, sponsoring en andere inkomstenbronnen."
       }
     ]
   },
   "fr": {
     "$meta": {
-      "title": "Soutien",
-      "description": "Vous avez un problème? Obtenez de l'aide pour tout ce qui concerne Meteostat."
+      "title": "Assistance",
+      "description": "Vous rencontrez un problème ? Obtenez de l'aide pour tout ce qui concerne Meteostat."
     },
-    "intro": "Vous avez des questions, des commentaires ou une autre préoccupation concernant Meteostat? Nous sommes là pour vous aider.",
-    "alertFailed": "L'envoi du message a échoué. Veuillez vérifier si tout est correct.",
+    "intro": "Vous avez des questions, des commentaires ou une autre demande concernant Meteostat ? Nous sommes là pour vous aider.",
+    "alertFailed": "Votre message n'a pas pu être envoyé. Veuillez vérifier votre saisie.",
     "alertSuccess": "Nous avons reçu votre message et nous vous répondrons bientôt.",
     "subject": "Sujet",
-    "email": "E-Mail",
+    "email": "E-mail",
     "message": "Message",
-    "alertPrivacy": "En contactant Meteostat, vous acceptez nos conditions de confidentialité.",
+    "alertPrivacy": "En contactant Meteostat, vous acceptez notre politique de confidentialité.",
     "completeForm": "Veuillez remplir tous les champs.",
     "send": "Envoyer",
     "faq": [
       {
-        "question": "Quel temps faisait-il à un certain jour dans le passé?",
-        "answer": "Veuillez vous abstenir de contacter Meteostat pour des informations météorologiques générales (historiques). Toutes les données sont mises à disposition gratuitement sur ce site web. Si vous avez besoin des données de Meteostat dans un format spécifique, d'une agrégation ou d'une visualisation, veuillez nous contacter pour une offre sans engagement."
+        "question": "Quel temps faisait-il un jour donné dans le passé ?",
+        "answer": "Merci de ne pas contacter Meteostat pour des informations météorologiques générales (historiques). Toutes les données sont disponibles gratuitement sur ce site. Si vous avez besoin des données de Meteostat dans un format, une agrégation ou une visualisation spécifiques, contactez-nous pour une offre sans engagement."
       },
       {
-        "question": "Pourquoi certaines séries chronologiques contiennent-elles des données futures?",
-        "answer": "Par défaut, Meteostat remplace les observations manquantes par les données du modèle. Les données du modèle incluent également des prévisions météorologiques pour améliorer l'expérience utilisateur lorsqu'il travaille avec des données en temps réel. Vous pouvez toujours désactiver les données de modèle."
+        "question": "Pourquoi certaines séries temporelles contiennent-elles des données futures ?",
+        "answer": "Par défaut, Meteostat remplace les observations manquantes par des données de modèle. Celles-ci incluent également des prévisions météo afin de faciliter le travail avec les données en temps réel. Vous pouvez toujours désactiver les données de modèle."
       },
       {
-        "question": "Pourquoi les données horaires et quotidiennes ne correspondent-elles pas toujours?",
-        "answer": "Comme les données quotidiennes ne sont pas nécessairement agrégées à partir des données horaires de Meteostat, il se peut que vous constatiez une certaine incohérence (par exemple, en raison des différentes méthodes d'agrégation) entre les différentes fréquences. Il s'agit d'un comportement attendu."
+        "question": "Pourquoi les données horaires et journalières ne concordent-elles pas toujours ?",
+        "answer": "Les données journalières n'étant pas nécessairement calculées à partir des données horaires de Meteostat, des écarts peuvent apparaître entre les deux fréquences (par exemple en raison de méthodes d'agrégation différentes). Ce comportement est normal."
       },
       {
         "question": "Sous quelle licence les données de Meteostat sont-elles distribuées ?",
         "answer": "Les données de Meteostat sont distribuées selon les termes de la licence CC BY-NC 4.0."
       },
       {
-        "question": "Meteostat est-il un service public ou gouvernemental?",
-        "answer": "Meteostat n'est pas un service public ou gouvernemental. De plus, nous ne sommes pas associés à Meteosat. Nous collectons des données auprès des services météorologiques nationaux comme la NOAA et le DWD. Cependant, Meteostat est une initiative indépendante qui repose sur des dons, des parrainages et d'autres sources de revenus."
+        "question": "Meteostat est-il un service public ou gouvernemental ?",
+        "answer": "Non, Meteostat n'est pas un service public ou gouvernemental et n'est pas affilié à Meteosat. Nous collectons des données auprès de services météorologiques nationaux comme la NOAA et le DWD. Meteostat est une initiative indépendante qui repose sur les dons, le parrainage et d'autres sources de revenus."
       }
     ]
   },
   "pt": {
     "$meta": {
-      "title": "Apoio",
-      "description": "Preso a um problema? Obter apoio com tudo Meteostat."
+      "title": "Suporte",
+      "description": "Tem um problema? Obtenha ajuda com tudo o que diz respeito ao Meteostat."
     },
-    "intro": "Tem perguntas, feedback ou outra preocupação em relação ao Meteostat? Estamos aqui para ajudar.",
-    "alertFailed": "Falha no envio de mensagem. Por favor, verifique se tudo está correcto.",
+    "intro": "Tem perguntas, sugestões ou outro pedido relacionado com o Meteostat? Estamos aqui para ajudar.",
+    "alertFailed": "Não foi possível enviar a mensagem. Verifique os dados introduzidos.",
     "alertSuccess": "Recebemos a sua mensagem e entraremos em contacto consigo em breve.",
     "subject": "Assunto",
-    "email": "E-Mail",
+    "email": "E-mail",
     "message": "Mensagem",
-    "alertPrivacy": "Ao contactar o Meteostat está a concordar com os nossos termos de privacidade.",
-    "completeForm": "Por favor, preencha todos os campos.",
+    "alertPrivacy": "Ao contactar o Meteostat, concorda com a nossa política de privacidade.",
+    "completeForm": "Preencha todos os campos.",
     "send": "Enviar",
     "faq": [
       {
-        "question": "Como era o tempo num determinado dia no passado?",
-        "answer": "Por favor, não hesite em contactar o Meteostat em relação a informações meteorológicas gerais (históricas). Todos os dados são disponibilizados gratuitamente neste website. Se necessitar de dados Meteostat num formato específico, agregação ou visualização, por favor entre em contacto para uma oferta sem compromisso."
+        "question": "Como estava o tempo num determinado dia do passado?",
+        "answer": "Pedimos que não contacte o Meteostat por questões gerais sobre o tempo (histórico). Todos os dados estão disponíveis gratuitamente neste website. Se precisar de dados do Meteostat num formato, agregação ou visualização específicos, entre em contacto connosco para obter uma proposta sem compromisso."
       },
       {
-        "question": "Porque é que algumas séries cronológicas contêm dados futuros?",
-        "answer": "O Meteostat substitui, por defeito, as observações em falta por dados de modelo. Os dados do modelo incluem também previsões meteorológicas para melhorar a experiência do utilizador quando se trabalha com dados em tempo real. É sempre possível optar por não incluir dados de modelo."
+        "question": "Porque é que algumas séries temporais contêm dados futuros?",
+        "answer": "Por predefinição, o Meteostat substitui as observações em falta por dados de modelo. Estes incluem também previsões meteorológicas para facilitar o trabalho com dados em tempo real. Pode desativar os dados de modelo a qualquer momento."
       },
       {
         "question": "Porque é que os dados horários e diários nem sempre coincidem?",
-        "answer": "Como os dados diários não são necessariamente agregados a partir dos dados horários do Meteostat, pode haver alguma inconsistência (por exemplo, devido a diferentes métodos de agregação) entre as diferentes frequências. Este é o comportamento esperado."
+        "answer": "Como os dados diários não são necessariamente calculados a partir dos dados horários do Meteostat, podem existir diferenças entre as duas frequências (por exemplo, devido a métodos de agregação diferentes). Este comportamento é esperado."
       },
       {
         "question": "Sob que licença são distribuídos os dados do Meteostat?",
-        "answer": "Os dados do Meteostat são distribuídos sob os termos da licença CC BY-NC 4.0."
+        "answer": "Os dados do Meteostat são distribuídos nos termos da licença CC BY-NC 4.0."
       },
       {
         "question": "O Meteostat é um serviço público ou governamental?",
-        "answer": "O Meteostat não é um serviço público ou governamental. Além disso, não estamos associados ao Meteosat. Recolhemos dados do serviço meteorológico nacional como NOAA e DWD. No entanto, o Meteostat é uma iniciativa independente que depende de doações, patrocínios e outras fontes de rendimento."
+        "answer": "Não, o Meteostat não é um serviço público nem governamental e não tem qualquer ligação ao Meteosat. Recolhemos dados de serviços meteorológicos nacionais como a NOAA e o DWD. O Meteostat é uma iniciativa independente que depende de donativos, patrocínios e outras fontes de receita."
       }
     ]
   },
   "ru": {
     "$meta": {
       "title": "Поддержка",
-      "description": "Застряли с проблемой? Получите поддержку по всем вопросам, связанным с Meteostat."
+      "description": "Возникла проблема? Получите помощь по любым вопросам, связанным с Meteostat."
     },
-    "intro": "У вас есть вопросы, отзывы или другая проблема, касающаяся Meteostat? Мы всегда готовы помочь.",
-    "alertFailed": "Не удалось отправить сообщение. Пожалуйста, проверьте, все ли правильно.",
+    "intro": "У вас есть вопросы, отзывы или другие обращения, связанные с Meteostat? Мы готовы помочь.",
+    "alertFailed": "Не удалось отправить сообщение. Пожалуйста, проверьте введённые данные.",
     "alertSuccess": "Мы получили ваше сообщение и свяжемся с вами в ближайшее время.",
     "subject": "Тема",
-    "email": "E-Mail",
+    "email": "Эл. почта",
     "message": "Сообщение",
-    "alertPrivacy": "Обращаясь в Meteostat, вы соглашаетесь с нашими условиями конфиденциальности.",
+    "alertPrivacy": "Обращаясь в Meteostat, вы соглашаетесь с нашей политикой конфиденциальности.",
     "completeForm": "Пожалуйста, заполните все поля.",
     "send": "Отправить",
     "faq": [
       {
-        "question": "Какая погода была в определенный день в прошлом?",
-        "answer": "Пожалуйста, воздержитесь от обращения в Meteostat по поводу общей (исторической) информации о погоде. Все данные предоставляются на этом сайте бесплатно. Если вам нужны данные Meteostatа в определенном формате, агрегации или визуализации, пожалуйста, свяжитесь с нами для получения необязывающего предложения."
+        "question": "Какая погода была в определённый день в прошлом?",
+        "answer": "Пожалуйста, не обращайтесь в Meteostat с общими вопросами о (прошлой) погоде. Все данные бесплатно доступны на этом сайте. Если вам нужны данные Meteostat в определённом формате, с особой агрегацией или визуализацией, свяжитесь с нами, чтобы получить предложение без обязательств."
       },
       {
-        "question": "Почему некоторые временные ряды содержат будущие данные?",
-        "answer": "По умолчанию Meteostat заменяет отсутствующие наблюдения модельными данными. Модельные данные также включают прогнозы погоды для улучшения работы пользователя с данными в реальном времени. Вы всегда можете отказаться от использования модельных данных."
+        "question": "Почему некоторые временные ряды содержат данные из будущего?",
+        "answer": "По умолчанию Meteostat заменяет отсутствующие наблюдения модельными данными. Они также включают прогнозы погоды, чтобы упростить работу с данными в реальном времени. Вы всегда можете отключить модельные данные."
       },
       {
-        "question": "Почему часовые и дневные данные не всегда совпадают?",
-        "answer": "Поскольку ежедневные данные не обязательно агрегируются с часовыми данными Meteostat, вы можете столкнуться с некоторым несоответствием (например, из-за различных методов агрегирования) между различными частотами. Это ожидаемое поведение."
+        "question": "Почему почасовые и суточные данные не всегда совпадают?",
+        "answer": "Поскольку суточные данные не обязательно рассчитываются на основе почасовых данных Meteostat, между ними возможны расхождения (например, из-за разных методов агрегирования). Это ожидаемое поведение."
       },
       {
         "question": "Под какой лицензией распространяются данные Meteostat?",
         "answer": "Данные Meteostat распространяются на условиях лицензии CC BY-NC 4.0."
       },
       {
-        "question": "Является ли Meteostat общественной или правительственной службой?",
-        "answer": "Meteostat не является общественной или правительственной службой. Кроме того, мы не связаны с компанией Meteosat. Мы собираем данные из национальных метеорологических служб, таких как NOAA и DWD. Однако Meteostat - это независимая инициатива, которая полагается на пожертвования, спонсорство и другие источники дохода."
+        "question": "Является ли Meteostat государственной службой?",
+        "answer": "Нет, Meteostat не является государственной или общественной службой и не связан с Meteosat. Мы собираем данные национальных метеослужб, таких как NOAA и DWD. Meteostat — независимый проект, который существует за счёт пожертвований, спонсорства и других источников дохода."
       }
     ]
   }

@@ -428,7 +428,7 @@ export default defineComponent({
 {
   "en": {
     "latest": "Latest",
-    "$manual": "Climate data provides information on the typical weather at a location. The normals are usually based on a period of 30 years. At Meteostat you can view data for all available reference periods. Inconsistencies can occur between the individual periods, as not all statistics were generated using the same methods.",
+    "$manual": "Climate data describes the typical weather at a location. Climate normals usually cover a period of 30 years. On Meteostat, you can view data for all available reference periods. The individual periods may be inconsistent with each other, as not all statistics were created using the same methods.",
     "$months": [
       "JAN",
       "FEB",
@@ -443,11 +443,11 @@ export default defineComponent({
       "NOV",
       "DEC"
     ],
-    "$noClimateData": "Climate data isn't available for this weather station. Please try again with a different one."
+    "$noClimateData": "Climate data isn't available for this weather station. Please try a different one."
   },
   "de": {
-    "latest": "Neueste",
-    "$manual": "Klimadaten liefern Informationen über das typische Wetter an einem Ort. Die Normalwerte beziehen sich in der Regel auf einen Zeitraum von 30 Jahren. Bei Meteostat können Sie die Daten für alle verfügbaren Referenzzeiträume einsehen. Zwischen den einzelnen Zeiträumen kann es zu Inkonsistenzen kommen, da nicht alle Statistiken mit den gleichen Methoden erstellt wurden.",
+    "latest": "Aktuellste",
+    "$manual": "Klimadaten beschreiben das typische Wetter an einem Ort. Klimanormalwerte beziehen sich in der Regel auf einen Zeitraum von 30 Jahren. Bei Meteostat können Sie Daten für alle verfügbaren Referenzzeiträume einsehen. Zwischen den einzelnen Zeiträumen kann es zu Abweichungen kommen, da nicht alle Statistiken mit denselben Methoden erstellt wurden.",
     "$months": [
       "JAN",
       "FEB",
@@ -465,118 +465,118 @@ export default defineComponent({
     "$noClimateData": "Für diese Wetterstation sind keine Klimadaten verfügbar. Bitte versuchen Sie es mit einer anderen Station."
   },
   "it": {
-    "latest": "Ultimo",
-    "$manual": "I dati climatici forniscono informazioni sul tempo tipico di una località. Le norme sono solitamente basate su un periodo di 30 anni. Su Meteostat è possibile visualizzare i dati per tutti i periodi di riferimento disponibili. Possono verificarsi incongruenze tra i singoli periodi, poiché non tutte le statistiche sono state generate con gli stessi metodi.",
+    "latest": "Più recente",
+    "$manual": "I dati climatici descrivono il tempo tipico di una località. I valori normali climatici si riferiscono di solito a un periodo di 30 anni. Su Meteostat puoi consultare i dati di tutti i periodi di riferimento disponibili. Tra i singoli periodi possono esserci incongruenze, poiché non tutte le statistiche sono state elaborate con gli stessi metodi.",
     "$months": [
-      "JAN",
+      "GEN",
       "FEB",
       "MAR",
       "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
+      "MAG",
+      "GIU",
+      "LUG",
+      "AGO",
+      "SET",
+      "OTT",
       "NOV",
-      "DEC"
+      "DIC"
     ],
-    "$noClimateData": "I dati climatici non sono disponibili per questa stazione meteorologica. Si prega di riprovare con un'altra."
+    "$noClimateData": "I dati climatici non sono disponibili per questa stazione meteo. Prova con un'altra stazione."
   },
   "es": {
-    "latest": "Más Reciente",
-    "$manual": "Los datos climáticos proporcionan información sobre el tiempo típico en un lugar. Los valores normales suelen basarse en un periodo de 30 años. En Meteostat puede ver los datos de todos los períodos de referencia disponibles. Pueden producirse incoherencias entre los distintos períodos, ya que no todas las estadísticas se generaron con los mismos métodos.",
+    "latest": "Más reciente",
+    "$manual": "Los datos climáticos describen el tiempo típico de un lugar. Las normales climáticas suelen abarcar un periodo de 30 años. En Meteostat puedes consultar los datos de todos los periodos de referencia disponibles. Puede haber incoherencias entre los distintos periodos, ya que no todas las estadísticas se elaboraron con los mismos métodos.",
     "$months": [
-      "JAN",
+      "ENE",
       "FEB",
       "MAR",
-      "APR",
+      "ABR",
       "MAY",
       "JUN",
       "JUL",
-      "AUG",
+      "AGO",
       "SEP",
       "OCT",
       "NOV",
-      "DEC"
+      "DIC"
     ],
-    "$noClimateData": "Los datos climáticos no están disponibles para esta estación meteorológica. Por favor, inténtelo de nuevo con otra."
+    "$noClimateData": "No hay datos climáticos disponibles para esta estación meteorológica. Prueba con otra."
   },
   "nl": {
-    "latest": "Laatste",
-    "$manual": "Klimaatgegevens geven informatie over het typische weer op een locatie. De normalen zijn meestal gebaseerd op een periode van 30 jaar. Bij Meteostat kunt u gegevens bekijken voor alle beschikbare referentieperioden. Er kunnen inconsistenties optreden tussen de afzonderlijke perioden, omdat niet alle statistieken volgens dezelfde methoden zijn gegenereerd.",
+    "latest": "Meest recent",
+    "$manual": "Klimaatgegevens beschrijven het typische weer op een locatie. Klimaatnormalen beslaan meestal een periode van 30 jaar. Op Meteostat kun je gegevens bekijken voor alle beschikbare referentieperioden. Tussen de afzonderlijke perioden kunnen verschillen optreden, omdat niet alle statistieken met dezelfde methoden zijn berekend.",
     "$months": [
       "JAN",
       "FEB",
-      "MAR",
+      "MRT",
       "APR",
-      "MAY",
+      "MEI",
       "JUN",
       "JUL",
       "AUG",
       "SEP",
-      "OCT",
+      "OKT",
       "NOV",
       "DEC"
     ],
     "$noClimateData": "Er zijn geen klimaatgegevens beschikbaar voor dit weerstation. Probeer het opnieuw met een ander station."
   },
   "fr": {
-    "latest" : "Les plus récents",
-    "$manual" : "Les données climatiques fournissent des informations sur les conditions météorologiques typiques d'un lieu. Les normales sont généralement basées sur une période de 30 ans. Sur Meteostat, vous pouvez consulter les données pour toutes les périodes de référence disponibles. Des incohérences peuvent apparaître entre les différentes périodes, car toutes les statistiques n'ont pas été générées en utilisant les mêmes méthodes.",
+    "latest": "Plus récente",
+    "$manual": "Les données climatiques décrivent le temps typique d'un lieu. Les normales climatiques couvrent généralement une période de 30 ans. Sur Meteostat, vous pouvez consulter les données de toutes les périodes de référence disponibles. Des incohérences peuvent apparaître entre les différentes périodes, car toutes les statistiques n'ont pas été établies selon les mêmes méthodes.",
     "$months": [
       "JAN",
-      "FEB",
+      "FÉV",
       "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
+      "AVR",
+      "MAI",
+      "JUIN",
+      "JUIL",
+      "AOÛ",
       "SEP",
       "OCT",
       "NOV",
-      "DEC"
+      "DÉC"
     ],
-    "$noClimateData": "Les données climatiques ne sont pas disponibles pour cette station météo. Veuillez réessayer avec une autre station."
+    "$noClimateData": "Aucune donnée climatique n'est disponible pour cette station météo. Veuillez essayer avec une autre station."
   },
   "pt": {
-    "latest": "Mais Recente",
-    "$manual": "Os dados climáticos fornecem informações sobre o tempo típico de um local. As normas são normalmente baseadas num período de 30 anos. No Meteostat é possível visualizar dados para todos os períodos de referência disponíveis. Podem ocorrer inconsistências entre os períodos individuais, uma vez que nem todas as estatísticas foram geradas utilizando os mesmos métodos.",
+    "latest": "Mais recente",
+    "$manual": "Os dados climáticos descrevem o tempo típico de um local. As normais climatológicas abrangem normalmente um período de 30 anos. No Meteostat pode consultar os dados de todos os períodos de referência disponíveis. Podem existir incoerências entre os vários períodos, uma vez que nem todas as estatísticas foram elaboradas com os mesmos métodos.",
     "$months": [
       "JAN",
-      "FEB",
+      "FEV",
       "MAR",
-      "APR",
-      "MAY",
+      "ABR",
+      "MAI",
       "JUN",
       "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
+      "AGO",
+      "SET",
+      "OUT",
       "NOV",
-      "DEC"
+      "DEZ"
     ],
-    "$noClimateData": "Os dados climáticos não estão disponíveis para esta estação meteorológica. Por favor, tente novamente com uma diferente."
+    "$noClimateData": "Não existem dados climáticos disponíveis para esta estação meteorológica. Experimente outra estação."
   },
   "ru": {
-    "latest": "Последние",
-    "$manual": "Климатические данные предоставляют информацию о типичной погоде в том или ином месте. Нормальные показатели обычно основываются на периоде в 30 лет. В Meteostat вы можете просмотреть данные за все доступные периоды. Между отдельными периодами могут возникать несоответствия, поскольку не все статистические данные были получены с использованием одних и тех же методов.",
+    "latest": "Последний",
+    "$manual": "Климатические данные описывают типичную погоду в том или ином месте. Климатические нормы обычно рассчитываются за 30-летний период. В Meteostat можно просмотреть данные за все доступные базовые периоды. Между отдельными периодами возможны расхождения, поскольку не вся статистика рассчитывалась одними и теми же методами.",
     "$months": [
-      "JAN",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC"
+      "ЯНВ",
+      "ФЕВ",
+      "МАР",
+      "АПР",
+      "МАЙ",
+      "ИЮН",
+      "ИЮЛ",
+      "АВГ",
+      "СЕН",
+      "ОКТ",
+      "НОЯ",
+      "ДЕК"
     ],
-    "$noClimateData": "Климатические данные для этой метеостанции недоступны. Пожалуйста, повторите попытку с другой метеостанцией."
+    "$noClimateData": "Для этой метеостанции нет климатических данных. Пожалуйста, выберите другую."
   }
 }
 </i18n>

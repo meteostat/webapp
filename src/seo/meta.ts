@@ -15,45 +15,45 @@ type Localized = Record<string, string>;
 export const APP_TITLE: Localized = {
   en: "The Weather's Record Keeper",
   de: 'Wetterrückblick und Klimadaten',
-  it: 'Il Guardiano del Tempo',
-  es: 'El Guardián del Tiempo',
-  nl: 'Weerbericht en Klimaatgegevens',
-  fr: 'Le Gardien du Temps',
-  pt: 'O Recordista Meteorológico',
-  ru: 'Записи погоды и данные климата'
+  it: "L'archivio del meteo",
+  es: 'El archivo del tiempo',
+  nl: 'Het geheugen van het weer',
+  fr: 'La mémoire de la météo',
+  pt: 'O arquivo do tempo',
+  ru: 'Летопись погоды'
 };
 
 export const APP_DESCRIPTION: Localized = {
   en: 'Weather and climate database providing detailed weather data for thousands of weather stations and places worldwide.',
   de: 'Wetter- und Klimadatenbank mit detaillierten Wetteraufzeichnungen und Klimastatistiken für tausende Wetterstationen und Orte weltweit.',
-  it: 'Banca dati meteorologici e climatici con record meteo dettagliati e statistiche climatiche per migliaia di stazioni meteorologiche e località in tutto il mondo.',
-  es: 'Meteostat ofrece informaciones alrededor del tiempo y clima para miles de estaciones meteorológicas.',
+  it: 'Database meteo e climatico con dati dettagliati e statistiche climatiche per migliaia di stazioni meteo e luoghi in tutto il mondo.',
+  es: 'Base de datos meteorológica y climática con datos detallados de miles de estaciones meteorológicas y lugares de todo el mundo.',
   nl: 'Weer- en klimaatdatabase met gedetailleerde weergegevens en klimaatstatistieken voor duizenden weerstations en locaties wereldwijd.',
-  fr: 'Base de données météorologiques et climatiques avec des enregistrements météorologiques détaillés pour des milliers de stations météorologiques dans le monde entier.',
-  pt: 'Base de dados meteorológicos e climáticos com registos meteorológicos detalhados e estatísticas climáticas para milhares de estações meteorológicas e locais em todo o mundo.',
-  ru: 'База данных погоды и климата с детальными записями погоды тысяч метеорологических станций всего мира.'
+  fr: 'Base de données météorologiques et climatiques offrant des données détaillées pour des milliers de stations météo et de lieux dans le monde entier.',
+  pt: 'Base de dados meteorológicos e climáticos com dados detalhados e estatísticas climáticas de milhares de estações meteorológicas e locais em todo o mundo.',
+  ru: 'База данных о погоде и климате с подробными данными тысяч метеостанций и мест по всему миру.'
 };
 
 /** Title suffix for station and place dashboards */
 export const DASHBOARD_TITLE: Localized = {
   en: 'Weather History & Climate',
   de: 'Wetterrückblick & Klimadaten',
-  it: 'Cronologia Meteo',
-  es: 'Historial Meteorológico',
-  nl: 'Weather History',
-  fr: 'Aperçu de la Météo',
-  pt: 'História do Tempo',
-  ru: 'История погоды'
+  it: 'Storico meteo e clima',
+  es: 'Historial meteorológico y clima',
+  nl: 'Weerhistorie & klimaat',
+  fr: 'Historique météo et climat',
+  pt: 'Histórico meteorológico e clima',
+  ru: 'Архив погоды и климат'
 };
 
 const STATION_DESCRIPTION: Localized = {
   en: 'Historical weather and climate data for the weather station {name} ({country}) with information on temperature, precipitation and more.',
   de: 'Wetterrückblick und Klimadaten für die Wetterstation {name} ({country}) mit Informationen zu Temperatur, Niederschlag und mehr.',
   it: 'Dati meteorologici e climatici storici per la stazione meteo {name} ({country}) con informazioni su temperatura, precipitazioni e altro.',
-  es: 'Datos meteorológicos y climáticos históricos de la estación meteorológica {name} ({country}) con información sobre la temperatura, las precipitaciones y mucho más.',
+  es: 'Datos meteorológicos y climáticos históricos de la estación meteorológica {name} ({country}), con información sobre temperatura, precipitaciones y mucho más.',
   nl: 'Historische weer- en klimaatgegevens voor het weerstation {name} ({country}) met informatie over temperatuur, neerslag en meer.',
   fr: 'Données météorologiques et climatiques historiques pour la station météorologique {name} ({country}) avec des informations sur la température, les précipitations et plus encore.',
-  pt: 'Dados climáticos e meteorológicos históricos para a estação meteorológica {name} ({country}) com informações sobre temperatura, precipitação e muito mais.',
+  pt: 'Dados meteorológicos e climáticos históricos da estação meteorológica {name} ({country}), com informações sobre temperatura, precipitação e muito mais.',
   ru: 'Исторические данные о погоде и климате для метеостанции {name} ({country}) с информацией о температуре, осадках и многом другом.'
 };
 
@@ -61,10 +61,10 @@ const PLACE_DESCRIPTION: Localized = {
   en: 'Historical weather and climate data for {name} ({country}) with information on temperature, precipitation and more.',
   de: 'Wetterrückblick und Klimadaten für {name} ({country}) mit Informationen zu Temperatur, Niederschlag und mehr.',
   it: 'Dati meteorologici e climatici storici per {name} ({country}) con informazioni su temperatura, precipitazioni e altro.',
-  es: 'Datos históricos del tiempo y del clima para {name} ({country}) con información sobre la temperatura, las precipitaciones y mucho más.',
+  es: 'Datos meteorológicos y climáticos históricos de {name} ({country}), con información sobre temperatura, precipitaciones y mucho más.',
   nl: 'Historische weer- en klimaatgegevens voor {name} ({country}) met informatie over temperatuur, neerslag en meer.',
   fr: 'Données météorologiques et climatiques historiques pour {name} ({country}) avec des informations sur la température, les précipitations et plus encore.',
-  pt: 'Dados climáticos e meteorológicos históricos para {name} ({country}) com informações sobre temperatura, precipitação e muito mais.',
+  pt: 'Dados meteorológicos e climáticos históricos de {name} ({country}), com informações sobre temperatura, precipitação e muito mais.',
   ru: 'Исторические данные о погоде и климате для {name} ({country}) с информацией о температуре, осадках и многом другом.'
 };
 

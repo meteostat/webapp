@@ -2,7 +2,6 @@
   "locale": "en",
   "dateFormat": "MM/dd/yyyy",
   "dateTimeFormat": "MM/dd/yyyy HH:mm:ss",
-
   "home": "Home",
   "blog": "Blog",
   "patrons": "Patrons",
@@ -21,18 +20,15 @@
   "help": "Help",
   "archive": "Archive",
   "loading": "Loading",
-
   "avg": "Avg.",
   "min": "Min.",
   "max": "Max.",
   "total": "Total",
-
   "$phrases": {
     "noData": "No Data",
     "someDataMissing": "Some data is missing",
     "showMore": "Show More"
   },
-
   "$meteo": {
     "weather": "Weather",
     "air": "Air",
@@ -45,7 +41,6 @@
     "wind": "Wind",
     "gust": "Gust"
   },
-
   "$params": {
     "time": "Time",
     "date": "Date",

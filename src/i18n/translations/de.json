@@ -2,11 +2,10 @@
   "locale": "de",
   "dateFormat": "dd.MM.yyyy",
   "dateTimeFormat": "dd.MM.yyyy HH:mm:ss",
-
   "home": "Startseite",
   "blog": "Blog",
   "patrons": "Förderer",
-  "donation": "Spende",
+  "donation": "Spenden",
   "settings": "Einstellungen",
   "history": "Rückblick",
   "climate": "Klima",
@@ -20,19 +19,16 @@
   "documentation": "Dokumentation",
   "help": "Hilfe",
   "archive": "Archiv",
-  "loading": "Laden",
-
-  "avg": "Avg.",
+  "loading": "Wird geladen",
+  "avg": "Mittel",
   "min": "Min.",
   "max": "Max.",
   "total": "Summe",
-
   "$phrases": {
     "noData": "Keine Daten",
     "someDataMissing": "Daten unvollständig",
-    "showMore": "Mehr Anzeigen"
+    "showMore": "Mehr anzeigen"
   },
-
   "$meteo": {
     "weather": "Wetter",
     "air": "Luft",
@@ -45,7 +41,6 @@
     "wind": "Wind",
     "gust": "Böe"
   },
-
   "$params": {
     "time": "Zeit",
     "date": "Datum",

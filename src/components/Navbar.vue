@@ -368,34 +368,34 @@ export default defineComponent({
     "stations": "Wetterstationen"
   },
   "it": {
-    "$searchPlaceholder": "Stazione o Luogo",
+    "$searchPlaceholder": "Stazione o luogo",
     "places": "Luoghi",
-    "stations": "Stazioni Meteorologiche"
+    "stations": "Stazioni meteo"
   },
   "es": {
-    "$searchPlaceholder": "Estación o Lugar",
+    "$searchPlaceholder": "Estación o lugar",
     "places": "Lugares",
-    "stations": "Estaciones Meteorológicas"
+    "stations": "Estaciones meteorológicas"
   },
   "nl": {
-    "$searchPlaceholder": "Station of Plaats",
+    "$searchPlaceholder": "Station of plaats",
     "places": "Plaatsen",
     "stations": "Weerstations"
   },
   "fr": {
-    "$searchPlaceholder" : "Station ou Lieu",
-    "places" : "Lieux",
-    "stations" : "Stations Météo"
+    "$searchPlaceholder": "Station ou lieu",
+    "places": "Lieux",
+    "stations": "Stations météo"
   },
   "pt": {
-    "$searchPlaceholder": "Estação ou Local",
-    "places": "Lugares",
-    "stations": "Estações Meteorológicas"
+    "$searchPlaceholder": "Estação ou local",
+    "places": "Locais",
+    "stations": "Estações meteorológicas"
   },
   "ru": {
     "$searchPlaceholder": "Станция или место",
-    "places": "Орте",
-    "stations": "Погодные станции"
+    "places": "Места",
+    "stations": "Метеостанции"
   }
 }
 </i18n>

@@ -2,13 +2,12 @@
   "locale": "es",
   "dateFormat": "dd/MM/yyyy",
   "dateTimeFormat": "dd/MM/yyyy HH:mm:ss",
-
-  "home": "Home",
+  "home": "Inicio",
   "blog": "Blog",
-  "patrons": "Patrons",
-  "donation": "Donación",
+  "patrons": "Mecenas",
+  "donation": "Donar",
   "settings": "Ajustes",
-  "history": "Historia",
+  "history": "Historial",
   "climate": "Clima",
   "maps": "Mapas",
   "export": "Exportar",
@@ -21,18 +20,15 @@
   "help": "Ayuda",
   "archive": "Archivo",
   "loading": "Cargando",
-
-  "avg": "Avg.",
+  "avg": "Media",
   "min": "Min.",
   "max": "Max.",
   "total": "Total",
-
   "$phrases": {
-    "noData": "Sin Datos",
+    "noData": "Sin datos",
     "someDataMissing": "Faltan algunos datos",
-    "showMore": "Mostrar Más"
+    "showMore": "Mostrar más"
   },
-
   "$meteo": {
     "weather": "Tiempo",
     "air": "Aire",
@@ -45,23 +41,22 @@
     "wind": "Viento",
     "gust": "Ráfaga"
   },
-
   "$params": {
     "time": "Hora",
     "date": "Fecha",
     "temp": "Temperatura",
-    "tavg": "Avg. Temperatura",
-    "tmin": "Min. Temperatura",
-    "tmax": "Max. Temperatura",
-    "dwpt": "Punto de Rocío",
-    "rhum": "Humedad Relativa",
-    "prcp": "Precipitación Total",
-    "snow": "Profundidad de la Nieve",
-    "wdir": "Dirección del Viento",
-    "wspd": "Velocidad del Viento",
-    "wpgt": "Ráfaga de Viento",
-    "pres": "Presión del Aire",
-    "tsun": "Duración del Sol",
-    "coco": "Código de Condición Meteorológica"
+    "tavg": "Temperatura media",
+    "tmin": "Temperatura mínima",
+    "tmax": "Temperatura máxima",
+    "dwpt": "Punto de rocío",
+    "rhum": "Humedad relativa",
+    "prcp": "Precipitación total",
+    "snow": "Espesor de nieve",
+    "wdir": "Dirección del viento",
+    "wspd": "Velocidad del viento",
+    "wpgt": "Racha máxima",
+    "pres": "Presión atmosférica",
+    "tsun": "Horas de sol",
+    "coco": "Código de condición meteorológica"
   }
 }

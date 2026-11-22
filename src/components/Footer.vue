@@ -84,13 +84,13 @@
       <br />
       <i18n-t keypath="$sources" tag="small">
         <template #noaa>
-          <a href="http://www.noaa.gov/" target="_blank" rel="noreferrer nofollow"> NOAA </a>
+          <a href="https://www.noaa.gov/" target="_blank" rel="noreferrer nofollow">NOAA</a>
         </template>
         <template #dwd>
-          <a href="https://www.dwd.de/" target="_blank" rel="noreferrer nofollow"> Deutscher Wetterdienst </a>
+          <a href="https://www.dwd.de/" target="_blank" rel="noreferrer nofollow">Deutscher Wetterdienst</a>
         </template>
         <template #ec>
-          <a href="https://weather.gc.ca/" target="_blank" rel="noreferrer nofollow"> Environment Canada </a>
+          <a href="https://weather.gc.ca/" target="_blank" rel="noreferrer nofollow">Environment Canada</a>
         </template>
         <template #sources>
           <a href="https://dev.meteostat.net/sources.html">
@@ -206,34 +206,34 @@ footer ul a > i {
     "$privacyLink": "/de/privacy"
   },
   "it": {
-    "aboutMeteostat": "Su Meteostat",
+    "aboutMeteostat": "Informazioni su Meteostat",
     "developers": "Sviluppatori",
     "language": "Lingua",
-    "legalDisclosure": "Divulgazione Legale",
+    "legalDisclosure": "Note legali",
     "privacy": "Privacy",
     "sources": "fonti",
-    "$legale": "Copyright © Meteostat. {legal} & {privacy}.",
-    "$fonti": "Dati meteo forniti da {noaa}, {dwd} e {ec}. Scopri di più sulle nostre {sources}.",
     "$legalLink": "/en/legal",
-    "$privacyLink": "/en/privacy"
+    "$privacyLink": "/en/privacy",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
+    "$sources": "Dati meteo forniti da {noaa}, {dwd} e {ec}. Scopri di più sulle nostre {sources}."
   },
   "es": {
     "aboutMeteostat": "Acerca de Meteostat",
     "developers": "Desarrolladores",
     "language": "Idioma",
-    "legalDisclosure": "Información Legal",
+    "legalDisclosure": "Aviso legal",
     "privacy": "Privacidad",
     "sources": "fuentes",
-    "legal": "Copyright © Meteostat. {legal} & {privacy}",
     "$sources": "Datos meteorológicos proporcionados por {noaa}, {dwd} y {ec}. Más información sobre nuestras {sources}.",
     "$legalLink": "/en/legal",
-    "$privacyLink": "/en/privacy"
+    "$privacyLink": "/en/privacy",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}."
   },
   "nl": {
     "aboutMeteostat": "Over Meteostat",
-    "developers": "Developers",
-    "language": "Language",
-    "legalDisclosure": "Wettelijke Openbaarmaking",
+    "developers": "Ontwikkelaars",
+    "language": "Taal",
+    "legalDisclosure": "Colofon",
     "privacy": "Privacy",
     "sources": "bronnen",
     "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
@@ -242,22 +242,22 @@ footer ul a > i {
     "$privacyLink": "/en/privacy"
   },
   "fr": {
-    "aboutMeteostat" : "A Propos de Meteostat",
-    "developers" : "Développeurs",
-    "language" : "Langue",
-    "legalDisclosure" : "Divulgation Légale",
-    "privacy" : "Vie Privée",
-    "sources" : "sources",
-    "$legal" : "Copyright © Meteostat. {legal} & {privacy}.",
-    "$sources" : "Données météorologiques fournies par {noaa}, {dwd} et {ec}. En savoir plus sur nos {sources}.",
+    "aboutMeteostat": "À propos de Meteostat",
+    "developers": "Développeurs",
+    "language": "Langue",
+    "legalDisclosure": "Mentions légales",
+    "privacy": "Confidentialité",
+    "sources": "sources",
+    "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
+    "$sources": "Données météorologiques fournies par {noaa}, {dwd} et {ec}. En savoir plus sur nos {sources}.",
     "$legalLink": "/en/legal",
     "$privacyLink": "/en/privacy"
   },
   "pt": {
     "aboutMeteostat": "Sobre o Meteostat",
-    "developers": "Desenvolvedores",
-    "language": "Linguagem",
-    "legalDisclosure": "Divulgação Jurídica",
+    "developers": "Programadores",
+    "language": "Idioma",
+    "legalDisclosure": "Aviso legal",
     "privacy": "Privacidade",
     "sources": "fontes",
     "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
@@ -266,12 +266,12 @@ footer ul a > i {
     "$privacyLink": "/en/privacy"
   },
   "ru": {
-    "aboutMeteostat": "О Мeteostat",
+    "aboutMeteostat": "О Meteostat",
     "developers": "Разработчики",
     "language": "Язык",
-    "legalDisclosure": "Юридическое раскрытие",
+    "legalDisclosure": "Правовая информация",
     "privacy": "Конфиденциальность",
-    "sources": "источники",
+    "sources": "источниках",
     "$legal": "Copyright © Meteostat. {legal} & {privacy}.",
     "$sources": "Погодные данные предоставлены {noaa}, {dwd} и {ec}. Узнайте больше о наших {sources}.",
     "$legalLink": "/en/legal",

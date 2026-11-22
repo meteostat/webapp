@@ -133,275 +133,275 @@ export default defineComponent({
 {
   "en": {
     "$meta": {
-        "title": "About",
-        "description": "Meteostat is one of the largest vendors of open weather and climate data."
+      "title": "About",
+      "description": "Meteostat is one of the largest providers of open weather and climate data."
     },
     "$title": "The Weather's Record Keeper",
-    "$description": "Meteostat is one of the largest vendors of open weather and climate data. The platform provides access to long-term time series of thousands of weather stations.",
+    "$description": "Meteostat is one of the largest providers of open weather and climate data. The platform provides access to long-term time series of thousands of weather stations.",
     "$features": [
       {
         "title": "Imagine a Search Engine for Weather Data",
-        "text": "Meteostat processes data from various public sources. This allows both developers and end users to access weather and climate data through a single interface. Think of it as a gateway to meteorological data which puts user experience first."
+        "text": "Meteostat processes data from various public sources. This allows both developers and end users to access weather and climate data through a single interface. Think of it as a gateway to meteorological data that puts user experience first."
       },
       {
         "title": "Real Observations and Common Standards",
-        "text": "Our weather stations meet the World Meteorological Organization's criteria for location and observation methods. Also, Meteostat is one of the rare sources which focuses on real observation data instead of supra-regional models."
+        "text": "Our weather stations meet the World Meteorological Organization's criteria for location and observation methods. Also, Meteostat is one of the few sources that focus on real observations instead of supra-regional models."
       },
       {
-        "title": "Weather is Common Property",
-        "text": "Meteorological data should not be exclusive to those who can afford it. Meteostat democratizes weather and climate data by providing open and free access to its archive. With climate change on the rise, transparency is more important than ever."
+        "title": "Weather Is Common Property",
+        "text": "Meteorological data should not be reserved for those who can afford it. Meteostat democratizes weather and climate data by providing open and free access to its archive. As the climate keeps changing, transparency is more important than ever."
       },
       {
         "title": "Open Source",
-        "text": "Meteostat fosters both open source and data. The majority of code which powers Meteostat is available under the MIT license. Help us making Meteostat even better or build upon it."
+        "text": "Meteostat supports both open source and open data. Most of the code that powers Meteostat is available under the MIT license. Help us make Meteostat even better or build your own projects on top of it."
       },
       {
         "title": "Get Creative",
         "text": "Integrate Meteostat data into your products, applications and workflows. Thanks to our open data policy, Meteostat is an ideal data source for research and educational projects."
       },
       {
-        "title": "Show Your Love Or Get Involved",
-        "text": "We believe in open weather and climate data. But we need your help continuing our mission. Your contribution helps both Meteostat and the initiatives building on top of it moving forward. Thank you!"
+        "title": "Show Your Love or Get Involved",
+        "text": "We believe in open weather and climate data, but we need your help to continue our mission. Your contribution helps both Meteostat and the initiatives building on it move forward. Thank you!"
       }
     ]
   },
   "de": {
     "$meta": {
-        "title": "Über Uns",
-        "description": "Meteostat ist einer der größten Anbieter von offenen Wetter- und Klimadaten."
+      "title": "Über uns",
+      "description": "Meteostat ist einer der größten Anbieter von offenen Wetter- und Klimadaten."
     },
     "$title": "Wetterrückblick und Klimadaten",
-    "$description": "Meteostat ist einer der größten Anbieter von offenen Wetter- und Klimadaten. Die Plattform bietet Zugang zu langjährigen Zeitreihen von Tausenden von Wetterstationen.",
+    "$description": "Meteostat ist einer der größten Anbieter offener Wetter- und Klimadaten. Die Plattform bietet Zugang zu langjährigen Zeitreihen tausender Wetterstationen.",
     "$features": [
       {
         "title": "Eine Suchmaschine für Wetterdaten",
-        "text": "Meteostat verarbeitet Daten aus verschiedenen öffentlichen Quellen. Dies ermöglicht sowohl Entwicklern als auch Endnutzern den Zugriff auf Wetter- und Klimadaten über eine einzige Schnittstelle. Die Benutzerfreundlichkeit steht dabei im Vordergrund."
+        "text": "Meteostat verarbeitet Daten aus verschiedenen öffentlichen Quellen. So können Entwickler und Endnutzer über eine einzige Schnittstelle auf Wetter- und Klimadaten zugreifen. Die Benutzerfreundlichkeit steht dabei im Vordergrund."
       },
       {
         "title": "Echte Beobachtungen und einheitliche Standards",
-        "text": "Unsere Wetterstationen erfüllen die Kriterien der Weltorganisation für Meteorologie in Bezug auf Standort und Beobachtungsmethoden. Außerdem ist Meteostat eine der wenigen Quellen, die sich auf reale Beobachtungsdaten anstelle von überregionalen Modellen konzentriert."
+        "text": "Unsere Wetterstationen erfüllen die Kriterien der Weltorganisation für Meteorologie in Bezug auf Standort und Beobachtungsmethoden. Außerdem ist Meteostat eine der wenigen Quellen, die auf echte Beobachtungsdaten statt auf überregionale Modelle setzen."
       },
       {
         "title": "Das Wetter ist ein Gemeingut",
-        "text": "Meteorologische Daten sollten nicht nur denjenigen vorbehalten sein, die sie sich leisten können. Meteostat demokratisiert Wetter- und Klimadaten, indem es offenen und freien Zugang zu seinem Archiv bietet. Angesichts des Klimawandels ist Transparenz wichtiger denn je."
+        "text": "Meteorologische Daten sollten nicht nur denjenigen vorbehalten sein, die sie sich leisten können. Meteostat demokratisiert Wetter- und Klimadaten, indem es offenen und kostenlosen Zugang zu seinem Archiv bietet. Angesichts des Klimawandels ist Transparenz wichtiger denn je."
       },
       {
-        "Titel": "Open Source",
-        "text": "Meteostat fördert sowohl Open Source als auch Open Data. Der Großteil des Codes, der Meteostat antreibt, ist unter der MIT-Lizenz verfügbar. Helfen Sie uns, Meteostat noch besser zu machen oder bauen Sie eigene Projekte darauf auf."
+        "title": "Open Source",
+        "text": "Meteostat steht für Open Source und Open Data. Der Großteil des Codes hinter Meteostat ist unter der MIT-Lizenz verfügbar. Helfen Sie uns, Meteostat noch besser zu machen, oder bauen Sie eigene Projekte darauf auf."
       },
       {
-        "title": "Werden Sie Kreativ",
+        "title": "Werden Sie kreativ",
         "text": "Integrieren Sie Meteostat-Daten in Ihre Produkte, Anwendungen und Arbeitsabläufe. Dank unserer offenen Datenpolitik ist Meteostat eine ideale Datenquelle für Forschungs- und Bildungsprojekte."
       },
       {
         "title": "Unterstützen Sie Meteostat",
-        "text": "Wir glauben an offene Wetter- und Klimadaten. Aber wir brauchen Ihre Hilfe, um unsere Mission fortzusetzen. Ihr Beitrag hilft sowohl Meteostat als auch den darauf aufbauenden Initiativen, sich weiterzuentwickeln. Vielen Dank!"
+        "text": "Wir glauben an offene Wetter- und Klimadaten, brauchen aber Ihre Hilfe, um unsere Mission fortzusetzen. Ihr Beitrag hilft Meteostat und allen darauf aufbauenden Initiativen, sich weiterzuentwickeln. Vielen Dank!"
       }
     ]
   },
   "it": {
     "$meta": {
-        "title": "Su Meteostat",
-        "description": "Meteostat è uno dei maggiori fornitori di dati meteo e climatici aperti."
+      "title": "Chi siamo",
+      "description": "Meteostat è uno dei maggiori fornitori di dati meteo e climatici aperti."
     },
-    "$title": "Il Guardiano del Tempo",
-    "$description": "Meteostat è uno dei più grandi fornitori di dati climatici e meteorologici aperti. La piattaforma fornisce l'accesso a serie temporali a lungo termine di migliaia di stazioni meteorologiche.",
+    "$title": "L'archivio del meteo",
+    "$description": "Meteostat è uno dei maggiori fornitori di dati meteo e climatici aperti. La piattaforma offre l'accesso a serie temporali pluriennali di migliaia di stazioni meteo.",
     "$features": [
       {
-        "title": "Immagina un motore di ricerca per i dati meteo",
-        "text": "Meteostat elabora dati da varie fonti pubbliche. Questo permette sia agli sviluppatori che agli utenti finali di accedere ai dati meteo e climatici attraverso un'unica interfaccia. Pensatelo come un gateway per i dati meteorologici che mette al primo posto l'esperienza dell'utente."
+        "title": "Un motore di ricerca per i dati meteo",
+        "text": "Meteostat elabora dati provenienti da diverse fonti pubbliche. In questo modo sviluppatori e utenti finali possono accedere ai dati meteo e climatici tramite un'unica interfaccia. Pensalo come una porta d'accesso ai dati meteorologici che mette al primo posto l'esperienza dell'utente."
       },
       {
         "title": "Osservazioni reali e standard comuni",
-        "text": "Le nostre stazioni meteorologiche soddisfano i criteri dell'Organizzazione Meteorologica Mondiale per l'ubicazione e i metodi di osservazione. Inoltre, Meteostat è una delle rare fonti che si concentra su dati di osservazione reali invece di modelli sovraregionali."
+        "text": "Le nostre stazioni meteo soddisfano i criteri dell'Organizzazione meteorologica mondiale per ubicazione e metodi di osservazione. Inoltre, Meteostat è una delle poche fonti che si basano su osservazioni reali invece che su modelli sovraregionali."
       },
       {
-        "title": "Il tempo è proprietà comune",
-        "text": "I dati meteorologici non dovrebbero essere esclusivi per coloro che possono permetterseli. Meteostat democratizza i dati meteorologici e climatici fornendo un accesso aperto e gratuito al suo archivio. Con il cambiamento climatico in aumento, la trasparenza è più importante che mai."
+        "title": "Il meteo è un bene comune",
+        "text": "I dati meteorologici non dovrebbero essere riservati a chi può permetterseli. Meteostat democratizza i dati meteo e climatici offrendo un accesso aperto e gratuito al proprio archivio. Con il clima che continua a cambiare, la trasparenza è più importante che mai."
       },
       {
-        "title": "Open Source",
-        "text": "Meteostat promuove sia l'open source che i dati. La maggior parte del codice che alimenta Meteostat è disponibile sotto la licenza MIT. Aiutaci a rendere Meteostat ancora migliore o costruiscici sopra."
+        "title": "Open source",
+        "text": "Meteostat sostiene sia l'open source che gli open data. Gran parte del codice di Meteostat è disponibile con licenza MIT. Aiutaci a migliorare Meteostat o crea i tuoi progetti partendo da esso."
       },
       {
-        "title": "Diventa Creativo",
-        "text": "Integra i dati Meteostat nei tuoi prodotti, applicazioni e flussi di lavoro. Grazie alla nostra politica di dati aperti, Meteostat è una fonte di dati ideale per progetti di ricerca ed educativi."
+        "title": "Dai spazio alla creatività",
+        "text": "Integra i dati di Meteostat nei tuoi prodotti, applicazioni e flussi di lavoro. Grazie alla nostra politica di dati aperti, Meteostat è una fonte ideale per progetti di ricerca e didattici."
       },
       {
-        "title": "Mostra il Tuo Amore o Fatti Coinvolgere",
-        "text": "Crediamo nei dati meteo e climatici aperti. Ma abbiamo bisogno del tuo aiuto per continuare la nostra missione. Il tuo contributo aiuta sia Meteostat che le iniziative che si basano su di esso ad andare avanti. Grazie!"
+        "title": "Sostienici o partecipa",
+        "text": "Crediamo nei dati meteo e climatici aperti, ma abbiamo bisogno del tuo aiuto per portare avanti la nostra missione. Il tuo contributo aiuta Meteostat e le iniziative che si basano su di esso a crescere. Grazie!"
       }
     ]
   },
   "es": {
     "$meta": {
-        "title": "Sobre Meteostat",
-        "description": "Meteostat es uno de los mayores proveedores de datos meteorológicos y climáticos abiertos."
+      "title": "Acerca de",
+      "description": "Meteostat es uno de los mayores proveedores de datos meteorológicos y climáticos abiertos."
     },
-    "$title": "El Guardián del Tiempo",
-    "$description": "Meteostat es uno de los mayores vendedores de datos meteorológicos y climáticos abiertos. La plataforma proporciona acceso a series temporales a largo plazo de miles de estaciones meteorológicas.",
+    "$title": "El archivo del tiempo",
+    "$description": "Meteostat es uno de los mayores proveedores de datos meteorológicos y climáticos abiertos. La plataforma ofrece acceso a series temporales de largo plazo de miles de estaciones meteorológicas.",
     "$features": [
       {
-        "title": "Imagina un motor de búsqueda de datos meteorológicos",
-        "text": "Meteostat procesa datos de varias fuentes públicas. Esto permite tanto a los desarrolladores como a los usuarios finales acceder a los datos meteorológicos y climáticos a través de una única interfaz. Piensa en ello como una puerta de acceso a los datos meteorológicos que da prioridad a la experiencia del usuario."
+        "title": "Un buscador de datos meteorológicos",
+        "text": "Meteostat procesa datos de diversas fuentes públicas. Así, tanto desarrolladores como usuarios finales pueden acceder a datos meteorológicos y climáticos a través de una única interfaz. Piensa en ello como una puerta de acceso a los datos meteorológicos que da prioridad a la experiencia del usuario."
       },
       {
-        "title": "Observaciones reales y normas comunes",
-        "text": "Nuestras estaciones meteorológicas cumplen los criterios de la Organización Meteorológica Mundial en cuanto a ubicación y métodos de observación. Además, Meteostat es una de las pocas fuentes que se centra en datos de observación reales en lugar de modelos suprarregionales."
+        "title": "Observaciones reales y estándares comunes",
+        "text": "Nuestras estaciones meteorológicas cumplen los criterios de la Organización Meteorológica Mundial en cuanto a ubicación y métodos de observación. Además, Meteostat es una de las pocas fuentes que se basan en observaciones reales en lugar de modelos suprarregionales."
       },
       {
-        "title": "El tiempo es una propiedad común",
-        "text": "Los datos meteorológicos no deberían ser exclusivos de quienes pueden pagarlos. Meteostat democratiza los datos meteorológicos y climáticos proporcionando un acceso abierto y gratuito a su archivo. Con el aumento del cambio climático, la transparencia es más importante que nunca."
+        "title": "El tiempo es un bien común",
+        "text": "Los datos meteorológicos no deberían estar reservados a quienes pueden pagarlos. Meteostat democratiza los datos meteorológicos y climáticos ofreciendo acceso abierto y gratuito a su archivo. Con un clima en constante cambio, la transparencia es más importante que nunca."
       },
       {
-        "título": "Open Source",
-        "text": "Meteostat fomenta tanto el código abierto como los datos. La mayor parte del código que alimenta a Meteostat está disponible bajo la licencia MIT. Ayúdanos a hacer que Meteostat sea aún mejor o construye sobre él."
+        "title": "Código abierto",
+        "text": "Meteostat apuesta por el código abierto y los datos abiertos. La mayor parte del código de Meteostat está disponible bajo la licencia MIT. Ayúdanos a mejorar Meteostat o crea tus propios proyectos a partir de él."
       },
       {
-        "title": "Ser Creativo",
-        "text": "Integre los datos de Meteostat en sus productos, aplicaciones y flujos de trabajo. Gracias a nuestra política de datos abiertos, Meteostat es una fuente de datos ideal para proyectos de investigación y educativos."
+        "title": "Da rienda suelta a tu creatividad",
+        "text": "Integra los datos de Meteostat en tus productos, aplicaciones y flujos de trabajo. Gracias a nuestra política de datos abiertos, Meteostat es una fuente de datos ideal para proyectos de investigación y educativos."
       },
       {
-        "title": "Muestra tu amor o participa",
-        "text": "Creemos en los datos meteorológicos y climáticos abiertos. Pero necesitamos tu ayuda para continuar con nuestra misión. Tu contribución ayuda a que tanto Meteostat como las iniciativas que se construyen sobre él sigan adelante. Gracias!"
+        "title": "Apóyanos o participa",
+        "text": "Creemos en los datos meteorológicos y climáticos abiertos, pero necesitamos tu ayuda para continuar con nuestra misión. Tu contribución ayuda a Meteostat y a las iniciativas basadas en él a seguir avanzando. ¡Gracias!"
       }
     ]
   },
   "nl": {
     "$meta": {
-        "title": "Over Meteostat",
-        "description": "Meteostat is een van de grootste verkopers van open weer- en klimaatgegevens."
+      "title": "Over ons",
+      "description": "Meteostat is een van de grootste aanbieders van open weer- en klimaatgegevens."
     },
-    "$title": "The Weather's Record Keeper",
-    "$description": "Meteostat is een van de grootste verkopers van open weer- en klimaatgegevens. Het platform biedt toegang tot lange termijn tijdreeksen van duizenden weerstations.",
+    "$title": "Het geheugen van het weer",
+    "$description": "Meteostat is een van de grootste aanbieders van open weer- en klimaatgegevens. Het platform biedt toegang tot langjarige tijdreeksen van duizenden weerstations.",
     "$features": [
       {
-        "title": "Stel je een zoekmachine voor weerdata voor",
-        "text": "Meteostat verwerkt gegevens uit verschillende openbare bronnen. Hierdoor kunnen zowel ontwikkelaars als eindgebruikers via één interface toegang krijgen tot weer- en klimaatgegevens. Zie het als een toegangspoort tot meteorologische gegevens waarbij de gebruikerservaring voorop staat."
+        "title": "Een zoekmachine voor weerdata",
+        "text": "Meteostat verwerkt gegevens uit verschillende openbare bronnen. Zo hebben zowel ontwikkelaars als eindgebruikers via één interface toegang tot weer- en klimaatgegevens. Zie het als een toegangspoort tot meteorologische gegevens waarbij gebruiksgemak voorop staat."
       },
       {
         "title": "Echte waarnemingen en gemeenschappelijke standaarden",
-        "text": "Onze weerstations voldoen aan de criteria van de Wereld Meteorologische Organisatie voor locatie en waarnemingsmethoden. Bovendien is Meteostat een van de zeldzame bronnen die zich richt op echte waarnemingsgegevens in plaats van op supraregionale modellen."
+        "text": "Onze weerstations voldoen aan de criteria van de Wereld Meteorologische Organisatie voor locatie en waarnemingsmethoden. Bovendien is Meteostat een van de weinige bronnen die uitgaan van echte waarnemingen in plaats van bovenregionale modellen."
       },
       {
-        "title": "Het weer is gemeenschappelijk bezit",
-        "text": "Meteorologische gegevens zouden niet exclusief moeten zijn voor degenen die het zich kunnen veroorloven. Meteostat democratiseert weer- en klimaatgegevens door open en vrije toegang te bieden tot zijn archief. Nu de klimaatverandering toeneemt, is transparantie belangrijker dan ooit."
+        "title": "Het weer is van iedereen",
+        "text": "Meteorologische gegevens zouden niet alleen beschikbaar moeten zijn voor wie ervoor kan betalen. Meteostat democratiseert weer- en klimaatgegevens door open en gratis toegang tot zijn archief te bieden. Nu het klimaat blijft veranderen, is transparantie belangrijker dan ooit."
       },
       {
-        "title": "Open Source",
-        "text": "Meteostat bevordert zowel open source als data. Het merendeel van de code die Meteostat voedt is beschikbaar onder de MIT-licentie. Help ons Meteostat nog beter te maken of bouw erop voort."
+        "title": "Open source",
+        "text": "Meteostat staat voor open source én open data. Het grootste deel van de code achter Meteostat is beschikbaar onder de MIT-licentie. Help ons Meteostat nog beter te maken of bouw er je eigen projecten op."
       },
       {
-        "title": "Creatief Worden",
-        "text": "Integreer Meteostat-data in uw producten, applicaties en workflows. Dankzij ons open data beleid is Meteostat een ideale databron voor onderzoeks- en educatieve projecten."
+        "title": "Ga creatief aan de slag",
+        "text": "Integreer Meteostat-gegevens in je producten, applicaties en workflows. Dankzij ons opendatabeleid is Meteostat een ideale gegevensbron voor onderzoeks- en onderwijsprojecten."
       },
       {
-        "title": "Toon je Liefde of Doe Mee",
-        "text": "Wij geloven in open weer- en klimaatgegevens. Maar we hebben jouw hulp nodig om onze missie voort te zetten. Jouw bijdrage helpt zowel Meteostat als de initiatieven die er bovenop bouwen vooruit. Dank je wel!"
+        "title": "Steun ons of doe mee",
+        "text": "Wij geloven in open weer- en klimaatgegevens, maar we hebben jouw hulp nodig om onze missie voort te zetten. Jouw bijdrage helpt Meteostat en de initiatieven die erop voortbouwen vooruit. Bedankt!"
       }
     ]
   },
   "fr": {
-    "$meta" : {
-        "title" : "À Propos de Meteostat",
-        "description" : "Meteostat est l'un des plus grands vendeurs de données météorologiques et climatiques ouvertes."
+    "$meta": {
+      "title": "À propos",
+      "description": "Meteostat est l'un des plus grands fournisseurs de données météorologiques et climatiques ouvertes."
     },
-    "$title" : "Le Gardien du Temps",
-    "$description" : "Meteostat est l'un des plus grands vendeurs de données météorologiques et climatiques ouvertes. La plateforme donne accès à des séries chronologiques à long terme de milliers de stations météorologiques.",
-    "$features" : [
+    "$title": "La mémoire de la météo",
+    "$description": "Meteostat est l'un des plus grands fournisseurs de données météorologiques et climatiques ouvertes. La plateforme donne accès à des séries temporelles longues de milliers de stations météo.",
+    "$features": [
       {
-        "title" : "Imaginez un moteur de recherche pour les données météorologiques",
-        "text" : "Meteostat traite des données provenant de diverses sources publiques. Cela permet aux développeurs et aux utilisateurs finaux d'accéder aux données météorologiques et climatiques via une interface unique. Pensez-y comme une passerelle vers les données météorologiques qui place l'expérience utilisateur au premier plan."
+        "title": "Un moteur de recherche pour les données météo",
+        "text": "Meteostat traite des données provenant de diverses sources publiques. Les développeurs comme les utilisateurs finaux peuvent ainsi accéder aux données météorologiques et climatiques via une interface unique. Voyez-le comme une porte d'entrée vers les données météorologiques qui place l'expérience utilisateur au premier plan."
       },
       {
-        "title" : "Observations réelles et normes communes",
-        "text" : "Nos stations météorologiques répondent aux critères de l'Organisation météorologique mondiale en matière de localisation et de méthodes d'observation. De plus, Meteostat est l'une des rares sources qui se concentre sur les données d'observation réelles plutôt que sur les modèles suprarégionaux."
+        "title": "Des observations réelles et des normes communes",
+        "text": "Nos stations météo répondent aux critères de l'Organisation météorologique mondiale en matière d'emplacement et de méthodes d'observation. De plus, Meteostat est l'une des rares sources à s'appuyer sur des observations réelles plutôt que sur des modèles suprarégionaux."
       },
       {
-        "title" : "La météo est un bien commun",
-        "text" : "Les données météorologiques ne devraient pas être réservées à ceux qui en ont les moyens. Meteostat démocratise les données météorologiques et climatiques en offrant un accès ouvert et gratuit à ses archives. Avec le changement climatique en hausse, la transparence est plus importante que jamais."
+        "title": "La météo est un bien commun",
+        "text": "Les données météorologiques ne devraient pas être réservées à ceux qui peuvent se les offrir. Meteostat démocratise les données météorologiques et climatiques en offrant un accès libre et gratuit à ses archives. Alors que le climat ne cesse d'évoluer, la transparence est plus importante que jamais."
       },
       {
-        "titre" : "Open Source",
-        "text" : "Meteostat favorise à la fois l'open source et les données. La majorité du code qui alimente Meteostat est disponible sous la licence MIT. Aidez-nous à rendre Meteostat encore meilleur ou à le développer."
+        "title": "Open source",
+        "text": "Meteostat soutient à la fois l'open source et l'open data. La majeure partie du code de Meteostat est disponible sous licence MIT. Aidez-nous à améliorer Meteostat ou développez vos propres projets à partir de celui-ci."
       },
       {
-        "title" : "Soyez créatif",
-        "text" : "Intégrez les données de Météostat dans vos produits, applications et flux de travail. Grâce à notre politique de données ouvertes, Météostat est une source de données idéale pour les projets de recherche et d'éducation."
+        "title": "Laissez libre cours à votre créativité",
+        "text": "Intégrez les données de Meteostat dans vos produits, applications et flux de travail. Grâce à notre politique de données ouvertes, Meteostat est une source de données idéale pour les projets de recherche et d'enseignement."
       },
       {
-        "title" : "Montrez votre amour ou impliquez-vous",
-        "text" : "Nous croyons aux données météorologiques et climatiques ouvertes. Mais nous avons besoin de votre aide pour poursuivre notre mission. Votre contribution permet à Meteostat et aux initiatives qui le complètent d'aller de l'avant. Merci !"
+        "title": "Soutenez-nous ou participez",
+        "text": "Nous croyons aux données météorologiques et climatiques ouvertes, mais nous avons besoin de votre aide pour poursuivre notre mission. Votre contribution aide Meteostat et les initiatives qui s'appuient sur lui à aller de l'avant. Merci !"
       }
     ]
   },
   "pt": {
     "$meta": {
-        "title": "Sobre o Meteostat",
-        "description": "O Meteostat é um dos maiores fornecedores de dados climáticos e meteorológicos abertos."
+      "title": "Sobre",
+      "description": "O Meteostat é um dos maiores fornecedores de dados climáticos e meteorológicos abertos."
     },
-    "$title": "O Recordista Meteorológico",
-    "$description": "O Meteostat é um dos maiores fornecedores de dados climáticos e meteorológicos abertos. A plataforma dá acesso a séries temporais a longo prazo de milhares de estações meteorológicas.",
+    "$title": "O arquivo do tempo",
+    "$description": "O Meteostat é um dos maiores fornecedores de dados meteorológicos e climáticos abertos. A plataforma dá acesso a séries temporais longas de milhares de estações meteorológicas.",
     "$features": [
       {
-        "title": "Imagine a Search Engine for Weather Data",
-        "text": "O Meteostat processa dados de várias fontes públicas. Isto permite tanto aos programadores como aos utilizadores finais aceder aos dados meteorológicos e climáticos através de uma única interface. Pense nisso como uma porta de entrada para dados meteorológicos que coloca a experiência do utilizador em primeiro lugar."
+        "title": "Um motor de pesquisa para dados meteorológicos",
+        "text": "O Meteostat processa dados de várias fontes públicas. Assim, tanto programadores como utilizadores finais podem aceder a dados meteorológicos e climáticos através de uma única interface. Pense nele como uma porta de entrada para dados meteorológicos que coloca a experiência do utilizador em primeiro lugar."
       },
       {
-        "title": "Observações Reais e Normas Comuns",
-        "text": "As nossas estações meteorológicas cumprem os critérios da Organização Meteorológica Mundial para a localização e métodos de observação. Além disso, o Meteostat é uma das raras fontes que se concentra em dados de observação reais em vez de modelos supra-regionais."
+        "title": "Observações reais e normas comuns",
+        "text": "As nossas estações meteorológicas cumprem os critérios da Organização Meteorológica Mundial quanto à localização e aos métodos de observação. Além disso, o Meteostat é uma das poucas fontes que se baseiam em observações reais em vez de modelos supra-regionais."
       },
       {
-        "title": "O tempo é propriedade comum",
-        "texto": "Os dados meteorológicos não devem ser exclusivos para aqueles que os podem pagar. O Meteostat democratiza os dados meteorológicos e climáticos, fornecendo acesso aberto e gratuito ao seu arquivo. Com as alterações climáticas a aumentar, a transparência é mais importante do que nunca."
+        "title": "O tempo é um bem comum",
+        "text": "Os dados meteorológicos não devem estar reservados a quem os pode pagar. O Meteostat democratiza os dados meteorológicos e climáticos ao oferecer acesso aberto e gratuito ao seu arquivo. Com o clima em constante mudança, a transparência é mais importante do que nunca."
       },
       {
-        "title": "Open Source",
-        "text": "O Meteostat fomenta tanto a fonte aberta como os dados. A maioria do código que alimenta o Meteostat está disponível sob a licença do MIT. Ajude-nos a tornar o Meteostat ainda melhor ou a construir sobre ele."
+        "title": "Código aberto",
+        "text": "O Meteostat apoia tanto o código aberto como os dados abertos. A maior parte do código do Meteostat está disponível sob a licença MIT. Ajude-nos a melhorar o Meteostat ou crie os seus próprios projetos a partir dele."
       },
       {
-        "title": "Seja Criativo",
-        "text": "Integre os dados do Meteostat nos seus produtos, aplicações e fluxos de trabalho. Graças à nossa política de dados aberta, o Meteostat é uma fonte de dados ideal para projectos de investigação e educação."
+        "title": "Dê asas à criatividade",
+        "text": "Integre os dados do Meteostat nos seus produtos, aplicações e fluxos de trabalho. Graças à nossa política de dados abertos, o Meteostat é uma fonte de dados ideal para projetos de investigação e educação."
       },
       {
-        "title": "Mostra o teu amor ou Envolve-te",
-        "text": "Acreditamos em dados climáticos e meteorológicos abertos. Mas precisamos da vossa ajuda para continuar a nossa missão. A sua contribuição ajuda tanto o Meteostat como as iniciativas de construção em cima dele a avançarem. Obrigado!"
+        "title": "Apoie-nos ou participe",
+        "text": "Acreditamos em dados meteorológicos e climáticos abertos, mas precisamos da sua ajuda para continuar a nossa missão. O seu contributo ajuda o Meteostat e as iniciativas que nele se baseiam a avançar. Obrigado!"
       }
     ]
   },
   "ru": {
     "$meta": {
-        "title": "О Меteostat",
-        "description": "Meteostat - один из крупнейших поставщиков открытых данных о погоде и климате."
+      "title": "О проекте",
+      "description": "Meteostat — один из крупнейших поставщиков открытых данных о погоде и климате."
     },
-    "$title": "Хранитель погодных рекордов",
-    "$description": "Meteostat - один из крупнейших поставщиков открытых данных о погоде и климате. Платформа предоставляет доступ к долгосрочным временным рядам тысяч метеостанций.",
+    "$title": "Летопись погоды",
+    "$description": "Meteostat — один из крупнейших поставщиков открытых данных о погоде и климате. Платформа предоставляет доступ к многолетним временным рядам тысяч метеостанций.",
     "$features": [
       {
-        "title": "Представьте себе поисковую систему для данных о погоде",
-        "text": "Meteostat обрабатывает данные из различных публичных источников. Это позволяет как разработчикам, так и конечным пользователям получать доступ к погодным и климатическим данным через единый интерфейс. Думайте об этом как о шлюзе к метеорологическим данным, который ставит пользовательский опыт на первое место."
+        "title": "Поисковая система для данных о погоде",
+        "text": "Meteostat обрабатывает данные из различных открытых источников. Благодаря этому разработчики и обычные пользователи получают доступ к данным о погоде и климате через единый интерфейс. Это своего рода шлюз к метеорологическим данным, в котором главное — удобство пользователя."
       },
       {
         "title": "Реальные наблюдения и общие стандарты",
-        "text": "Наши метеостанции соответствуют критериям Всемирной метеорологической организации в отношении местоположения и методов наблюдения. Кроме того, Меteostat - один из редких источников, который ориентируется на реальные данные наблюдений, а не на надрегиональные модели."
+        "text": "Наши метеостанции соответствуют критериям Всемирной метеорологической организации по размещению и методам наблюдений. Кроме того, Meteostat — один из немногих источников, которые опираются на реальные наблюдения, а не на надрегиональные модели."
       },
       {
-        "title": "Погода - общая собственность",
-        "text": "Метеорологические данные не должны быть эксклюзивными для тех, кто может себе это позволить. Meteostat демократизирует погодные и климатические данные, предоставляя открытый и бесплатный доступ к своему архиву. В условиях растущего изменения климата прозрачность важна как никогда."
+        "title": "Погода — общее достояние",
+        "text": "Метеорологические данные не должны быть доступны только тем, кто может за них заплатить. Meteostat делает данные о погоде и климате общедоступными, предоставляя открытый и бесплатный доступ к своему архиву. В условиях меняющегося климата прозрачность важна как никогда."
       },
       {
         "title": "Открытый исходный код",
-        "text": "Meteostat поддерживает как открытый исходный код, так и данные. Большая часть кода, на котором работает Meteostat, доступна по лицензии MIT. Помогите нам сделать Meteostat еще лучше или создайте его."
+        "text": "Meteostat поддерживает как открытый код, так и открытые данные. Большая часть кода Meteostat доступна по лицензии MIT. Помогите нам сделать Meteostat ещё лучше или создайте на его основе собственные проекты."
       },
       {
-        "title": "Займитесь творчеством",
-        "text": "Интегрируйте данные Meteostat в свои продукты, приложения и рабочие процессы. Благодаря нашей политике открытых данных, Meteostat является идеальным источником данных для исследовательских и образовательных проектов."
+        "title": "Творите",
+        "text": "Интегрируйте данные Meteostat в свои продукты, приложения и рабочие процессы. Благодаря нашей политике открытых данных Meteostat — идеальный источник данных для исследовательских и образовательных проектов."
       },
       {
-        "title": "Проявите свою любовь или примите участие",
-        "text": "Мы верим в открытые данные о погоде и климате. Но нам нужна ваша помощь в продолжении нашей миссии. Ваш вклад поможет и Meteostat, и инициативам, построенным на его основе, двигаться вперед. Спасибо!"
+        "title": "Поддержите нас или присоединяйтесь",
+        "text": "Мы верим в открытые данные о погоде и климате, но нам нужна ваша помощь, чтобы продолжать нашу миссию. Ваш вклад помогает развиваться и Meteostat, и проектам, построенным на его основе. Спасибо!"
       }
-    ]    
+    ]
   }
 }
 </i18n>
