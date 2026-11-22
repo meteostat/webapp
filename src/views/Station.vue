@@ -25,16 +25,19 @@
       </div>
     </div>
   </div>
+  <NotFound v-else-if="notFound" />
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from 'vue';
+import { defineComponent, defineAsyncComponent, ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
+import { stationDescription, stationName, localizedUrl } from '~/seo/meta';
 import { format } from 'date-fns';
 import Navbar from '~/components/LocationNavbar.vue';
 import Meta from '~/components/panels/Meta.vue';
 import AdStickyTop from '~/components/AdStickyTop.vue';
+import NotFound from '~/views/NotFound.vue';
 
 /**
  * Async Components
@@ -48,41 +51,53 @@ export default defineComponent({
     Navbar,
     Meta,
     Dashboard,
-    AdStickyTop
+    AdStickyTop,
+    NotFound
   },
 
-  props: {
-    station: {
-      type: Object,
-      default: null
-    }
-  },
-
-  setup(props: Record<string, any>): Record<string, any> {
+  setup(): Record<string, any> {
     // Translations
     const { t, locale } = useI18n();
 
-    if (props.station?.id) {
-      // Meta tags
-      useHead({
-        meta: [
+    // Station meta data (fetched on mount)
+    const meta = ref<Record<string, any> | null>(null);
+
+    // Set to true if the API does not know this station
+    const notFound = ref(false);
+
+    // Meta tags
+    useHead({
+      meta: computed(() => {
+        if (notFound.value) {
+          return [{ name: 'robots', content: 'noindex' }];
+        }
+        if (!meta.value?.id) {
+          return [];
+        }
+        return [
           {
             name: 'description',
-            content: t('$meta.description', {
-              name: props.station.name[locale.value] || props.station.name['en'],
-              country: props.station.country
-            })
+            content: stationDescription(stationName(meta.value.name, locale.value), meta.value.country, locale.value)
           }
-        ]
-      });
-    }
+        ];
+      }),
+      link: computed(() =>
+        meta.value?.id
+          ? [
+              {
+                rel: 'canonical',
+                href: localizedUrl(locale.value, `/station/${meta.value.id}`)
+              }
+            ]
+          : []
+      )
+    });
 
-    return { t, format };
+    return { t, format, meta, notFound };
   },
 
   data(): Record<string, any> {
     return {
-      meta: this.station || null,
       nearbyStations: []
     };
   },
@@ -94,10 +109,7 @@ export default defineComponent({
   },
 
   async mounted(): Promise<void> {
-    if (!this.station) {
-      // Get meta data
-      await this.fetchMetaData();
-    }
+    await this.fetchMetaData();
   },
 
   methods: {
@@ -107,7 +119,14 @@ export default defineComponent({
     async fetchMetaData(): Promise<void> {
       await fetch(`${this.$api}/app/proxy/stations/meta?id=${this.$route.params.id}`)
         .then((response) => response.json())
-        .then((data) => (this.meta = data.data));
+        .then((data) => {
+          if (data?.data?.id) {
+            this.meta = data.data;
+          } else {
+            this.notFound = true;
+          }
+        })
+        .catch(() => (this.notFound = true));
     },
 
     updateNavbarItems(): void {
@@ -116,48 +135,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<i18n>
-{
-  "en": {
-    "$meta": {
-      "description": "Historical weather and climate data for the weather station {name} ({country}) with information on temperature, precipitation and more."
-    }
-  },
-  "de": {
-    "$meta": {
-      "description": "Wetterrückblick und Klimadaten für die Wetterstation {name} ({country}) mit Informationen zu Temperatur, Niederschlag und mehr."
-    }
-  },
-  "it": {
-    "$meta": {
-      "description": "Dati meteorologici e climatici storici per la stazione meteo {name} ({country}) con informazioni su temperatura, precipitazioni e altro."
-    }
-  },
-  "es": {
-    "$meta": {
-      "description": "Datos meteorológicos y climáticos históricos de la estación meteorológica {name} ({country}) con información sobre la temperatura, las precipitaciones y mucho más."
-    }
-  },
-  "nl": {
-    "$meta": {
-      "description": "Historische weer- en klimaatgegevens voor het weerstation {name} ({country}) met informatie over temperatuur, neerslag en meer."
-    }
-  },
-  "fr": {
-    "$meta": {
-      "description": "Données météorologiques et climatiques historiques pour la station météorologique {name} ({country}) avec des informations sur la température, les précipitations et plus encore."
-    }
-  },
-  "pt": {
-    "$meta": {
-      "description": "Dados climáticos e meteorológicos históricos para a estação meteorológica {nanme} ({country}) com informações sobre temperatura, precipitação e muito mais."
-    }
-  },
-  "ru": {
-    "$meta": {
-      "description": "Исторические данные о погоде и климате для метеостанции {name} ({country}) с информацией о температуре, осадках и многом другом."
-    }    
-  }
-}
-</i18n>

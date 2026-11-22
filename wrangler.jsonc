@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Same script name as the previous vitedge worker, so deploying replaces it on its existing route
+  "name": "webapp",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-18",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    // Hashed bundles and root files skip the worker; every page goes through it
+    "run_worker_first": ["/*", "!/assets/*", "!/favicon.ico", "!/robots.txt", "!/ads.txt", "!/site.webmanifest"]
+  },
+  "observability": {
+    "enabled": true
+  }
+}

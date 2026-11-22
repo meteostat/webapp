@@ -8,8 +8,7 @@ if (typeof window !== 'undefined') {
 }
 
 // Define store
-export const useSettingsStore = defineStore({
-  id: 'settings',
+export const useSettingsStore = defineStore('settings', {
   state: () => ({
     returning: false,
     imperial: false,

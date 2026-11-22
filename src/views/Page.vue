@@ -1,13 +1,13 @@
 <template>
   <div v-if="item?.title" class="container py-4 markdown">
-    <div v-html="decodeURIComponent(item.body)" />
+    <div v-html="item.body" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 
 export default defineComponent({
   name: 'Page',
@@ -68,9 +68,9 @@ export default defineComponent({
 
 <style lang="scss">
 @import '~/style/typography';
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
 .markdown {
   h1 {

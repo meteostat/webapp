@@ -128,7 +128,6 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" />
     </div>
     <div class="offcanvas-body">
-      <ClientOnly>
         <DatePicker
           ref="calendar"
           v-model="range"
@@ -137,10 +136,9 @@
           color="gray"
           :attributes="pickerAttrs"
           is-range
-          is-expanded
+          expanded
           :max-date="addDays(new Date(), 7)"
         />
-      </ClientOnly>
       <div class="container p-0 mt-4">
         <div class="row row-cols-3 g-1 text-center">
           <div class="col">
@@ -224,7 +222,8 @@
 <script lang="ts">
 import { defineComponent, defineAsyncComponent } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
+import { dashboardTitle } from '~/seo/meta';
 import {
   parseISO,
   format,
@@ -297,12 +296,12 @@ export default defineComponent({
   },
 
   setup(props: Record<string, any>): Record<string, any> {
-    const { t } = useI18n();
+    const { t, locale } = useI18n();
     const settings = useSettingsStore();
 
     // Meta tags
     useHead({
-      title: `${props.name} | ${t('$meta.title')} | Meteostat`
+      title: dashboardTitle(props.name, locale.value)
     });
 
     return {
@@ -404,7 +403,7 @@ export default defineComponent({
           this.range?.end?.toDateString() !== range?.end?.toDateString()
         ) {
           this.range = range;
-          (this.$refs as any).calendar?.focusDate(range.start);
+          (this.$refs as any).calendar?.move(range.start);
         }
       }
     }
@@ -474,7 +473,7 @@ export default defineComponent({
         end
       };
       // Change calendar month
-      (this.$refs as any).calendar?.focusDate(start);
+      (this.$refs as any).calendar?.move(start);
     },
 
     onLoaded(dataCount: number): void {
@@ -486,10 +485,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
-@import '../node_modules/v-calendar/dist/style';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 @import '~/style/toolbar.scss';
 
 .card-full-width {
@@ -504,9 +502,6 @@ export default defineComponent({
 <i18n>
 {
   "en": {
-    "$meta": {
-      "title": "Weather History & Climate"
-    },
     "$manual": "Historical weather data is available in hourly and daily resolution. For all date ranges up to twelve days, hourly data is shown. If you choose a longer period, Meteostat will switch to daily frequency. Please note that hourly and daily data do not always match. This can happen due to different aggregation methods or levels of detail.",
     "dateRange": "Date Range",
     "today": "Today",
@@ -515,9 +510,6 @@ export default defineComponent({
     "lastMonth": "Last Month"
   },
   "de": {
-    "$meta": {
-      "title": "Wetterrückblick & Klimadaten"
-    },
     "$manual": "Historische Wetterdaten sind in stündlicher und täglicher Auflösung verfügbar. Für alle Zeiträume bis zu zwölf Tagen werden stündliche Daten angezeigt. Wenn Sie einen längeren Zeitraum wählen, schaltet Meteostat auf die tägliche Frequenz um. Bitte beachten Sie, dass stündliche und tägliche Daten nicht immer übereinstimmen. Dies kann aufgrund unterschiedlicher Aggregationsmethoden oder Detaillierungsgrade vorkommen.",
     "dateRange": "Zeitraum",
     "today": "Heute",
@@ -526,9 +518,6 @@ export default defineComponent({
     "lastMonth": "Letzter Monat"
   },
   "it": {
-    "$meta": {
-      "title": "Cronologia Meteo"
-    },
     "$manual": "I dati meteo storici sono disponibili in risoluzione oraria e giornaliera. Per tutti gli intervalli di date fino a dodici giorni, vengono mostrati dati orari. Se si sceglie un periodo più lungo, Meteostat passa alla frequenza giornaliera. Si prega di notare che i dati orari e giornalieri non sempre corrispondono. Questo può accadere a causa di diversi metodi di aggregazione o livelli di dettaglio.",
     "dateRange": "Intervallo di Date",
     "today": "Oggi",
@@ -537,9 +526,6 @@ export default defineComponent({
     "lastMonth": "Ultimo Mese"
   },
   "es": {
-    "$meta": {
-      "title": "Historial Meteorológico"
-    },
     "$manual": "Los datos meteorológicos históricos están disponibles en resolución horaria y diaria. Para todos los intervalos de fechas de hasta doce días, se muestran los datos horarios. Si elige un período más largo, Meteostat cambiará a la frecuencia diaria. Tenga en cuenta que los datos horarios y diarios no siempre coinciden. Esto puede ocurrir debido a diferentes métodos de agregación o niveles de detalle.",
     "dateRange": "Rango de Fechas",
     "today": "Hoy",
@@ -548,9 +534,6 @@ export default defineComponent({
     "lastMonth": "Último Mes"
   },
   "nl": {
-    "$meta": {
-      "title": "Weather History"
-    },
     "$manual": "Historische weergegevens zijn beschikbaar in uurlijkse en dagelijkse resolutie. Voor alle datumbereiken tot twaalf dagen worden uurlijkse gegevens getoond. Als u een langere periode kiest, schakelt Meteostat over naar de dagelijkse frequentie. Houd er rekening mee dat uurlijkse en dagelijkse gegevens niet altijd overeenkomen. Dit kan gebeuren als gevolg van verschillende aggregatie methoden of niveaus van detail.",
     "dateRange": "Datumbereik",
     "today": "Vandaag",
@@ -559,20 +542,14 @@ export default defineComponent({
     "lastMonth": "Afgelopen Maand"
   },
   "fr": {
-    "$meta" : {
-      "title" : "Aperçu de la Météo"
-    },
-    "$manual" : "Les données météorologiques historiques sont disponibles en résolution horaire et quotidienne. Pour toutes les plages de dates jusqu'à douze jours, les données horaires sont affichées. Si vous choisissez une période plus longue, Meteostat passera à une fréquence quotidienne. Veuillez noter que les données horaires et quotidiennes ne correspondent pas toujours. Cela peut être dû à des méthodes d'agrégation ou des niveaux de détail différents.",
-    "dateRange" : "Plage de Dates",
-    "today" : "Aujourd'hui",
-    "yesterday" : "Hier",
-    "lastWeek" : "Semaine Dernière",
-    "lastMonth" : "Mois Dernier"
+    "$manual": "Les données météorologiques historiques sont disponibles en résolution horaire et quotidienne. Pour toutes les plages de dates jusqu'à douze jours, les données horaires sont affichées. Si vous choisissez une période plus longue, Meteostat passera à une fréquence quotidienne. Veuillez noter que les données horaires et quotidiennes ne correspondent pas toujours. Cela peut être dû à des méthodes d'agrégation ou des niveaux de détail différents.",
+    "dateRange": "Plage de Dates",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "lastWeek": "Semaine Dernière",
+    "lastMonth": "Mois Dernier"
   },
   "pt": {
-    "$meta": {
-      "title": "História do Tempo"
-    },
     "$manual": "Os dados meteorológicos históricos estão disponíveis em resolução horária e diária. Para todos os intervalos de datas até doze dias, os dados horários são mostrados. Se escolher um período mais longo, o Meteostat mudará para a frequência diária. Note-se que os dados horários e diários nem sempre coincidem. Isto pode acontecer devido a diferentes métodos de agregação ou níveis de detalhe.",
     "dateRange": "Intervalo de Datas",
     "today": "Hoje",
@@ -581,9 +558,6 @@ export default defineComponent({
     "lastMonth": "Último Mês"
   },
   "ru": {
-    "$meta": {
-      "title": "История погоды"
-    },
     "$manual": "Исторические данные о погоде доступны в почасовом и ежедневном разрешении. Для всех диапазонов дат до двенадцати дней отображаются почасовые данные. Если вы выберете более длительный период, Meteostat переключится на ежедневную частоту. Обратите внимание, что почасовые и суточные данные не всегда совпадают. Это может происходить из-за различных методов агрегирования или уровней детализации.",
     "dateRange": "Диапазон дат",
     "today": "Сегодня",

@@ -63,17 +63,19 @@
       </div>
     </div>
   </div>
+  <NotFound v-else-if="notFound" />
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from 'vue';
-import { useContext } from 'vitedge';
+import { defineComponent, defineAsyncComponent, ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
+import { placeDescription, localizedUrl } from '~/seo/meta';
 import { format } from 'date-fns';
 import Navbar from '../components/LocationNavbar.vue';
 import Meta from '../components/panels/Meta.vue';
 import AdStickyTop from '~/components/AdStickyTop.vue';
+import NotFound from '~/views/NotFound.vue';
 
 /**
  * Async Components
@@ -87,58 +89,59 @@ export default defineComponent({
     Navbar,
     Meta,
     Dashboard,
-    AdStickyTop
+    AdStickyTop,
+    NotFound
   },
 
-  props: {
-    place: {
-      type: Object,
-      default: null
-    }
-  },
-
-  setup(props: Record<string, any>): Record<string, any> {
+  setup(): Record<string, any> {
     const { t, locale } = useI18n();
 
-    if (props.place?.id) {
-      // Meta tags
-      useHead({
-        meta: [
+    // Place meta data (fetched on mount)
+    const meta = ref<Record<string, any> | null>(null);
+
+    // Set to true if the API does not know this place
+    const notFound = ref(false);
+
+    // Meta tags
+    useHead({
+      meta: computed(() => {
+        if (notFound.value) {
+          return [{ name: 'robots', content: 'noindex' }];
+        }
+        if (!meta.value?.id) {
+          return [];
+        }
+        return [
           {
             name: 'description',
-            content: t('$meta.description', {
-              name: props.place.name,
-              country: props.place.country
-            })
+            content: placeDescription(meta.value.name, meta.value.country, locale.value)
           }
-        ],
-        link: [
-          {
-            rel: 'canonical',
-            href: `https://meteostat.net/${locale.value}/place/${props.place.country.toLowerCase()}/${props.place.id}`
-          }
-        ]
-      });
-    } else if (import.meta.env.SSR) {
-      const { writeResponse } = useContext();
-      writeResponse({ status: 404 });
-    }
+        ];
+      }),
+      link: computed(() =>
+        meta.value?.id
+          ? [
+              {
+                rel: 'canonical',
+                href: localizedUrl(locale.value, `/place/${meta.value.country.toLowerCase()}/${meta.value.id}`)
+              }
+            ]
+          : []
+      )
+    });
 
-    return { t, format };
+    return { t, format, meta, notFound };
   },
 
   data(): Record<string, any> {
     return {
-      meta: this.place || null,
       nearbyStations: [],
       selectedStation: null
     };
   },
 
   async mounted(): Promise<void> {
-    if (!this.place) {
-      await this.fetchMetaData();
-    }
+    await this.fetchMetaData();
   },
 
   methods: {
@@ -150,12 +153,14 @@ export default defineComponent({
         `${this.$api}/app/place?country=${this.$route.params.country}&id=${this.$route.params.id}&lang=${this.$locale}`
       )
         .then((response) => response.json())
-        .then((data) => (this.meta = data.data))
-        .catch(() => {
-          this.$router.replace({
-            name: 'Home'
-          });
-        });
+        .then((data) => {
+          if (data?.data?.id) {
+            this.meta = data.data;
+          } else {
+            this.notFound = true;
+          }
+        })
+        .catch(() => (this.notFound = true));
     },
 
     updateNavbarItems(): void {
@@ -191,9 +196,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
 .station-selector-list {
   width: auto;
@@ -221,48 +226,3 @@ export default defineComponent({
   }
 }
 </style>
-
-<i18n>
-{
-  "en": {
-    "$meta": {
-      "description": "Historical weather and climate data for {name} ({country}) with information on temperature, precipitation and more."
-    }
-  },
-  "de": {
-    "$meta": {
-      "description": "Wetterrückblick und Klimadaten für {name} ({country}) mit Informationen zu Temperatur, Niederschlag und mehr."
-    }
-  },
-  "it": {
-    "$meta": {
-      "description": "Dati meteorologici e climatici storici per {name} ({country}) con informazioni su temperatura, precipitazioni e altro."
-    }
-  },
-  "es": {
-    "$meta": {
-      "description": "Datos históricos del tiempo y del clima para {name} ({country}) con información sobre la temperatura, las precipitaciones y mucho más."
-    }
-  },
-  "nl": {
-    "$meta": {
-      "description": "Historische weer- en klimaatgegevens voor {name} ({country}) met informatie over temperatuur, neerslag en meer."
-    }
-  },
-  "fr": {
-    "$meta": {
-      "description": "Données météorologiques et climatiques historiques pour {name} ({country}) avec des informations sur la température, les précipitations et plus encore."
-    }
-  },
-  "pt": {
-    "$meta": {
-      "description": "Dados climáticos e meteorológicos históricos para {name} ({country}) com informações sobre temperatura, precipitação e muito mais."
-    }
-  },
-  "ru": {
-     "$meta": {
-      "description": "Исторические данные о погоде и климате для {name} ({country}) с информацией о температуре, осадках и многом другом."
-    }   
-  }
-}
-</i18n>

@@ -61,10 +61,7 @@ export default defineComponent({
 
     watch(
       () => settings.$state,
-      (state) => {
-        window.localStorage.setItem('settings', JSON.stringify(state));
-        emit('change');
-      },
+      () => emit('change'),
       { deep: true }
     );
 

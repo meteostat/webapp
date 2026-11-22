@@ -41,9 +41,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, computed } from 'vue';
-import { useContext } from 'vitedge';
 import { useI18n } from 'vue-i18n';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 
 export default defineComponent({
   name: 'BlogPost',
@@ -59,11 +58,6 @@ export default defineComponent({
     const { t } = useI18n();
 
     const post = reactive(props._post || {});
-
-    if (!post.slug && import.meta.env.SSR) {
-      const { writeResponse } = useContext();
-      writeResponse({ status: 404 });
-    }
 
     useHead({
       title: computed(() => `${post.title || ''} | Meteostat`),
@@ -144,9 +138,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '~/style/variables';
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
 .container {
   max-width: 1080px;
@@ -184,10 +178,10 @@ export default defineComponent({
 
 <style lang="scss">
 @import '~/style/variables';
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
-@import '../node_modules/highlight.js/styles/a11y-dark';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'highlight.js/styles/a11y-dark';
 //@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
 .post-tags {

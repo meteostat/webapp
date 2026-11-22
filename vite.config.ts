@@ -1,40 +1,35 @@
-import path from 'path'
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import VueI18n from '@intlify/vite-plugin-vue-i18n'
-import vitedgePlugin from 'vitedge/plugin.js'
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import Vue from '@vitejs/plugin-vue';
+import VueI18n from '@intlify/unplugin-vue-i18n/vite';
+
+const src = fileURLToPath(new URL('./src', import.meta.url));
 
 export default defineConfig({
   resolve: {
     alias: {
-      '~/': `${path.resolve(process.cwd(), 'src')}/`
-    },
-    extensions: [
-      '.js',
-      '.json',
-      '.jsx',
-      '.mjs',
-      '.ts',
-      '.tsx',
-      '.vue',
-      '.md'
-    ]
+      '~/': `${src}/`
+    }
   },
 
   plugins: [
-    vitedgePlugin(),
-
-    Vue({
-      include: [/\.vue$/, /\.md$/],
-    }),
-
-    VueI18n.default({
-      include: [path.resolve(process.cwd(), 'src/i18n/translations/**')],
+    Vue(),
+    VueI18n({
+      include: [`${src}/i18n/translations/**`],
+      // Components use <i18n> custom blocks with inline JSON
+      defaultSFCLang: 'json',
+      // Translations contain HTML (e.g. links in help texts)
+      strictMessage: false,
+      escapeHtml: false
     })
   ],
 
-  optimizeDeps: {
-    include: ['vue', 'vue-router', '@vueuse/core'],
-    exclude: ['vue-demi'],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Bootstrap 5.3 still uses @import and global color functions internally
+        silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function']
+      }
+    }
   }
-})
+});

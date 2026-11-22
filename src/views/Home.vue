@@ -136,9 +136,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../node_modules/bootstrap/scss/functions';
-@import '../node_modules/bootstrap/scss/variables';
-@import '../node_modules/bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
 .hero {
   background: linear-gradient(165deg, #f7f5fb 50%, #fff 50%);

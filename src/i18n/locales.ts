@@ -42,8 +42,8 @@ export const DEFAULT_LOCALE = DEFAULT_LANGUAGE?.locale as string;
 
 export function extractLocaleFromPath(path = '', userLang: null | string = null): string {
   const [_, maybeLocale] = path.split('/');
-  if (!import.meta.env.SSR) {
-    userLang = (navigator.language || navigator.userLanguage)?.substr(0, 2) || null;
+  if (typeof navigator !== 'undefined') {
+    userLang = navigator.language?.substring(0, 2) || null;
   }
   userLang = typeof userLang === 'string' && SUPPORTED_LOCALES.includes(userLang) ? userLang : null;
   return SUPPORTED_LOCALES.includes(maybeLocale) ? maybeLocale : userLang || DEFAULT_LOCALE;

@@ -38,7 +38,7 @@ export default defineComponent({
 
   watch: {
     async data() {
-      if (!this.loading && !import.meta.env.SSR) {
+      if (!this.loading) {
         await this.createChart()
       }
     }
