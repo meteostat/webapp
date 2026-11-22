@@ -89,21 +89,6 @@
       <Ad slot-id="3216865845" />
     </div>
 
-    <!-- Meteo Maps -->
-    <section v-if="differenceInCalendarDays(new Date(), range.start) > 0" id="maps" ref="maps">
-      <div class="card card-full-width mt-3 mt-md-4 p-3 bg-light rounded">
-        <div class="card-header card-header-main px-0 rounded-0 bg-transparent">
-          <h2 class="card-header-title lead">
-            {{ t('maps') }}
-          </h2>
-        </div>
-        <div class="card-body px-0">
-          <disabled-content v-if="!mapsEnabled" @enable="mapsEnabled = true" />
-          <Maps v-if="mapsEnabled" :lat="lat" :lon="lon" :range="[range.start, range.end]" />
-        </div>
-      </div>
-    </section>
-
     <!-- Climate Data -->
     <section id="climate" ref="climate">
       <div class="card card-full-width mt-3 mt-md-4 p-3 bg-light rounded">
@@ -125,7 +110,7 @@
       <h5 class="offcanvas-title">
         {{ t('dateRange') }}
       </h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" />
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" :aria-label="t('close')" />
     </div>
     <div class="offcanvas-body">
         <DatePicker
@@ -237,20 +222,17 @@ import {
   startOfMonth,
   endOfMonth,
   startOfYear,
-  endOfYear,
-  differenceInCalendarDays
+  endOfYear
 } from 'date-fns';
 import { useSettingsStore } from '~/stores/settings';
 import Help from '~/components/Help.vue';
 import Ad from '~/components/Ad.vue';
-import DisabledContent from '~/components/alerts/DisabledContent.vue';
 
 /**
  * Async Components
  */
 const Hourly = defineAsyncComponent(() => import('./dashboards/Hourly.vue'));
 const Daily = defineAsyncComponent(() => import('./dashboards/Daily.vue'));
-const Maps = defineAsyncComponent(() => import('./Maps.vue'));
 const Climate = defineAsyncComponent(() => import('./Climate.vue'));
 
 export default defineComponent({
@@ -262,8 +244,6 @@ export default defineComponent({
     Help,
     Hourly,
     Daily,
-    DisabledContent,
-    Maps,
     Climate,
     Ad
   },
@@ -317,14 +297,12 @@ export default defineComponent({
       startOfMonth,
       endOfMonth,
       startOfYear,
-      endOfYear,
-      differenceInCalendarDays
+      endOfYear
     };
   },
 
   data(): Record<string, any> {
     return {
-      mapsEnabled: false,
       loadExport: false,
       loadDetails: false,
       dataCount: 0,
@@ -502,7 +480,7 @@ export default defineComponent({
 <i18n>
 {
   "en": {
-    "$manual": "Historical weather data is available in hourly and daily resolution. For all date ranges up to twelve days, hourly data is shown. If you choose a longer period, Meteostat will switch to daily frequency. Please note that hourly and daily data do not always match. This can happen due to different aggregation methods or levels of detail.",
+    "$manual": "Historical weather data is available in hourly and daily resolution. For date ranges of up to twelve days, hourly data is shown. For longer periods, Meteostat switches to daily data. Please note that hourly and daily data do not always match, as they may be based on different aggregation methods and levels of detail.",
     "dateRange": "Date Range",
     "today": "Today",
     "yesterday": "Yesterday",
@@ -510,7 +488,7 @@ export default defineComponent({
     "lastMonth": "Last Month"
   },
   "de": {
-    "$manual": "Historische Wetterdaten sind in stündlicher und täglicher Auflösung verfügbar. Für alle Zeiträume bis zu zwölf Tagen werden stündliche Daten angezeigt. Wenn Sie einen längeren Zeitraum wählen, schaltet Meteostat auf die tägliche Frequenz um. Bitte beachten Sie, dass stündliche und tägliche Daten nicht immer übereinstimmen. Dies kann aufgrund unterschiedlicher Aggregationsmethoden oder Detaillierungsgrade vorkommen.",
+    "$manual": "Historische Wetterdaten sind in stündlicher und täglicher Auflösung verfügbar. Für Zeiträume bis zu zwölf Tagen werden stündliche Daten angezeigt. Bei längeren Zeiträumen wechselt Meteostat zu Tageswerten. Bitte beachten Sie, dass stündliche und tägliche Daten nicht immer übereinstimmen, da sie auf unterschiedlichen Aggregationsmethoden und Detailstufen beruhen können.",
     "dateRange": "Zeitraum",
     "today": "Heute",
     "yesterday": "Gestern",
@@ -518,52 +496,52 @@ export default defineComponent({
     "lastMonth": "Letzter Monat"
   },
   "it": {
-    "$manual": "I dati meteo storici sono disponibili in risoluzione oraria e giornaliera. Per tutti gli intervalli di date fino a dodici giorni, vengono mostrati dati orari. Se si sceglie un periodo più lungo, Meteostat passa alla frequenza giornaliera. Si prega di notare che i dati orari e giornalieri non sempre corrispondono. Questo può accadere a causa di diversi metodi di aggregazione o livelli di dettaglio.",
-    "dateRange": "Intervallo di Date",
+    "$manual": "I dati meteo storici sono disponibili con risoluzione oraria e giornaliera. Per intervalli fino a dodici giorni vengono mostrati i dati orari. Per periodi più lunghi, Meteostat passa ai dati giornalieri. Tieni presente che i dati orari e giornalieri non sempre coincidono, poiché possono basarsi su metodi di aggregazione e livelli di dettaglio diversi.",
+    "dateRange": "Intervallo di date",
     "today": "Oggi",
     "yesterday": "Ieri",
-    "lastWeek": "Settimana Scorsa",
-    "lastMonth": "Ultimo Mese"
+    "lastWeek": "Settimana scorsa",
+    "lastMonth": "Mese scorso"
   },
   "es": {
-    "$manual": "Los datos meteorológicos históricos están disponibles en resolución horaria y diaria. Para todos los intervalos de fechas de hasta doce días, se muestran los datos horarios. Si elige un período más largo, Meteostat cambiará a la frecuencia diaria. Tenga en cuenta que los datos horarios y diarios no siempre coinciden. Esto puede ocurrir debido a diferentes métodos de agregación o niveles de detalle.",
-    "dateRange": "Rango de Fechas",
+    "$manual": "Los datos meteorológicos históricos están disponibles con resolución horaria y diaria. Para periodos de hasta doce días se muestran datos horarios. Para periodos más largos, Meteostat cambia a datos diarios. Ten en cuenta que los datos horarios y diarios no siempre coinciden, ya que pueden basarse en métodos de agregación y niveles de detalle diferentes.",
+    "dateRange": "Rango de fechas",
     "today": "Hoy",
     "yesterday": "Ayer",
-    "lastWeek": "Última Semana",
-    "lastMonth": "Último Mes"
+    "lastWeek": "Semana pasada",
+    "lastMonth": "Mes pasado"
   },
   "nl": {
-    "$manual": "Historische weergegevens zijn beschikbaar in uurlijkse en dagelijkse resolutie. Voor alle datumbereiken tot twaalf dagen worden uurlijkse gegevens getoond. Als u een langere periode kiest, schakelt Meteostat over naar de dagelijkse frequentie. Houd er rekening mee dat uurlijkse en dagelijkse gegevens niet altijd overeenkomen. Dit kan gebeuren als gevolg van verschillende aggregatie methoden of niveaus van detail.",
+    "$manual": "Historische weergegevens zijn beschikbaar per uur en per dag. Voor periodes tot twaalf dagen worden uurgegevens getoond. Bij langere periodes schakelt Meteostat over op daggegevens. Houd er rekening mee dat uur- en daggegevens niet altijd overeenkomen, omdat ze op verschillende aggregatiemethoden en detailniveaus kunnen berusten.",
     "dateRange": "Datumbereik",
     "today": "Vandaag",
-    "gisteren": "Gisteren",
     "lastWeek": "Vorige week",
-    "lastMonth": "Afgelopen Maand"
+    "lastMonth": "Vorige maand",
+    "yesterday": "Gisteren"
   },
   "fr": {
-    "$manual": "Les données météorologiques historiques sont disponibles en résolution horaire et quotidienne. Pour toutes les plages de dates jusqu'à douze jours, les données horaires sont affichées. Si vous choisissez une période plus longue, Meteostat passera à une fréquence quotidienne. Veuillez noter que les données horaires et quotidiennes ne correspondent pas toujours. Cela peut être dû à des méthodes d'agrégation ou des niveaux de détail différents.",
-    "dateRange": "Plage de Dates",
+    "$manual": "Les données météo historiques sont disponibles en résolution horaire et journalière. Pour les périodes allant jusqu'à douze jours, les données horaires sont affichées. Pour les périodes plus longues, Meteostat passe aux données journalières. Veuillez noter que les données horaires et journalières ne concordent pas toujours, car elles peuvent reposer sur des méthodes d'agrégation et des niveaux de détail différents.",
+    "dateRange": "Plage de dates",
     "today": "Aujourd'hui",
     "yesterday": "Hier",
-    "lastWeek": "Semaine Dernière",
-    "lastMonth": "Mois Dernier"
+    "lastWeek": "Semaine dernière",
+    "lastMonth": "Mois dernier"
   },
   "pt": {
-    "$manual": "Os dados meteorológicos históricos estão disponíveis em resolução horária e diária. Para todos os intervalos de datas até doze dias, os dados horários são mostrados. Se escolher um período mais longo, o Meteostat mudará para a frequência diária. Note-se que os dados horários e diários nem sempre coincidem. Isto pode acontecer devido a diferentes métodos de agregação ou níveis de detalhe.",
-    "dateRange": "Intervalo de Datas",
+    "$manual": "Os dados meteorológicos históricos estão disponíveis com resolução horária e diária. Para períodos até doze dias são apresentados dados horários. Para períodos mais longos, o Meteostat passa a apresentar dados diários. Tenha em atenção que os dados horários e diários nem sempre coincidem, pois podem basear-se em métodos de agregação e níveis de detalhe diferentes.",
+    "dateRange": "Intervalo de datas",
     "today": "Hoje",
     "yesterday": "Ontem",
-    "lastWeek": "Última Semana",
-    "lastMonth": "Último Mês"
+    "lastWeek": "Semana passada",
+    "lastMonth": "Mês passado"
   },
   "ru": {
-    "$manual": "Исторические данные о погоде доступны в почасовом и ежедневном разрешении. Для всех диапазонов дат до двенадцати дней отображаются почасовые данные. Если вы выберете более длительный период, Meteostat переключится на ежедневную частоту. Обратите внимание, что почасовые и суточные данные не всегда совпадают. Это может происходить из-за различных методов агрегирования или уровней детализации.",
+    "$manual": "Исторические данные о погоде доступны с почасовым и суточным разрешением. Для периодов до двенадцати дней показываются почасовые данные. Для более длинных периодов Meteostat переключается на суточные данные. Обратите внимание, что почасовые и суточные данные не всегда совпадают, так как могут основываться на разных методах агрегирования и уровнях детализации.",
     "dateRange": "Диапазон дат",
     "today": "Сегодня",
     "yesterday": "Вчера",
-    "lastWeek": "Последняя неделя",
-    "lastMonth": "Последний месяц"
+    "lastWeek": "Прошлая неделя",
+    "lastMonth": "Прошлый месяц"
   }
 }
 </i18n>

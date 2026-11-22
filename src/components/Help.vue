@@ -7,7 +7,7 @@
             <icon :icon="['fas', 'question-circle']" class="me-1" />
             {{ t('help') }}
           </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" :aria-label="t('close')"></button>
         </div>
         <div class="modal-body">
           {{ text }}

@@ -5,6 +5,7 @@ import routes from './router';
 import { installI18n, extractLocaleFromPath, SUPPORTED_LOCALES } from './i18n';
 import { createPinia } from 'pinia';
 import App from './App.vue';
+import 'v-calendar/style.css';
 import './style/default.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -14,6 +15,7 @@ import {
   faCalendarAlt,
   faArrowUp,
   faArrowDown,
+  faArrowRight,
   faExclamationCircle,
   faPlay,
   faBackward,
@@ -31,10 +33,6 @@ import {
   faCircle,
   faQuestionCircle,
   faTable,
-  faHotel,
-  faPlaneDeparture,
-  faCar,
-  faSkating,
   faCopy,
   faCheck,
   faPlus
@@ -47,8 +45,7 @@ import {
   faLinkedinIn,
   faTwitter,
   faFacebookF,
-  faMedium,
-  faBitcoin
+  faMedium
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -76,10 +73,6 @@ library.add(
   faCircle,
   faQuestionCircle,
   faTable,
-  faHotel,
-  faPlaneDeparture,
-  faCar,
-  faSkating,
   faCopy,
   faCheck,
   faPlus,
@@ -91,7 +84,7 @@ library.add(
   faTwitter,
   faFacebookF,
   faMedium,
-  faBitcoin
+  faArrowRight
 );
 
 const useBootstrap = async () => {

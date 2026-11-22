@@ -28,7 +28,7 @@
             v-for="item in items"
             :key="item.id"
             class="nav-item"
-            :class="{ 'nav-item-end': ['details', 'maps', 'climate'].includes(item.id) }"
+            :class="{ 'nav-item-end': ['details', 'climate'].includes(item.id) }"
           >
             <a class="nav-link" :href="`#${item.id}`" @click="scrollTo(item.id, $event)">
               {{ item.title }}

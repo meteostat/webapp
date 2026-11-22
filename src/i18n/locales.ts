@@ -30,7 +30,7 @@ export const SUPPORTED_LANGUAGES = [
   },
   {
     locale: 'ru',
-    name: 'русский язык'
+    name: 'Русский'
   }
 ];
 

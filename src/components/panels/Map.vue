@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import useLeaflet from '../../utils/leaflet';
+import useLeaflet, { TILE_URL } from '../../utils/leaflet';
 import '../../../node_modules/leaflet/dist/leaflet.css';
 
 export default {
@@ -35,7 +35,7 @@ export default {
     map.keyboard.disable();
     map.attributionControl.setPrefix(false);
 
-    L.tileLayer('//{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+    L.tileLayer(TILE_URL, {
       maxZoom: 18,
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, <a href="https://carto.com/attribution" target="_blank">CARTO</a>',

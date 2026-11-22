@@ -32,63 +32,6 @@
           </a>
         </span>
       </li>
-      <template v-if="!data.identifier">
-        <li class="list-group-item bg-light">
-          <small class="fw-bold">{{ t('$tourism') }}</small>
-        </li>
-        <a
-          :href="getHotelsLink($locale, data.name, data.location.latitude, data.location.longitude)"
-          target="_blank"
-          rel="sponsored"
-          class="list-group-item list-group-item-action d-flex align-items-center"
-        >
-          <icon :icon="['fas', 'hotel']" class="me-3" />
-          <i18n-t keypath="$hotels" tag="span">
-            <template #name>
-              {{ data?.name }}
-            </template>
-          </i18n-t>
-        </a>
-        <a
-          :href="getFlightsLink($locale)"
-          target="_blank"
-          rel="sponsored"
-          class="list-group-item list-group-item-action d-flex align-items-center"
-        >
-          <icon :icon="['fas', 'plane-departure']" class="me-3" />
-          <i18n-t keypath="$flights" tag="span">
-            <template #name>
-              {{ data?.name }}
-            </template>
-          </i18n-t>
-        </a>
-        <a
-          :href="getCarsLink($locale)"
-          target="_blank"
-          rel="sponsored"
-          class="list-group-item list-group-item-action d-flex align-items-center"
-        >
-          <icon :icon="['fas', 'car']" class="me-3" />
-          <i18n-t keypath="$cars" tag="span">
-            <template #name>
-              {{ data?.name }}
-            </template>
-          </i18n-t>
-        </a>
-        <a
-          :href="getActivitiesLink($locale)"
-          target="_blank"
-          rel="sponsored"
-          class="list-group-item list-group-item-action d-flex align-items-center"
-        >
-          <icon :icon="['fas', 'skating']" class="me-3" />
-          <i18n-t keypath="$activities" tag="span">
-            <template #name>
-              {{ data?.name }}
-            </template>
-          </i18n-t>
-        </a>
-      </template>
       <li v-if="data.identifier" class="list-group-item bg-light">
         <small class="fw-bold">{{ t('stationIdentifiers') }}</small>
       </li>
@@ -171,7 +114,6 @@
 <script lang="ts">
 import { useI18n } from 'vue-i18n';
 import { format, parseISO } from 'date-fns';
-import { getHotelsLink, getFlightsLink, getCarsLink, getActivitiesLink } from '~/utils/affiliate';
 import Map from './Map.vue';
 
 export default {
@@ -193,7 +135,7 @@ export default {
   setup(): Record<string, any> {
     const { t } = useI18n();
 
-    return { t, format, parseISO, getHotelsLink, getFlightsLink, getCarsLink, getActivitiesLink };
+    return { t, format, parseISO };
   },
 
   data() {

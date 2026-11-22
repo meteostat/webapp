@@ -122,7 +122,7 @@ export default defineComponent({
 <i18n>
 {
   "en": {
-    "$description": "Download selected weather data in the format of your choice.",
+    "$description": "Download the selected weather data in the format of your choice.",
     "format": "Format",
     "showColumns": "Show columns",
     "column": "Column",
@@ -138,43 +138,43 @@ export default defineComponent({
   "it": {
     "$description": "Scarica i dati meteo selezionati nel formato di tua scelta.",
     "format": "Formato",
-    "showColumns": "Mostra Colonne",
-    "Column": "Colonna",
-    "description": "Descrizione"
+    "showColumns": "Mostra colonne",
+    "description": "Descrizione",
+    "column": "Colonna"
   },
   "es": {
-    "$description": "Descarga los datos meteorológicos seleccionados en el formato que elijas.",
+    "$description": "Descarga los datos meteorológicos seleccionados en el formato que prefieras.",
     "format": "Formato",
-    "showColumns": "Mostrar Columnas",
+    "showColumns": "Mostrar columnas",
     "column": "Columna",
     "description": "Descripción"
   },
   "nl": {
-    "$description": "Download geselecteerde weergegevens in het formaat van uw keuze.",
+    "$description": "Download de geselecteerde weergegevens in het formaat van je keuze.",
     "format": "Formaat",
-    "showColumns": "Toon kolommen",
-    "column": "Column",
-    "description": "Description"
+    "showColumns": "Kolommen tonen",
+    "column": "Kolom",
+    "description": "Beschrijving"
   },
   "fr": {
-    "$description" : "Télécharger les données météorologiques sélectionnées dans le format de votre choix.",
-    "format" : "Format",
-    "showColumns" : "Afficher les colonnes",
-    "column" : "Colonne",
-    "description" : "Description"
+    "$description": "Téléchargez les données météo sélectionnées dans le format de votre choix.",
+    "format": "Format",
+    "showColumns": "Afficher les colonnes",
+    "column": "Colonne",
+    "description": "Description"
   },
   "pt": {
-    "$description": "Descarregar dados meteorológicos seleccionados no formato da sua escolha.",
+    "$description": "Transfira os dados meteorológicos selecionados no formato da sua preferência.",
     "format": "Formato",
-    "showColumns": "Mostrar Colunas",
+    "showColumns": "Mostrar colunas",
     "column": "Coluna",
     "description": "Descrição"
   },
   "ru": {
-    "$description": "Загрузить выбранные данные о погоде в выбранном вами формате.",
+    "$description": "Скачайте выбранные данные о погоде в удобном для вас формате.",
     "format": "Формат",
     "showColumns": "Показать столбцы",
-    "column": "Колонка",
+    "column": "Столбец",
     "description": "Описание"
   }
 }

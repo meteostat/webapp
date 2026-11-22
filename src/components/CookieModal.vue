@@ -61,31 +61,31 @@ export default defineComponent({
     "$title": "Privacy Notice",
     "$privacyLink": "/en/privacy",
     "privacyPolicy": "Privacy Policy",
-    "$description": "To create the best possible user experience on this website, Meteostat would like to use cookies to store and access personal data on your device. This can include information like browsing patterns and unique identifiers. You can always choose not to consent, but personalization of content and advertising will not be available if you do so.",
+    "$description": "To provide the best possible experience on this website, Meteostat would like to use cookies to store and access personal data on your device, such as browsing patterns and unique identifiers. You can always decline, but personalized content and advertising will not be available.",
     "reject": "Reject",
     "accept": "Accept"
   },
   "de": {
-    "$title": "Datenschutz",
+    "$title": "Datenschutzhinweis",
     "$privacyLink": "/de/privacy",
     "privacyPolicy": "Datenschutzerklärung",
-    "$description": "Um die bestmögliche Nutzererfahrung auf dieser Website zu bieten, würden wir gerne Cookies verwenden, um persönliche Daten auf Ihrem Gerät zu speichern und darauf zuzugreifen. Dies kann Informationen wie Browsing-Muster und eindeutige Identifikatoren beinhalten. Sie können sich jederzeit entscheiden, Ihre Zustimmung zu verweigern, aber die Personalisierung von Inhalten und Werbung wird dann nicht möglich sein.",
+    "$description": "Um Ihnen die bestmögliche Nutzererfahrung zu bieten, möchte Meteostat Cookies verwenden, um personenbezogene Daten auf Ihrem Gerät zu speichern und darauf zuzugreifen, z. B. Surfverhalten und eindeutige Kennungen. Sie können jederzeit ablehnen, dann sind jedoch personalisierte Inhalte und Werbung nicht verfügbar.",
     "reject": "Ablehnen",
     "accept": "Akzeptieren"
   },
   "it": {
-    "$title": "Avviso Sulla Privacy",
+    "$title": "Informativa sulla privacy",
     "$privacyLink": "/en/privacy",
-    "privacyPolicy": "Privacy",
-    "$description": "Per creare la migliore esperienza utente possibile su questo sito web, Meteostat desidera utilizzare i cookie per memorizzare e accedere ai dati personali sul tuo dispositivo. Questo può includere informazioni come modelli di navigazione e identificatori unici. Puoi sempre scegliere di non acconsentire, ma la personalizzazione dei contenuti e della pubblicità non sarà disponibile se lo fai.",
+    "privacyPolicy": "Informativa sulla privacy",
+    "$description": "Per offrirti la migliore esperienza possibile su questo sito, Meteostat vorrebbe utilizzare i cookie per memorizzare e accedere a dati personali sul tuo dispositivo, come abitudini di navigazione e identificatori univoci. Puoi sempre rifiutare, ma in tal caso contenuti e pubblicità personalizzati non saranno disponibili.",
     "reject": "Rifiuta",
     "accept": "Accetta"
   },
   "es": {
-    "$title": "Aviso de Privacidad",
+    "$title": "Aviso de privacidad",
     "$privacyLink": "/en/privacy",
-    "privacyPolicy": "Política de Privacidad",
-    "$description": "Para crear la mejor experiencia de usuario posible en este sitio web, Meteostat desea utilizar cookies para almacenar y acceder a datos personales en su dispositivo. Esto puede incluir información como patrones de navegación e identificadores únicos. Siempre puede optar por no dar su consentimiento, pero la personalización del contenido y la publicidad no estará disponible si lo hace.",
+    "privacyPolicy": "Política de privacidad",
+    "$description": "Para ofrecerte la mejor experiencia posible en este sitio web, Meteostat quiere utilizar cookies para almacenar y acceder a datos personales en tu dispositivo, como hábitos de navegación e identificadores únicos. Puedes rechazarlas en cualquier momento, pero entonces no habrá contenido ni publicidad personalizados.",
     "reject": "Rechazar",
     "accept": "Aceptar"
   },
@@ -93,32 +93,32 @@ export default defineComponent({
     "$title": "Privacyverklaring",
     "$privacyLink": "/en/privacy",
     "privacyPolicy": "Privacybeleid",
-    "$description": "Om de best mogelijke gebruikerservaring op deze website te creëren, wil Meteostat graag cookies gebruiken om persoonlijke gegevens op uw apparaat op te slaan en te raadplegen. Dit kan informatie bevatten zoals browsingpatronen en unieke identificatoren. U kunt er altijd voor kiezen om geen toestemming te geven, maar personalisatie van inhoud en advertenties zal niet beschikbaar zijn als u dat doet.",
+    "$description": "Om je de best mogelijke ervaring op deze website te bieden, wil Meteostat cookies gebruiken om persoonsgegevens op je apparaat op te slaan en te raadplegen, zoals surfgedrag en unieke identificatoren. Je kunt altijd weigeren, maar dan zijn gepersonaliseerde inhoud en advertenties niet beschikbaar.",
     "reject": "Weigeren",
     "accept": "Accepteren"
   },
   "fr": {
-    "$title" : "Avis de Confidentialité",
-    "$privacyLink" : "/en/privacy",
-    "privacyPolicy" : "Politique de Confidentialité",
-    "$description" : "Pour créer la meilleure expérience utilisateur possible sur ce site Web, Meteostat souhaite utiliser des cookies pour stocker et accéder à des données personnelles sur votre appareil. Il peut s'agir d'informations telles que des modèles de navigation et des identifiants uniques. Vous pouvez toujours choisir de ne pas consentir, mais la personnalisation du contenu et de la publicité ne sera pas disponible si vous le faites.",
-    "reject" : "Reject",
-    "accept" : "Accepter"
+    "$title": "Avis de confidentialité",
+    "$privacyLink": "/en/privacy",
+    "privacyPolicy": "Politique de confidentialité",
+    "$description": "Afin de vous offrir la meilleure expérience possible sur ce site, Meteostat souhaite utiliser des cookies pour stocker et consulter des données personnelles sur votre appareil, comme vos habitudes de navigation et des identifiants uniques. Vous pouvez toujours refuser, mais les contenus et publicités personnalisés ne seront alors pas disponibles.",
+    "reject": "Refuser",
+    "accept": "Accepter"
   },
   "pt": {
-    "$title": "Aviso de Privacidade",
+    "$title": "Aviso de privacidade",
     "$privacyLink": "/en/privacy",
-    "privacyPolicy": "Política de Privacidade",
-    "$description": "Para criar a melhor experiência de utilizador possível neste website, o Meteostat gostaria de utilizar cookies para armazenar e aceder a dados pessoais no seu dispositivo. Isto pode incluir informações como padrões de navegação e identificadores únicos. Pode sempre optar por não consentir, mas a personalização do conteúdo e publicidade não estará disponível se o fizer.",
-    "reject": "Rejeitar",
+    "privacyPolicy": "Política de privacidade",
+    "$description": "Para lhe proporcionar a melhor experiência possível neste website, o Meteostat gostaria de utilizar cookies para armazenar e aceder a dados pessoais no seu dispositivo, como padrões de navegação e identificadores únicos. Pode sempre recusar, mas nesse caso os conteúdos e a publicidade personalizados não estarão disponíveis.",
+    "reject": "Recusar",
     "accept": "Aceitar"
   },
   "ru": {
     "$title": "Уведомление о конфиденциальности",
     "$privacyLink": "/en/privacy",
     "privacyPolicy": "Политика конфиденциальности",
-    "$description": "Для создания наилучшего пользовательского опыта на этом сайте, Meteostat использует файлы cookie для хранения и доступа к персональным данным на вашем устройстве. Это может включать такую информацию, как шаблоны просмотра и уникальные идентификаторы. Вы всегда можете не давать согласия, но персонализация контента и рекламы будет недоступна, если вы это сделаете.",
-    "reject": "отклонить",
+    "$description": "Чтобы сделать работу с сайтом максимально удобной, Meteostat хотел бы использовать файлы cookie для хранения и получения персональных данных на вашем устройстве, например истории просмотров и уникальных идентификаторов. Вы всегда можете отказаться, но тогда персонализированный контент и реклама будут недоступны.",
+    "reject": "Отклонить",
     "accept": "Принять"
   }
 }

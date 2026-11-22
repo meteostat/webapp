@@ -50,14 +50,14 @@ export default defineComponent({
   "en": {
     "$meta": {
       "title": "Page Not Found",
-      "description": "Sorry. We could not find this page."
+      "description": "Sorry, we could not find this page."
     },
     "error": "Error",
     "$description": "We could not find this page."
   },
   "de": {
     "$meta": {
-      "title": "Seite Nicht Gefunden",
+      "title": "Seite nicht gefunden",
       "description": "Leider konnten wir diese Seite nicht finden."
     },
     "error": "Fehler",
@@ -65,51 +65,51 @@ export default defineComponent({
   },
   "it": {
     "$meta": {
-      "title": "Pagina Non Trovata",
-      "description": "Spiacente. Non abbiamo trovato questa pagina."
+      "title": "Pagina non trovata",
+      "description": "Spiacenti, non abbiamo trovato questa pagina."
     },
     "error": "Errore",
     "$description": "Non siamo riusciti a trovare questa pagina."
   },
   "es": {
     "$meta": {
-      "title": "Página No Encontrada",
-      "description": "Lo sentimos. No hemos podido encontrar esta página."
+      "title": "Página no encontrada",
+      "description": "Lo sentimos, no hemos podido encontrar esta página."
     },
     "error": "Error",
     "$description": "No hemos podido encontrar esta página."
   },
   "nl": {
     "$meta": {
-      "title": "Pagina Niet Gevonden",
-      "description": "Sorry. We konden deze pagina niet vinden."
+      "title": "Pagina niet gevonden",
+      "description": "Sorry, we konden deze pagina niet vinden."
     },
-    "error": "Error",
+    "error": "Fout",
     "$description": "We konden deze pagina niet vinden."
   },
   "fr": {
-    "$meta" : {
-      "title" : "Page Non Trouvée",
-      "description" : "Désolé. Nous n'avons pas pu trouver cette page."
+    "$meta": {
+      "title": "Page introuvable",
+      "description": "Désolé, nous n'avons pas trouvé cette page."
     },
-    "error" : "Error",
-    "$description" : "Nous n'avons pas pu trouver cette page."
+    "error": "Erreur",
+    "$description": "Nous n'avons pas trouvé cette page."
   },
   "pt": {
     "$meta": {
-      "title": "Página Não Encontrada",
-      "description": "Desculpe. Não conseguimos encontrar esta página."
+      "title": "Página não encontrada",
+      "description": "Lamentamos, mas não encontrámos esta página."
     },
     "error": "Erro",
-    "$description": "Não conseguimos encontrar esta página."
+    "$description": "Não encontrámos esta página."
   },
   "ru": {
     "$meta": {
       "title": "Страница не найдена",
-      "description": "Извините. Мы не смогли найти эту страницу."
+      "description": "Извините, мы не смогли найти эту страницу."
     },
-    "error": "Error",
-    "$description": "Мы не смогли найти эту страницу."    
+    "error": "Ошибка",
+    "$description": "Мы не смогли найти эту страницу."
   }
 }
 </i18n>
